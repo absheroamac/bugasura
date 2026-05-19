@@ -39,7 +39,7 @@ export default function Testimonials() {
   const isPausedRef = useRef(false);
   const isDragging = useRef(false);
   const dragStart = useRef({ x: 0, pos: 0 });
-  const [, forceRender] = useState(0);
+  const [, forceRender] = useState(0); // eslint-disable-line @typescript-eslint/no-unused-vars
 
   useEffect(() => {
     const speed = 0.6;

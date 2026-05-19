@@ -103,7 +103,7 @@ export default function PlatformCTA() {
             maxWidth: "700px",
           }}
         >
-          See how the platform fits your team's workflow.
+          See how the platform fits your team&apos;s workflow.
         </h2>
 
         <p
@@ -116,7 +116,7 @@ export default function PlatformCTA() {
           }}
         >
           Start on the free tier and explore all four layers — or talk to us
-          about what you're trying to solve.
+          about what you&apos;re trying to solve.
         </p>
 
         <div className="flex items-center gap-4 mt-8">
