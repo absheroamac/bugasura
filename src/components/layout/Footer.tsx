@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -51,7 +52,28 @@ const footerNav = [
   },
 ];
 
-export default function Footer() {
+type CtaConfig = {
+  heading: React.ReactNode;
+  subheading?: React.ReactNode;
+  body: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+};
+
+const defaultCta: CtaConfig = {
+  heading: <>Your competitors are<br />shipping with AI.</>,
+  subheading: <>Are you testing with it?</>,
+  body: "Join 50,000+ engineers using Bugasura to match the speed of AI-built software.",
+  primaryLabel: "Start Free",
+  primaryHref: "/signup",
+  secondaryLabel: "See in Action",
+  secondaryHref: "/demo",
+};
+
+export default function Footer({ cta }: { cta?: CtaConfig }) {
+  const c = cta ?? defaultCta;
   return (
     <footer
       className="rounded-[32px] overflow-hidden"
@@ -68,38 +90,38 @@ export default function Footer() {
             className="font-semibold text-white"
             style={{ fontSize: "clamp(32px, 3.8vw, 56px)", letterSpacing: "-0.025em", lineHeight: 1.05 }}
           >
-            Your competitors are
-            <br />shipping with AI.
+            {c.heading}
           </h2>
-          <h2
-            className="font-semibold mt-2"
-            style={{ fontSize: "clamp(28px, 3.4vw, 50px)", letterSpacing: "-0.025em", lineHeight: 1.05, color: "rgba(255,255,255,0.5)" }}
-          >
-            Are you testing with it?
-          </h2>
+          {c.subheading && (
+            <h2
+              className="font-semibold mt-2"
+              style={{ fontSize: "clamp(28px, 3.4vw, 50px)", letterSpacing: "-0.025em", lineHeight: 1.05, color: "rgba(255,255,255,0.5)" }}
+            >
+              {c.subheading}
+            </h2>
+          )}
           <p
             className="mt-5"
-            style={{ fontSize: "14px", lineHeight: 1.65, color: "rgba(255,255,255,0.55)", maxWidth: "320px" }}
+            style={{ fontSize: "14px", lineHeight: 1.65, color: "rgba(255,255,255,0.55)", maxWidth: "360px" }}
           >
-            Join 50,000+ engineers using Bugasura to match
-            the speed of AI-built software.
+            {c.body}
           </p>
 
           {/* Buttons */}
           <div className="flex items-center gap-4 mt-8">
             <Link
-              href="/signup"
+              href={c.primaryHref}
               className="px-7 py-3.5 rounded-lg font-semibold uppercase transition-opacity hover:opacity-90"
               style={{ backgroundColor: "#fff", color: BTN_COLOR, fontSize: "13px", letterSpacing: "0.06em" }}
             >
-              Start Free
+              {c.primaryLabel}
             </Link>
             <Link
-              href="/demo"
+              href={c.secondaryHref}
               className="px-7 py-3.5 rounded-lg font-semibold uppercase border-2 border-white/70 transition-opacity hover:opacity-75"
               style={{ color: "#fff", fontSize: "13px", letterSpacing: "0.06em" }}
             >
-              See in Action
+              {c.secondaryLabel}
             </Link>
           </div>
         </div>

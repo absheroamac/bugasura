@@ -5,7 +5,6 @@ import PlatformLayers from "@/components/sections/platform/PlatformLayers";
 import PlatformComparison from "@/components/sections/platform/PlatformComparison";
 import PlatformStats from "@/components/sections/platform/PlatformStats";
 import PlatformEnterprise from "@/components/sections/platform/PlatformEnterprise";
-import PlatformCTA from "@/components/sections/platform/PlatformCTA";
 import Footer from "@/components/layout/Footer";
 
 export const metadata = {
@@ -23,8 +22,14 @@ export default function PlatformPage() {
       <PlatformComparison />
       <PlatformStats />
       <PlatformEnterprise />
-      <PlatformCTA />
-      <Footer />
+      <Footer cta={{
+        heading: <>See how the platform fits your team&apos;s workflow.</>,
+        body: "Start on the free tier and explore all four layers — or talk to us about what you’re trying to solve.",
+        primaryLabel: "Start Free",
+        primaryHref: "/signup",
+        secondaryLabel: "Book a Platform Walkthrough",
+        secondaryHref: "/demo",
+      }} />
     </main>
   );
 }
