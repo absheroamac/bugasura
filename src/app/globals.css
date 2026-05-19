@@ -2,26 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --cream: #FFF6E2;
+  --red: #E52727;
+  --red-dark: #AC1515;
+  --orange: #FFA840;
+  --blue: #29A5FF;
+  --dark: #1E1E1E;
+  --tint-blue: #B2D9EC;
+  --tint-orange: #FFDAA8;
+  --tint-salmon: #FDD9C8;
+  --tint-gray: #DCDCDC;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+html {
+  background-color: var(--cream);
+  color: var(--dark);
+  scroll-padding-top: 67px;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Inter, sans-serif;
+  font-weight: 400;
+  background-color: var(--cream);
+  color: var(--dark);
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Clash Grotesk', sans-serif;
 }
