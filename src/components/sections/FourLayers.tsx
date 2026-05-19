@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useScrollRef } from "@/components/layout/ScrollProvider";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,7 +17,6 @@ const steps = [
       "Product and domain context building",
     ],
     cardBg: "var(--tint-salmon)",
-    cardImage: "/section3/card1.png",
   },
   {
     num: "02",
@@ -244,29 +242,20 @@ export default function FourLayers() {
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
               >
-                {steps[active].cardImage ? (
-                  <Image
-                    src={steps[active].cardImage!}
-                    alt={steps[active].label}
-                    fill
-                    className="object-cover object-bottom"
-                  />
-                ) : (
-                  <div className="flex flex-col items-center justify-center w-full h-full opacity-20">
-                    <span
-                      className="font-semibold"
-                      style={{ fontSize: "clamp(48px, 6vw, 80px)", letterSpacing: "-0.04em", color: "var(--dark)" }}
-                    >
-                      {steps[active].num}
-                    </span>
-                    <span
-                      className="font-semibold"
-                      style={{ fontSize: "clamp(20px, 2vw, 28px)", color: "var(--dark)" }}
-                    >
-                      {steps[active].label}
-                    </span>
-                  </div>
-                )}
+                <div className="flex flex-col items-center justify-center w-full h-full opacity-20">
+                  <span
+                    className="font-semibold"
+                    style={{ fontSize: "clamp(48px, 6vw, 80px)", letterSpacing: "-0.04em", color: "var(--dark)" }}
+                  >
+                    {steps[active].num}
+                  </span>
+                  <span
+                    className="font-semibold"
+                    style={{ fontSize: "clamp(20px, 2vw, 28px)", color: "var(--dark)" }}
+                  >
+                    {steps[active].label}
+                  </span>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
