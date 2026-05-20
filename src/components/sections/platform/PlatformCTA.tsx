@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Button, Heading, BodyText } from "@/components/ui";
 
 export default function PlatformCTA() {
   return (
@@ -15,60 +15,38 @@ export default function PlatformCTA() {
       >
         {/* Left — copy */}
         <div style={{ maxWidth: "560px" }}>
-          <h2
-            className="font-semibold"
+          <Heading
+            level="section"
+            as="h2"
+            color="#ffffff"
             style={{
-              fontFamily: "'Clash Grotesk', sans-serif",
               fontSize: "clamp(32px, 4vw, 56px)",
-              letterSpacing: "-0.03em",
               lineHeight: 1.05,
-              color: "#ffffff",
             }}
           >
-            Your competitors are shipping with AI.{" "}
+            Your competitors are<br />shipping with AI.{" "}
             <span style={{ color: "rgba(255,255,255,0.35)" }}>
               Are you testing with it?
             </span>
-          </h2>
+          </Heading>
 
-          <p
+          <BodyText
+            color="rgba(255,255,255,0.5)"
+            maxWidth="360px"
             className="mt-4"
-            style={{
-              fontSize: "13.5px",
-              lineHeight: 1.65,
-              color: "rgba(255,255,255,0.5)",
-              maxWidth: "360px",
-            }}
+            style={{ fontSize: "13.5px" }}
           >
             Join 50,000+ engineers using Bugasura to match the speed of
             AI-built software.
-          </p>
+          </BodyText>
 
           <div className="flex items-center gap-4 mt-8">
-            <Link
-              href="/signup"
-              className="px-6 py-3 rounded-lg font-semibold uppercase transition-opacity hover:opacity-90"
-              style={{
-                backgroundColor: "#ffffff",
-                color: "#1A0A00",
-                fontSize: "12px",
-                letterSpacing: "0.08em",
-              }}
-            >
+            <Button href="/signup" variant="white">
               Start Free
-            </Link>
-            <Link
-              href="/demo"
-              className="px-6 py-3 rounded-lg font-semibold uppercase border-2 transition-opacity hover:opacity-75"
-              style={{
-                borderColor: "rgba(255,255,255,0.35)",
-                color: "#ffffff",
-                fontSize: "12px",
-                letterSpacing: "0.08em",
-              }}
-            >
+            </Button>
+            <Button href="/demo" variant="outline-light">
               See in Action
-            </Link>
+            </Button>
           </div>
         </div>
 
@@ -92,58 +70,36 @@ export default function PlatformCTA() {
           padding: "72px 80px",
         }}
       >
-        <h2
-          className="font-semibold"
+        <Heading
+          level="section"
+          as="h2"
+          color="#ffffff"
           style={{
-            fontFamily: "'Clash Grotesk', sans-serif",
             fontSize: "clamp(36px, 5vw, 72px)",
-            letterSpacing: "-0.03em",
             lineHeight: 1.02,
-            color: "#ffffff",
             maxWidth: "700px",
           }}
         >
           See how the platform fits your team&apos;s workflow.
-        </h2>
+        </Heading>
 
-        <p
+        <BodyText
+          color="rgba(255,255,255,0.5)"
+          maxWidth="400px"
           className="mt-5"
-          style={{
-            fontSize: "14px",
-            lineHeight: 1.65,
-            color: "rgba(255,255,255,0.5)",
-            maxWidth: "400px",
-          }}
+          style={{ fontSize: "14px" }}
         >
           Start on the free tier and explore all four layers — or talk to us
           about what you&apos;re trying to solve.
-        </p>
+        </BodyText>
 
         <div className="flex items-center gap-4 mt-8">
-          <Link
-            href="/signup"
-            className="px-6 py-3 rounded-lg font-semibold uppercase transition-opacity hover:opacity-90"
-            style={{
-              backgroundColor: "#ffffff",
-              color: "#1A0A00",
-              fontSize: "12px",
-              letterSpacing: "0.08em",
-            }}
-          >
+          <Button href="/signup" variant="white">
             Start Free
-          </Link>
-          <Link
-            href="/demo"
-            className="px-6 py-3 rounded-lg font-semibold uppercase border-2 transition-opacity hover:opacity-75"
-            style={{
-              borderColor: "rgba(255,255,255,0.35)",
-              color: "#ffffff",
-              fontSize: "12px",
-              letterSpacing: "0.08em",
-            }}
-          >
+          </Button>
+          <Button href="/demo" variant="outline-light">
             Book a Platform Walkthrough
-          </Link>
+          </Button>
         </div>
       </section>
     </div>

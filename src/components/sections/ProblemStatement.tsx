@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Heading, BodyText } from "@/components/ui";
 
 const stats = [
   { value: "50,000+", label: "Engineers worldwide" },
@@ -14,21 +15,28 @@ export default function ProblemStatement() {
     <div style={{ backgroundColor: "var(--cream)" }}>
 
       {/* ── Stats row ── */}
-      <div className="flex items-center justify-between py-10 px-8">
+      <div className="flex items-center justify-evenly" style={{ margin: "0", padding: "120px 0 32px" }}>
         {stats.map((stat) => (
           <div key={stat.value} className="flex flex-col items-center text-center">
-            <span
-              className="font-semibold"
-              style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "clamp(40px, 4.5vw, 60px)", letterSpacing: "-0.02em", lineHeight: 1.05, color: "var(--dark)" }}
+            <Heading
+              level="subsection"
+              as="p"
+              color="var(--dark)"
+              style={{
+                fontSize: "clamp(40px, 4.5vw, 60px)",
+                lineHeight: 1.05,
+              }}
             >
               {stat.value}
-            </span>
-            <span
-              className="font-semibold mt-1"
-              style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", color: "var(--dark)", opacity: 0.45 }}
+            </Heading>
+            <BodyText
+              color="var(--dark)"
+              opacity={0.8}
+              className="mt-1"
+              style={{ fontWeight: 600, fontSize: "14px" }}
             >
               {stat.label}
-            </span>
+            </BodyText>
           </div>
         ))}
       </div>
@@ -44,37 +52,34 @@ export default function ProblemStatement() {
         </div>
 
         {/* Headline */}
-        <h2
-          className="font-semibold text-center mx-auto mt-8 px-6"
+        <Heading
+          level="section"
+          as="h2"
+          color="var(--dark)"
+          className="text-center mx-auto mt-8 px-6"
           style={{
             fontSize: "clamp(40px, 4.5vw, 68px)",
-            letterSpacing: "-0.025em",
             lineHeight: 1.02,
-            color: "var(--dark)",
             maxWidth: "1000px",
           }}
         >
           AI accelerates development.
           <br />
           Nothing accelerates quality.
-        </h2>
+        </Heading>
 
         {/* Body */}
-        <p
+        <BodyText
+          color="var(--dark)"
+          opacity={0.8}
+          maxWidth="560px"
           className="text-center mx-auto mt-6 px-6 pb-[320px]"
-          style={{
-            fontSize: "15px",
-            lineHeight: 1.6,
-            color: "var(--dark)",
-            opacity: 0.6,
-            maxWidth: "560px",
-          }}
         >
           AI co-pilots write features in hours. Test suites still run on sprint timelines.
           That mismatch isn&apos;t just a process problem — it&apos;s compounding quality debt
           that surfaces in production, in customer complaints, and in the features you
           didn&apos;t dare ship.
-        </p>
+        </BodyText>
       </div>
 
       {/* ── Illustration: outside card, pulled up so top ~30% overlaps orange bottom ── */}
@@ -100,12 +105,6 @@ export default function ProblemStatement() {
         className="flex flex-col items-center pb-16"
         style={{ marginTop: "-4vw", marginBottom: "48px" }}
       >
-        <div
-          className="mb-2 font-semibold"
-          style={{ fontSize: "14px", color: "var(--dark)", opacity: 0.65, fontStyle: "italic" }}
-        >
-          Snail fail!
-        </div>
         <Image
           src="/section2/illustration2.png"
           alt="Bugasura mascot looking unimpressed"

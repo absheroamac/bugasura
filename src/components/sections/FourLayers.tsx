@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useScrollRef } from "@/components/layout/ScrollProvider";
 import { motion, AnimatePresence } from "framer-motion";
+import PlatformInfographic from "@/components/sections/PlatformInfographic";
+import { Heading, BodyText } from "@/components/ui";
 
 const steps = [
   {
     num: "01",
     label: "Context",
+    color: "var(--red)",
     headline: "Build the knowledge base your QA needs.",
     body: "Feed Bugasura your requirements, user stories, past defects, and product docs. It builds shared context that every test decision gets made against — not just what to test, but why it matters to your users.",
     bullets: [
@@ -21,6 +24,7 @@ const steps = [
   {
     num: "02",
     label: "Refine",
+    color: "var(--orange)",
     headline: "Turn raw signals into precision test coverage.",
     body: "Bugasura analyses your context to surface the highest-risk areas, prune redundant cases, and align coverage to what actually breaks in production.",
     bullets: [
@@ -30,11 +34,11 @@ const steps = [
       "Continuous refinement as context evolves",
     ],
     cardBg: "var(--tint-orange)",
-    cardImage: null,
   },
   {
     num: "03",
     label: "Generate",
+    color: "var(--blue)",
     headline: "AI-written tests grounded in your context.",
     body: "Generate test cases, scripts, and edge-case scenarios that reflect your actual product — not generic patterns from training data.",
     bullets: [
@@ -44,11 +48,11 @@ const steps = [
       "Multi-format output (manual, automation, BDD)",
     ],
     cardBg: "var(--tint-blue)",
-    cardImage: null,
   },
   {
     num: "04",
     label: "Execute",
+    color: "#888888",
     headline: "Run, report, and close the loop automatically.",
     body: "Asura agents execute tests, triage failures, and push results back into your workflow — turning QA from a bottleneck into a continuous signal.",
     bullets: [
@@ -58,7 +62,6 @@ const steps = [
       "Real-time dashboards and stakeholder reports",
     ],
     cardBg: "var(--tint-gray)",
-    cardImage: null,
   },
 ];
 
@@ -111,20 +114,20 @@ export default function FourLayers() {
       >
         {/* Top header row */}
         <div className="flex items-start justify-between px-10 pt-10 pb-6">
-          <h2
-            className="font-semibold"
+          <Heading
+            level="section"
+            as="h2"
+            color="var(--dark)"
             style={{
               fontSize: "clamp(36px, 4.5vw, 68px)",
-              letterSpacing: "-0.025em",
               lineHeight: 1.02,
-              color: "var(--dark)",
               whiteSpace: "nowrap",
             }}
           >
             Four layers. One system.
             <br />
             End-to-end quality.
-          </h2>
+          </Heading>
 
           <div style={{ maxWidth: "320px" }}>
             <p
@@ -133,9 +136,9 @@ export default function FourLayers() {
             >
               The Platform
             </p>
-            <p style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--dark)", opacity: 0.6 }}>
+            <BodyText color="var(--dark)" style={{ fontSize: "15px" }}>
               From context ingestion to agent-powered execution — a connected platform built for how AI-era teams actually build.
-            </p>
+            </BodyText>
           </div>
         </div>
 
@@ -147,12 +150,12 @@ export default function FourLayers() {
             {steps.map((step, i) => (
               <div
                 key={step.num}
-                className="border-t cursor-pointer"
+                className={`cursor-pointer ${i > 0 ? "border-t" : ""}`}
                 style={{ borderColor: "rgba(30,30,30,0.12)" }}
                 onClick={() => setActive(i)}
               >
                 {/* Row header */}
-                <div className="flex items-center gap-4 py-4">
+                <div className="flex items-center gap-2 py-4">
                   <span
                     className="font-semibold"
                     style={{
@@ -160,7 +163,7 @@ export default function FourLayers() {
                       fontSize: "24px",
                       lineHeight: 1.0,
                       letterSpacing: "0em",
-                      color: active === i ? "var(--red)" : "rgba(30,30,30,0.25)",
+                      color: active === i ? step.color : "rgba(30,30,30,0.25)",
                       minWidth: "36px",
                     }}
                   >
@@ -192,32 +195,28 @@ export default function FourLayers() {
                       style={{ overflow: "hidden" }}
                     >
                       <div className="pb-5">
-                        <h3
-                          className="font-semibold mb-3"
-                          style={{
-                            fontSize: "32px",
-                            letterSpacing: "-0.015em",
-                            lineHeight: 1.1,
-                            color: "var(--dark)",
-                          }}
+                        <Heading
+                          level="step"
+                          as="h3"
+                          color="var(--dark)"
+                          className="mb-3"
+                          style={{ fontSize: "32px", lineHeight: 1.1 }}
                         >
                           {step.headline}
-                        </h3>
-                        <p
-                          className="mb-4"
-                          style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--dark)", opacity: 0.6 }}
-                        >
+                        </Heading>
+                        <BodyText color="var(--dark)" className="mb-4" style={{ fontSize: "15px" }}>
                           {step.body}
-                        </p>
-                        <ul className="flex flex-col gap-2">
+                        </BodyText>
+                        <ul className="flex flex-col gap-0">
                           {step.bullets.map((b) => (
                             <li
                               key={b}
                               className="flex items-start gap-2"
-                              style={{ fontSize: "15px", lineHeight: 1.6, color: "var(--dark)", opacity: 0.7 }}
                             >
                               <span className="mt-[11px] w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "var(--dark)" }} />
-                              {b}
+                              <BodyText as="span" color="var(--dark)" style={{ fontSize: "15px", lineHeight: 1.35 }}>
+                                {b}
+                              </BodyText>
                             </li>
                           ))}
                         </ul>
@@ -227,38 +226,16 @@ export default function FourLayers() {
                 </AnimatePresence>
               </div>
             ))}
-            {/* Last border */}
-            <div className="border-t" style={{ borderColor: "rgba(30,30,30,0.12)" }} />
           </div>
 
           {/* Right: card */}
-          <div className="flex-1 relative rounded-[24px] overflow-hidden" style={{ backgroundColor: steps[active].cardBg }}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                className="absolute inset-0 flex items-end justify-center"
-                initial={{ opacity: 0, scale: 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-              >
-                <div className="flex flex-col items-center justify-center w-full h-full opacity-20">
-                  <span
-                    className="font-semibold"
-                    style={{ fontSize: "clamp(48px, 6vw, 80px)", letterSpacing: "-0.04em", color: "var(--dark)" }}
-                  >
-                    {steps[active].num}
-                  </span>
-                  <span
-                    className="font-semibold"
-                    style={{ fontSize: "clamp(20px, 2vw, 28px)", color: "var(--dark)" }}
-                  >
-                    {steps[active].label}
-                  </span>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+          <motion.div
+            className="flex-1 relative rounded-[24px] overflow-hidden"
+            animate={{ backgroundColor: steps[active].cardBg }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <PlatformInfographic active={active} />
+          </motion.div>
         </div>
       </div>
 

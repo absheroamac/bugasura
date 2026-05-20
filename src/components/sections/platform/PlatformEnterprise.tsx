@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Button, Heading, BodyText } from "@/components/ui";
 
 const badges = [
   { src: "/enterprise/soc2.svg",        label: "SOC 2 Type II\ncertified" },
@@ -20,47 +20,36 @@ export default function PlatformEnterprise() {
       <div className="flex items-center justify-between gap-16">
         {/* Left — copy */}
         <div style={{ maxWidth: "400px", flexShrink: 0 }}>
-          <h2
-            className="font-semibold"
+          <Heading
+            level="section"
+            as="h2"
+            color="#1A0A00"
             style={{
-              fontFamily: "'Clash Grotesk', sans-serif",
               fontSize: "clamp(36px, 4vw, 56px)",
-              letterSpacing: "-0.03em",
               lineHeight: 1.05,
-              color: "#1A0A00",
             }}
           >
             <span style={{ whiteSpace: "nowrap" }}>Enterprise-ready.</span>
             <br />
             Security-first.
-          </h2>
+          </Heading>
 
-          <p
+          <BodyText
+            color="rgba(20,10,0,0.8)"
+            maxWidth="340px"
             className="mt-5"
-            style={{
-              fontSize: "14px",
-              lineHeight: 1.65,
-              color: "rgba(20,10,0,0.55)",
-              maxWidth: "340px",
-            }}
+            style={{ lineHeight: 1.65, fontSize: "14px" }}
           >
             Bugasura meets the bar for large engineering organisations —
             data isolation, compliance certification, and deployment
             options that work for procurement teams.
-          </p>
+          </BodyText>
 
-          <Link
-            href="/enterprise"
-            className="inline-block mt-8 px-6 py-3 rounded-lg font-semibold uppercase transition-opacity hover:opacity-80"
-            style={{
-              border: "2px solid #E52727",
-              color: "#E52727",
-              fontSize: "12px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            Full Enterprise Overview
-          </Link>
+          <div className="mt-8">
+            <Button href="/enterprise" variant="outline">
+              Full Enterprise Overview
+            </Button>
+          </div>
         </div>
 
         {/* Right — 2×2 badge grid */}
@@ -77,18 +66,18 @@ export default function PlatformEnterprise() {
                 height={40}
                 className="w-10 h-10"
               />
-              <span
-                className="font-semibold"
+              <Heading
+                level="step"
+                as="p"
+                color="#1A0A00"
                 style={{
-                  fontFamily: "'Clash Grotesk', sans-serif",
                   fontSize: "14px",
-                  color: "#1A0A00",
                   lineHeight: 1.35,
                   whiteSpace: "pre-line",
                 }}
               >
                 {badge.label}
-              </span>
+              </Heading>
             </div>
           ))}
         </div>

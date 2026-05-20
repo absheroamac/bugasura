@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Button, Heading, BodyText } from "@/components/ui";
 
 const agents = [
   {
@@ -31,32 +31,28 @@ export default function AsuraAgents() {
       >
         {/* ── Header row ── */}
         <div className="flex items-start justify-between px-10 pt-12 pb-10 gap-12">
-          <h2
-            className="font-semibold flex-shrink-0"
+          <Heading
+            level="section"
+            as="h2"
+            color="var(--dark)"
             style={{
               fontSize: "clamp(36px, 4.5vw, 68px)",
-              letterSpacing: "-0.025em",
               lineHeight: 1.02,
-              color: "var(--dark)",
-              maxWidth: "480px",
+              flexShrink: 0,
+              whiteSpace: "pre-line",
             }}
           >
-            Meet your specialized
-            <br />QA agents.
-          </h2>
-          <p
-            style={{
-              fontSize: "15px",
-              lineHeight: 1.6,
-              color: "rgba(10,10,10,0.7)",
-              maxWidth: "340px",
-              paddingTop: "8px",
-            }}
+            Meet your Specialised<br />QA Agents.
+          </Heading>
+          <BodyText
+            color="rgba(10,10,10,0.8)"
+            maxWidth="340px"
+            style={{ paddingTop: "8px" }}
           >
             In the age of AI development, you need agents built to test it.
             Asuras are specialized testing agents — each built for a specific
             job, deployable without writing a framework from scratch.
-          </p>
+          </BodyText>
         </div>
 
         {/* ── Agent cards ── */}
@@ -67,22 +63,20 @@ export default function AsuraAgents() {
               className="rounded-[20px] flex flex-col gap-4 p-6"
               style={{ backgroundColor: "#fff" }}
             >
-              {/* Icon + badge row */}
-              <div className="flex items-center justify-between">
-                <Image
-                  src="/section5/asura-icon.png"
-                  alt="Asura"
-                  width={48}
-                  height={48}
-                  className="rounded-xl"
+              {/* Icon placeholder + badge row */}
+              <div className="flex items-start justify-between">
+                <div
+                  className="rounded-xl flex-shrink-0"
+                  style={{ width: "48px", height: "48px", backgroundColor: "#E0E0E0" }}
                 />
                 <span
                   className="font-semibold rounded-full px-3 py-1"
                   style={{
                     fontSize: "11px",
                     letterSpacing: "0.04em",
-                    backgroundColor: "#F0F0F0",
-                    color: "rgba(30,30,30,0.55)",
+                    backgroundColor: "#fff",
+                    color: "var(--dark)",
+                    border: "1.5px solid #8B1A1A",
                     fontFamily: "'Clash Grotesk', sans-serif",
                   }}
                 >
@@ -90,36 +84,29 @@ export default function AsuraAgents() {
                 </span>
               </div>
 
-              {/* Title */}
-              <h3
-                className="font-semibold"
-                style={{ fontSize: "22px", letterSpacing: "-0.01em", lineHeight: 1.15, color: "var(--dark)" }}
+              {/* Title — single line, no wrap */}
+              <Heading
+                level="step"
+                as="h3"
+                color="var(--dark)"
+                style={{ fontSize: "22px", lineHeight: 1.15, whiteSpace: "nowrap" }}
               >
                 {agent.name}
-              </h3>
+              </Heading>
 
               {/* Body */}
-              <p style={{ fontSize: "14px", lineHeight: 1.6, color: "rgba(30,30,30,0.6)" }}>
+              <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px" }}>
                 {agent.body}
-              </p>
+              </BodyText>
             </div>
           ))}
         </div>
 
         {/* ── CTA ── */}
         <div className="flex justify-center py-10">
-          <Link
-            href="#"
-            className="inline-flex items-center font-semibold uppercase rounded-lg px-6 py-3 transition-opacity hover:opacity-90"
-            style={{
-              fontSize: "12px",
-              letterSpacing: "0.08em",
-              backgroundColor: "#fff",
-              color: "var(--red)",
-            }}
-          >
+          <Button href="#" variant="white">
             Explore the world of Asuras
-          </Link>
+          </Button>
         </div>
 
         {/* Spacer so train has room to overflow below */}
@@ -127,7 +114,7 @@ export default function AsuraAgents() {
       </section>
 
       {/* ── Train illustration — overflows below the blue section ── */}
-      <div className="relative z-10" style={{ marginTop: "calc(-320px)" }}>
+      <div className="relative z-10 pointer-events-none" style={{ marginTop: "calc(-320px)" }}>
         <Image
           src="/section5/train.png"
           alt="Asura agents on a train"
@@ -135,6 +122,7 @@ export default function AsuraAgents() {
           height={500}
           className="w-full h-auto"
           loading="lazy"
+          style={{ pointerEvents: "none" }}
         />
       </div>
     </div>

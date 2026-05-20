@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Button, Heading, BodyText } from "@/components/ui";
 
 export default function BentoFeatures() {
   return (
-    <section style={{ backgroundColor: "var(--cream)" }} className="px-10 py-12">
+    <section style={{ backgroundColor: "var(--cream)" }} className="px-20 py-12">
       <div className="flex gap-8" style={{ minHeight: "640px" }}>
 
         {/* ── Left: large dark card — image fills whole card ── */}
@@ -26,30 +26,32 @@ export default function BentoFeatures() {
 
           {/* Text content */}
           <div className="relative z-10">
-            <h2
-              className="font-semibold text-white mb-4"
-              style={{ fontSize: "clamp(32px, 3.2vw, 52px)", letterSpacing: "-0.02em", lineHeight: 1.08 }}
+            <Heading
+              level="bento"
+              as="h2"
+              color="#ffffff"
+              className="mb-4"
+              style={{
+                fontSize: "clamp(32px, 3.2vw, 52px)",
+                lineHeight: 1.08,
+              }}
             >
               Your best QA mind,
               <br />at scale.
-            </h2>
-            <p style={{ fontSize: "15px", lineHeight: 1.6, color: "rgba(255,255,255,0.6)", maxWidth: "340px" }}>
+            </Heading>
+            <BodyText color="rgba(255,255,255,0.8)" maxWidth="340px">
               Testpert isn&apos;t an automation tool. It&apos;s an AI that thinks like your most
               experienced tester — asking clarifying questions, mapping risk across
               user journeys, and generating tests that reflect real expert judgment.
               Not a shortcut. An amplifier.
-            </p>
+            </BodyText>
           </div>
 
           {/* CTA */}
           <div className="relative z-10 mt-8">
-            <Link
-              href="#"
-              className="inline-flex items-center font-semibold uppercase rounded-lg px-5 py-3 transition-opacity hover:opacity-90"
-              style={{ fontSize: "12px", letterSpacing: "0.08em", backgroundColor: "#fff", color: "var(--red)" }}
-            >
+            <Button href="#" variant="white">
               See what Testpert can do
-            </Link>
+            </Button>
           </div>
         </div>
 
@@ -62,27 +64,29 @@ export default function BentoFeatures() {
             style={{ backgroundColor: "#C5DFF0", padding: "40px" }}
           >
             <div>
-              <h2
-                className="font-semibold mb-4"
-                style={{ fontSize: "clamp(26px, 2.6vw, 42px)", letterSpacing: "-0.02em", lineHeight: 1.1, color: "var(--dark)" }}
+              <Heading
+                level="bento"
+                as="h2"
+                color="var(--dark)"
+                className="mb-4"
+                style={{
+                  fontSize: "clamp(26px, 2.6vw, 42px)",
+                  lineHeight: 1.1,
+                }}
               >
                 Decision-maker
                 <br />visibility into quality.
-              </h2>
-              <p style={{ fontSize: "15px", lineHeight: 1.6, color: "rgba(30,30,30,0.65)", maxWidth: "360px" }}>
+              </Heading>
+              <BodyText color="rgba(30,30,30,0.8)" maxWidth="360px">
                 Engineering leaders need signal, not dashboards full of test counts.
                 Eagle Eye surfaces what&apos;s breaking, what it&apos;s costing, and where quality
                 risk is concentrated — in a view built for strategic decisions, not just daily standups.
-              </p>
+              </BodyText>
             </div>
             <div className="mt-8">
-              <Link
-                href="#"
-                className="inline-flex items-center font-semibold uppercase rounded-lg px-5 py-3 transition-opacity hover:opacity-80"
-                style={{ fontSize: "12px", letterSpacing: "0.08em", backgroundColor: "var(--dark)", color: "#fff" }}
-              >
+              <Button href="#" variant="dark">
                 See Eagle Eye
-              </Link>
+              </Button>
             </div>
           </div>
 
@@ -92,28 +96,30 @@ export default function BentoFeatures() {
             style={{ backgroundColor: "#FFDAA8", padding: "40px" }}
           >
             <div>
-              <h2
-                className="font-semibold mb-4"
-                style={{ fontSize: "clamp(26px, 2.6vw, 42px)", letterSpacing: "-0.02em", lineHeight: 1.1, color: "var(--dark)" }}
+              <Heading
+                level="bento"
+                as="h2"
+                color="var(--dark)"
+                className="mb-4"
+                style={{
+                  fontSize: "clamp(26px, 2.6vw, 42px)",
+                  lineHeight: 1.1,
+                }}
               >
                 QA where developers
                 <br />actually work.
-              </h2>
-              <p style={{ fontSize: "15px", lineHeight: 1.6, color: "rgba(30,30,30,0.65)", maxWidth: "360px" }}>
+              </Heading>
+              <BodyText color="rgba(30,30,30,0.8)" maxWidth="360px">
                 Bugasura&apos;s MCP server connects directly to Claude and Cursor. Your
                 developers get quality context, test coverage signals, and defect history
                 right inside their coding environment. No context switching. No separate
                 tools. No excuses for skipping tests.
-              </p>
+              </BodyText>
             </div>
             <div className="mt-8">
-              <Link
-                href="#"
-                className="inline-flex items-center font-semibold uppercase rounded-lg px-5 py-3 transition-opacity hover:opacity-80"
-                style={{ fontSize: "12px", letterSpacing: "0.08em", backgroundColor: "var(--dark)", color: "#fff" }}
-              >
+              <Button href="#" variant="dark">
                 View All Integrations
-              </Link>
+              </Button>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { Button, Heading, BodyText } from "@/components/ui";
 
 const cards = [
   {
@@ -30,66 +30,46 @@ export default function PlatformHero() {
       {/* ── Top row: heading left / layers illustration right ── */}
       <div className="flex items-start justify-between px-16 gap-6">
         {/* Left — copy */}
-        <div className="flex flex-col" style={{ maxWidth: "500px", paddingTop: "4px", flexShrink: 0 }}>
-          <h1
-            className="font-semibold"
+        <div className="flex flex-col" style={{ paddingTop: "4px", flexShrink: 0 }}>
+          <Heading
+            level="hero"
+            as="h1"
+            color="#1A0A00"
             style={{
-              fontFamily: "'Clash Grotesk', sans-serif",
-              fontSize: "clamp(42px, 4.5vw, 68px)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1.02,
-              color: "#1A0A00",
+              fontSize: "clamp(56px, 7vw, 96px)",
+              lineHeight: 1.0,
+              whiteSpace: "nowrap",
             }}
           >
-            The Bugasura Platform
-          </h1>
+            <span style={{ display: "block" }}>The Bugasura</span>
+            <span style={{ display: "block" }}>Platform</span>
+          </Heading>
 
-          <p
+          <BodyText
+            color="#1A0A00"
+            maxWidth="400px"
             className="mt-5"
-            style={{
-              fontSize: "15px",
-              lineHeight: 1.65,
-              color: "rgba(20,10,0,0.65)",
-              maxWidth: "400px",
-            }}
+            style={{ fontSize: "16px", lineHeight: 1.65, opacity: 1 }}
           >
             Four interconnected layers. One intelligence loop. Quality that gets
             smarter with every sprint — because every layer feeds the next.
-          </p>
+          </BodyText>
 
           {/* CTAs */}
           <div className="flex items-center gap-4 mt-8">
-            <Link
-              href="/signup"
-              className="px-6 py-3 rounded-lg font-semibold uppercase transition-opacity hover:opacity-90"
-              style={{
-                backgroundColor: "#E52727",
-                color: "#fff",
-                fontSize: "13px",
-                letterSpacing: "0.06em",
-              }}
-            >
+            <Button href="/signup" variant="primary">
               Start Free
-            </Link>
-            <Link
-              href="/demo"
-              className="px-6 py-3 rounded-lg font-semibold uppercase border-2 transition-opacity hover:opacity-75"
-              style={{
-                borderColor: "rgba(0,0,0,0.4)",
-                color: "#1A0A00",
-                fontSize: "13px",
-                letterSpacing: "0.06em",
-              }}
-            >
+            </Button>
+            <Button href="/demo" variant="outline">
               Book a Demo
-            </Link>
+            </Button>
           </div>
         </div>
 
         {/* Right — layers diagram (slightly smaller than before) */}
         <div
           style={{
-            width: "clamp(200px, 28vw, 380px)",
+            width: "clamp(320px, 42vw, 580px)",
             flexShrink: 0,
             marginTop: "-40px",
           }}
@@ -134,32 +114,28 @@ export default function PlatformHero() {
               key={card.title}
               className="rounded-2xl"
               style={{
-                backgroundColor: "#ffffff",
+                backgroundColor: "var(--cream)",
                 padding: "24px 28px",
               }}
             >
-              <p
-                className="font-semibold"
+              <Heading
+                level="step"
+                as="h3"
+                color="#1A0A00"
                 style={{
-                  fontFamily: "'Clash Grotesk', sans-serif",
-                  fontSize: "18px",
-                  letterSpacing: "-0.02em",
+                  fontSize: "32px",
                   lineHeight: 1.2,
-                  color: "#1A0A00",
                   marginBottom: "10px",
                 }}
               >
                 {card.title}
-              </p>
-              <p
-                style={{
-                  fontSize: "13.5px",
-                  lineHeight: 1.6,
-                  color: "rgba(20,10,0,0.6)",
-                }}
+              </Heading>
+              <BodyText
+                color="rgba(20,10,0,0.8)"
+                style={{ fontSize: "16px" }}
               >
                 {card.desc}
-              </p>
+              </BodyText>
             </div>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Heading, BodyText } from "@/components/ui";
 
 const leftPoints = [
   "Test cases disconnected from requirements — linked manually if at all",
@@ -20,37 +21,33 @@ export default function PlatformComparison() {
   return (
     <section className="rounded-[32px]" style={{ padding: "96px 80px" }}>
       {/* Headline */}
-      <h2
-        className="font-semibold text-center"
+      <Heading
+        level="section"
+        as="h2"
+        color="#1A0A00"
+        className="text-center"
         style={{
-          fontFamily: "'Clash Grotesk', sans-serif",
           fontSize: "clamp(36px, 5vw, 64px)",
-          letterSpacing: "-0.03em",
           lineHeight: 1.05,
-          color: "#1A0A00",
-          maxWidth: "820px",
           margin: "0 auto",
+          whiteSpace: "nowrap",
         }}
       >
-        Point solutions don&apos;t share context.
-        <br />
-        Bugasura does.
-      </h2>
+        <span style={{ display: "block" }}>Point solutions don&apos;t share context.</span>
+        <span style={{ display: "block" }}>Bugasura does.</span>
+      </Heading>
 
       {/* Sub-copy */}
-      <p
+      <BodyText
+        color="rgba(20,10,0,0.8)"
+        maxWidth="480px"
         className="text-center mx-auto mt-6"
-        style={{
-          fontSize: "14px",
-          lineHeight: 1.65,
-          color: "rgba(20,10,0,0.55)",
-          maxWidth: "480px",
-        }}
+        style={{ fontSize: "16px", lineHeight: 1.65 }}
       >
         The problem with stitching together five tools isn&apos;t the integrations.
         It&apos;s that each tool operates in isolation — none of them build collective
         intelligence over time.
-      </p>
+      </BodyText>
 
       {/* Two-column comparison — full width */}
       <div className="grid grid-cols-2 gap-10 mt-14">
@@ -69,18 +66,18 @@ export default function PlatformComparison() {
           </div>
 
           {/* Title */}
-          <h3
-            className="font-semibold mt-8"
+          <Heading
+            level="subsection"
+            as="h3"
+            color="#1A0A00"
+            className="mt-8"
             style={{
-              fontFamily: "'Clash Grotesk', sans-serif",
               fontSize: "clamp(22px, 2.2vw, 32px)",
-              letterSpacing: "-0.02em",
               lineHeight: 1.1,
-              color: "#1A0A00",
             }}
           >
             The Stitched<br />Together Stack
-          </h3>
+          </Heading>
 
           {/* Points with dividers */}
           <ul className="mt-6">
@@ -93,7 +90,7 @@ export default function PlatformComparison() {
                 <span
                   className="flex-shrink-0"
                   style={{
-                    fontSize: "13px",
+                    fontSize: "16px",
                     color: "rgba(20,10,0,0.35)",
                     fontWeight: 600,
                     lineHeight: 1.6,
@@ -102,15 +99,13 @@ export default function PlatformComparison() {
                 >
                   ✕
                 </span>
-                <span
-                  style={{
-                    fontSize: "13.5px",
-                    lineHeight: 1.6,
-                    color: "rgba(20,10,0,0.6)",
-                  }}
+                <BodyText
+                  as="span"
+                  color="rgba(20,10,0,0.6)"
+                  style={{ fontSize: "16px" }}
                 >
                   {point}
-                </span>
+                </BodyText>
               </li>
             ))}
           </ul>
@@ -130,18 +125,18 @@ export default function PlatformComparison() {
           </div>
 
           {/* Title */}
-          <h3
-            className="font-semibold mt-8"
+          <Heading
+            level="subsection"
+            as="h3"
+            color="#E52727"
+            className="mt-8"
             style={{
-              fontFamily: "'Clash Grotesk', sans-serif",
               fontSize: "clamp(22px, 2.2vw, 32px)",
-              letterSpacing: "-0.02em",
               lineHeight: 1.1,
-              color: "#E52727",
             }}
           >
             The Bugasura<br />Platform
-          </h3>
+          </Heading>
 
           {/* Points with dividers */}
           <ul className="mt-6">
@@ -154,7 +149,7 @@ export default function PlatformComparison() {
                 <span
                   className="flex-shrink-0"
                   style={{
-                    fontSize: "13px",
+                    fontSize: "16px",
                     color: "#E52727",
                     fontWeight: 600,
                     lineHeight: 1.6,
@@ -163,16 +158,13 @@ export default function PlatformComparison() {
                 >
                   ✓
                 </span>
-                <span
-                  style={{
-                    fontSize: "13.5px",
-                    lineHeight: 1.6,
-                    color: "#1A0A00",
-                    fontWeight: 600,
-                  }}
+                <BodyText
+                  as="span"
+                  color="#1A0A00"
+                  style={{ fontSize: "16px", fontWeight: 600 }}
                 >
                   {point}
-                </span>
+                </BodyText>
               </li>
             ))}
           </ul>

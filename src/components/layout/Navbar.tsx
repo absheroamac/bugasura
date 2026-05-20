@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScrollRef } from "@/components/layout/ScrollProvider";
+import Button from "@/components/ui/Button";
 
 /* ─── Dropdown content ─────────────────────────────────────── */
 
@@ -143,10 +144,12 @@ export default function Navbar() {
         {/* ── Navbar bar ── */}
         <div className="relative" style={{ height: "67px" }}>
           {/* 3-piece shape background */}
-          <div className="absolute inset-0 flex items-start">
-            <Image src="/hero/navbar/Left.svg"  alt="" width={56} height={67} aria-hidden className="flex-shrink-0" priority />
-            <div className="flex-1 h-[67px]" style={{ backgroundColor: "var(--cream)" }} />
-            <Image src="/hero/navbar/right.svg" alt="" width={56} height={67} aria-hidden className="flex-shrink-0" priority />
+          <div className="absolute inset-0 flex items-stretch">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/hero/navbar/Left.svg"  alt="" aria-hidden width={56} height={67} style={{ display: "block", flexShrink: 0, marginRight: "-1px" }} />
+            <div className="flex-1" style={{ backgroundColor: "var(--cream)" }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/hero/navbar/right.svg" alt="" aria-hidden width={56} height={67} style={{ display: "block", flexShrink: 0, marginLeft: "-1px" }} />
           </div>
 
           {/* Content */}
@@ -176,7 +179,7 @@ export default function Navbar() {
                       {link.badge && (
                         <span
                           className="px-1.5 py-0.5 rounded-full font-semibold leading-none"
-                          style={{ fontSize: "10px", backgroundColor: "var(--orange)", color: "var(--dark)", letterSpacing: "0.02em" }}
+                          style={{ fontSize: "10px", background: "linear-gradient(90deg, var(--red), var(--orange))", color: "#fff", letterSpacing: "0.02em" }}
                         >
                           {link.badge}
                         </span>
@@ -197,21 +200,13 @@ export default function Navbar() {
             </nav>
 
             {/* Right actions */}
-            <div className="hidden md:flex items-center gap-4 flex-shrink-0">
-              <Link
-                href="/login"
-                className="font-semibold transition-opacity hover:opacity-60"
-                style={{ fontSize: "14px", color: "var(--dark)", letterSpacing: "-0.01em" }}
-              >
+            <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+              <Button href="/login" variant="outline" size="md">
                 Log In
-              </Link>
-              <Link
-                href="/signup"
-                className="px-5 py-2.5 rounded-lg font-semibold uppercase transition-opacity hover:opacity-90"
-                style={{ backgroundColor: "var(--red)", color: "#fff", fontSize: "13px", letterSpacing: "0.06em" }}
-              >
+              </Button>
+              <Button href="/signup" variant="primary" size="md">
                 Start Free
-              </Link>
+              </Button>
             </div>
 
             {/* Mobile hamburger */}
@@ -280,7 +275,7 @@ export default function Navbar() {
                       >
                         {link.label}
                       </span>
-                      <span className="transition-colors" style={{ fontSize: "12.5px", lineHeight: 1.45, color: "rgba(30,30,30,0.5)" }}>
+                      <span className="transition-colors" style={{ fontSize: "12.5px", lineHeight: 1.45, color: "rgba(30,30,30,0.8)" }}>
                         {link.desc}
                       </span>
                     </Link>
@@ -294,14 +289,10 @@ export default function Navbar() {
                 style={{ width: "300px", borderRadius: "0 20px 20px 0" }}
               >
                 {/* START FREE button */}
-                <Link
-                  href="/signup"
-                  className="self-end flex items-center gap-2 px-4 py-2.5 rounded-lg font-semibold uppercase transition-opacity hover:opacity-90"
-                  style={{ backgroundColor: "var(--red)", color: "#fff", fontSize: "12px", letterSpacing: "0.07em" }}
-                >
+                <Button href="/signup" variant="primary" size="md" className="self-end">
                   Start Free
                   <ArrowUpRight size={14} strokeWidth={2.5} />
-                </Link>
+                </Button>
 
                 {/* Illustration */}
                 <div className="mt-4 flex-1 flex items-end">
@@ -341,14 +332,9 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                href="/signup"
-                className="mt-2 px-6 py-3 rounded-lg font-semibold uppercase text-center text-sm"
-                style={{ backgroundColor: "var(--red)", color: "#fff", letterSpacing: "0.05em" }}
-                onClick={() => setMobileOpen(false)}
-              >
+              <Button href="/signup" variant="primary" size="md" className="mt-2 w-full justify-center">
                 Start Free
-              </Link>
+              </Button>
             </motion.div>
           )}
         </AnimatePresence>

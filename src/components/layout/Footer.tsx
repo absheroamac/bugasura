@@ -3,9 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button, Heading, BodyText } from "@/components/ui";
 
-const CTA_BG   = "#6D0103";
-const BTN_COLOR = "#6D0103";
+const CTA_BG = "#6D0103";
 
 const footerNav = [
   {
@@ -63,7 +63,7 @@ type CtaConfig = {
 };
 
 const defaultCta: CtaConfig = {
-  heading: <>Your competitors are<br />shipping with AI.</>,
+  heading: <><span style={{ display: "block" }}>Your competitors are</span><span style={{ display: "block" }}>shipping with AI.</span></>,
   subheading: <>Are you testing with it?</>,
   body: "Join 50,000+ engineers using Bugasura to match the speed of AI-built software.",
   primaryLabel: "Start Free",
@@ -85,44 +85,49 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         style={{ backgroundColor: CTA_BG }}
       >
         {/* Left: copy + buttons */}
-        <div className="flex flex-col max-w-[520px]">
-          <h2
-            className="font-semibold text-white"
-            style={{ fontSize: "clamp(32px, 3.8vw, 56px)", letterSpacing: "-0.025em", lineHeight: 1.05 }}
+        <div className="flex flex-col max-w-[620px]">
+          <Heading
+            level="section"
+            as="h2"
+            color="#ffffff"
+            style={{
+              fontSize: "clamp(32px, 3.8vw, 56px)",
+              lineHeight: 1.05,
+            }}
           >
             {c.heading}
-          </h2>
+          </Heading>
           {c.subheading && (
-            <h2
-              className="font-semibold mt-2"
-              style={{ fontSize: "clamp(28px, 3.4vw, 50px)", letterSpacing: "-0.025em", lineHeight: 1.05, color: "rgba(255,255,255,0.5)" }}
+            <Heading
+              level="section"
+              as="h2"
+              color="rgba(255,255,255,0.5)"
+              className="mt-2"
+              style={{
+                fontSize: "clamp(28px, 3.4vw, 50px)",
+                lineHeight: 1.05,
+              }}
             >
               {c.subheading}
-            </h2>
+            </Heading>
           )}
-          <p
+          <BodyText
+            color="rgba(255,255,255,0.55)"
+            maxWidth="360px"
             className="mt-5"
-            style={{ fontSize: "14px", lineHeight: 1.65, color: "rgba(255,255,255,0.55)", maxWidth: "360px" }}
+            style={{ fontSize: "14px", lineHeight: 1.65 }}
           >
             {c.body}
-          </p>
+          </BodyText>
 
           {/* Buttons */}
           <div className="flex items-center gap-4 mt-8">
-            <Link
-              href={c.primaryHref}
-              className="px-7 py-3.5 rounded-lg font-semibold uppercase transition-opacity hover:opacity-90"
-              style={{ backgroundColor: "#fff", color: BTN_COLOR, fontSize: "13px", letterSpacing: "0.06em" }}
-            >
+            <Button href={c.primaryHref} variant="white">
               {c.primaryLabel}
-            </Link>
-            <Link
-              href={c.secondaryHref}
-              className="px-7 py-3.5 rounded-lg font-semibold uppercase border-2 border-white/70 transition-opacity hover:opacity-75"
-              style={{ color: "#fff", fontSize: "13px", letterSpacing: "0.06em" }}
-            >
+            </Button>
+            <Button href={c.secondaryHref} variant="outline-light">
               {c.secondaryLabel}
-            </Link>
+            </Button>
           </div>
         </div>
 
@@ -143,12 +148,15 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
       <div className="flex justify-between px-12 py-10 gap-8">
         {footerNav.map((col) => (
           <div key={col.heading} className="flex flex-col gap-3">
-            <p
-              className="font-semibold mb-1"
-              style={{ fontSize: "14px", color: "#fff", fontFamily: "'Clash Grotesk', sans-serif" }}
+            <Heading
+              level="card"
+              as="p"
+              color="#ffffff"
+              className="mb-1"
+              style={{ fontSize: "14px" }}
             >
               {col.heading}
-            </p>
+            </Heading>
             {col.links.map((link) => (
               <Link
                 key={link.label}

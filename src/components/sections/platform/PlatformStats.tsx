@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Heading, BodyText } from "@/components/ui";
 
 const stats = [
   {
@@ -25,37 +26,33 @@ export default function PlatformStats() {
       >
         {stats.map((stat, i) => (
           <div key={i} className="flex flex-col" style={{ maxWidth: "260px" }}>
-            <span
-              className="font-semibold"
+            <Heading
+              level="subsection"
+              as="p"
+              color="#1A0A00"
               style={{
-                fontFamily: "'Clash Grotesk', sans-serif",
                 fontSize: "clamp(24px, 3vw, 40px)",
-                letterSpacing: "-0.03em",
                 lineHeight: 1.0,
-                color: "#1A0A00",
               }}
             >
               {stat.value}
-            </span>
-            <span
+            </Heading>
+            <BodyText
+              color="rgba(20,10,0,0.8)"
+              maxWidth="200px"
               className="mt-2"
-              style={{
-                fontSize: "13px",
-                lineHeight: 1.55,
-                color: "rgba(20,10,0,0.55)",
-                maxWidth: "200px",
-              }}
+              style={{ fontSize: "13px", lineHeight: 1.55 }}
             >
               {stat.label}
-            </span>
+            </BodyText>
           </div>
         ))}
       </div>
 
-      {/* City illustration — full width below stats */}
+      {/* Bugasura Everywhere illustration — full width below stats */}
       <Image
-        src="/platform/city.png"
-        alt="Bugasura city — teams worldwide"
+        src="/platform/bugasura-everywhere.png"
+        alt="Bugasura — teams worldwide"
         width={1440}
         height={560}
         className="w-full h-auto block"

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Button, Heading } from "@/components/ui";
 
 const badges = [
   {
@@ -51,38 +51,27 @@ export default function Enterprise() {
                 height={44}
                 className="block"
               />
-              <p
-                className="text-center font-semibold"
+              <Heading
+                level="step"
+                as="p"
+                color="var(--dark)"
+                className="text-center"
                 style={{
-                  fontFamily: "'Clash Grotesk', sans-serif",
                   fontSize: "17px",
                   lineHeight: 1.35,
-                  color: "var(--dark)",
                   whiteSpace: "pre-line",
                 }}
               >
                 {badge.label}
-              </p>
+              </Heading>
             </div>
           ))}
         </div>
 
         {/* CTA button */}
-        <Link
-          href="/enterprise"
-          className="font-semibold uppercase border transition-opacity hover:opacity-75"
-          style={{
-            fontFamily: "'Clash Grotesk', sans-serif",
-            fontSize: "13px",
-            letterSpacing: "0.08em",
-            color: "var(--red)",
-            borderColor: "var(--red)",
-            borderRadius: "8px",
-            padding: "12px 28px",
-          }}
-        >
+        <Button href="/enterprise" variant="outline">
           Enterprise Overview
-        </Link>
+        </Button>
       </div>
     </section>
   );

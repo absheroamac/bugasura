@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Heading, BodyText } from "@/components/ui";
 
 const testimonials = [
   {
@@ -99,25 +100,27 @@ export default function Testimonials() {
 
       {/* ── Headline ── */}
       <div className="text-center px-6 mb-16">
-        <h2
-          className="font-semibold"
+        <Heading
+          level="section"
+          as="h2"
+          color="var(--dark)"
           style={{
             fontSize: "clamp(36px, 4.5vw, 68px)",
-            letterSpacing: "-0.025em",
             lineHeight: 1.02,
-            color: "var(--dark)",
           }}
         >
           Trusted by teams
           <br />shipping serious software.
-        </h2>
-        <p
+        </Heading>
+        <BodyText
+          color="rgba(30,30,30,0.8)"
+          maxWidth="380px"
           className="mt-5 mx-auto"
-          style={{ fontSize: "15px", lineHeight: 1.6, color: "rgba(30,30,30,0.5)", maxWidth: "380px" }}
+          style={{ fontSize: "15px" }}
         >
           50,000+ engineers across 25 countries rely on Bugasura to keep
           quality at the pace of development.
-        </p>
+        </BodyText>
       </div>
 
       {/* ── Carousel ── */}
@@ -162,9 +165,9 @@ export default function Testimonials() {
                 >
                   &ldquo;
                 </span>
-                <p style={{ fontSize: "15px", lineHeight: 1.65, color: "rgba(30,30,30,0.8)" }}>
+                <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "15px", lineHeight: 1.65 }}>
                   {card.quote}
-                </p>
+                </BodyText>
               </div>
 
               {/* Author */}
@@ -177,7 +180,7 @@ export default function Testimonials() {
                   <p className="font-semibold" style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif" }}>
                     {card.name}
                   </p>
-                  <p style={{ fontSize: "13px", color: "rgba(30,30,30,0.5)" }}>
+                  <p style={{ fontSize: "13px", color: "rgba(30,30,30,0.8)" }}>
                     {card.role}
                   </p>
                 </div>
