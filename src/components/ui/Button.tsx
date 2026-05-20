@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { motion, type Transition } from "framer-motion";
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 /**
  * Button / CTA link
