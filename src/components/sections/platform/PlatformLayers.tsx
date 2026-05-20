@@ -76,49 +76,43 @@ type Layer = typeof layers[0];
 
 function LayerPanel({
   layer,
-  index,
   scrollContainer,
 }: {
   layer: Layer;
-  index: number;
   scrollContainer: RefObject<HTMLElement>;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isFirst = index === 0;
   const isExecute = layer.id === "execute";
 
-  // Track when this panel enters viewport (bottom → top)
+  // Track panel entering viewport from bottom
   const { scrollYProgress } = useScroll({
     target: ref,
     container: scrollContainer,
-    offset: ["start end", "start start"],
+    offset: ["start end", "start 0.2"],
   });
 
-  // Stay heavily tilted through most of the journey,
-  // snap to flat only in the final 15% (just before it locks at top)
-  const rotateX = useTransform(scrollYProgress, [0, 0.75, 0.92, 1], [2, 1.5, 0.5, 0]);
-  const rotateZ = useTransform(scrollYProgress, [0, 0.75, 0.92, 1], [-10, -8, -1.5, 0]);
-  const scale   = useTransform(scrollYProgress, [0, 0.85, 1],        [0.92, 0.97, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.08],            [0, 1]);
+  // Tilt in as it scrolls up, flatten as it settles into view
+  const rotateX = useTransform(scrollYProgress, [0, 0.7, 1], [2, 0.8, 0]);
+  const rotateZ = useTransform(scrollYProgress, [0, 0.7, 1], [-10, -3, 0]);
+  const scale   = useTransform(scrollYProgress, [0, 1],       [0.94, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.1],     [0, 1]);
 
   return (
     <motion.div
       ref={ref}
-      className="sticky top-0 rounded-[32px] overflow-hidden flex flex-col"
+      className="rounded-[32px] mb-6 pb-10"
       style={{
-        height: "100vh",
         backgroundColor: layer.bg,
-        zIndex: index + 1,
         transformOrigin: "top center",
         transformPerspective: 1400,
-        ...(isFirst ? {} : { rotateX, rotateZ, scale, opacity }),
+        rotateX,
+        rotateZ,
+        scale,
+        opacity,
       }}
     >
-      {/* ── Row 1: label + headline + body LEFT | placeholder RIGHT ── */}
-      <div
-        className="flex gap-8 px-12 pt-10"
-        style={{ flex: 1, overflow: "hidden", minHeight: 0 }}
-      >
+      {/* ── Top: label + headline + body LEFT | placeholder RIGHT ── */}
+      <div className="flex gap-8 px-12 pt-10 pb-8">
         {/* Left */}
         <div className="flex flex-col" style={{ width: "42%", flexShrink: 0 }}>
           <p
@@ -157,11 +151,12 @@ function LayerPanel({
           </p>
         </div>
 
-        {/* Right — placeholder fills full available height */}
-        <div className="flex-1 flex flex-col pb-8">
+        {/* Right — placeholder with fixed height */}
+        <div className="flex-1">
           <div
-            className="w-full rounded-3xl flex-1"
+            className="w-full rounded-3xl"
             style={{
+              height: "360px",
               backgroundColor: "rgba(255,255,255,0.6)",
               border: "1.5px solid rgba(255,255,255,0.85)",
             }}
@@ -169,11 +164,10 @@ function LayerPanel({
         </div>
       </div>
 
-      {/* ── Row 2: feature cards ── */}
+      {/* ── Feature cards ── */}
       <div
-        className="px-12 pt-2 pb-4"
+        className="px-12 pb-4"
         style={{
-          flexShrink: 0,
           display: "grid",
           gridTemplateColumns: isExecute ? "repeat(4, 1fr)" : "repeat(3, 1fr)",
           gap: "12px",
@@ -182,52 +176,51 @@ function LayerPanel({
         {layer.cards.map((card) => (
           <div
             key={card.title}
-            className="rounded-2xl p-5"
-            style={{ backgroundColor: layer.cardBg }}
+            className="rounded-2xl"
+            style={{ backgroundColor: layer.cardBg, padding: "24px" }}
           >
             <div
-              className="rounded-xl mb-3"
-              style={{ width: "36px", height: "36px", backgroundColor: layer.iconBg }}
+              className="rounded-xl mb-4"
+              style={{ width: "64px", height: "64px", backgroundColor: layer.iconBg }}
             />
             <p
-              className="font-semibold mb-1.5"
+              className="font-semibold mb-2"
               style={{
                 fontFamily: "'Clash Grotesk', sans-serif",
-                fontSize: "13px",
+                fontSize: "24px",
                 color: "#1A0A00",
-                lineHeight: 1.25,
+                lineHeight: 1.15,
               }}
             >
               {card.title}
             </p>
-            <p style={{ fontSize: "11.5px", lineHeight: 1.55, color: "rgba(20,10,0,0.8)" }}>
+            <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "16px", lineHeight: 1.55, color: "#1A0A00" }}>
               {card.desc}
             </p>
           </div>
         ))}
       </div>
 
-      {/* ── Row 3: footer bar ── */}
+      {/* ── Footer bar ── */}
       <div
-        className="flex items-center gap-3 mx-12 mb-5 px-5 py-3 rounded-xl"
+        className="flex items-center gap-3 mx-12 mt-2 px-5 py-4 rounded-xl"
         style={{
-          flexShrink: 0,
           backgroundColor: "rgba(255,255,255,0.5)",
           border: "1px solid rgba(255,255,255,0.7)",
         }}
       >
         <span
           style={{
-            fontSize: "13px",
-            color: "rgba(0,0,0,0.4)",
-            fontStyle: "italic",
-            fontFamily: "Georgia, serif",
+            fontSize: "18px",
+            color: "#1A0A00",
+            fontFamily: "var(--font-caveat)",
+            fontWeight: 400,
             whiteSpace: "nowrap",
           }}
         >
           {layer.label} Layer Output
         </span>
-        <span style={{ fontSize: "13px", fontWeight: 600, color: "#1A0A00" }}>
+        <span style={{ fontSize: "18px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, color: "#1A0A00" }}>
           {layer.output}
         </span>
       </div>
@@ -239,12 +232,11 @@ export default function PlatformLayers() {
   const scrollRef = useScrollRef();
 
   return (
-    <div style={{ position: "relative", overflowX: "clip" }}>
-      {layers.map((layer, index) => (
+    <div style={{ overflowX: "clip", paddingTop: "8px" }}>
+      {layers.map((layer) => (
         <LayerPanel
           key={layer.id}
           layer={layer}
-          index={index}
           scrollContainer={scrollRef as RefObject<HTMLElement>}
         />
       ))}
