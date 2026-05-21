@@ -117,6 +117,7 @@ export default function FourLayers() {
             level="section"
             as="h2"
             color="var(--dark)"
+            className="text-center lg:text-left w-full lg:w-auto"
             style={{
               fontSize: "clamp(32px, 4.5vw, 68px)",
               lineHeight: 1.02,
@@ -127,7 +128,8 @@ export default function FourLayers() {
             End-to-end quality.
           </Heading>
 
-          <div style={{ maxWidth: "320px" }}>
+          {/* Desktop only — THE PLATFORM label + body */}
+          <div className="hidden lg:block" style={{ maxWidth: "320px" }}>
             <p
               className="font-semibold mb-2"
               style={{ fontSize: "12px", letterSpacing: "0.08em", color: "var(--dark)", opacity: 0.5, textTransform: "uppercase" }}
@@ -140,11 +142,74 @@ export default function FourLayers() {
           </div>
         </div>
 
-        {/* Main content — stacks on mobile, side-by-side on desktop */}
-        <div className="flex flex-col lg:flex-row lg:flex-1 px-4 lg:px-10 pb-8 lg:pb-10 gap-6 lg:gap-10 lg:overflow-hidden">
+        {/* ── Mobile accordion — outlined boxes, all active colours ── */}
+        <div className="flex flex-col gap-3 px-4 pb-8 lg:hidden">
+          {steps.map((step, i) => (
+            <div
+              key={step.num}
+              className="rounded-[16px] overflow-hidden cursor-pointer"
+              style={{ border: "1.5px solid rgba(0,0,0,0.1)" }}
+              onClick={() => setActive(active === i ? -1 : i)}
+            >
+              {/* Row header */}
+              <div className="flex items-center justify-between px-4 py-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-semibold" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "20px", lineHeight: 1.0, color: step.color, minWidth: "32px" }}>
+                    {step.num}
+                  </span>
+                  <span className="font-semibold" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "20px", lineHeight: 1.0, color: "var(--dark)" }}>
+                    {step.label}
+                  </span>
+                </div>
+                <motion.span
+                  animate={{ rotate: active === i ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="inline-flex"
+                >
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 6L8 11L13 6" stroke="rgba(30,30,30,0.4)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </motion.span>
+              </div>
+              {/* Expanded content */}
+              <AnimatePresence initial={false}>
+                {active === i && (
+                  <motion.div
+                    key="mob-content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    <div className="px-4 pb-5" style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+                      <Heading level="step" as="h3" color="var(--dark)" className="mt-4 mb-2" style={{ fontSize: "22px", lineHeight: 1.1 }}>
+                        {step.headline}
+                      </Heading>
+                      <BodyText color="var(--dark)" style={{ fontSize: "14px" }}>
+                        {step.body}
+                      </BodyText>
+                      <ul className="flex flex-col mt-3">
+                        {step.bullets.map((b) => (
+                          <li key={b} className="flex items-start gap-2">
+                            <span className="mt-[9px] w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: step.color }} />
+                            <BodyText as="span" color="var(--dark)" style={{ fontSize: "13px", lineHeight: 1.35 }}>{b}</BodyText>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
+
+        {/* ── Desktop: two-column steps + card ── */}
+        <div className="hidden lg:flex lg:flex-1 px-10 pb-10 gap-10 overflow-hidden">
 
           {/* Left: steps list */}
-          <div className="flex flex-col justify-center gap-0 w-full lg:w-[44%] lg:flex-shrink-0">
+          <div className="flex flex-col justify-center gap-0 w-[44%] flex-shrink-0">
             {steps.map((step, i) => (
               <div
                 key={step.num}
@@ -152,69 +217,25 @@ export default function FourLayers() {
                 style={{ borderColor: "rgba(30,30,30,0.12)" }}
                 onClick={() => setActive(i)}
               >
-                {/* Row header */}
                 <div className="flex items-center gap-2 py-4">
-                  <span
-                    className="font-semibold"
-                    style={{
-                      fontFamily: "'Clash Grotesk', sans-serif",
-                      fontSize: "24px",
-                      lineHeight: 1.0,
-                      letterSpacing: "0em",
-                      color: active === i ? step.color : "rgba(30,30,30,0.25)",
-                      minWidth: "36px",
-                    }}
-                  >
+                  <span className="font-semibold" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "24px", lineHeight: 1.0, letterSpacing: "0em", color: active === i ? step.color : "rgba(30,30,30,0.25)", minWidth: "36px" }}>
                     {step.num}
                   </span>
-                  <span
-                    className="font-semibold"
-                    style={{
-                      fontFamily: "'Clash Grotesk', sans-serif",
-                      fontSize: "24px",
-                      lineHeight: 1.0,
-                      letterSpacing: "0em",
-                      color: active === i ? "var(--dark)" : "rgba(30,30,30,0.35)",
-                    }}
-                  >
+                  <span className="font-semibold" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "24px", lineHeight: 1.0, letterSpacing: "0em", color: active === i ? "var(--dark)" : "rgba(30,30,30,0.35)" }}>
                     {step.label}
                   </span>
                 </div>
-
-                {/* Expanded content */}
                 <AnimatePresence initial={false}>
                   {active === i && (
-                    <motion.div
-                      key="content"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                      style={{ overflow: "hidden" }}
-                    >
+                    <motion.div key="content" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} style={{ overflow: "hidden" }}>
                       <div className="pb-5">
-                        <Heading
-                          level="step"
-                          as="h3"
-                          color="var(--dark)"
-                          className="mb-3"
-                          style={{ fontSize: "32px", lineHeight: 1.1 }}
-                        >
-                          {step.headline}
-                        </Heading>
-                        <BodyText color="var(--dark)" className="mb-4" style={{ fontSize: "15px" }}>
-                          {step.body}
-                        </BodyText>
+                        <Heading level="step" as="h3" color="var(--dark)" className="mb-3" style={{ fontSize: "32px", lineHeight: 1.1 }}>{step.headline}</Heading>
+                        <BodyText color="var(--dark)" className="mb-4" style={{ fontSize: "15px" }}>{step.body}</BodyText>
                         <ul className="flex flex-col gap-0">
                           {step.bullets.map((b) => (
-                            <li
-                              key={b}
-                              className="flex items-start gap-2"
-                            >
+                            <li key={b} className="flex items-start gap-2">
                               <span className="mt-[11px] w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: "var(--dark)" }} />
-                              <BodyText as="span" color="var(--dark)" style={{ fontSize: "15px", lineHeight: 1.35 }}>
-                                {b}
-                              </BodyText>
+                              <BodyText as="span" color="var(--dark)" style={{ fontSize: "15px", lineHeight: 1.35 }}>{b}</BodyText>
                             </li>
                           ))}
                         </ul>
@@ -226,9 +247,9 @@ export default function FourLayers() {
             ))}
           </div>
 
-          {/* Right: card — desktop only */}
+          {/* Right: card */}
           <motion.div
-            className="hidden lg:flex flex-1 relative rounded-[24px] overflow-hidden"
+            className="flex-1 relative rounded-[24px] overflow-hidden"
             animate={{ backgroundColor: steps[active].cardBg }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
