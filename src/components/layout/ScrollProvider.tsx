@@ -15,8 +15,7 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
     <ScrollContext.Provider value={ref}>
       {/* Outer: clips border-radius cleanly */}
       <div
-        className="m-6 rounded-[32px] overflow-hidden"
-        style={{ height: "calc(100vh - 48px)" }}
+        className="m-2 md:m-6 rounded-[20px] md:rounded-[32px] overflow-hidden h-[calc(100vh-16px)] md:h-[calc(100vh-48px)]"
       >
         {/* Inner: handles scrolling, ref used for scroll events */}
         <div
