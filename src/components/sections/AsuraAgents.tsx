@@ -30,7 +30,7 @@ export default function AsuraAgents() {
         style={{ backgroundColor: "#29A5FF", overflow: "visible" }}
       >
         {/* ── Header row ── */}
-        <div className="flex items-start justify-between px-10 pt-12 pb-10 gap-12">
+        <div className="flex flex-col md:flex-row items-start md:justify-between px-4 md:px-10 pt-8 md:pt-12 pb-6 md:pb-10 gap-4 md:gap-12">
           <Heading
             level="section"
             as="h2"
@@ -56,7 +56,7 @@ export default function AsuraAgents() {
         </div>
 
         {/* ── Agent cards ── */}
-        <div className="grid grid-cols-4 gap-4 px-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-4 md:px-10">
           {agents.map((agent, i) => (
             <div
               key={i}
@@ -89,7 +89,7 @@ export default function AsuraAgents() {
                 level="step"
                 as="h3"
                 color="var(--dark)"
-                style={{ fontSize: "22px", lineHeight: 1.15, whiteSpace: "nowrap" }}
+                style={{ fontSize: "22px", lineHeight: 1.15 }}
               >
                 {agent.name}
               </Heading>

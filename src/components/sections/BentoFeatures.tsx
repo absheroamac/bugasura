@@ -5,13 +5,13 @@ import { Button, Heading, BodyText } from "@/components/ui";
 
 export default function BentoFeatures() {
   return (
-    <section style={{ backgroundColor: "var(--cream)" }} className="px-20 py-12">
-      <div className="flex gap-8" style={{ minHeight: "640px" }}>
+    <section style={{ backgroundColor: "var(--cream)" }} className="px-4 py-8 md:px-20 md:py-12">
+      <div className="flex flex-col md:flex-row gap-5 md:gap-8 md:min-h-[640px]">
 
         {/* ── Left: large dark card — image fills whole card ── */}
         <div
-          className="relative flex flex-col justify-between rounded-[28px] overflow-hidden flex-shrink-0"
-          style={{ width: "52%", padding: "40px" }}
+          className="relative flex flex-col justify-between rounded-[28px] overflow-hidden md:flex-shrink-0 md:w-[52%]"
+          style={{ padding: "32px" }}
         >
           {/* Full-card background image */}
           <Image
@@ -56,12 +56,12 @@ export default function BentoFeatures() {
         </div>
 
         {/* ── Right: two stacked cards ── */}
-        <div className="flex flex-col gap-8 flex-1">
+        <div className="flex flex-col gap-5 md:gap-8 flex-1">
 
           {/* Top — blue */}
           <div
             className="relative flex flex-col justify-between rounded-[28px] overflow-hidden flex-1"
-            style={{ backgroundColor: "#C5DFF0", padding: "40px" }}
+            style={{ backgroundColor: "#C5DFF0", padding: "32px" }}
           >
             <div>
               <Heading
@@ -93,7 +93,7 @@ export default function BentoFeatures() {
           {/* Bottom — orange */}
           <div
             className="relative flex flex-col justify-between rounded-[28px] overflow-hidden flex-1"
-            style={{ backgroundColor: "#FFDAA8", padding: "40px" }}
+            style={{ backgroundColor: "#FFDAA8", padding: "32px" }}
           >
             <div>
               <Heading

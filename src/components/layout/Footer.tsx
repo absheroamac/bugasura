@@ -81,11 +81,11 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
     >
       {/* ── CTA section ── */}
       <div
-        className="rounded-[28px] m-3 flex items-center justify-between px-12 pt-12 pb-10 gap-8"
+        className="rounded-[28px] m-3 flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-12 pt-10 md:pt-12 pb-8 md:pb-10 gap-6 md:gap-8"
         style={{ backgroundColor: CTA_BG }}
       >
         {/* Left: copy + buttons */}
-        <div className="flex flex-col max-w-[620px]">
+        <div className="flex flex-col md:max-w-[620px]">
           <Heading
             level="section"
             as="h2"
@@ -121,7 +121,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
           </BodyText>
 
           {/* Buttons */}
-          <div className="flex items-center gap-4 mt-8">
+          <div className="flex flex-wrap items-center gap-3 mt-8">
             <Button href={c.primaryHref} variant="white">
               {c.primaryLabel}
             </Button>
@@ -132,7 +132,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         </div>
 
         {/* Right: character */}
-        <div className="flex-shrink-0" style={{ width: "clamp(240px, 32vw, 420px)" }}>
+        <div className="hidden md:block flex-shrink-0" style={{ width: "clamp(240px, 32vw, 420px)" }}>
           <Image
             src="/footer/character.png"
             alt="Bugasura character"
@@ -145,7 +145,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
       </div>
 
       {/* ── Footer nav ── */}
-      <div className="flex justify-between px-12 py-10 gap-8">
+      <div className="grid grid-cols-2 md:flex md:justify-between px-6 md:px-12 py-8 md:py-10 gap-8">
         {footerNav.map((col) => (
           <div key={col.heading} className="flex flex-col gap-3">
             <Heading
@@ -174,13 +174,18 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
           </div>
         ))}
 
-        {/* Copyright — right-aligned */}
-        <div className="flex items-end">
+        {/* Copyright — right-aligned on desktop, hidden in grid on mobile */}
+        <div className="hidden md:flex items-end">
           <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", whiteSpace: "nowrap" }}>
             © 2026 Moolya Software Testing Pvt. Ltd.
           </p>
         </div>
       </div>
+
+      {/* Copyright — mobile only, below nav grid */}
+      <p className="md:hidden px-6 pb-2 text-left" style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
+        © 2026 Moolya Software Testing Pvt. Ltd.
+      </p>
 
       {/* ── Big "Bugasura" wordmark — fills full width, 32px padding sides + bottom ── */}
       <div style={{ paddingLeft: "32px", paddingRight: "32px", paddingBottom: "32px", lineHeight: 0.82 }}>

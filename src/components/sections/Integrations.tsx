@@ -46,9 +46,8 @@ export default function Integrations() {
           as="h2"
           color="var(--dark)"
           style={{
-            fontSize: "clamp(40px, 5vw, 68px)",
+            fontSize: "clamp(32px, 5vw, 68px)",
             lineHeight: 1.02,
-            whiteSpace: "nowrap",
           }}
         >
           Built for how modern
@@ -66,7 +65,7 @@ export default function Integrations() {
         </BodyText>
 
         {/* Asura illustration */}
-        <div className="mt-8" style={{ width: "clamp(380px, 56vw, 720px)" }}>
+        <div className="mt-8" style={{ width: "clamp(260px, 80vw, 720px)" }}>
           <Image
             src="/section6/asura.png"
             alt="Bugasura Asura holding integration logos"

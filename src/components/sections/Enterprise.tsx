@@ -30,15 +30,14 @@ export default function Enterprise() {
       }}
     >
       <div
-        className="flex flex-col items-center"
+        className="flex flex-col items-center px-6 py-10 md:px-16 md:py-12"
         style={{
           backgroundColor: "#fff",
           borderRadius: "24px",
-          padding: "48px 64px 44px",
         }}
       >
         {/* Badges row */}
-        <div className="flex items-start justify-between w-full mb-12">
+        <div className="flex flex-wrap md:flex-nowrap items-start justify-center md:justify-between w-full gap-8 mb-10 md:mb-12">
           {badges.map((badge) => (
             <div
               key={badge.label}
