@@ -96,6 +96,7 @@ const navLinks: { label: string; href: string; dropdown: boolean; badge: string 
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileAccordion, setMobileAccordion] = useState<string | null>(null);
   const [activeDropdown, setActiveDropdown] = useState<DropdownKey | null>(null);
   const [hidden, setHidden] = useState(false);
   const scrollRef = useScrollRef();
@@ -135,7 +136,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className="fixed top-6 left-6 right-6 z-50 flex justify-center pointer-events-none"
+      className="fixed top-2 left-2 right-2 md:top-6 md:left-6 md:right-6 z-50 flex justify-center pointer-events-none"
       animate={{ y: hidden ? -160 : 0 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -212,7 +213,7 @@ export default function Navbar() {
             {/* Mobile hamburger */}
             <button
               className="md:hidden p-2"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => { setMobileOpen(!mobileOpen); setMobileAccordion(null); }}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               {mobileOpen ? <X size={22} /> : <Menu size={22} />}
@@ -327,23 +328,93 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="absolute left-0 right-0 flex flex-col gap-5 p-8 md:hidden shadow-lg"
+              className="absolute left-0 right-0 md:hidden shadow-lg overflow-hidden"
               style={{ top: "calc(67px + 8px)", backgroundColor: "var(--cream)", borderRadius: "20px" }}
             >
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="font-semibold text-lg"
-                  style={{ color: "var(--dark)" }}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <Button href="/signup" variant="primary" size="md" className="mt-2 w-full justify-center">
-                Start Free
-              </Button>
+              {navLinks.map((link) => {
+                const isExpanded = mobileAccordion === link.label;
+                const subLinks = link.dropdown ? dropdownData[link.label as DropdownKey]?.links : null;
+
+                return (
+                  <div key={link.label} style={{ borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+                    {/* Row header */}
+                    {link.dropdown ? (
+                      <button
+                        className="w-full flex items-center justify-between px-6 py-4"
+                        onClick={() => setMobileAccordion(isExpanded ? null : link.label)}
+                      >
+                        <span className="flex items-center gap-2 font-semibold" style={{ fontSize: "16px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif" }}>
+                          {link.label}
+                          {link.badge && (
+                            <span
+                              className="px-1.5 py-0.5 rounded-full font-semibold leading-none"
+                              style={{ fontSize: "10px", background: "linear-gradient(90deg, var(--red), var(--orange))", color: "#fff" }}
+                            >
+                              {link.badge}
+                            </span>
+                          )}
+                        </span>
+                        <motion.span
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="inline-flex"
+                        >
+                          <ChevronDown size={16} strokeWidth={2.5} style={{ color: "rgba(30,30,30,0.4)" }} />
+                        </motion.span>
+                      </button>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="flex items-center px-6 py-4 font-semibold"
+                        style={{ fontSize: "16px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif" }}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+
+                    {/* Accordion content */}
+                    <AnimatePresence initial={false}>
+                      {isExpanded && subLinks && (
+                        <motion.div
+                          key="sub"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                          style={{ overflow: "hidden", backgroundColor: "rgba(0,0,0,0.03)" }}
+                        >
+                          <div className="flex flex-col px-6 py-3 gap-0">
+                            {subLinks.map((sub) => (
+                              <Link
+                                key={sub.label}
+                                href={sub.href}
+                                className="py-3"
+                                style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}
+                                onClick={() => { setMobileOpen(false); setMobileAccordion(null); }}
+                              >
+                                <span className="block font-semibold" style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif" }}>
+                                  {sub.label}
+                                </span>
+                                <span className="block" style={{ fontSize: "12px", color: "rgba(30,30,30,0.55)", marginTop: "2px" }}>
+                                  {sub.desc}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+
+              {/* CTA */}
+              <div className="p-4">
+                <Button href="/signup" variant="primary" size="md" className="w-full justify-center">
+                  Start Free
+                </Button>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
