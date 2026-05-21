@@ -54,10 +54,10 @@ const dropdownData: Record<DropdownKey, {
   Asuras: {
     heading: "Asuras",
     headingHref: "#",
-    arrow: true,
+    arrow: false,
     cols: 3,
     links: [
-      { label: "World of Asuras",    desc: "All AI testing agents, one place",     href: "#" },
+      { label: "World of Asuras",    desc: "All AI testing agents, one place",     href: "/asuras" },
       { label: "Browser Asura",      desc: "Autonomous web testing agent",         href: "#" },
       { label: "API Asura",          desc: "Contract and regression testing",      href: "#" },
       { label: "Duplicate Bug Asura",desc: "Keeps your backlog clean",             href: "#" },
@@ -245,16 +245,25 @@ export default function Navbar() {
               {/* Left — links */}
               <div className="flex-1 p-8">
                 {/* Section heading */}
-                <Link
-                  href={data.headingHref}
-                  className="inline-flex items-center gap-1.5 font-semibold mb-6 transition-colors"
-                  style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "var(--dark)" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#E52727")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "")}
-                >
-                  {data.heading}
-                  {data.arrow && <ArrowUpRight size={15} strokeWidth={2.5} />}
-                </Link>
+                {data.arrow ? (
+                  <Link
+                    href={data.headingHref}
+                    className="inline-flex items-center gap-1.5 font-semibold mb-6 transition-colors"
+                    style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "var(--dark)" }}
+                    onMouseEnter={e => (e.currentTarget.style.color = "#E52727")}
+                    onMouseLeave={e => (e.currentTarget.style.color = "")}
+                  >
+                    {data.heading}
+                    <ArrowUpRight size={15} strokeWidth={2.5} />
+                  </Link>
+                ) : (
+                  <span
+                    className="inline-flex items-center gap-1.5 font-semibold mb-6"
+                    style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "var(--dark)" }}
+                  >
+                    {data.heading}
+                  </span>
+                )}
 
                 {/* Link grid */}
                 <div

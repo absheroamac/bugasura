@@ -1,5 +1,5 @@
 /**
- * BodyText — Inter · line-height 1.6
+ * BodyText — Inter · line-height 1.4
  *
  * size variants:
  *   sm   — 13px  (captions, labels, meta)
@@ -49,7 +49,7 @@ export default function BodyText({
         fontFamily: "Inter, sans-serif",
         fontWeight: 400,
         fontSize: SIZE_MAP[size],
-        lineHeight: 1.6,
+        lineHeight: 1.4,
         letterSpacing: "0em",
         color,
         opacity,

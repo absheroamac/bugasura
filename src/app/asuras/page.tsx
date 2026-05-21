@@ -1,6 +1,9 @@
 import Navbar from "@/components/layout/Navbar";
 import AsuraHero from "@/components/sections/asuras/AsuraHero";
 import AsuraShowcase from "@/components/sections/asuras/AsuraShowcase";
+import PlatformLogoCarousel from "@/components/sections/platform/PlatformLogoCarousel";
+import AsuraPlatform from "@/components/sections/asuras/AsuraPlatform";
+import AsuraOpen from "@/components/sections/asuras/AsuraOpen";
 import Footer from "@/components/layout/Footer";
 
 export const metadata = {
@@ -13,14 +16,16 @@ export default function AsuraPage() {
     <main className="flex flex-col gap-2">
       <Navbar />
       <AsuraHero />
+      <PlatformLogoCarousel />
       <AsuraShowcase />
+      <AsuraPlatform />
+      <AsuraOpen />
       <Footer cta={{
-        heading: <><span style={{ display: "block" }}>Your QA agents are</span><span style={{ display: "block" }}>ready to deploy.</span></>,
-        subheading: <>What are you waiting for?</>,
-        body: "Connect an Asura to your Bugasura project in minutes. No scaffolding, no setup — just results.",
-        primaryLabel: "Start Free",
+        heading: <><span style={{ display: "block" }}>Asuras run on</span><span style={{ display: "block" }}>Bugasura.</span></>,
+        body: "Start on Bugasura's free tier — and access the first Asuras as they launch to early users.",
+        primaryLabel: "Start for Free on Bugasura",
         primaryHref: "/signup",
-        secondaryLabel: "See in Action",
+        secondaryLabel: "Talk to us about Asuras",
         secondaryHref: "/demo",
       }} />
     </main>
