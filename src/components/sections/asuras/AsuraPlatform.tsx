@@ -43,8 +43,8 @@ export default function AsuraPlatform() {
             className="mt-6"
             style={{ fontSize: "16px", lineHeight: 1.65, maxWidth: "400px", opacity: 0.75 }}
           >
-            Asuras aren't standalone tools. They're execution-layer agents that run on
-            top of Bugasura's full platform — inheriting everything the platform knows
+            Asuras aren&apos;t standalone tools. They&apos;re execution-layer agents that run on
+            top of Bugasura&apos;s full platform — inheriting everything the platform knows
             about your product before they test a single thing.
           </BodyText>
         </div>
