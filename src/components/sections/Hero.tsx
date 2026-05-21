@@ -71,8 +71,8 @@ export default function Hero() {
               lineHeight: 1.0,
             }}
           >
-            Agentic QA for
-            <br />
+            Agentic QA for{" "}
+            <br className="hidden lg:block" />
             the AI Era
           </Heading>
         </motion.div>

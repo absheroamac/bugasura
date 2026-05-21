@@ -84,14 +84,12 @@ function LayerPanel({
   const ref = useRef<HTMLDivElement>(null);
   const isExecute = layer.id === "execute";
 
-  // Track panel entering viewport from bottom
   const { scrollYProgress } = useScroll({
     target: ref,
     container: scrollContainer,
     offset: ["start end", "start 0.2"],
   });
 
-  // Tilt in as it scrolls up, flatten as it settles into view
   const rotateX = useTransform(scrollYProgress, [0, 0.7, 1], [2, 0.8, 0]);
   const rotateZ = useTransform(scrollYProgress, [0, 0.7, 1], [-10, -3, 0]);
   const scale   = useTransform(scrollYProgress, [0, 1],       [0.94, 1]);
@@ -112,14 +110,14 @@ function LayerPanel({
       }}
     >
       {/* ── Top: label + headline + body LEFT | placeholder RIGHT ── */}
-      <div className="flex gap-8 px-12 pt-10 pb-8">
+      <div className="flex flex-col lg:flex-row gap-8 px-4 pt-8 pb-6 lg:px-12 lg:pt-10 lg:pb-8">
         {/* Left */}
-        <div className="flex flex-col" style={{ width: "42%", flexShrink: 0 }}>
+        <div className="flex flex-col w-full lg:w-[42%] lg:flex-shrink-0">
           <p
             className="font-semibold uppercase mb-4"
             style={{
               fontFamily: "'Clash Grotesk', sans-serif",
-              fontSize: "32px",
+              fontSize: "clamp(20px, 2.5vw, 32px)",
               letterSpacing: "0.04em",
               color: layer.labelColor,
             }}
@@ -130,7 +128,7 @@ function LayerPanel({
             className="font-semibold"
             style={{
               fontFamily: "'Clash Grotesk', sans-serif",
-              fontSize: "68px",
+              fontSize: "clamp(32px, 5vw, 68px)",
               letterSpacing: "-0.025em",
               lineHeight: 1.05,
               color: "#1A0A00",
@@ -151,8 +149,8 @@ function LayerPanel({
           </p>
         </div>
 
-        {/* Right — placeholder with fixed height */}
-        <div className="flex-1">
+        {/* Right — placeholder (desktop only) */}
+        <div className="hidden lg:flex flex-1">
           <div
             className="w-full rounded-3xl"
             style={{
@@ -166,35 +164,30 @@ function LayerPanel({
 
       {/* ── Feature cards ── */}
       <div
-        className="px-12 pb-4"
-        style={{
-          display: "grid",
-          gridTemplateColumns: isExecute ? "repeat(4, 1fr)" : "repeat(3, 1fr)",
-          gap: "12px",
-        }}
+        className={`px-4 pb-4 lg:px-12 grid grid-cols-1 gap-3 ${isExecute ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}
       >
         {layer.cards.map((card) => (
           <div
             key={card.title}
             className="rounded-2xl"
-            style={{ backgroundColor: layer.cardBg, padding: "24px" }}
+            style={{ backgroundColor: layer.cardBg, padding: "20px 20px" }}
           >
             <div
               className="rounded-xl mb-4"
-              style={{ width: "64px", height: "64px", backgroundColor: layer.iconBg }}
+              style={{ width: "48px", height: "48px", backgroundColor: layer.iconBg }}
             />
             <p
               className="font-semibold mb-2"
               style={{
                 fontFamily: "'Clash Grotesk', sans-serif",
-                fontSize: "24px",
+                fontSize: "clamp(18px, 1.8vw, 24px)",
                 color: "#1A0A00",
                 lineHeight: 1.15,
               }}
             >
               {card.title}
             </p>
-            <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "16px", lineHeight: 1.55, color: "#1A0A00" }}>
+            <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", lineHeight: 1.55, color: "#1A0A00" }}>
               {card.desc}
             </p>
           </div>
@@ -203,7 +196,7 @@ function LayerPanel({
 
       {/* ── Footer bar ── */}
       <div
-        className="flex items-center gap-3 mx-12 mt-2 px-5 py-4 rounded-xl"
+        className="flex flex-wrap items-center gap-2 mx-4 lg:mx-12 mt-2 px-4 py-3 lg:px-5 lg:py-4 rounded-xl"
         style={{
           backgroundColor: "rgba(255,255,255,0.5)",
           border: "1px solid rgba(255,255,255,0.7)",
@@ -211,16 +204,15 @@ function LayerPanel({
       >
         <span
           style={{
-            fontSize: "18px",
+            fontSize: "15px",
             color: "#1A0A00",
             fontFamily: "var(--font-caveat)",
             fontWeight: 400,
-            whiteSpace: "nowrap",
           }}
         >
           {layer.label} Layer Output
         </span>
-        <span style={{ fontSize: "18px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, color: "#1A0A00" }}>
+        <span style={{ fontSize: "14px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, color: "#1A0A00" }}>
           {layer.output}
         </span>
       </div>

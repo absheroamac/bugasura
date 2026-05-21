@@ -75,11 +75,11 @@ export default function AsuraOpen() {
 
   return (
     <section
-      className="rounded-[32px]"
-      style={{ backgroundColor: "#29A5FF", padding: "72px 80px 72px" }}
+      className="rounded-[32px] px-4 py-10 lg:px-20 lg:py-[72px]"
+      style={{ backgroundColor: "#29A5FF" }}
     >
       {/* ── Heading ── */}
-      <div className="text-center mb-12">
+      <div className="text-center mb-10 lg:mb-12">
         <Heading
           level="section"
           as="h2"
@@ -100,7 +100,7 @@ export default function AsuraOpen() {
       </div>
 
       {/* ── 3 cards with arrows between them ── */}
-      <div style={{ display: "flex", alignItems: "stretch", marginBottom: "44px", gap: "12px" }}>
+      <div className="flex flex-col lg:flex-row lg:items-stretch mb-8 lg:mb-11 gap-3 lg:gap-3">
         {cards.map((card, i) => (
           <>
             {/* Card */}
@@ -121,7 +121,7 @@ export default function AsuraOpen() {
                   level="step"
                   as="h3"
                   color="var(--dark)"
-                  style={{ fontSize: "38px", lineHeight: 1.05, marginBottom: "10px" }}
+                  style={{ fontSize: "clamp(26px, 3vw, 38px)", lineHeight: 1.05, marginBottom: "10px" }}
                 >
                   {card.title}
                 </Heading>
@@ -141,8 +141,12 @@ export default function AsuraOpen() {
               </div>
             </div>
 
-            {/* Arrow between cards (not after the last one) */}
-            {i < cards.length - 1 && <ArrowBetween key={`arrow-${i}`} />}
+            {/* Arrow between cards — desktop only */}
+            {i < cards.length - 1 && (
+              <div key={`arrow-${i}`} className="hidden lg:flex">
+                <ArrowBetween />
+              </div>
+            )}
           </>
         ))}
       </div>
@@ -222,9 +226,10 @@ export default function AsuraOpen() {
       </div>
 
       {/* ── Footer row: CTA + launch note ── */}
-      <div className="flex items-center justify-between">
-        <Button href="/signup" variant="white" size="md">
-          Join the Early Developer Programme
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <Button href="/signup" variant="white" size="md" className="w-full lg:w-auto justify-center">
+          <span className="lg:hidden">Join Developer Programme</span>
+          <span className="hidden lg:inline">Join the Early Developer Programme</span>
         </Button>
         <BodyText color="var(--dark)" style={{ fontSize: "14px", opacity: 0.7 }}>
           Launching to developers Q3 2026 · SDK in active development

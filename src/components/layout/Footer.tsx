@@ -63,7 +63,10 @@ type CtaConfig = {
 };
 
 const defaultCta: CtaConfig = {
-  heading: <><span style={{ display: "block" }}>Your competitors are</span><span style={{ display: "block" }}>shipping with AI.</span></>,
+  heading: <>
+    <span className="lg:block">Your competitors are{" "}</span>
+    <span className="lg:block">shipping with AI.</span>
+  </>,
   subheading: <>Are you testing with it?</>,
   body: "Join 50,000+ engineers using Bugasura to match the speed of AI-built software.",
   primaryLabel: "Start Free",
@@ -121,11 +124,11 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
           </BodyText>
 
           {/* Buttons */}
-          <div className="flex flex-wrap items-center gap-3 mt-8">
-            <Button href={c.primaryHref} variant="white">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 mt-8">
+            <Button href={c.primaryHref} variant="white" className="w-full lg:w-auto justify-center">
               {c.primaryLabel}
             </Button>
-            <Button href={c.secondaryHref} variant="outline-light">
+            <Button href={c.secondaryHref} variant="outline-light" className="w-full lg:w-auto justify-center">
               {c.secondaryLabel}
             </Button>
           </div>
@@ -187,8 +190,8 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         © 2026 Moolya Software Testing Pvt. Ltd.
       </p>
 
-      {/* ── Big "Bugasura" wordmark — fills full width, 32px padding sides + bottom ── */}
-      <div style={{ paddingLeft: "32px", paddingRight: "32px", paddingBottom: "32px", lineHeight: 0.82 }}>
+      {/* ── Big "Bugasura" wordmark — fills full width ── */}
+      <div className="px-0 pb-8 lg:px-8" style={{ lineHeight: 0.82 }}>
         <p
           className="font-semibold select-none"
           style={{

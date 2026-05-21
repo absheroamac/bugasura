@@ -21,7 +21,10 @@ export default function AsuraPage() {
       <AsuraPlatform />
       <AsuraOpen />
       <Footer cta={{
-        heading: <><span style={{ display: "block" }}>Asuras run on</span><span style={{ display: "block" }}>Bugasura.</span></>,
+        heading: <>
+          <span className="lg:block">Asuras run on{" "}</span>
+          <span className="lg:block">Bugasura.</span>
+        </>,
         body: "Start on Bugasura's free tier — and access the first Asuras as they launch to early users.",
         primaryLabel: "Start for Free on Bugasura",
         primaryHref: "/signup",

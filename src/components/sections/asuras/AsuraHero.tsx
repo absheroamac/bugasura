@@ -22,53 +22,50 @@ export default function AsuraHero() {
   return (
     <section
       className="rounded-[32px] overflow-hidden relative"
-      style={{
-        background: "linear-gradient(to bottom, #3D0000, #C00808)",
-      }}
+      style={{ background: "linear-gradient(to bottom, #3D0000, #C00808)" }}
     >
       {/* ── Top: copy left / illustration right ── */}
-      <div
-        className="flex items-end gap-0"
-        style={{ paddingTop: "120px" }}
-      >
+      <div className="flex flex-col lg:flex-row lg:items-end pt-20 lg:pt-[120px]">
         {/* Left — copy */}
-        <div className="flex flex-col flex-shrink-0 pb-16" style={{ maxWidth: "480px", paddingLeft: "64px", paddingRight: "48px" }}>
-          <Heading
-            level="hero"
-            as="h1"
-            color="#ffffff"
-            style={{
-              fontSize: "clamp(56px, 6.5vw, 96px)",
-              lineHeight: 1.0,
-            }}
-          >
-            World of
-            <br />
-            Asuras
-          </Heading>
+        <div
+          className="flex flex-col flex-shrink-0 px-4 pb-8 lg:pb-16 text-center lg:text-left items-center lg:items-start"
+          style={{ maxWidth: "100%", paddingLeft: undefined, paddingRight: undefined }}
+        >
+          <div className="lg:pl-16 lg:pr-12 w-full">
+            <Heading
+              level="hero"
+              as="h1"
+              color="#ffffff"
+              style={{ fontSize: "clamp(48px, 6.5vw, 96px)", lineHeight: 1.0 }}
+            >
+              World of{" "}
+              <br className="hidden lg:block" />
+              Asuras
+            </Heading>
 
-          <BodyText
-            color="rgba(255,255,255,0.75)"
-            className="mt-6"
-            style={{ fontSize: "16px", lineHeight: 1.65 }}
-          >
-            Specialized QA agents. Each with a name, a purpose, and
-            the platform intelligence to know what matters. Not generic.
-            Not interchangeable. Built for one job — and very good at it.
-          </BodyText>
+            <BodyText
+              color="rgba(255,255,255,0.75)"
+              className="mt-6 mx-auto lg:mx-0"
+              style={{ fontSize: "16px", lineHeight: 1.65, maxWidth: "400px" }}
+            >
+              Specialized QA agents. Each with a name, a purpose, and
+              the platform intelligence to know what matters. Not generic.
+              Not interchangeable. Built for one job — and very good at it.
+            </BodyText>
 
-          <div className="flex items-center gap-4 mt-8">
-            <Button href="/signup" variant="white">
-              Start Free
-            </Button>
-            <Button href="/demo" variant="outline-light">
-              Book a Demo
-            </Button>
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 mt-8 w-full lg:w-auto">
+              <Button href="/signup" variant="white" className="w-full lg:w-auto justify-center">
+                Start Free
+              </Button>
+              <Button href="/demo" variant="outline-light" className="w-full lg:w-auto justify-center">
+                Book a Demo
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* Right — illustration flush to right edge, no padding */}
-        <div className="flex-1 rounded-tl-[28px] overflow-hidden" style={{ minWidth: 0 }}>
+        {/* Right — illustration (desktop only) */}
+        <div className="hidden lg:flex flex-1 rounded-tl-[28px] overflow-hidden" style={{ minWidth: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/asuras/hero-illustration.png"
@@ -79,20 +76,20 @@ export default function AsuraHero() {
       </div>
 
       {/* ── Bottom: feature cards ── */}
-      <div className="grid grid-cols-3 gap-4 px-16 pb-14 pt-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 px-4 lg:px-16 pb-8 lg:pb-14 pt-6 lg:pt-10">
         {featureCards.map((card) => (
           <Card
             key={card.title}
             tint="white"
             radius="lg"
-            padding="32px"
+            padding="24px"
             style={{ backgroundColor: "var(--cream)" }}
           >
             <Heading
               level="step"
               as="h3"
               color="var(--dark)"
-              style={{ fontSize: "28px", lineHeight: 1.15, marginBottom: "12px" }}
+              style={{ fontSize: "clamp(20px, 2vw, 28px)", lineHeight: 1.15, marginBottom: "12px" }}
             >
               {card.title}
             </Heading>

@@ -50,8 +50,8 @@ export default function Integrations() {
             lineHeight: 1.02,
           }}
         >
-          Built for how modern
-          <br />teams actually work.
+          Built for how modern{" "}
+          <br className="hidden lg:block" />teams actually work.
         </Heading>
 
         {/* Sub-copy */}

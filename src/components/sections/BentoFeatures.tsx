@@ -36,8 +36,8 @@ export default function BentoFeatures() {
                 lineHeight: 1.08,
               }}
             >
-              Your best QA mind,
-              <br />at scale.
+              Your best QA mind,{" "}
+              <br className="hidden lg:block" />at scale.
             </Heading>
             <BodyText color="rgba(255,255,255,0.8)" maxWidth="340px">
               Testpert isn&apos;t an automation tool. It&apos;s an AI that thinks like your most
@@ -49,8 +49,9 @@ export default function BentoFeatures() {
 
           {/* CTA */}
           <div className="relative z-10 mt-8">
-            <Button href="#" variant="white">
-              See what Testpert can do
+            <Button href="#" variant="white" className="w-full lg:w-auto justify-center">
+              <span className="lg:hidden">What Testpert can do</span>
+              <span className="hidden lg:inline">See what Testpert can do</span>
             </Button>
           </div>
         </div>
@@ -74,8 +75,8 @@ export default function BentoFeatures() {
                   lineHeight: 1.1,
                 }}
               >
-                Decision-maker
-                <br />visibility into quality.
+                Decision-maker{" "}
+                <br className="hidden lg:block" />visibility into quality.
               </Heading>
               <BodyText color="rgba(30,30,30,0.8)" maxWidth="360px">
                 Engineering leaders need signal, not dashboards full of test counts.
@@ -84,8 +85,9 @@ export default function BentoFeatures() {
               </BodyText>
             </div>
             <div className="mt-8">
-              <Button href="#" variant="dark">
-                See Eagle Eye
+              <Button href="#" variant="dark" className="w-full lg:w-auto justify-center">
+                <span className="lg:hidden">Eagle Eye</span>
+                <span className="hidden lg:inline">See Eagle Eye</span>
               </Button>
             </div>
           </div>
@@ -106,8 +108,8 @@ export default function BentoFeatures() {
                   lineHeight: 1.1,
                 }}
               >
-                QA where developers
-                <br />actually work.
+                QA where developers{" "}
+                <br className="hidden lg:block" />actually work.
               </Heading>
               <BodyText color="rgba(30,30,30,0.8)" maxWidth="360px">
                 Bugasura&apos;s MCP server connects directly to Claude and Cursor. Your
@@ -117,7 +119,7 @@ export default function BentoFeatures() {
               </BodyText>
             </div>
             <div className="mt-8">
-              <Button href="#" variant="dark">
+              <Button href="#" variant="dark" className="w-full lg:w-auto justify-center">
                 View All Integrations
               </Button>
             </div>

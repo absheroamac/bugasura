@@ -11,26 +11,23 @@ const badges = [
 export default function PlatformEnterprise() {
   return (
     <section
-      className="rounded-[32px]"
-      style={{
-        backgroundColor: "#ffffff",
-        padding: "80px 80px",
-      }}
+      className="rounded-[32px] px-4 py-10 lg:px-20 lg:py-20"
+      style={{ backgroundColor: "#ffffff" }}
     >
-      <div className="flex items-center justify-between gap-16">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-16">
         {/* Left — copy */}
-        <div style={{ maxWidth: "400px", flexShrink: 0 }}>
+        <div className="lg:flex-shrink-0 lg:max-w-[400px]">
           <Heading
             level="section"
             as="h2"
             color="#1A0A00"
             style={{
-              fontSize: "clamp(36px, 4vw, 56px)",
+              fontSize: "clamp(32px, 4vw, 56px)",
               lineHeight: 1.05,
             }}
           >
-            <span style={{ whiteSpace: "nowrap" }}>Enterprise-ready.</span>
-            <br />
+            Enterprise-ready.{" "}
+            <br className="hidden lg:block" />
             Security-first.
           </Heading>
 
@@ -46,7 +43,7 @@ export default function PlatformEnterprise() {
           </BodyText>
 
           <div className="mt-8">
-            <Button href="/enterprise" variant="outline">
+            <Button href="/enterprise" variant="outline" className="w-full lg:w-auto justify-center">
               Full Enterprise Overview
             </Button>
           </div>
@@ -54,7 +51,7 @@ export default function PlatformEnterprise() {
 
         {/* Right — 2×2 badge grid */}
         <div
-          className="grid grid-cols-2 gap-x-16 gap-y-10 flex-1"
+          className="grid grid-cols-2 gap-x-10 gap-y-8 lg:gap-x-16 lg:gap-y-10 mt-10 lg:mt-0 lg:flex-1"
           style={{ maxWidth: "480px" }}
         >
           {badges.map((badge) => (

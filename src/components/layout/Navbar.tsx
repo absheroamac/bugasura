@@ -415,8 +415,11 @@ export default function Navbar() {
                 );
               })}
 
-              {/* CTA */}
-              <div className="p-4">
+              {/* CTAs */}
+              <div className="flex flex-col gap-2 p-4">
+                <Button href="/login" variant="outline" size="md" className="w-full justify-center">
+                  Log In
+                </Button>
                 <Button href="/signup" variant="primary" size="md" className="w-full justify-center">
                   Start Free
                 </Button>

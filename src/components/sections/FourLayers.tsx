@@ -123,8 +123,8 @@ export default function FourLayers() {
               lineHeight: 1.02,
             }}
           >
-            Four layers. One system.
-            <br />
+            Four layers. One system.{" "}
+            <br className="hidden lg:block" />
             End-to-end quality.
           </Heading>
 

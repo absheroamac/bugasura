@@ -27,7 +27,7 @@ export default function PlatformPage() {
         body: "Start on the free tier and explore all four layers — or talk to us about what you’re trying to solve.",
         primaryLabel: "Start Free",
         primaryHref: "/signup",
-        secondaryLabel: "Book a Platform Walkthrough",
+        secondaryLabel: "Book a Walkthrough",
         secondaryHref: "/demo",
       }} />
     </main>

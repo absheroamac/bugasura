@@ -37,7 +37,7 @@ export default function Enterprise() {
         }}
       >
         {/* Badges row */}
-        <div className="flex flex-wrap lg:flex-nowrap items-start justify-center lg:justify-between w-full gap-8 mb-10 lg:mb-12">
+        <div className="grid grid-cols-2 lg:flex lg:flex-nowrap items-start justify-center lg:justify-between w-full gap-8 mb-10 lg:mb-12">
           {badges.map((badge) => (
             <div
               key={badge.label}

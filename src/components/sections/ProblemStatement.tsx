@@ -46,9 +46,24 @@ export default function ProblemStatement() {
         className="rounded-[32px]"
         style={{ backgroundColor: "var(--orange)" }}
       >
-        {/* Exclamation mark */}
+        {/* Exclamation mark — bell-shake loop */}
         <div className="flex justify-center pt-12">
-          <Image src="/section2/exclamation-mark.svg" alt="" width={36} height={56} aria-hidden />
+          <motion.div
+            style={{ display: "inline-flex", transformOrigin: "top center" }}
+            animate={{
+              rotate:  [0, -14, 14, -11, 11, -7, 7, -3, 3, 0, 0, 0, 0, 0, 0],
+              scaleX:  [1,  1,   1,   1,  1,  1,  1,  1,  1, 1, 1, 1, 1, 1, 1],
+            }}
+            transition={{
+              duration: 3,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 0,
+              times: [0, 0.04, 0.08, 0.12, 0.16, 0.20, 0.25, 0.29, 0.33, 0.37, 0.50, 0.65, 0.80, 0.92, 1],
+            }}
+          >
+            <Image src="/section2/exclamation-mark.svg" alt="" width={36} height={56} aria-hidden />
+          </motion.div>
         </div>
 
         {/* Headline */}

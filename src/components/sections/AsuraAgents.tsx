@@ -35,14 +35,14 @@ export default function AsuraAgents() {
             level="section"
             as="h2"
             color="var(--dark)"
+            className="text-center lg:text-left w-full lg:w-auto"
             style={{
               fontSize: "clamp(36px, 4.5vw, 68px)",
               lineHeight: 1.02,
               flexShrink: 0,
-              whiteSpace: "pre-line",
             }}
           >
-            Meet your Specialised<br />QA Agents.
+            Meet your Specialised{" "}<br className="hidden lg:block" />QA Agents.
           </Heading>
           <BodyText
             color="rgba(10,10,10,0.8)"
@@ -103,18 +103,18 @@ export default function AsuraAgents() {
         </div>
 
         {/* ── CTA ── */}
-        <div className="flex justify-center py-10">
-          <Button href="#" variant="white">
+        <div className="flex justify-center px-4 lg:px-0 py-10">
+          <Button href="#" variant="white" className="w-full lg:w-auto justify-center">
             Explore the world of Asuras
           </Button>
         </div>
 
-        {/* Spacer so train has room to overflow below */}
-        <div style={{ paddingBottom: "180px" }} />
+        {/* Spacer so train has room to overflow below — desktop only */}
+        <div className="hidden lg:block" style={{ paddingBottom: "180px" }} />
       </section>
 
-      {/* ── Train illustration — overflows below the blue section ── */}
-      <div className="relative z-10 pointer-events-none" style={{ marginTop: "calc(-320px)" }}>
+      {/* ── Train illustration — overflows below the blue section — desktop only ── */}
+      <div className="hidden lg:block relative z-10 pointer-events-none" style={{ marginTop: "calc(-320px)" }}>
         <Image
           src="/section5/train.png"
           alt="Asura agents on a train"

@@ -19,7 +19,7 @@ const rightPoints = [
 
 export default function PlatformComparison() {
   return (
-    <section className="rounded-[32px]" style={{ padding: "96px 80px" }}>
+    <section className="rounded-[32px] px-4 py-12 lg:px-20 lg:py-24">
       {/* Headline */}
       <Heading
         level="section"
@@ -27,14 +27,13 @@ export default function PlatformComparison() {
         color="#1A0A00"
         className="text-center"
         style={{
-          fontSize: "clamp(36px, 5vw, 64px)",
+          fontSize: "clamp(28px, 5vw, 64px)",
           lineHeight: 1.05,
           margin: "0 auto",
-          whiteSpace: "nowrap",
         }}
       >
-        <span style={{ display: "block" }}>Point solutions don&apos;t share context.</span>
-        <span style={{ display: "block" }}>Bugasura does.</span>
+        <span className="lg:block">Point solutions don&apos;t share context.{" "}</span>
+        <span className="lg:block">Bugasura does.</span>
       </Heading>
 
       {/* Sub-copy */}
@@ -50,7 +49,7 @@ export default function PlatformComparison() {
       </BodyText>
 
       {/* Two-column comparison — full width */}
-      <div className="grid grid-cols-2 gap-10 mt-14">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mt-10 lg:mt-14">
 
         {/* ── Left: Stitched Together Stack ── */}
         <div className="flex flex-col">
