@@ -328,8 +328,8 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="absolute left-0 right-0 md:hidden shadow-lg overflow-hidden"
-              style={{ top: "calc(67px + 8px)", backgroundColor: "var(--cream)", borderRadius: "20px" }}
+              className="absolute md:hidden shadow-lg overflow-hidden"
+              style={{ top: "calc(67px + 8px)", left: "16px", right: "16px", backgroundColor: "var(--cream)", borderRadius: "20px" }}
             >
               {navLinks.map((link) => {
                 const isExpanded = mobileAccordion === link.label;
@@ -389,16 +389,11 @@ export default function Navbar() {
                               <Link
                                 key={sub.label}
                                 href={sub.href}
-                                className="py-3"
-                                style={{ borderBottom: "1px solid rgba(0,0,0,0.05)" }}
+                                className="py-3 font-semibold"
+                                style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif", borderBottom: "1px solid rgba(0,0,0,0.05)" }}
                                 onClick={() => { setMobileOpen(false); setMobileAccordion(null); }}
                               >
-                                <span className="block font-semibold" style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif" }}>
-                                  {sub.label}
-                                </span>
-                                <span className="block" style={{ fontSize: "12px", color: "rgba(30,30,30,0.55)", marginTop: "2px" }}>
-                                  {sub.desc}
-                                </span>
+                                {sub.label}
                               </Link>
                             ))}
                           </div>
