@@ -250,7 +250,7 @@ export default function FourLayers() {
           {/* Right: card */}
           <motion.div
             className="flex-1 relative rounded-[24px] overflow-hidden"
-            animate={{ backgroundColor: steps[active].cardBg }}
+            animate={{ backgroundColor: (steps[active] ?? steps[0]).cardBg }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <PlatformInfographic active={active} />
