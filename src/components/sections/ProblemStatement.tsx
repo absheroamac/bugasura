@@ -15,15 +15,15 @@ export default function ProblemStatement() {
     <div style={{ backgroundColor: "var(--cream)" }}>
 
       {/* ── Stats row ── */}
-      <div className="flex items-center justify-evenly" style={{ margin: "0", padding: "120px 0 32px" }}>
+      <div className="flex items-center justify-evenly" style={{ margin: "0", padding: "80px 0 32px" }}>
         {stats.map((stat) => (
-          <div key={stat.value} className="flex flex-col items-center text-center">
+          <div key={stat.value} className="flex flex-col items-center text-center px-2">
             <Heading
               level="subsection"
               as="p"
               color="var(--dark)"
               style={{
-                fontSize: "clamp(40px, 4.5vw, 60px)",
+                fontSize: "clamp(24px, 4.5vw, 60px)",
                 lineHeight: 1.05,
               }}
             >
@@ -33,7 +33,7 @@ export default function ProblemStatement() {
               color="var(--dark)"
               opacity={0.8}
               className="mt-1"
-              style={{ fontWeight: 600, fontSize: "14px" }}
+              style={{ fontWeight: 600, fontSize: "clamp(11px, 1.2vw, 14px)" }}
             >
               {stat.label}
             </BodyText>
