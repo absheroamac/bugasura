@@ -329,7 +329,7 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
               className="absolute md:hidden shadow-lg overflow-hidden"
-              style={{ top: "calc(67px + 8px)", left: "18px", right: "18px", backgroundColor: "var(--cream)", borderRadius: "20px" }}
+              style={{ top: "calc(67px + 8px)", left: "22px", right: "22px", backgroundColor: "var(--cream)", borderRadius: "20px" }}
             >
               {navLinks.map((link) => {
                 const isExpanded = mobileAccordion === link.label;
