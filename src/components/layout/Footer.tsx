@@ -81,11 +81,11 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
     >
       {/* ── CTA section ── */}
       <div
-        className="rounded-[28px] m-3 flex flex-col md:flex-row md:items-center md:justify-between px-6 md:px-12 pt-10 md:pt-12 pb-8 md:pb-10 gap-6 md:gap-8"
+        className="rounded-[28px] m-3 flex flex-col lg:flex-row lg:items-center lg:justify-between px-6 lg:px-12 pt-10 lg:pt-12 pb-8 lg:pb-10 gap-6 lg:gap-8"
         style={{ backgroundColor: CTA_BG }}
       >
         {/* Left: copy + buttons */}
-        <div className="flex flex-col md:max-w-[620px]">
+        <div className="flex flex-col lg:max-w-[620px]">
           <Heading
             level="section"
             as="h2"
@@ -132,7 +132,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         </div>
 
         {/* Right: character */}
-        <div className="hidden md:block flex-shrink-0" style={{ width: "clamp(240px, 32vw, 420px)" }}>
+        <div className="hidden lg:block flex-shrink-0" style={{ width: "clamp(240px, 32vw, 420px)" }}>
           <Image
             src="/footer/character.png"
             alt="Bugasura character"
@@ -145,7 +145,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
       </div>
 
       {/* ── Footer nav ── */}
-      <div className="grid grid-cols-2 md:flex md:justify-between px-6 md:px-12 py-8 md:py-10 gap-8">
+      <div className="grid grid-cols-2 lg:flex lg:justify-between px-6 lg:px-12 py-8 lg:py-10 gap-8">
         {footerNav.map((col) => (
           <div key={col.heading} className="flex flex-col gap-3">
             <Heading
@@ -175,7 +175,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         ))}
 
         {/* Copyright — right-aligned on desktop, hidden in grid on mobile */}
-        <div className="hidden md:flex items-end">
+        <div className="hidden lg:flex items-end">
           <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", whiteSpace: "nowrap" }}>
             © 2026 Moolya Software Testing Pvt. Ltd.
           </p>
@@ -183,7 +183,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
       </div>
 
       {/* Copyright — mobile only, below nav grid */}
-      <p className="md:hidden px-6 pb-2 text-left" style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
+      <p className="lg:hidden px-6 pb-2 text-left" style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)" }}>
         © 2026 Moolya Software Testing Pvt. Ltd.
       </p>
 

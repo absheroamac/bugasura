@@ -136,7 +136,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className="fixed top-2 left-2 right-2 md:top-6 md:left-6 md:right-6 z-50 flex justify-center pointer-events-none"
+      className="fixed top-2 left-2 right-2 lg:top-6 lg:left-6 lg:right-6 z-50 flex justify-center pointer-events-none"
       animate={{ y: hidden ? -160 : 0 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
@@ -161,7 +161,7 @@ export default function Navbar() {
             </Link>
 
             {/* Centre nav */}
-            <nav className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-0.5 px-2 py-1.5 rounded-xl">
+            <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-0.5 px-2 py-1.5 rounded-xl">
               {navLinks.map((link) => {
                 const isActive = activeDropdown === link.label;
                 return (
@@ -201,7 +201,7 @@ export default function Navbar() {
             </nav>
 
             {/* Right actions */}
-            <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+            <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
               <Button href="/login" variant="outline" size="md">
                 Log In
               </Button>
@@ -212,7 +212,7 @@ export default function Navbar() {
 
             {/* Mobile hamburger */}
             <button
-              className="md:hidden p-2"
+              className="lg:hidden p-2"
               onClick={() => { setMobileOpen(!mobileOpen); setMobileAccordion(null); }}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
@@ -232,7 +232,7 @@ export default function Navbar() {
               transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
               onMouseEnter={cancelClose}
               onMouseLeave={scheduleClose}
-              className="hidden md:flex absolute gap-0 overflow-hidden"
+              className="hidden lg:flex absolute gap-0 overflow-hidden"
               style={{
                 top: "calc(67px + 8px)",
                 left: "21px",
@@ -328,7 +328,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="absolute md:hidden shadow-lg overflow-hidden"
+              className="absolute lg:hidden shadow-lg overflow-hidden"
               style={{ top: "calc(67px + 8px)", left: "22px", right: "22px", backgroundColor: "var(--cream)", borderRadius: "20px" }}
             >
               {navLinks.map((link) => {

@@ -97,7 +97,7 @@ export default function FourLayers() {
       style={{ backgroundColor: "var(--cream)" }}
     >
       {/* ── Scroll triggers — desktop only ── */}
-      <div className="absolute inset-0 pointer-events-none hidden md:block">
+      <div className="absolute inset-0 pointer-events-none hidden lg:block">
         {steps.map((_, i) => (
           <div
             key={i}
@@ -109,10 +109,10 @@ export default function FourLayers() {
 
       {/* ── Sticky content panel ── */}
       <div
-        className="relative md:sticky top-0 flex flex-col md:overflow-hidden md:h-[calc(100vh-48px)]"
+        className="relative lg:sticky top-0 flex flex-col lg:overflow-hidden lg:h-[calc(100vh-48px)]"
       >
         {/* Top header row */}
-        <div className="flex flex-col md:flex-row items-start md:justify-between px-4 md:px-10 pt-8 md:pt-10 pb-4 md:pb-6 gap-4">
+        <div className="flex flex-col lg:flex-row items-start lg:justify-between px-4 lg:px-10 pt-8 lg:pt-10 pb-4 lg:pb-6 gap-4">
           <Heading
             level="section"
             as="h2"
@@ -141,10 +141,10 @@ export default function FourLayers() {
         </div>
 
         {/* Main content — stacks on mobile, side-by-side on desktop */}
-        <div className="flex flex-col md:flex-row md:flex-1 px-4 md:px-10 pb-8 md:pb-10 gap-6 md:gap-10 md:overflow-hidden">
+        <div className="flex flex-col lg:flex-row lg:flex-1 px-4 lg:px-10 pb-8 lg:pb-10 gap-6 lg:gap-10 lg:overflow-hidden">
 
           {/* Left: steps list */}
-          <div className="flex flex-col justify-center gap-0 w-full md:w-[44%] md:flex-shrink-0">
+          <div className="flex flex-col justify-center gap-0 w-full lg:w-[44%] lg:flex-shrink-0">
             {steps.map((step, i) => (
               <div
                 key={step.num}
@@ -228,7 +228,7 @@ export default function FourLayers() {
 
           {/* Right: card — desktop only */}
           <motion.div
-            className="hidden md:flex flex-1 relative rounded-[24px] overflow-hidden"
+            className="hidden lg:flex flex-1 relative rounded-[24px] overflow-hidden"
             animate={{ backgroundColor: steps[active].cardBg }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -238,7 +238,7 @@ export default function FourLayers() {
       </div>
 
       {/* ── Scroll space — desktop only ── */}
-      <div className="hidden md:block" style={{ height: "400vh" }} />
+      <div className="hidden lg:block" style={{ height: "400vh" }} />
     </section>
   );
 }

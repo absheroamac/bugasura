@@ -5,12 +5,12 @@ import { Button, Heading, BodyText } from "@/components/ui";
 
 export default function BentoFeatures() {
   return (
-    <section style={{ backgroundColor: "var(--cream)" }} className="px-4 py-8 md:px-20 md:py-12">
-      <div className="flex flex-col md:flex-row gap-5 md:gap-8 md:min-h-[640px]">
+    <section style={{ backgroundColor: "var(--cream)" }} className="px-4 py-8 lg:px-20 lg:py-12">
+      <div className="flex flex-col lg:flex-row gap-5 lg:gap-8 lg:min-h-[640px]">
 
         {/* ── Left: large dark card — image fills whole card ── */}
         <div
-          className="relative flex flex-col justify-between rounded-[28px] overflow-hidden md:flex-shrink-0 md:w-[52%]"
+          className="relative flex flex-col justify-between rounded-[28px] overflow-hidden lg:flex-shrink-0 lg:w-[52%]"
           style={{ padding: "32px" }}
         >
           {/* Full-card background image */}
@@ -56,7 +56,7 @@ export default function BentoFeatures() {
         </div>
 
         {/* ── Right: two stacked cards ── */}
-        <div className="flex flex-col gap-5 md:gap-8 flex-1">
+        <div className="flex flex-col gap-5 lg:gap-8 flex-1">
 
           {/* Top — blue */}
           <div
