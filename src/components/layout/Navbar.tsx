@@ -328,8 +328,8 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="absolute lg:hidden shadow-lg overflow-hidden"
-              style={{ top: "calc(67px + 8px)", left: "22px", right: "22px", backgroundColor: "var(--cream)", borderRadius: "20px" }}
+              className="absolute lg:hidden shadow-lg overflow-hidden overflow-y-auto"
+              style={{ top: "calc(67px + 8px)", left: "22px", right: "22px", maxHeight: "calc(100vh - 110px)", backgroundColor: "var(--cream)", borderRadius: "20px" }}
             >
               {navLinks.map((link) => {
                 const isExpanded = mobileAccordion === link.label;
@@ -385,12 +385,23 @@ export default function Navbar() {
                           style={{ overflow: "hidden", backgroundColor: "rgba(0,0,0,0.03)" }}
                         >
                           <div className="flex flex-col px-6 py-3 gap-0">
+                            {/* Heading link at top if it's a navigable page */}
+                            {dropdownData[link.label as DropdownKey]?.arrow && (
+                              <Link
+                                href={dropdownData[link.label as DropdownKey].headingHref}
+                                className="py-3 font-semibold"
+                                style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif", borderBottom: "1px solid rgba(0,0,0,0.05)" }}
+                                onClick={() => { setMobileOpen(false); setMobileAccordion(null); }}
+                              >
+                                {dropdownData[link.label as DropdownKey].heading}
+                              </Link>
+                            )}
                             {subLinks.map((sub) => (
                               <Link
                                 key={sub.label}
                                 href={sub.href}
                                 className="py-3 font-semibold"
-                                style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif", borderBottom: "1px solid rgba(0,0,0,0.05)" }}
+                                style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif", borderBottom: "1px solid rgba(0,0,0,0.05)", paddingLeft: dropdownData[link.label as DropdownKey]?.arrow ? "12px" : undefined }}
                                 onClick={() => { setMobileOpen(false); setMobileAccordion(null); }}
                               >
                                 {sub.label}
