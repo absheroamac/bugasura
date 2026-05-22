@@ -8,6 +8,7 @@ const asuras = [
   {
     id: "browser",
     tab: "Browser Asura",
+    tabIcon: "/asuras/tab-browser.png",
     eyebrow: "WEB TESTING",
     heading: "Browser Asura",
     quote: '"Hunts bugs across every page, every flow, every state."',
@@ -26,6 +27,7 @@ const asuras = [
   {
     id: "api",
     tab: "API Asura",
+    tabIcon: "/asuras/tab-api.png",
     eyebrow: "API TESTING",
     heading: "API Asura",
     quote: '"Every contract. Every edge. Every regression."',
@@ -44,6 +46,7 @@ const asuras = [
   {
     id: "duplicate",
     tab: "Duplicate Bug",
+    tabIcon: "/asuras/tab-duplicate.png",
     eyebrow: "BACKLOG HYGIENE",
     heading: "Duplicate Bug Asura",
     quote: '"One bug, one ticket. Every time."',
@@ -62,6 +65,7 @@ const asuras = [
   {
     id: "mobile",
     tab: "Mobile Asura",
+    tabIcon: "/asuras/tab-mobile.png",
     eyebrow: "MOBILE TESTING",
     heading: "Mobile Asura",
     quote: '"iOS and Android. Real devices. Real flows."',
@@ -144,13 +148,16 @@ export default function AsuraShowcase() {
                   whiteSpace: "nowrap",
                 }}
               >
-                <div
+                <img
+                  src={a.tabIcon}
+                  alt=""
+                  aria-hidden
                   style={{
                     width: "32px",
                     height: "32px",
                     borderRadius: "14px",
                     flexShrink: 0,
-                    backgroundColor: "rgba(255,255,255,0.38)",
+                    objectFit: "contain",
                   }}
                 />
                 {a.tab}

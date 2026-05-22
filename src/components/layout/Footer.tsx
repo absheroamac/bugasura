@@ -11,7 +11,7 @@ const footerNav = [
   {
     heading: "Platform",
     links: [
-      { label: "Platform Overview",  href: "#" },
+      { label: "Platform Overview",  href: "/platform" },
       { label: "Test Management",    href: "#" },
       { label: "Bug Tracker",        href: "#" },
       { label: "Requirement Mgmt",   href: "#" },
@@ -32,7 +32,7 @@ const footerNav = [
   {
     heading: "Asuras",
     links: [
-      { label: "World of Asuras",    href: "#" },
+      { label: "World of Asuras",    href: "/asuras" },
       { label: "Browser Asura",      href: "#" },
       { label: "API Asura",          href: "#" },
       { label: "Duplicate Bugasura", href: "#" },
