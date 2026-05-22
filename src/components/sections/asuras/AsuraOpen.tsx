@@ -261,7 +261,7 @@ export default function AsuraOpen() {
           <span className="lg:hidden">Join Developer Programme</span>
           <span className="hidden lg:inline">Join the Early Developer Programme</span>
         </Button>
-        <BodyText color="var(--dark)" style={{ fontSize: "14px", opacity: 0.7 }}>
+        <BodyText color="var(--dark)" className="text-[14px] lg:text-[16px]" style={{ opacity: 0.7 }}>
           Launching to developers Q3 2026 · SDK in active development
         </BodyText>
       </div>
