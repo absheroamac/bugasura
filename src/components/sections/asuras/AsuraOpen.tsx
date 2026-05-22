@@ -161,13 +161,13 @@ export default function AsuraOpen() {
           position: "relative",
         }}
       >
-        {/* Copy button with feedback */}
+        {/* Copy button — absolute top-right on desktop, hidden on mobile */}
         <button
+          className="hidden lg:flex"
           style={{
             position: "absolute",
             top: "20px",
             right: "20px",
-            display: "flex",
             alignItems: "center",
             gap: "6px",
             padding: "8px 16px",
@@ -224,6 +224,36 @@ export default function AsuraOpen() {
           </code>
         </pre>
       </div>
+
+      {/* Copy button — below code block on mobile only */}
+      <button
+        className="lg:hidden flex items-center justify-center gap-2 w-full mb-6"
+        style={{
+          padding: "10px 20px",
+          borderRadius: "10px",
+          backgroundColor: copied ? "rgba(255,255,255,0.25)" : "rgba(255,255,255,0.15)",
+          border: `1px solid ${copied ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.2)"}`,
+          color: copied ? "#90EE90" : "#ffffff",
+          fontFamily: "'Clash Grotesk', sans-serif",
+          fontWeight: 500,
+          fontSize: "13px",
+          cursor: "pointer",
+          transition: "all 0.2s ease",
+        }}
+        onClick={handleCopy}
+      >
+        {copied ? (
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M2 7L5.5 10.5L12 3.5" stroke="#90EE90" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        ) : (
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <rect x="4" y="4" width="9" height="9" rx="1.5" stroke="white" strokeWidth="1.2"/>
+            <path d="M4 3V2.5A1.5 1.5 0 0 1 5.5 1H11.5A1.5 1.5 0 0 1 13 2.5V8.5A1.5 1.5 0 0 1 11.5 10H11" stroke="white" strokeWidth="1.2"/>
+          </svg>
+        )}
+        {copied ? "COPIED!" : "COPY CODE"}
+      </button>
 
       {/* ── Footer row: CTA + launch note ── */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
