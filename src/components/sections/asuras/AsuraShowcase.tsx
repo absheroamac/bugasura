@@ -148,18 +148,26 @@ export default function AsuraShowcase() {
                   whiteSpace: "nowrap",
                 }}
               >
-                <img
-                  src={a.tabIcon}
-                  alt=""
-                  aria-hidden
+                <div
                   style={{
-                    width: "32px",
-                    height: "32px",
+                    width: "40px",
+                    height: "40px",
                     borderRadius: "14px",
                     flexShrink: 0,
-                    objectFit: "contain",
+                    backgroundColor: "rgba(255,255,255,0.38)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "4px",
                   }}
-                />
+                >
+                  <img
+                    src={a.tabIcon}
+                    alt=""
+                    aria-hidden
+                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                  />
+                </div>
                 {a.tab}
               </button>
             ))}

@@ -20,9 +20,9 @@ export default function PlatformStats() {
   return (
     <section className="rounded-[32px] overflow-hidden">
       {/* Stats row — sits above the city image */}
-      <div className="flex flex-col items-center lg:items-start lg:flex-row lg:justify-between gap-8 px-4 py-10 lg:px-20 lg:py-14">
+      <div className="flex flex-col items-center lg:flex-row lg:justify-center gap-8 lg:gap-24 px-4 py-10 lg:px-20 lg:py-14">
         {stats.map((stat, i) => (
-          <div key={i} className="flex flex-col items-center lg:items-start text-center lg:text-left" style={{ maxWidth: "260px" }}>
+          <div key={i} className="flex flex-col items-center text-center" style={{ maxWidth: "260px" }}>
             <Heading
               level="subsection"
               as="p"

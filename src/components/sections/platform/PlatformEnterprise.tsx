@@ -26,8 +26,8 @@ export default function PlatformEnterprise() {
               lineHeight: 1.05,
             }}
           >
-            Enterprise-ready.{" "}
-            <br className="hidden lg:block" />
+            <span className="lg:whitespace-nowrap">Enterprise-ready.</span>
+            {" "}<br className="hidden lg:block" />
             Security-first.
           </Heading>
 
@@ -56,25 +56,24 @@ export default function PlatformEnterprise() {
         >
           {badges.map((badge) => (
             <div key={badge.label} className="flex flex-col items-center text-center gap-3">
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={badge.src}
                 alt={badge.label.replace("\n", " ")}
-                width={40}
-                height={40}
-                className="w-10 h-10"
+                className="w-10 h-10 lg:w-[45px] lg:h-[45px]"
               />
-              <Heading
-                level="step"
-                as="p"
-                color="#1A0A00"
+              <p
                 style={{
-                  fontSize: "14px",
+                  fontFamily: "'Clash Grotesk', sans-serif",
+                  fontWeight: 600,
+                  fontSize: "18px",
                   lineHeight: 1.35,
                   whiteSpace: "pre-line",
+                  color: "#1A0A00",
                 }}
               >
                 {badge.label}
-              </Heading>
+              </p>
             </div>
           ))}
         </div>

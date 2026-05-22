@@ -148,7 +148,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
       </div>
 
       {/* ── Footer nav ── */}
-      <div className="grid grid-cols-2 lg:flex lg:justify-between px-6 lg:px-12 py-8 lg:py-10 gap-8">
+      <div className="grid grid-cols-2 lg:flex lg:justify-start px-6 lg:px-12 py-8 lg:py-10 gap-8 lg:gap-[72px]">
         {footerNav.map((col) => (
           <div key={col.heading} className="flex flex-col gap-3">
             <Heading
@@ -178,7 +178,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         ))}
 
         {/* Copyright — right-aligned on desktop, hidden in grid on mobile */}
-        <div className="hidden lg:flex items-end">
+        <div className="hidden lg:flex items-end ml-auto">
           <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", whiteSpace: "nowrap" }}>
             © 2026 Moolya Software Testing Pvt. Ltd.
           </p>

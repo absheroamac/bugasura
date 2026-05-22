@@ -37,11 +37,11 @@ export default function Enterprise() {
         }}
       >
         {/* Badges row */}
-        <div className="grid grid-cols-2 lg:flex lg:flex-nowrap items-start justify-center lg:justify-between w-full gap-8 mb-10 lg:mb-12">
+        <div className="grid grid-cols-2 lg:flex lg:flex-nowrap items-start justify-center lg:justify-center w-full gap-8 lg:gap-28 mb-10 lg:mb-12">
           {badges.map((badge) => (
             <div
               key={badge.label}
-              className="flex flex-col items-center gap-3 flex-1"
+              className="flex flex-col items-center gap-3"
             >
               <Image
                 src={badge.icon}
@@ -50,19 +50,18 @@ export default function Enterprise() {
                 height={44}
                 className="block"
               />
-              <Heading
-                level="step"
-                as="p"
-                color="var(--dark)"
-                className="text-center"
+              <p
+                className="text-center text-[17px] lg:text-[18px]"
                 style={{
-                  fontSize: "17px",
+                  fontFamily: "'Clash Grotesk', sans-serif",
+                  fontWeight: 600,
                   lineHeight: 1.35,
                   whiteSpace: "pre-line",
+                  color: "var(--dark)",
                 }}
               >
                 {badge.label}
-              </Heading>
+              </p>
             </div>
           ))}
         </div>

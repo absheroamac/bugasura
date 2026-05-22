@@ -293,28 +293,19 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {/* Right — illustration + CTA */}
+              {/* Right — illustration */}
               <div
-                className="flex flex-col justify-between p-6 flex-shrink-0"
-                style={{ width: "300px", borderRadius: "0 20px 20px 0" }}
+                className="flex flex-col justify-end p-6 flex-shrink-0"
+                style={{ width: "420px", borderRadius: "0 20px 20px 0" }}
               >
-                {/* START FREE button */}
-                <Button href="/signup" variant="primary" size="md" className="self-end">
-                  Start Free
-                  <ArrowUpRight size={14} strokeWidth={2.5} />
-                </Button>
-
-                {/* Illustration */}
-                <div className="mt-4 flex-1 flex items-end">
-                  <Image
-                    src={data.illustration}
-                    alt={activeDropdown}
-                    width={560}
-                    height={264}
-                    className="w-full h-auto object-contain"
-                    priority
-                  />
-                </div>
+                <Image
+                  src={data.illustration}
+                  alt={activeDropdown}
+                  width={800}
+                  height={380}
+                  className="w-full h-auto object-contain"
+                  priority
+                />
               </div>
             </motion.div>
           )}

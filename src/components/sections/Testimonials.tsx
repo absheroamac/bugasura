@@ -95,8 +95,42 @@ export default function Testimonials() {
 
   const handleTouchEnd = () => { isDragging.current = false; };
 
+  const scrollBy = (dir: 1 | -1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const half = track.scrollWidth / 2;
+    const target = ((posRef.current + dir * 325) % half + half) % half;
+    const start = posRef.current;
+    const distance = target - start;
+    const duration = 500;
+    const startTime = performance.now();
+
+    isPausedRef.current = true;
+
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-in-out cubic
+      const ease = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      posRef.current = start + distance * ease;
+      track.style.transform = `translateX(-${posRef.current}px)`;
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        posRef.current = target;
+        isPausedRef.current = false;
+      }
+    };
+
+    requestAnimationFrame(animate);
+  };
+
   return (
-    <section style={{ backgroundColor: "var(--cream)" }} className="py-20">
+    <section style={{ backgroundColor: "var(--cream)" }} className="py-20 -mt-32 lg:mt-0">
 
       {/* ── Headline ── */}
       <div className="text-center px-6 mb-16">
@@ -161,7 +195,7 @@ export default function Testimonials() {
               <div>
                 <span
                   className="font-semibold block mb-3"
-                  style={{ fontSize: "28px", lineHeight: 1, color: "var(--dark)", fontFamily: "Georgia, serif" }}
+                  style={{ fontSize: "44px", lineHeight: 1, color: "var(--dark)", fontFamily: "Georgia, serif" }}
                 >
                   &ldquo;
                 </span>
@@ -190,23 +224,27 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* ── Navigation buttons (disabled — wired up later) ── */}
+      {/* ── Navigation buttons ── */}
       <div className="flex justify-center gap-3 mt-10">
         <button
-          disabled
-          className="w-10 h-10 rounded-full flex items-center justify-center opacity-30 cursor-not-allowed"
+          onClick={() => scrollBy(-1)}
+          className="w-10 h-10 rounded-full flex items-center justify-center transition-opacity hover:opacity-70"
           style={{ backgroundColor: "var(--dark)", color: "#fff" }}
           aria-label="Previous"
         >
-          ←
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M10 12L6 8L10 4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </button>
         <button
-          disabled
-          className="w-10 h-10 rounded-full flex items-center justify-center opacity-30 cursor-not-allowed"
+          onClick={() => scrollBy(1)}
+          className="w-10 h-10 rounded-full flex items-center justify-center transition-opacity hover:opacity-70"
           style={{ backgroundColor: "var(--dark)", color: "#fff" }}
           aria-label="Next"
         >
-          →
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 4L10 8L6 12" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </button>
       </div>
     </section>

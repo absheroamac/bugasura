@@ -137,12 +137,11 @@ function LayerPanel({
             {layer.headline}
           </h2>
           <p
-            className="mt-4"
+            className="mt-4 max-w-[400px] lg:max-w-[80%]"
             style={{
               fontSize: "16px",
               lineHeight: 1.65,
               color: "rgba(20,10,0,0.8)",
-              maxWidth: "400px",
             }}
           >
             {layer.body}
@@ -154,7 +153,7 @@ function LayerPanel({
           <div
             className="w-full rounded-3xl"
             style={{
-              height: "360px",
+              aspectRatio: "5 / 4",
               backgroundColor: "rgba(255,255,255,0.6)",
               border: "1.5px solid rgba(255,255,255,0.85)",
             }}
@@ -203,8 +202,8 @@ function LayerPanel({
         }}
       >
         <span
+          className="text-[15px] lg:text-[20px]"
           style={{
-            fontSize: "15px",
             color: "#1A0A00",
             fontFamily: "var(--font-caveat)",
             fontWeight: 400,
@@ -212,7 +211,7 @@ function LayerPanel({
         >
           {layer.label} Layer Output
         </span>
-        <span style={{ fontSize: "14px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, color: "#1A0A00" }}>
+        <span className="text-[14px] lg:text-[18px]" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, color: "#1A0A00" }}>
           {layer.output}
         </span>
       </div>

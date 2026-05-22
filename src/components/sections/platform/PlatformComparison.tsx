@@ -71,7 +71,7 @@ export default function PlatformComparison() {
             color="#1A0A00"
             className="mt-8"
             style={{
-              fontSize: "clamp(22px, 2.2vw, 32px)",
+              fontSize: "clamp(22px, 3vw, 38px)",
               lineHeight: 1.1,
             }}
           >
@@ -101,7 +101,7 @@ export default function PlatformComparison() {
                 <BodyText
                   as="span"
                   color="rgba(20,10,0,0.6)"
-                  style={{ fontSize: "16px" }}
+                  className="text-[16px] lg:text-[18px]"
                 >
                   {point}
                 </BodyText>
@@ -130,7 +130,7 @@ export default function PlatformComparison() {
             color="#E52727"
             className="mt-8"
             style={{
-              fontSize: "clamp(22px, 2.2vw, 32px)",
+              fontSize: "clamp(22px, 3vw, 38px)",
               lineHeight: 1.1,
             }}
           >
@@ -160,7 +160,8 @@ export default function PlatformComparison() {
                 <BodyText
                   as="span"
                   color="#1A0A00"
-                  style={{ fontSize: "16px", fontWeight: 600 }}
+                  className="text-[16px] lg:text-[18px]"
+                  style={{ fontWeight: 600 }}
                 >
                   {point}
                 </BodyText>

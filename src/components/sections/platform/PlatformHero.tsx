@@ -83,7 +83,7 @@ export default function PlatformHero() {
       </div>
 
       {/* ── Bottom: full-width illustration with white cards overlaid (desktop) ── */}
-      <div className="relative lg:-mt-[100px] mt-6">
+      <div className="relative lg:-mt-[340px] mt-6">
         {/* Factory illustration — full bleed */}
         <Image
           src="/platform/illustration.png"
