@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Button, Heading, BodyText } from "@/components/ui";
 
 const badges = [

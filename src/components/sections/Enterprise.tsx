@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Button, Heading } from "@/components/ui";
+import { Button } from "@/components/ui";
 
 const badges = [
   {
