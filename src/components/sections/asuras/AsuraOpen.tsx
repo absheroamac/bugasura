@@ -91,7 +91,7 @@ export default function AsuraOpen() {
         <BodyText
           color="var(--dark)"
           className="mt-5 mx-auto"
-          style={{ fontSize: "16px", lineHeight: 1.65, maxWidth: "560px", opacity: 0.8 }}
+          style={{ fontSize: "16px", lineHeight: 1.65, maxWidth: "760px", opacity: 0.8 }}
         >
           Got a testing problem no off-the-shelf agent solves? Build an Asura that does
           exactly one thing, exceptionally well — on top of the same context engine that
@@ -116,7 +116,7 @@ export default function AsuraOpen() {
               }}
             >
               {/* Text area */}
-              <div style={{ padding: "28px 28px 20px" }}>
+              <div className="pt-7 px-7 pb-5 lg:pt-9 lg:px-9 lg:pb-7">
                 <Heading
                   level="step"
                   as="h3"

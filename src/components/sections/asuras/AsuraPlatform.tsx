@@ -1,6 +1,6 @@
 "use client";
 
-import { Heading, BodyText } from "@/components/ui";
+import { Heading, BodyText, Card } from "@/components/ui";
 
 const steps = [
   {
@@ -53,7 +53,7 @@ export default function AsuraPlatform() {
         <div className="flex flex-1 items-center justify-center mt-8 lg:mt-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/asuras/section3-infographic.png"
+            src="/asuras/section3-infographic.svg"
             alt="Platform intelligence flows into every Asura"
             style={{ width: "clamp(240px, 75%, 100%)", height: "auto", display: "block" }}
           />
@@ -63,19 +63,12 @@ export default function AsuraPlatform() {
       {/* ── Bottom: 3 feature cards ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {steps.map((s) => (
-          <div
-            key={s.title}
-            style={{
-              backgroundColor: "#FFFFFF",
-              borderRadius: "20px",
-              padding: "24px",
-            }}
-          >
+          <Card key={s.title} tint="white" radius="md" padding="24px">
             <Heading
               level="step"
               as="h3"
               color="var(--dark)"
-              style={{ fontSize: "clamp(18px, 2vw, 22px)", lineHeight: 1.2, marginBottom: "12px" }}
+              style={{ fontSize: "28px", lineHeight: 1.2, marginBottom: "12px" }}
             >
               {s.title}
             </Heading>
@@ -85,7 +78,7 @@ export default function AsuraPlatform() {
             >
               {s.body}
             </BodyText>
-          </div>
+          </Card>
         ))}
       </div>
     </section>
