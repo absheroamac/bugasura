@@ -1,18 +1,19 @@
 "use client";
 
+import React from "react";
 import { Heading, BodyText, Card } from "@/components/ui";
 
-const steps = [
+const steps: { title: React.ReactNode; body: string }[] = [
   {
-    title: "Platform learns your product",
+    title: <>Platform learns{" "}<br className="hidden lg:block" />your product</>,
     body: "Context, Refine, and Generate layers build the shared intelligence — requirements, past defects, risk mapping.",
   },
   {
-    title: "You attach an Asura to your project",
+    title: <>You attach an Asura{" "}<br className="hidden lg:block" />to your project</>,
     body: "No configuration from scratch. The Asura inherits your platform context and knows what to prioritise immediately.",
   },
   {
-    title: "It runs, reports, and escalates",
+    title: <>It runs, reports,{" "}<br className="hidden lg:block" />and escalates</>,
     body: "Test results flow back to Bugasura. Issues auto-escalate to your backlog. Eagle Eye surfaces the executive view.",
   },
 ];
@@ -27,7 +28,7 @@ export default function AsuraPlatform() {
       <div className="flex flex-col lg:flex-row lg:items-start lg:gap-16 mb-10 lg:mb-16">
 
         {/* Left — copy */}
-        <div className="lg:flex-shrink-0 lg:w-[38%]">
+        <div className="lg:flex-shrink-0 lg:w-[40%]">
           <Heading
             level="hero"
             as="h2"
@@ -62,8 +63,8 @@ export default function AsuraPlatform() {
 
       {/* ── Bottom: 3 feature cards ── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {steps.map((s) => (
-          <Card key={s.title} tint="white" radius="md" padding="24px">
+        {steps.map((s, i) => (
+          <Card key={i} tint="white" radius="md" padding="24px" className="lg:!p-8">
             <Heading
               level="step"
               as="h3"

@@ -101,7 +101,7 @@ export default function AsuraShowcase() {
         <BodyText
           color="var(--dark)"
           className="mt-5 mx-auto"
-          style={{ fontSize: "16px", lineHeight: 1.65, maxWidth: "520px", opacity: 0.75 }}
+          style={{ fontSize: "16px", lineHeight: 1.65, maxWidth: "720px", opacity: 0.75 }}
         >
           Each Asura is a focused agent — trained on a specific testing domain,
           powered by your platform context, and built to run without a test script to follow.
@@ -130,23 +130,17 @@ export default function AsuraShowcase() {
               <button
                 key={a.id}
                 onClick={() => setActive(i)}
+                className="w-[160px] lg:w-[220px] text-[13px] lg:text-[16px] flex items-center justify-start gap-2 flex-shrink-0"
                 style={{
-                  width: "160px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "8px",
                   padding: "8px 12px",
                   borderRadius: "18px",
                   border: "none",
                   cursor: "pointer",
                   fontFamily: "'Clash Grotesk', sans-serif",
                   fontWeight: 600,
-                  fontSize: "13px",
                   backgroundColor: active === i ? "#D51618" : "#FFB862",
                   color: active === i ? "#ffffff" : "#1E1E1E",
                   transition: "background-color 0.2s ease, color 0.2s ease",
-                  flexShrink: 0,
                   whiteSpace: "nowrap",
                 }}
               >

@@ -88,13 +88,15 @@ export default function AsuraHero() {
               level="step"
               as="h3"
               color="var(--dark)"
-              style={{ fontSize: "clamp(20px, 2vw, 28px)", lineHeight: 1.15, marginBottom: "12px" }}
+              className="text-[20px] lg:text-[30px]"
+              style={{ lineHeight: 1.15, marginBottom: "12px" }}
             >
               {card.title}
             </Heading>
             <BodyText
               color="var(--dark)"
-              style={{ fontSize: "15px", lineHeight: 1.65 }}
+              className="text-[15px] lg:text-[16px]"
+              style={{ lineHeight: 1.65 }}
             >
               {card.body}
             </BodyText>
