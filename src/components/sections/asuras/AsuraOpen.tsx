@@ -131,7 +131,7 @@ export default function AsuraOpen() {
               </div>
 
               {/* Image — flush to bottom, side-inset with matching radius */}
-              <div style={{ flex: 1, display: "flex", alignItems: "flex-end", padding: "0 10px 10px" }}>
+              <div style={{ flex: 1, display: "flex", alignItems: "flex-end", padding: "32px 10px 10px" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={card.image}
