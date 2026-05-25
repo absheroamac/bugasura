@@ -88,10 +88,11 @@ export function PricingTabs() {
               ["AI Issue Tracker", "AI-enriched bug capture, triage, and deduplication"],
               ["Requirements Management", "link requirements to tests, track coverage changes"],
               ["Knowledge Base", "ingest docs, requirements, and product context"],
-              ["Eagle Eye", "quality health visibility for engineering leadership"],
               ["MCP Server", "quality context inside Claude and Cursor"],
               ["Chrome Reporter + Web Widget", "capture bugs from anywhere"],
               ["Integrations", "GitHub, Jira, Asana, Slack, ClickUp, and more"],
+              ["50 GB storage", "free, forever — no upgrades needed"],
+              ["SOC 2 Type II", "certified security for procurement teams"],
             ].map(([title, desc]) => (
               <li key={title} className={styles.featureItem}>
                 <CheckIcon color="#1D9E75" />
@@ -143,6 +144,11 @@ export function PricingTabs() {
           <ul className={styles.featureList}>
             {[
               ["Testpert AI layer", "advanced Q&A engine, expert-in-the-loop mode, risk surface mapping"],
+              ["Eagle Eye", "quality health visibility for engineering leadership"],
+              ["Knowledge Base AI chat", "conversational AI over your product knowledge base"],
+              ["Context mapping", "automated context linking across requirements and defects"],
+              ["Deeper test heuristics", "AI-driven risk and edge-case analysis beyond basic coverage"],
+              ["Context-driven testing", "tests generated from full product context, not just scripts"],
               ["Unlimited Asura runs", "production-scale execution with priority queue"],
               ["On-premises deployment", "your infrastructure, your data residency"],
               ["SOC 2 Type II", "certified security for procurement teams"],
