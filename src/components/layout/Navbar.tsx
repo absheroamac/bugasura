@@ -17,7 +17,7 @@ const dropdownData: Record<DropdownKey, {
   headingHref: string;
   arrow: boolean;
   cols: 2 | 3;
-  links: { label: string; desc: string; href: string }[];
+  links: { label: string; desc: string; href: string; external?: boolean; disabled?: boolean }[];
   illustration: string;
   illustrationAspect: number; // width/height ratio for sizing
 }> = {
@@ -27,12 +27,12 @@ const dropdownData: Record<DropdownKey, {
     arrow: true,
     cols: 3,
     links: [
-      { label: "Test Management",  desc: "Plan, run, and report test cycles",           href: "#" },
-      { label: "Requirement Mgmt", desc: "Requirements traced to tests and defects",     href: "#" },
-      { label: "Eagle Eye",        desc: "Quality health for engineering leaders",       href: "#" },
-      { label: "Bug Tracker",      desc: "Capture, triage, and close issues",           href: "#" },
-      { label: "Knowledge Base",   desc: "Docs your whole QA process draws from",       href: "#" },
-      { label: "Integration & MCP",desc: "Jira, GitHub, Claude, and more",             href: "#" },
+      { label: "Test Management",  desc: "Plan, run, and report test cycles",           href: "https://bugasura.io/test-management",          external: true },
+      { label: "Requirement Mgmt", desc: "Requirements traced to tests and defects",     href: "https://bugasura.io/requirements-management",  external: true },
+      { label: "Eagle Eye",        desc: "Quality health for engineering leaders",       href: "#", disabled: true },
+      { label: "Bug Tracker",      desc: "Capture, triage, and close issues",           href: "https://bugasura.io/ai-issue-tracker",         external: true },
+      { label: "Knowledge Base",   desc: "Docs your whole QA process draws from",       href: "https://bugasura.io/knowledge-base",           external: true },
+      { label: "Integration & MCP",desc: "Jira, GitHub, Claude, and more",             href: "https://bugasura.io/mcp-server",               external: true },
     ],
     illustration: "/navbar/dropdown/illustration.png",
     illustrationAspect: 2.12,
@@ -43,10 +43,10 @@ const dropdownData: Record<DropdownKey, {
     arrow: false,
     cols: 2,
     links: [
-      { label: "Engineering Teams",    desc: "Fewer bugs reaching production",                href: "#" },
-      { label: "QA Teams",             desc: "Your entire testing workflow, one place",       href: "#" },
-      { label: "Enterprise",           desc: "On-prem, SOC 2, SSO, private AI",              href: "/enterprise" },
-      { label: "Engineering Leaders",  desc: "Coverage, risk, and quality at a glance",      href: "#" },
+      { label: "Engineering Teams",    desc: "Fewer bugs reaching production",                href: "#", disabled: true },
+      { label: "QA Teams",             desc: "Your entire testing workflow, one place",       href: "#", disabled: true },
+      { label: "Enterprise",           desc: "On-prem, SOC 2, SSO, private AI",              href: "https://bugasura.io/security",    external: true },
+      { label: "Engineering Leaders",  desc: "Coverage, risk, and quality at a glance",      href: "https://bugasura.io/user-journey", external: true },
     ],
     illustration: "/navbar/dropdown/solutions.png",
     illustrationAspect: 2.12,
@@ -58,11 +58,11 @@ const dropdownData: Record<DropdownKey, {
     cols: 3,
     links: [
       { label: "World of Asuras",    desc: "All AI testing agents, one place",     href: "/asuras" },
-      { label: "Browser Asura",      desc: "Autonomous web testing agent",         href: "#" },
-      { label: "API Asura",          desc: "Contract and regression testing",      href: "#" },
-      { label: "Duplicate Bug Asura",desc: "Keeps your backlog clean",             href: "#" },
-      { label: "Mobile Asura",       desc: "iOS and Android testing agent",        href: "#" },
-      { label: "Build an Asura",     desc: "Create your own agent",               href: "#" },
+      { label: "Browser Asura",      desc: "Autonomous web testing agent",         href: "https://bugasura.io/bug-reporters",    external: true },
+      { label: "API Asura",          desc: "Contract and regression testing",      href: "#", disabled: true },
+      { label: "Duplicate Bug Asura",desc: "Keeps your backlog clean",             href: "https://bugasura.io/ai-issue-tracker", external: true },
+      { label: "Mobile Asura",       desc: "iOS and Android testing agent",        href: "https://bugasura.io/bug-reporters",    external: true },
+      { label: "Build an Asura",     desc: "Create your own agent",               href: "#", disabled: true },
     ],
     illustration: "/navbar/dropdown/asuras.png",
     illustrationAspect: 2.36,
@@ -73,11 +73,11 @@ const dropdownData: Record<DropdownKey, {
     arrow: false,
     cols: 3,
     links: [
-      { label: "Docs & API",  desc: "Integration guides and API reference",     href: "#" },
-      { label: "Blog",        desc: "Testing strategy and product updates",      href: "#" },
-      { label: "Changelog",   desc: "What shipped in every release",            href: "#" },
-      { label: "Community",   desc: "50,000+ Bugasura users",                   href: "#" },
-      { label: "Security",    desc: "Compliance, data residency, trust",        href: "#" },
+      { label: "Docs & API",  desc: "Integration guides and API reference",     href: "https://bugasura.io/api/#overview",                                                                                              external: true },
+      { label: "Blog",        desc: "Testing strategy and product updates",      href: "https://bugasura.io/blog/",                                                                                                                     external: true },
+      { label: "Changelog",   desc: "What shipped in every release",            href: "https://bugasura.io/release-notes/",                                                                                                            external: true },
+      { label: "Community",   desc: "50,000+ Bugasura users",                   href: "https://join.slack.com/t/bugasuraspaces/shared_invite/zt-1zgsj1cxt-zjGy08DwWP2KhnvIJqdq_Q", external: true },
+      { label: "Security",    desc: "Compliance, data residency, trust",        href: "https://bugasura.io/security",                                                                                                                  external: true },
     ],
     illustration: "/navbar/dropdown/illustration.png",
     illustrationAspect: 2.12,
@@ -202,10 +202,10 @@ export default function Navbar() {
 
             {/* Right actions */}
             <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-              <Button href="/login" variant="outline" size="md">
+              <Button href="https://my.bugasura.io?go=log_in" target="_blank" rel="noopener noreferrer" variant="outline" size="md">
                 Log In
               </Button>
-              <Button href="/signup" variant="primary" size="md">
+              <Button href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" variant="primary" size="md">
                 Start Free
               </Button>
             </div>
@@ -271,25 +271,40 @@ export default function Navbar() {
                   className="grid gap-x-8 gap-y-5"
                   style={{ gridTemplateColumns: `repeat(${data.cols}, 1fr)` }}
                 >
-                  {data.links.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="flex flex-col gap-0.5"
-                      onMouseEnter={e => { (e.currentTarget.children[0] as HTMLElement).style.color = "#E52727"; }}
-                      onMouseLeave={e => { (e.currentTarget.children[0] as HTMLElement).style.color = ""; }}
-                    >
-                      <span
-                        className="font-semibold transition-colors"
-                        style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", color: "var(--dark)" }}
+                  {data.links.map((link) =>
+                    link.disabled ? (
+                      <div key={link.label} className="flex flex-col gap-0.5 cursor-default">
+                        <span
+                          className="font-semibold"
+                          style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", color: "rgba(30,30,30,0.3)" }}
+                        >
+                          {link.label}
+                        </span>
+                        <span style={{ fontSize: "12.5px", lineHeight: 1.45, color: "rgba(30,30,30,0.3)" }}>
+                          {link.desc}
+                        </span>
+                      </div>
+                    ) : (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        className="flex flex-col gap-0.5"
+                        {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                        onMouseEnter={e => { (e.currentTarget.children[0] as HTMLElement).style.color = "#E52727"; }}
+                        onMouseLeave={e => { (e.currentTarget.children[0] as HTMLElement).style.color = ""; }}
                       >
-                        {link.label}
-                      </span>
-                      <span className="transition-colors" style={{ fontSize: "12.5px", lineHeight: 1.45, color: "rgba(30,30,30,0.8)" }}>
-                        {link.desc}
-                      </span>
-                    </Link>
-                  ))}
+                        <span
+                          className="font-semibold transition-colors"
+                          style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", color: "var(--dark)" }}
+                        >
+                          {link.label}
+                        </span>
+                        <span className="transition-colors" style={{ fontSize: "12.5px", lineHeight: 1.45, color: "rgba(30,30,30,0.8)" }}>
+                          {link.desc}
+                        </span>
+                      </Link>
+                    )
+                  )}
                 </div>
               </div>
 
@@ -387,17 +402,28 @@ export default function Navbar() {
                                 {dropdownData[link.label as DropdownKey].heading}
                               </Link>
                             )}
-                            {subLinks.map((sub) => (
-                              <Link
-                                key={sub.label}
-                                href={sub.href}
-                                className="py-3 font-semibold"
-                                style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif", borderBottom: "1px solid rgba(0,0,0,0.05)", paddingLeft: dropdownData[link.label as DropdownKey]?.arrow ? "12px" : undefined }}
-                                onClick={() => { setMobileOpen(false); setMobileAccordion(null); }}
-                              >
-                                {sub.label}
-                              </Link>
-                            ))}
+                            {subLinks.map((sub) =>
+                              sub.disabled ? (
+                                <span
+                                  key={sub.label}
+                                  className="py-3 font-semibold block"
+                                  style={{ fontSize: "14px", color: "rgba(30,30,30,0.3)", fontFamily: "'Clash Grotesk', sans-serif", borderBottom: "1px solid rgba(0,0,0,0.05)", paddingLeft: dropdownData[link.label as DropdownKey]?.arrow ? "12px" : undefined }}
+                                >
+                                  {sub.label}
+                                </span>
+                              ) : (
+                                <Link
+                                  key={sub.label}
+                                  href={sub.href}
+                                  className="py-3 font-semibold"
+                                  {...(sub.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                  style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif", borderBottom: "1px solid rgba(0,0,0,0.05)", paddingLeft: dropdownData[link.label as DropdownKey]?.arrow ? "12px" : undefined }}
+                                  onClick={() => { setMobileOpen(false); setMobileAccordion(null); }}
+                                >
+                                  {sub.label}
+                                </Link>
+                              )
+                            )}
                           </div>
                         </motion.div>
                       )}
@@ -408,10 +434,10 @@ export default function Navbar() {
 
               {/* CTAs */}
               <div className="flex flex-col gap-2 p-4">
-                <Button href="/login" variant="outline" size="md" className="w-full justify-center">
+                <Button href="https://my.bugasura.io?go=log_in" target="_blank" rel="noopener noreferrer" variant="outline" size="md" className="w-full justify-center">
                   Log In
                 </Button>
-                <Button href="/signup" variant="primary" size="md" className="w-full justify-center">
+                <Button href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" variant="primary" size="md" className="w-full justify-center">
                   Start Free
                 </Button>
               </div>

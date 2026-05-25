@@ -27,9 +27,9 @@ export default function AsuraPage() {
         </>,
         body: "Start on Bugasura's free tier — and access the first Asuras as they launch to early users.",
         primaryLabel: "Start for Free on Bugasura",
-        primaryHref: "/signup",
+        primaryHref: "https://my.bugasura.io?go=sign_up",
         secondaryLabel: "Talk to us about Asuras",
-        secondaryHref: "/demo",
+        secondaryHref: "https://calendly.com/get-bugasura/45min",
       }} />
     </main>
   );

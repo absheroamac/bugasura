@@ -26,9 +26,9 @@ export default function PlatformPage() {
         heading: <>See how the platform fits your team&apos;s workflow.</>,
         body: "Start on the free tier and explore all four layers — or talk to us about what you’re trying to solve.",
         primaryLabel: "Start Free",
-        primaryHref: "/signup",
+        primaryHref: "https://my.bugasura.io?go=sign_up",
         secondaryLabel: "Book a Walkthrough",
-        secondaryHref: "/demo",
+        secondaryHref: "https://calendly.com/get-bugasura/45min",
       }} />
     </main>
   );

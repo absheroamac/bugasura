@@ -105,10 +105,10 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.3 }}
         >
-          <Button href="/signup" variant="white">
+          <Button href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" variant="white">
             Start Free
           </Button>
-          <Button href="/demo" variant="outline-light">
+          <Button href="https://calendly.com/get-bugasura/45min" target="_blank" rel="noopener noreferrer" variant="outline-light">
             See in Action
           </Button>
         </motion.div>

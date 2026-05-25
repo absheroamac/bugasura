@@ -49,7 +49,7 @@ export default function BentoFeatures() {
 
           {/* CTA */}
           <div className="relative z-10 mt-8">
-            <Button href="#" variant="white" className="w-full lg:w-auto justify-center">
+            <Button href="https://bugasura.io/testpert" target="_blank" rel="noopener noreferrer" variant="white" className="w-full lg:w-auto justify-center">
               <span className="lg:hidden">What Testpert can do</span>
               <span className="hidden lg:inline">See what Testpert can do</span>
             </Button>
@@ -85,7 +85,7 @@ export default function BentoFeatures() {
               </BodyText>
             </div>
             <div className="mt-8">
-              <Button href="#" variant="dark" className="w-full lg:w-auto justify-center">
+              <Button href="https://bugasura.io/user-journey" target="_blank" rel="noopener noreferrer" variant="dark" className="w-full lg:w-auto justify-center">
                 <span className="lg:hidden">Eagle Eye</span>
                 <span className="hidden lg:inline">See Eagle Eye</span>
               </Button>
@@ -119,7 +119,7 @@ export default function BentoFeatures() {
               </BodyText>
             </div>
             <div className="mt-8">
-              <Button href="#" variant="dark" className="w-full lg:w-auto justify-center">
+              <Button href="https://bugasura.io/integrations" target="_blank" rel="noopener noreferrer" variant="dark" className="w-full lg:w-auto justify-center">
                 View All Integrations
               </Button>
             </div>

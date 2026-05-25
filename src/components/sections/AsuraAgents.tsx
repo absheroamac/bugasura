@@ -111,7 +111,7 @@ export default function AsuraAgents() {
 
         {/* ── CTA ── */}
         <div className="flex justify-center px-4 lg:px-0 py-10">
-          <Button href="#" variant="white" className="w-full lg:w-auto justify-center">
+          <Button href="/asuras" variant="white" className="w-full lg:w-auto justify-center">
             Explore the world of Asuras
           </Button>
         </div>

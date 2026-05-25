@@ -53,10 +53,10 @@ export default function PlatformHero() {
 
           {/* CTAs */}
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 mt-8 w-full lg:w-auto">
-            <Button href="/signup" variant="primary" className="w-full lg:w-auto justify-center">
+            <Button href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" variant="primary" className="w-full lg:w-auto justify-center">
               Start Free
             </Button>
-            <Button href="/demo" variant="outline" className="w-full lg:w-auto justify-center">
+            <Button href="https://calendly.com/get-bugasura/45min" target="_blank" rel="noopener noreferrer" variant="outline" className="w-full lg:w-auto justify-center">
               Book a Demo
             </Button>
           </div>

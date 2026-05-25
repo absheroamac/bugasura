@@ -34,6 +34,8 @@ interface ButtonProps {
   size?:      ButtonSize;
   className?: string;
   type?:      "button" | "submit";
+  target?:    string;
+  rel?:       string;
 }
 
 const STYLES: Record<ButtonVariant, { bg: string; color: string; border: string; shadow: string }> = {
@@ -74,6 +76,8 @@ export default function Button({
   size      = "md",
   className = "",
   type      = "button",
+  target,
+  rel,
 }: ButtonProps) {
   const v = STYLES[variant];
   const s = SIZES[size];
@@ -110,6 +114,8 @@ export default function Button({
         whileHover={hoverAnim}
         whileTap={tapAnim}
         transition={transition}
+        target={target}
+        rel={rel}
       >
         {children}
       </MotionLink>

@@ -41,10 +41,10 @@ export default function PlatformCTA() {
           </BodyText>
 
           <div className="flex items-center gap-4 mt-8">
-            <Button href="/signup" variant="white">
+            <Button href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" variant="white">
               Start Free
             </Button>
-            <Button href="/demo" variant="outline-light">
+            <Button href="https://calendly.com/get-bugasura/45min" target="_blank" rel="noopener noreferrer" variant="outline-light">
               See in Action
             </Button>
           </div>
@@ -94,10 +94,10 @@ export default function PlatformCTA() {
         </BodyText>
 
         <div className="flex items-center gap-4 mt-8">
-          <Button href="/signup" variant="white">
+          <Button href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" variant="white">
             Start Free
           </Button>
-          <Button href="/demo" variant="outline-light">
+          <Button href="https://calendly.com/get-bugasura/45min" target="_blank" rel="noopener noreferrer" variant="outline-light">
             Book a Platform Walkthrough
           </Button>
         </div>

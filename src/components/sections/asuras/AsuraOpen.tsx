@@ -257,10 +257,26 @@ export default function AsuraOpen() {
 
       {/* ── Footer row: CTA + launch note ── */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <Button href="/signup" variant="white" size="md" className="w-full lg:w-auto justify-center">
+        <span
+          className="w-full lg:w-auto justify-center inline-flex items-center"
+          style={{
+            fontFamily: "'Clash Grotesk', sans-serif",
+            fontWeight: 600,
+            fontSize: "16px",
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+            padding: "12px 24px",
+            borderRadius: "10px",
+            backgroundColor: "rgba(255,255,255,0.25)",
+            color: "rgba(255,255,255,0.4)",
+            border: "2px solid transparent",
+            cursor: "not-allowed",
+            whiteSpace: "nowrap",
+          }}
+        >
           <span className="lg:hidden">Join Developer Programme</span>
           <span className="hidden lg:inline">Join the Early Developer Programme</span>
-        </Button>
+        </span>
         <BodyText color="var(--dark)" className="text-[14px] lg:text-[16px]" style={{ opacity: 0.7 }}>
           Launching to developers Q3 2026 · SDK in active development
         </BodyText>

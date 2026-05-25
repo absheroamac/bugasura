@@ -7,47 +7,49 @@ import { Button, Heading, BodyText } from "@/components/ui";
 
 const CTA_BG = "#6D0103";
 
-const footerNav = [
+type FooterLink = { label: string; href: string; external?: boolean; disabled?: boolean; muted?: boolean };
+
+const footerNav: { heading: string; links: FooterLink[] }[] = [
   {
     heading: "Platform",
     links: [
       { label: "Platform Overview",  href: "/platform" },
-      { label: "Test Management",    href: "#" },
-      { label: "Bug Tracker",        href: "#" },
-      { label: "Requirement Mgmt",   href: "#" },
-      { label: "Knowledge Base",     href: "#" },
-      { label: "Eagle Eye",          href: "#" },
-      { label: "Integration & MCP",  href: "#" },
+      { label: "Test Management",    href: "https://bugasura.io/test-management",           external: true },
+      { label: "Bug Tracker",        href: "https://bugasura.io/ai-issue-tracker",          external: true },
+      { label: "Requirement Mgmt",   href: "https://bugasura.io/requirements-management",   external: true },
+      { label: "Knowledge Base",     href: "https://bugasura.io/knowledge-base",            external: true },
+      { label: "Eagle Eye",          href: "#", disabled: true },
+      { label: "Integration & MCP",  href: "https://bugasura.io/mcp-server",               external: true },
     ],
   },
   {
     heading: "Solutions",
     links: [
-      { label: "Engineering Teams",   href: "#" },
-      { label: "QA Teams",            href: "#" },
-      { label: "Engineering Leaders", href: "#" },
-      { label: "Enterprise",          href: "#" },
+      { label: "Engineering Teams",   href: "#", disabled: true },
+      { label: "QA Teams",            href: "#", disabled: true },
+      { label: "Engineering Leaders", href: "https://bugasura.io/user-journey", external: true },
+      { label: "Enterprise",          href: "https://bugasura.io/security",     external: true },
     ],
   },
   {
     heading: "Asuras",
     links: [
       { label: "World of Asuras",    href: "/asuras" },
-      { label: "Browser Asura",      href: "#" },
-      { label: "API Asura",          href: "#" },
-      { label: "Duplicate Bugasura", href: "#" },
-      { label: "Mobile Asura",       href: "#" },
-      { label: "Build an Asura",     href: "#", muted: true },
+      { label: "Browser Asura",      href: "https://bugasura.io/bug-reporters",    external: true },
+      { label: "API Asura",          href: "#", disabled: true },
+      { label: "Duplicate Bugasura", href: "https://bugasura.io/ai-issue-tracker", external: true },
+      { label: "Mobile Asura",       href: "https://bugasura.io/bug-reporters",    external: true },
+      { label: "Build an Asura",     href: "#", disabled: true, muted: true },
     ],
   },
   {
     heading: "Resources",
     links: [
-      { label: "Docs & API",  href: "#" },
-      { label: "Blog",        href: "#" },
-      { label: "Changelog",   href: "#" },
-      { label: "Community",   href: "#" },
-      { label: "Security",    href: "#" },
+      { label: "Docs & API",  href: "https://bugasura.io/api/#overview",                                                                                         external: true },
+      { label: "Blog",        href: "https://bugasura.io/blog/",                                                                                                        external: true },
+      { label: "Changelog",   href: "https://bugasura.io/release-notes/",                                                                                               external: true },
+      { label: "Community",   href: "https://join.slack.com/t/bugasuraspaces/shared_invite/zt-1zgsj1cxt-zjGy08DwWP2KhnvIJqdq_Q", external: true },
+      { label: "Security",    href: "https://bugasura.io/security",                                                                                                     external: true },
     ],
   },
 ];
@@ -70,9 +72,9 @@ const defaultCta: CtaConfig = {
   subheading: <>Are you testing with it?</>,
   body: "Join 50,000+ engineers using Bugasura to match the speed of AI-built software.",
   primaryLabel: "Start Free",
-  primaryHref: "/signup",
+  primaryHref: "https://my.bugasura.io?go=sign_up",
   secondaryLabel: "See in Action",
-  secondaryHref: "/demo",
+  secondaryHref: "https://calendly.com/get-bugasura/45min",
 };
 
 export default function Footer({ cta }: { cta?: CtaConfig }) {
@@ -125,10 +127,10 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
 
           {/* Buttons */}
           <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 mt-8">
-            <Button href={c.primaryHref} variant="white" className="w-full lg:w-auto justify-center">
+            <Button href={c.primaryHref} variant="white" className="w-full lg:w-auto justify-center" target="_blank" rel="noopener noreferrer">
               {c.primaryLabel}
             </Button>
-            <Button href={c.secondaryHref} variant="outline-light" className="w-full lg:w-auto justify-center">
+            <Button href={c.secondaryHref} variant="outline-light" className="w-full lg:w-auto justify-center" target="_blank" rel="noopener noreferrer">
               {c.secondaryLabel}
             </Button>
           </div>
@@ -160,20 +162,35 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
             >
               {col.heading}
             </Heading>
-            {col.links.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="transition-opacity hover:opacity-80"
-                style={{
-                  fontSize: "13px",
-                  lineHeight: 1.5,
-                  color: link.muted ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
-                }}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {col.links.map((link) =>
+              link.disabled ? (
+                <span
+                  key={link.label}
+                  style={{
+                    fontSize: "13px",
+                    lineHeight: 1.5,
+                    color: "rgba(255,255,255,0.25)",
+                    cursor: "default",
+                  }}
+                >
+                  {link.label}
+                </span>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="transition-opacity hover:opacity-80"
+                  {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  style={{
+                    fontSize: "13px",
+                    lineHeight: 1.5,
+                    color: link.muted ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.6)",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
         ))}
 
