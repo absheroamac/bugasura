@@ -58,7 +58,7 @@ export function PricingTabs() {
                 <span className={styles.planPriceNote}>forever, for everyone</span>
               </div>
               <p className={styles.planTagline}>&ldquo;The full platform. No seat limits. No feature gates. No expiry date on being free.&rdquo;</p>
-              <a href="#" className={`${styles.btn} ${styles.btnPrimary}`}>
+              <a href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnPrimary}`}>
                 <span className={styles.btnStack}>
                   <span>Start for free <ArrowIcon /></span>
                   <span className={styles.btnSub}>No card needed</span>
@@ -106,14 +106,13 @@ export function PricingTabs() {
 
           <div className={styles.asuraMeter}>
             <div className={styles.asuraMeterTop}>
-              <span>Monthly Asura runs</span>
-              <strong>100 runs / month</strong>
-            </div>
-            <div className={styles.meterTrack}>
-              <div className={styles.meterFill} />
+              <span>Asura runs</span>
+              <strong style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                <Infinity width={16} height={16} strokeWidth={2} aria-hidden /> Unlimited
+              </strong>
             </div>
             <p className={styles.asuraMeterNote}>
-              Access Browser Asura, API Asura, and Duplicate Bug Asura — up to 100 automated test runs per month. Enough to experience the agents in production.
+              Access Browser Asura, API Asura, and Duplicate Bug Asura — unlimited automated test runs on the free tier. No caps, no upgrades needed.
             </p>
           </div>
         </div>
@@ -129,7 +128,7 @@ export function PricingTabs() {
                 <span className={`${styles.planPriceNum} ${styles.planPriceCustom}`} style={{ fontSize: "48px" }}>Custom</span>
               </div>
               <p className={styles.planTagline}>&ldquo;For teams running Bugasura at scale, on-prem, or with Testpert AI capabilities built in.&rdquo;</p>
-              <a href="#" className={`${styles.btn} ${styles.btnOutlined}`}>
+              <a href="https://calendly.com/get-bugasura/45min" target="_blank" rel="noopener noreferrer" className={`${styles.btn} ${styles.btnOutlined}`}>
                 Talk to us about Custom <ArrowIcon />
               </a>
             </div>

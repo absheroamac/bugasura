@@ -102,7 +102,7 @@ export default function PricingPage() {
               <p className={styles.testpertBody}>
                 The free platform is genuinely powerful. Testpert is for teams where AI-expert-level QA intelligence isn&apos;t optional — where test strategy decisions have real revenue consequences.
               </p>
-              <a href="#" className={styles.testpertLink}>Read more about Testpert →</a>
+              <a href="https://bugasura.io/testpert" target="_blank" rel="noopener noreferrer" className={styles.testpertLink}>Read more about Testpert →</a>
             </div>
           </div>
 
@@ -135,7 +135,7 @@ export default function PricingPage() {
               <span className={styles.asuraEyebrow}>Asuras</span>
               <h2 className={styles.asuraH2}>How Asura agents are priced.</h2>
               <p className={styles.asuraBody}>
-                Asuras are available on the free tier with a monthly run limit. As the Asura marketplace grows, individual agents may carry creator pricing — you only pay for the agents you use.
+                Asuras are free to run — no monthly caps on the free tier. As the Asura marketplace grows, individual agents may carry creator pricing — you only pay for the agents you use.
               </p>
             </div>
             <div className={styles.asuraRight}>
@@ -146,13 +146,13 @@ export default function PricingPage() {
                     <div className={styles.asuraTierName}>Built-in Asuras</div>
                     <div className={styles.asuraTierDesc}>Browser Asura, API Asura, Duplicate Bug Asura — all included on free tier</div>
                   </div>
-                  <span className={styles.asuraTierLimit}>100 runs / mo</span>
+                  <span className={styles.asuraTierLimit}>Unlimited</span>
                 </div>
                 <div className={`${styles.asuraTier} ${styles.asuraTierActive}`}>
                   <span className={`${styles.asuraBadge} ${styles.asuraBadgeCustom}`}>Custom</span>
                   <div>
                     <div className={styles.asuraTierName}>Production-scale execution</div>
-                    <div className={styles.asuraTierDesc}>Unlimited runs, priority execution queue, custom Asura development support</div>
+                    <div className={styles.asuraTierDesc}>Priority execution queue, SLA guarantees, custom Asura development support</div>
                   </div>
                   <span className={`${styles.asuraTierLimit} ${styles.asuraTierLimitRed}`}>Unlimited</span>
                 </div>
@@ -166,7 +166,7 @@ export default function PricingPage() {
                 </div>
               </div>
               <div className={styles.asuraNoteBox}>
-                <strong>Not sure how many Asura runs you need?</strong> Start on the free tier — 100 runs/month is enough to validate the agents against your actual product. When you hit the limit, you&apos;ll know the ROI before you pay anything.
+                <strong>Asura runs are unlimited on the free tier.</strong> The only limit is 50 GB storage — which is more than enough for most teams. Marketplace Asuras from third-party creators may carry their own pricing when they launch.
               </div>
             </div>
           </div>
