@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Heading, BodyText, Button } from "@/components/ui";
+import { Heading, BodyText } from "@/components/ui";
 
 const cards = [
   {
