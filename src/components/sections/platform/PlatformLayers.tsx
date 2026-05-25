@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, RefObject } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useScrollRef } from "@/components/layout/ScrollProvider";
 import {
@@ -13,6 +14,7 @@ import {
 const layers = [
   {
     id: "context",
+    screenshot: "/platform/layers/context.png",
     label: "Context",
     labelColor: "#AC1515",
     bg: "#FDD9C8",
@@ -29,6 +31,7 @@ const layers = [
   },
   {
     id: "refine",
+    screenshot: "/platform/layers/refine.png",
     label: "Refine",
     labelColor: "#C47200",
     bg: "#FFDAA8",
@@ -45,6 +48,7 @@ const layers = [
   },
   {
     id: "generate",
+    screenshot: "/platform/layers/generate.png",
     label: "Generate",
     labelColor: "#0077B6",
     bg: "#B2D9EC",
@@ -61,6 +65,7 @@ const layers = [
   },
   {
     id: "execute",
+    screenshot: "/platform/layers/execute.png",
     label: "Execute",
     labelColor: "#555555",
     bg: "#DCDCDC",
@@ -154,16 +159,26 @@ function LayerPanel({
           </p>
         </div>
 
-        {/* Right — placeholder (desktop only) */}
+        {/* Right — screenshot inside placeholder (desktop only) */}
         <div className="hidden lg:flex flex-1">
           <div
-            className="w-full rounded-3xl"
+            className="w-full rounded-3xl overflow-hidden relative"
             style={{
               aspectRatio: "5 / 4",
               backgroundColor: "rgba(255,255,255,0.6)",
               border: "1.5px solid rgba(255,255,255,0.85)",
             }}
-          />
+          >
+            <div className="absolute inset-0 overflow-hidden" style={{ top: "24px", left: "24px", borderTopLeftRadius: "16px" }}>
+              <Image
+                src={layer.screenshot}
+                alt={`${layer.label} layer screenshot`}
+                fill
+                className="object-cover object-left-top"
+                loading="lazy"
+              />
+            </div>
+          </div>
         </div>
       </div>
 

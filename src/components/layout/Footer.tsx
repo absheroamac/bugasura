@@ -28,7 +28,7 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
       { label: "Engineering Teams",   href: "#", disabled: true },
       { label: "QA Teams",            href: "#", disabled: true },
       { label: "Engineering Leaders", href: "https://bugasura.io/user-journey", external: true },
-      { label: "Enterprise",          href: "https://bugasura.io/security",     external: true },
+      { label: "Enterprise",          href: "/enterprise" },
     ],
   },
   {

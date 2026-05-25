@@ -45,7 +45,7 @@ const dropdownData: Record<DropdownKey, {
     links: [
       { label: "Engineering Teams",    desc: "Fewer bugs reaching production",                href: "#", disabled: true },
       { label: "QA Teams",             desc: "Your entire testing workflow, one place",       href: "#", disabled: true },
-      { label: "Enterprise",           desc: "On-prem, SOC 2, SSO, private AI",              href: "https://bugasura.io/security",    external: true },
+      { label: "Enterprise",           desc: "On-prem, SOC 2, SSO, private AI",              href: "/enterprise" },
       { label: "Engineering Leaders",  desc: "Coverage, risk, and quality at a glance",      href: "https://bugasura.io/user-journey", external: true },
     ],
     illustration: "/navbar/dropdown/solutions.png",

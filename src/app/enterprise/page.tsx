@@ -443,9 +443,6 @@ export default function EnterprisePage() {
                 <a href="#" className={`${styles.btn} ${styles.btnPrimary}`}>
                   Book a meeting slot <ArrowIcon />
                 </a>
-                <a href="#" className={`${styles.btn} ${styles.btnOutlinedDark}`}>
-                  enterprise@bugasura.io
-                </a>
               </div>
             </div>
 
@@ -454,23 +451,72 @@ export default function EnterprisePage() {
                 <span className={styles.confEventDot} />
                 Live slots · July 2026
               </div>
-              <h3 className={styles.confCardTitle}>30-minute enterprise conversations.</h3>
-              <p className={styles.confCardDesc}>
-                Bring your deployment questions, compliance requirements, or your QA challenges. No demo script — just a real conversation about whether Bugasura is the right fit.
-              </p>
 
-              <div className={styles.meetingSlots}>
-                {[
-                  { time: "Day 1 · 10:00 – 11:00 AM", status: "slotOpen", label: "Slots available" },
-                  { time: "Day 1 · 2:00 – 4:00 PM",   status: "slotFew",  label: "2 slots left" },
-                  { time: "Day 2 · 11:00 AM – 1:00 PM", status: "slotOpen", label: "Slots available" },
-                  { time: "Day 2 · 3:00 – 5:00 PM",   status: "slotFull", label: "Full" },
-                ].map(({ time, status, label }) => (
-                  <div key={time} className={styles.meetingSlot}>
-                    <span className={styles.slotTime}>{time}</span>
-                    <span className={`${styles.slotStatus} ${styles[status as keyof typeof styles]}`}>{label}</span>
+              {/* ── Month calendar ── */}
+              <div className={styles.calWrap}>
+
+                {/* Month header */}
+                <div className={styles.calMonthHeader}>
+                  <span className={styles.calChevron}>&#8249;</span>
+                  <span className={styles.calMonthTitle}>July 2026</span>
+                  <span className={styles.calChevron}>&#8250;</span>
+                </div>
+
+                {/* Day-of-week headers */}
+                <div className={styles.calDOW}>
+                  {["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(d => (
+                    <div key={d} className={styles.calDOWCell}>{d}</div>
+                  ))}
+                </div>
+
+                {/* Date grid — July 2026 starts on Wednesday (index 2) */}
+                <div className={styles.calDateGrid}>
+                  {[null,null,1,2,3,4,5,
+                    6,7,8,9,10,11,12,
+                    13,14,15,16,17,18,19,
+                    20,21,22,23,24,25,26,
+                    27,28,29,30,31,null,null
+                  ].map((day, i) => {
+                    const isD15 = day === 15;
+                    const isD16 = day === 16;
+                    return (
+                      <div
+                        key={i}
+                        className={`${styles.calDate} ${!day ? styles.calDateEmpty : ""} ${isD15 ? styles.calDateConf : ""} ${isD16 ? styles.calDateConfAmber : ""}`}
+                      >
+                        {day && <span className={styles.calDateNum}>{day}</span>}
+                        {isD15 && <span className={styles.calDateDot} style={{ background: "#3ECF8E" }} />}
+                        {isD16 && <span className={styles.calDateDot} style={{ background: "#C9963A" }} />}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* ── Slot summary for conference days ── */}
+              <div className={styles.calSummary}>
+                <div className={styles.calSummaryDay}>
+                  <span className={styles.calSummaryLabel}>
+                    <span className={styles.calSummaryDot} style={{ background: "#3ECF8E" }} />
+                    Jul 15
+                  </span>
+                  <div className={styles.calSummaryBadges}>
+                    <span className={styles.badgeOpen}>5 available</span>
+                    <span className={styles.badgeBooked}>2 booked</span>
                   </div>
-                ))}
+                </div>
+                <div className={styles.calSummaryDivider} />
+                <div className={styles.calSummaryDay}>
+                  <span className={styles.calSummaryLabel}>
+                    <span className={styles.calSummaryDot} style={{ background: "#C9963A" }} />
+                    Jul 16
+                  </span>
+                  <div className={styles.calSummaryBadges}>
+                    <span className={styles.badgeOpen}>4 available</span>
+                    <span className={styles.badgeBooked}>2 booked</span>
+                    <span className={styles.badgeFull}>1 full</span>
+                  </div>
+                </div>
               </div>
 
               <a href="#" className={styles.confBookBtn}>
