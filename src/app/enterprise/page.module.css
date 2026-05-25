@@ -551,7 +551,7 @@
 ══════════════════════════════════════════════════════════════════════════ */
 .securityPanel {
   background: var(--cream);
-  padding: 72px 0 80px;
+  padding: 72px clamp(40px, 7vw, 80px) 80px;
 }
 
 .securityInner {
