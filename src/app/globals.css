@@ -22,13 +22,30 @@
   --cream: #FFF6E2;
   --red: #E52727;
   --red-dark: #AC1515;
+  --dark-red: #AC1515;   /* alias used by enterprise/pricing pages */
   --orange: #FFA840;
   --blue: #29A5FF;
   --dark: #1E1E1E;
+  --white: #FFFFFF;
   --tint-blue: #B2D9EC;
   --tint-orange: #FFDAA8;
   --tint-salmon: #FDD9C8;
   --tint-gray: #DCDCDC;
+  /* aliases used by enterprise/pricing CSS modules */
+  --light-blue: #B2D9EC;
+  --light-orange: #FFDAA8;
+  --light-salmon: #FDD9C8;
+  --light-gray: #DCDCDC;
+  /* typography */
+  --font-heading: "Clash Grotesk", sans-serif;
+  /* layout */
+  --panel-radius: 42px;
+  --card-radius: 24px;
+  --gutter: 28px;
+  --panel-gap: 20px;
+  /* hairlines */
+  --hairline: rgba(30,30,30,0.12);
+  --hairline-strong: rgba(30,30,30,0.24);
 }
 
 * {
