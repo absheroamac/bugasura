@@ -39,7 +39,7 @@ export default function BentoFeatures() {
               Your best QA mind,{" "}
               <br className="hidden lg:block" />at scale.
             </Heading>
-            <BodyText color="rgba(255,255,255,0.8)" maxWidth="340px">
+            <BodyText color="rgba(255,255,255,0.8)" maxWidth="480px">
               Testpert isn&apos;t an automation tool. It&apos;s an AI that thinks like your most
               experienced tester — asking clarifying questions, mapping risk across
               user journeys, and generating tests that reflect real expert judgment.
@@ -78,7 +78,7 @@ export default function BentoFeatures() {
                 Decision-maker{" "}
                 <br className="hidden lg:block" />visibility into quality.
               </Heading>
-              <BodyText color="rgba(30,30,30,0.8)" maxWidth="360px">
+              <BodyText color="rgba(30,30,30,0.8)" maxWidth="480px">
                 Engineering leaders need signal, not dashboards full of test counts.
                 Eagle Eye surfaces what&apos;s breaking, what it&apos;s costing, and where quality
                 risk is concentrated — in a view built for strategic decisions, not just daily standups.
@@ -111,7 +111,7 @@ export default function BentoFeatures() {
                 QA where developers{" "}
                 <br className="hidden lg:block" />actually work.
               </Heading>
-              <BodyText color="rgba(30,30,30,0.8)" maxWidth="360px">
+              <BodyText color="rgba(30,30,30,0.8)" maxWidth="480px">
                 Bugasura&apos;s MCP server connects directly to Claude and Cursor. Your
                 developers get quality context, test coverage signals, and defect history
                 right inside their coding environment. No context switching. No separate

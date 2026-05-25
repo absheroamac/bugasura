@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import styles from "./page.module.css";
@@ -7,14 +6,6 @@ import { PricingTabs } from "./PricingTabs";
 import { FaqAccordion } from "./FaqAccordion";
 
 /* ─── Icons ──────────────────────────────────────────────────────────────── */
-function ArrowIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function BrainIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" aria-hidden>
@@ -195,39 +186,15 @@ export default function PricingPage() {
         </section>
       </div>
 
-      {/* ── Final CTA Panel ── */}
-      <div className={styles.panelWrap}>
-        <section className={styles.ctaPanel}>
-          <div className={styles.ctaLeft}>
-            <span className={styles.ctaEyebrow}>Get started</span>
-            <h2 className={styles.ctaH2}>
-              Start free. Stay free.<br />Scale when you&apos;re ready.
-            </h2>
-            <p className={styles.ctaBody}>
-              No card. No trial. No expiry. Just the full Bugasura platform — free, for your whole team.
-            </p>
-            <div className={styles.ctaBtns}>
-              <a href="#" className={`${styles.btn} ${styles.btnPrimary}`}>
-                Start for free <ArrowIcon />
-              </a>
-              <a href="#" className={`${styles.btn} ${styles.btnOutlinedDark}`}>
-                Talk to us about Custom
-              </a>
-            </div>
-          </div>
-          <div className={styles.ctaMascot}>
-            <Image
-              src="/cta-banner-asura.png"
-              alt="Bugasura mascot"
-              width={560}
-              height={500}
-              style={{ width: "100%", height: "auto", display: "block" }}
-            />
-          </div>
-        </section>
-      </div>
 
-      <Footer />
+      <Footer cta={{
+        heading: <>Start free. Stay free.<br />Scale when you&apos;re ready.</>,
+        body: "No card. No trial. No expiry. Just the full Bugasura platform — free, for your whole team.",
+        primaryLabel: "Start for Free",
+        primaryHref: "#",
+        secondaryLabel: "Talk to us about Custom",
+        secondaryHref: "#",
+      }} />
 
     </div>
   );

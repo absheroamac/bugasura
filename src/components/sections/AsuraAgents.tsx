@@ -6,18 +6,22 @@ import { Button, Heading, BodyText } from "@/components/ui";
 const agents = [
   {
     name: "Browser Asura",
+    icon: "/asuras/icon-browser.png",
     body: "Tests your web application end-to-end. Navigates, clicks, asserts, and reports — powered by Bugasura's platform context so it knows what matters, not just what's in the DOM.",
   },
   {
     name: "API Asura",
+    icon: "/asuras/icon-api.png",
     body: "Validates your API contracts, edge cases, and error states. Integrates with your CI pipeline and escalates to Bugasura issues automatically when something breaks.",
   },
   {
     name: "Duplicate Asura",
+    icon: "/asuras/icon-duplicate.png",
     body: "Monitors incoming bug reports in real-time. Detects duplicates before they clutter your backlog. Notifies your team via Slack. Never files the same bug twice.",
   },
   {
-    name: "Browser Asura",
+    name: "Mobile Asura",
+    icon: "/asuras/icon-mobile.png",
     body: "Tests your web application end-to-end. Navigates, clicks, asserts, and reports — powered by Bugasura's platform context.",
   },
 ];
@@ -63,12 +67,15 @@ export default function AsuraAgents() {
               className="rounded-[20px] flex flex-col gap-4 p-6"
               style={{ backgroundColor: "#fff" }}
             >
-              {/* Icon placeholder + badge row */}
+              {/* Icon + badge row */}
               <div className="flex items-start justify-between">
                 <div
-                  className="rounded-xl flex-shrink-0"
-                  style={{ width: "48px", height: "48px", backgroundColor: "#E0E0E0" }}
-                />
+                  className="rounded-xl flex-shrink-0 flex items-center justify-center"
+                  style={{ width: "56px", height: "56px", backgroundColor: "#E0E0E0", padding: "8px" }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={agent.icon} alt={agent.name} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                </div>
                 <span
                   className="font-semibold rounded-full px-3 py-1"
                   style={{
@@ -84,12 +91,12 @@ export default function AsuraAgents() {
                 </span>
               </div>
 
-              {/* Title — single line, no wrap */}
+              {/* Title */}
               <Heading
                 level="step"
                 as="h3"
                 color="var(--dark)"
-                style={{ fontSize: "22px", lineHeight: 1.15 }}
+                style={{ fontSize: "24px", lineHeight: 1.15 }}
               >
                 {agent.name}
               </Heading>

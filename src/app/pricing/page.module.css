@@ -88,7 +88,7 @@
 ══════════════════════════════════════════════════════════════════════════ */
 .heroPanel {
   background: linear-gradient(180deg, #FFB667 0%, #FFA840 100%);
-  padding: 0 0 80px;
+  padding: 67px 0 80px;
   text-align: center;
   border-radius: var(--panel-radius);
   margin: 0;

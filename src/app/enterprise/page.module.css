@@ -91,7 +91,7 @@
 .heroPanel {
   background: linear-gradient(160deg, #0A0A0A 0%, #1E1E1E 60%, #2C1A1A 100%);
   border-radius: var(--panel-radius);
-  padding: 0 0 80px;
+  padding: 67px 0 80px;
   overflow: hidden;
 }
 

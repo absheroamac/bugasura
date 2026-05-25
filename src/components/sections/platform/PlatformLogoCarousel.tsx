@@ -4,14 +4,18 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const logos = [
-  { src: "/hero/Logos/logoipsum-414 (1) 1.png", alt: "Customer logo" },
-  { src: "/hero/Logos/logoipsum-414 (1) 2.png", alt: "Customer logo" },
-  { src: "/hero/Logos/logoipsum-414 (1) 3.png", alt: "Customer logo" },
-  { src: "/hero/Logos/logoipsum-414 (1) 4.png", alt: "Customer logo" },
-  { src: "/hero/Logos/logoipsum-418 1.png",     alt: "Customer logo" },
-  { src: "/hero/Logos/logoipsum-426 1.png",     alt: "Customer logo" },
-  { src: "/hero/Logos/logoipsum-426 2.png",     alt: "Customer logo" },
-  { src: "/hero/Logos/logoipsum-426 3.png",     alt: "Customer logo" },
+  { src: "/logos/black/Cloudnix 3.png",         alt: "Cloudnix" },
+  { src: "/logos/black/breeze-brain 3.png",      alt: "Breeze Brain" },
+  { src: "/logos/black/datzsoft 3.png",          alt: "Datzsoft" },
+  { src: "/logos/black/elevate 3.png",           alt: "Elevate" },
+  { src: "/logos/black/gnarus-solutions 3.png",  alt: "Gnarus Solutions" },
+  { src: "/logos/black/karlo 3.png",             alt: "Karlo" },
+  { src: "/logos/black/mitra 3.png",             alt: "Mitra" },
+  { src: "/logos/black/nihon-edutech 3.png",     alt: "Nihon Edutech" },
+  { src: "/logos/black/q-burst 3.png",           alt: "Q-Burst" },
+  { src: "/logos/black/techstas 3.png",          alt: "Techstas" },
+  { src: "/logos/black/Vector.png",              alt: "Customer logo" },
+  { src: "/logos/black/Vector-1.png",            alt: "Customer logo" },
 ];
 
 export default function PlatformLogoCarousel() {
@@ -39,7 +43,7 @@ export default function PlatformLogoCarousel() {
             width={120}
             height={38}
             className="object-contain flex-shrink-0"
-            style={{ filter: "brightness(0) opacity(0.55)" }}
+            style={{ opacity: 0.7 }}
           />
         ))}
       </motion.div>

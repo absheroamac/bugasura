@@ -5,27 +5,67 @@ import { Heading, BodyText } from "@/components/ui";
 
 const testimonials = [
   {
-    quote: "Bugasura changed how our team thinks about coverage. We went from running tests to making test decisions. That's a fundamentally different mindset shift.",
-    name: "Kiran R.",
-    role: "QA Lead, TechX",
+    quote: "Throughout my career as a tester finding the right tool for tracking bugs has been a challenge. However when I first used Bugasura, I knew this was it. I had to no longer worry about managing the bug tracker and I could finally worry less about managing bugs.",
+    name: "Brijesh Deb",
+    role: "Chief Enablement Officer, The Test Chat",
+    avatar: "/testimonials/brijesh.jpg",
+    initials: "BD",
     offset: true,
   },
   {
-    quote: "The MCP integration means our developers get quality feedback directly in Cursor. We shipped a full regression suite without anyone leaving their editor.",
-    name: "Kiran R.",
-    role: "QA Lead, TechX",
+    quote: "Pradeep and team are super passionate about Quality and it shows in their product! Bugasura is easy to use and solves the needless back and forth between design and engineering — absolute must have for fast-moving teams!",
+    name: "Roshan Cariappa",
+    role: "Co-Founder, Upskillist",
+    avatar: "/testimonials/roshan.jpg",
+    initials: "RC",
     offset: false,
   },
   {
-    quote: "Eagle Eye gave our CTO actual visibility into quality risk — not a dashboard of test pass rates. That changes how engineering priorities get set.",
-    name: "Kiran R.",
-    role: "QA Lead, TechX",
+    quote: "Super easy to customize as an admin. I am a startup tech lead and I don't want to spend a lot of time customizing my bug tracker. I loved the simple signup with Bugasura and decided to get it on board.",
+    name: "Akshay Dalvi",
+    role: "Crafting Tomorrow's Tech: A Developer",
+    avatar: "/testimonials/akshay.jpg",
+    initials: "AD",
     offset: true,
   },
   {
-    quote: "Bugasura changed how our team thinks about coverage. We went from running tests to making test decisions. That's a fundamentally different mindset shift.",
-    name: "Kiran R.",
-    role: "QA Lead, TechX",
+    quote: "One of the simplest, user-friendly and smooth tool I have used so far! Very easy to track of raised bugs and collaborate with team :)",
+    name: "Kopila Pariyar",
+    role: "Senior Quality Engineer",
+    avatar: "/testimonials/kopila.jpg",
+    initials: "KP",
+    offset: false,
+  },
+  {
+    quote: "😊 One of the things I love about Bugasura is its speed. It's fast to load, fast to search, and fast to update. This means that I can quickly find the information I need to resolve issues, and I can do it without wasting time waiting for the system to catch up.",
+    name: "Naveen AutomationLabs",
+    role: "Founder, Naveen Automation Labs",
+    avatar: "/testimonials/naveen.jpg",
+    initials: "NA",
+    offset: true,
+  },
+  {
+    quote: "I have been using Bugasura for a year + now. I love the new features that come in frequently. They are modern and futuristic than typical.",
+    name: "Elango R",
+    role: "Junior Software Engineer",
+    avatar: "/testimonials/elango.jpg",
+    initials: "ER",
+    offset: false,
+  },
+  {
+    quote: "Interesting product; I absolutely love the landing page, and the free forever pricing is great for small teams. The UI/UX is very clean and simple to use. All the best guys",
+    name: "Rithvik Podduturi",
+    role: "Notabletools.com",
+    avatar: "/testimonials/rithvik.jpg",
+    initials: "RP",
+    offset: true,
+  },
+  {
+    quote: "Have been a bugasura user from a very long time. Love the simple, fast and easy to use interface. Perfect for developers like me who wants to spend more time on coding and less on tools. Either it is about managing a ticket or github integration....",
+    name: "Mohammed Irfan",
+    role: "Tech Enthusiast",
+    avatar: "/testimonials/irfan.jpg",
+    initials: "MI",
     offset: false,
   },
 ];
@@ -206,10 +246,23 @@ export default function Testimonials() {
 
               {/* Author */}
               <div className="flex items-center gap-3 mt-6">
-                <div
-                  className="rounded-full flex-shrink-0"
-                  style={{ width: "40px", height: "40px", backgroundColor: "#B56B6B" }}
-                />
+                <div className="relative flex-shrink-0" style={{ width: "40px", height: "40px" }}>
+                  {/* Initials fallback — always rendered underneath */}
+                  <div
+                    className="absolute inset-0 rounded-full flex items-center justify-center text-white font-semibold"
+                    style={{ backgroundColor: "#B56B6B", fontSize: "13px", fontFamily: "'Clash Grotesk', sans-serif" }}
+                  >
+                    {card.initials}
+                  </div>
+                  {/* Photo sits on top; hides itself on error to reveal initials */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={card.avatar}
+                    alt={card.name}
+                    className="absolute inset-0 rounded-full object-cover w-full h-full"
+                    onError={(e) => { e.currentTarget.style.display = "none"; }}
+                  />
+                </div>
                 <div>
                   <p className="font-semibold" style={{ fontSize: "14px", color: "var(--dark)", fontFamily: "'Clash Grotesk', sans-serif" }}>
                     {card.name}
