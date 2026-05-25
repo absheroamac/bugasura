@@ -1,21 +1,15 @@
 /* ─── Canvas (permanent cream viewport) ────────────────────────────────── */
 .canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   background: var(--cream);
-  min-height: 100vh;
-  overflow-x: clip; /* clip instead of hidden — avoids creating a scroll container that breaks position:sticky */
-}
-
-/* ─── Nav wrapper inside hero ───────────────────────────────────────────── */
-.heroNavWrap {
-  padding: 0 clamp(40px, 7vw, 100px);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  overflow-x: clip;
 }
 
 /* ─── Panel wrapper (cream gutter system) ───────────────────────────────── */
 .panelWrap {
-  margin: 8px 0 0;
+  margin: 0;
 }
 
 /* ─── Shared panel base ─────────────────────────────────────────────────── */
@@ -97,7 +91,7 @@
   padding: 0 0 80px;
   text-align: center;
   border-radius: var(--panel-radius);
-  margin: 8px 0 0;
+  margin: 0;
 }
 
 .heroInner {
@@ -1325,11 +1319,9 @@
 ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
 
-  /* Tighter panel gutters */
-  .panelWrap { margin: 8px 0 0; }
-
-  /* Hero */
-  .heroPanel  { margin: 8px 0 0; }
+  /* Panels — no leading margin, gap on canvas handles spacing */
+  .panelWrap { margin: 0; }
+  .heroPanel  { margin: 0; }
   .heroInner  { padding: 32px 16px 0; }
   .heroH1     { font-size: clamp(44px, 11vw, 64px); }
   .heroSub    { font-size: 15px; }
@@ -1382,8 +1374,7 @@
   .ctaBody  { font-size: 16px; }
   .btn      { height: 50px; font-size: 13px; }
 
-  /* Footer */
-  .footer         { margin: 8px 0 0; border-radius: 28px 28px 0 0; }
+  /* Footer margin handled by canvas flex gap */
   .footerCtaCard  { margin: 8px; border-radius: 20px; }
   .footerTop      { padding: 28px 20px 24px; }
   .footerCtaH2    { font-size: clamp(28px, 8vw, 44px); margin-bottom: 16px; }
