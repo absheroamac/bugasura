@@ -187,14 +187,14 @@
 .statIcon {
   width: 24px;
   height: 24px;
-  color: var(--dark);
+  color: #AC1515;
   flex-shrink: 0;
 }
 
 .statLabel {
   font-size: 12px;
   font-weight: 600;
-  color: var(--dark);
+  color: #AC1515;
   white-space: nowrap;
 }
 
