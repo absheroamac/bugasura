@@ -15,7 +15,7 @@
 
 /* ─── Panel wrapper (cream gutter system) ───────────────────────────────── */
 .panelWrap {
-  margin: var(--panel-gap) var(--gutter) 0;
+  margin: 8px 0 0;
 }
 
 /* ─── Shared panel base ─────────────────────────────────────────────────── */
@@ -97,7 +97,7 @@
   padding: 0 0 80px;
   text-align: center;
   border-radius: var(--panel-radius);
-  margin: var(--panel-gap) var(--gutter) 0;
+  margin: 8px 0 0;
 }
 
 .heroInner {
@@ -1325,11 +1325,11 @@
 ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
 
-  /* Tighter panel gutters — all sections use margin: 12px 12px 0 (same as footer) */
-  .panelWrap { margin: 12px 12px 0; }
+  /* Tighter panel gutters */
+  .panelWrap { margin: 8px 0 0; }
 
   /* Hero */
-  .heroPanel  { margin: 12px 12px 0; }
+  .heroPanel  { margin: 8px 0 0; }
   .heroInner  { padding: 32px 16px 0; }
   .heroH1     { font-size: clamp(44px, 11vw, 64px); }
   .heroSub    { font-size: 15px; }
@@ -1383,7 +1383,7 @@
   .btn      { height: 50px; font-size: 13px; }
 
   /* Footer */
-  .footer         { margin: 12px 12px 0; border-radius: 28px 28px 0 0; }
+  .footer         { margin: 8px 0 0; border-radius: 28px 28px 0 0; }
   .footerCtaCard  { margin: 8px; border-radius: 20px; }
   .footerTop      { padding: 28px 20px 24px; }
   .footerCtaH2    { font-size: clamp(28px, 8vw, 44px); margin-bottom: 16px; }

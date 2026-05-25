@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Globe, ShieldCheck, Database, HardDrive, Target, Server, WifiOff, Brain, RefreshCw, Building2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import styles from "./page.module.css";
 import { Reveal, RevealStagger } from "@/components/ui/Reveal";
 
@@ -481,57 +482,15 @@ export default function EnterprisePage() {
         </section>
       </div>
 
-      {/* ══════════════════════════════════════════════════════════════════
-          FOOTER
-      ══════════════════════════════════════════════════════════════════ */}
-      <footer className={styles.footer}>
-        <div className={styles.footerCtaCard}>
-          <div className={styles.footerTop}>
-            <div className={styles.footerCta}>
-              <h2 className={styles.footerCtaH2}>
-                Ready to talk about<br />
-                <span className={styles.footerCtaH2Dim}>enterprise deployment?</span>
-              </h2>
-              <p className={styles.footerCtaSub}>
-                Tell us your team size, deployment requirements, and what you&apos;re trying to solve. We&apos;ll come back with a scoped proposal within 2–3 days.
-              </p>
-              <div className={styles.footerCtaBtns}>
-                <a href="#" className={`${styles.btn} ${styles.btnFooterPrimary}`}>Book a demo</a>
-                <a href="#" className={`${styles.btn} ${styles.btnFooterSecondary}`}>Download security overview</a>
-              </div>
-            </div>
-            <div className={styles.footerMascot}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/footer-character.png" alt="Bugasura character" className={styles.footerMascotImg} />
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.footerNavRow}>
-          <nav className={styles.footerNavCols} aria-label="Footer navigation">
-            {[
-              { heading: "Platform", links: ["Platform Overview", "Test Management", "Bug Tracker", "Requirement Mgmt", "Knowledge Base", "Eagle Eye"] },
-              { heading: "Solutions", links: ["Engineering Teams", "QA Teams", "Engineering Leaders", "Enterprise"] },
-              { heading: "Asuras", links: ["World of Asuras", "Browser Asura", "API Asura", "Duplicate Bugasura", "Build an Asura"] },
-              { heading: "Resources", links: ["Docs & API", "Blog", "Changelog", "Security", "Community"] },
-            ].map((col) => (
-              <div key={col.heading} className={styles.footerCol}>
-                <span className={styles.footerColHeading}>{col.heading}</span>
-                <ul className={styles.footerLinks}>
-                  {col.links.map((l) => (
-                    <li key={l}><a href="#" className={styles.footerLink}>{l}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
-          <p className={styles.footerCopyright}>© 2026 Moolya Software Testing Pvt. Ltd.</p>
-        </div>
-
-        <div className={styles.footerWordmarkRow}>
-          <span className={styles.footerWordmark}>Bugasura</span>
-        </div>
-      </footer>
+      <Footer cta={{
+        heading: <>Ready to talk about</>,
+        subheading: <>enterprise deployment?</>,
+        body: "Tell us your team size, deployment requirements, and what you're trying to solve. We'll come back with a scoped proposal within 2–3 days.",
+        primaryLabel: "Book a demo",
+        primaryHref: "#",
+        secondaryLabel: "Download security overview",
+        secondaryHref: "#",
+      }} />
 
     </div>
   );

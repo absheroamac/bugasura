@@ -7,7 +7,7 @@
 
 /* ─── Panel wrapper ──────────────────────────────────────────────────────── */
 .panelWrap {
-  margin: var(--panel-gap) var(--gutter) 0;
+  margin: 8px 0 0;
 }
 
 /* ─── Shared panel base ──────────────────────────────────────────────────── */
@@ -216,7 +216,7 @@
    TRUST RAIL
 ══════════════════════════════════════════════════════════════════════════ */
 .trustRail {
-  margin: var(--panel-gap) var(--gutter) 0;
+  margin: 8px 0 0;
   background: rgba(30,30,30,0.04);
   border: 1px solid rgba(30,30,30,0.08);
   border-radius: 18px;
@@ -1462,10 +1462,9 @@
 @media (max-width: 480px) {
 
   /* Gutters & panel shapes */
-  .panelWrap        { margin: 10px 10px 0; }
+  .panelWrap        { margin: 8px 0 0; }
   .heroPanel        { border-radius: 24px; padding-bottom: 40px; }
-  .trustRail        { margin: 10px 10px 0; }
-  .footer           { margin: 10px 10px 0; border-radius: 24px 24px 0 0; }
+  .trustRail        { margin: 8px 0 0; }
 
   /* Hero */
   .heroH1           { font-size: clamp(36px, 10vw, 52px); }

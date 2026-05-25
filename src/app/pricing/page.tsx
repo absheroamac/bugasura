@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import styles from "./page.module.css";
 import { Infinity, BadgeDollarSign } from "lucide-react";
 import { PricingTabs } from "./PricingTabs";
@@ -226,64 +227,8 @@ export default function PricingPage() {
         </section>
       </div>
 
-      {/* ── Footer ── */}
-      <footer className={styles.footer}>
+      <Footer />
 
-        {/* Top: CTA card with heading + mascot */}
-        <div className={styles.footerCtaCard}>
-          <div className={styles.footerTop}>
-            <div className={styles.footerCta}>
-              <h2 className={styles.footerCtaH2}>
-                Your competitors are shipping with AI.<br />
-                <span className={styles.footerCtaH2Dim}>Are you testing with it?</span>
-              </h2>
-              <p className={styles.footerCtaSub}>
-                Join 50,000+ engineers using Bugasura to match the speed of AI-built software.
-              </p>
-              <div className={styles.footerCtaBtns}>
-                <a href="#" className={`${styles.btn} ${styles.btnFooterPrimary}`}>
-                  Start Free
-                </a>
-                <a href="#" className={`${styles.btn} ${styles.btnFooterSecondary}`}>
-                  See in Action
-                </a>
-              </div>
-            </div>
-            <div className={styles.footerMascot}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/footer-character.png" alt="Bugasura character" className={styles.footerMascotImg} />
-            </div>
-          </div>
-        </div>
-
-        {/* Nav columns + copyright */}
-        <div className={styles.footerNavRow}>
-          <nav className={styles.footerNavCols} aria-label="Footer navigation">
-            {[
-              { heading: "Platform", links: ["Platform Overview", "Test Management", "Bug Tracker", "Requirement Mgmt", "Knowledge Base", "Eagle Eye", "Integration & MCP"] },
-              { heading: "Solutions", links: ["Engineering Teams", "QA Teams", "Engineering Leaders", "Enterprise"] },
-              { heading: "Asuras", links: ["World of Asuras", "Browser Asura", "API Asura", "Duplicate Bugasura", "Mobile Asura", "Build an Asura"] },
-              { heading: "Resources", links: ["Docs & API", "Blog", "Changelog", "Community", "Security"] },
-            ].map((col) => (
-              <div key={col.heading} className={styles.footerCol}>
-                <span className={styles.footerColHeading}>{col.heading}</span>
-                <ul className={styles.footerLinks}>
-                  {col.links.map((l) => (
-                    <li key={l}><a href="#" className={styles.footerLink}>{l}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </nav>
-          <p className={styles.footerCopyright}>© 2026 Moolya Software Testing Pvt. Ltd.</p>
-        </div>
-
-        {/* Massive wordmark */}
-        <div className={styles.footerWordmarkRow}>
-          <span className={styles.footerWordmark}>Bugasura</span>
-        </div>
-
-      </footer>
     </div>
   );
 }
