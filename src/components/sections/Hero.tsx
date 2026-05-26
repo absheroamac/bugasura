@@ -172,7 +172,7 @@ export default function Hero() {
           {floatingLogos.map((logo, i) => (
             <motion.div
               key={i}
-              className="absolute z-20 pointer-events-none"
+              className="absolute z-20 pointer-events-none hidden lg:block"
               style={{
                 left:   logo.left,
                 right:  logo.right,
