@@ -5,18 +5,21 @@ import { motion } from "framer-motion";
 import { Button, Heading, BodyText } from "@/components/ui";
 
 const trustLogos = [
-  { src: "/logos/white/Cloudnix 2.png",          alt: "Cloudnix" },
-  { src: "/logos/white/breeze-brain 2.png",       alt: "Breeze Brain" },
-  { src: "/logos/white/datzsoft 2.png",           alt: "Datzsoft" },
-  { src: "/logos/white/elevate 2.png",            alt: "Elevate" },
-  { src: "/logos/white/gnarus-solutions 2.png",   alt: "Gnarus Solutions" },
-  { src: "/logos/white/karlo 2.png",              alt: "Karlo" },
-  { src: "/logos/white/mitra 2.png",              alt: "Mitra" },
-  { src: "/logos/white/nihon-edutech 2.png",      alt: "Nihon Edutech" },
-  { src: "/logos/white/q-burst 2.png",            alt: "Q-Burst" },
-  { src: "/logos/white/techstas 2.png",           alt: "Techstas" },
-  { src: "/logos/white/Vector.png",               alt: "Customer logo" },
-  { src: "/logos/white/Vector-1.png",             alt: "Customer logo" },
+  { src: "/logos/white/Group 1.png",                         alt: "Customer logo" },
+  { src: "/logos/white/Group 2.png",                         alt: "Customer logo" },
+  { src: "/logos/white/Group 3.png",                         alt: "Customer logo" },
+  { src: "/logos/white/Group 4.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 1.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 2.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 4.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 5.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 6.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 7.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 8.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 9.png",                         alt: "Customer logo" },
+  { src: "/logos/white/image 10.png",                        alt: "Customer logo" },
+  { src: "/logos/white/image 13.png",                        alt: "Customer logo" },
+  { src: "/logos/white/images_copy-removebg-preview 1.png",  alt: "Customer logo" },
 ];
 
 type FloatingLogo = { src: string; left?: string; right?: string; top: string; size: number; driftX: number; bobY: number; delay: number };

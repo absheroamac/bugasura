@@ -4,18 +4,21 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const logos = [
-  { src: "/logos/black/Cloudnix 3.png",         alt: "Cloudnix" },
-  { src: "/logos/black/breeze-brain 3.png",      alt: "Breeze Brain" },
-  { src: "/logos/black/datzsoft 3.png",          alt: "Datzsoft" },
-  { src: "/logos/black/elevate 3.png",           alt: "Elevate" },
-  { src: "/logos/black/gnarus-solutions 3.png",  alt: "Gnarus Solutions" },
-  { src: "/logos/black/karlo 3.png",             alt: "Karlo" },
-  { src: "/logos/black/mitra 3.png",             alt: "Mitra" },
-  { src: "/logos/black/nihon-edutech 3.png",     alt: "Nihon Edutech" },
-  { src: "/logos/black/q-burst 3.png",           alt: "Q-Burst" },
-  { src: "/logos/black/techstas 3.png",          alt: "Techstas" },
-  { src: "/logos/black/Vector.png",              alt: "Customer logo" },
-  { src: "/logos/black/Vector-1.png",            alt: "Customer logo" },
+  { src: "/logos/black/Group 5.png",                          alt: "Customer logo" },
+  { src: "/logos/black/Group 6.png",                          alt: "Customer logo" },
+  { src: "/logos/black/Group 7.png",                          alt: "Customer logo" },
+  { src: "/logos/black/Group 8.png",                          alt: "Customer logo" },
+  { src: "/logos/black/image 14.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 15.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 16.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 17.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 18.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 19.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 20.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 21.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 22.png",                         alt: "Customer logo" },
+  { src: "/logos/black/image 23.png",                         alt: "Customer logo" },
+  { src: "/logos/black/images_copy-removebg-preview 2.png",   alt: "Customer logo" },
 ];
 
 export default function PlatformLogoCarousel() {
