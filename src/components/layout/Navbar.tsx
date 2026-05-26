@@ -29,7 +29,6 @@ const dropdownData: Record<DropdownKey, {
     links: [
       { label: "Test Management",  desc: "Plan, run, and report test cycles",           href: "https://bugasura.io/test-management",          external: true },
       { label: "Requirement Mgmt", desc: "Requirements traced to tests and defects",     href: "https://bugasura.io/requirements-management",  external: true },
-      { label: "Eagle Eye",        desc: "Quality health for engineering leaders",       href: "#", disabled: true },
       { label: "Bug Tracker",      desc: "Capture, triage, and close issues",           href: "https://bugasura.io/ai-issue-tracker",         external: true },
       { label: "Knowledge Base",   desc: "Docs your whole QA process draws from",       href: "https://bugasura.io/knowledge-base",           external: true },
       { label: "Integration & MCP",desc: "Jira, GitHub, Claude, and more",             href: "https://bugasura.io/mcp-server",               external: true },
@@ -60,8 +59,8 @@ const dropdownData: Record<DropdownKey, {
       { label: "World of Asuras",    desc: "All AI testing agents, one place",     href: "/asuras" },
       { label: "Browser Asura",      desc: "Autonomous web testing agent",         href: "https://bugasura.io/bug-reporters",    external: true },
       { label: "API Asura",          desc: "Contract and regression testing",      href: "#", disabled: true },
-      { label: "Duplicate Bug Asura",desc: "Keeps your backlog clean",             href: "https://bugasura.io/ai-issue-tracker", external: true },
-      { label: "Mobile Asura",       desc: "iOS and Android testing agent",        href: "https://bugasura.io/bug-reporters",    external: true },
+      { label: "Duplicate Bug Asura",desc: "Keeps your backlog clean",             href: "#", disabled: true },
+      { label: "Mobile Asura",       desc: "iOS and Android testing agent",        href: "#", disabled: true },
       { label: "Build an Asura",     desc: "Create your own agent",               href: "#", disabled: true },
     ],
     illustration: "/navbar/dropdown/asuras.png",
