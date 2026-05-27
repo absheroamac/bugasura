@@ -20,6 +20,7 @@ interface EyebrowProps {
   numColor?: string;     // number colour for step variant (default: #E52727)
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const BASE = {
@@ -37,6 +38,7 @@ export default function Eyebrow({
   numColor = "#E52727",
   children,
   className = "",
+  style,
 }: EyebrowProps) {
   if (variant === "step") {
     return (
@@ -55,7 +57,7 @@ export default function Eyebrow({
   return (
     <p
       className={className}
-      style={{ ...BASE, fontSize: size, color }}
+      style={{ ...BASE, fontSize: size, color, ...style }}
     >
       {children}
     </p>
