@@ -163,9 +163,11 @@ export default function EnterpriseSecurity() {
             Full audit report available under NDA. Covers security, availability, processing integrity, confidentiality, and privacy trust service criteria.
           </BodyText>
         </div>
-        <Button href="#" variant="outline" style={{ flexShrink: 0 }}>
-          Download security overview
-        </Button>
+        <div style={{ flexShrink: 0 }}>
+          <Button href="#" variant="outline">
+            Download security overview
+          </Button>
+        </div>
       </div>
     </section>
   );
