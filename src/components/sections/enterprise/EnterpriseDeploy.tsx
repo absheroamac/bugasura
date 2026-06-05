@@ -73,7 +73,7 @@ export default function EnterpriseDeploy() {
             level="subsection"
             as="h3"
             color="var(--dark)"
-            style={{ fontSize: "48px", marginBottom: "12px" }}
+            style={{ fontSize: "clamp(28px, 4vw, 48px)", marginBottom: "12px" }}
           >
             Bugasura Cloud
           </Heading>
@@ -132,7 +132,7 @@ export default function EnterpriseDeploy() {
             level="subsection"
             as="h3"
             color="var(--dark)"
-            style={{ fontSize: "48px", marginBottom: "12px" }}
+            style={{ fontSize: "clamp(28px, 4vw, 48px)", marginBottom: "12px" }}
           >
             Bugasura On-Prem
           </Heading>

@@ -66,7 +66,7 @@ export default function PlatformHero() {
         <div
           className="hidden lg:block"
           style={{
-            width: "clamp(320px, 42vw, 580px)",
+            width: "clamp(280px, 36vw, 500px)",
             flexShrink: 0,
             marginTop: "-40px",
           }}

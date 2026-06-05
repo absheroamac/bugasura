@@ -18,7 +18,6 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
       { label: "Bug Tracker",        href: "https://bugasura.io/ai-issue-tracker",          external: true },
       { label: "Requirement Mgmt",   href: "https://bugasura.io/requirements-management",   external: true },
       { label: "Knowledge Base",     href: "https://bugasura.io/knowledge-base",            external: true },
-      { label: "Eagle Eye",          href: "#", disabled: true },
       { label: "Integration & MCP",  href: "https://bugasura.io/mcp-server",               external: true },
     ],
   },
@@ -50,6 +49,15 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
       { label: "Changelog",   href: "https://bugasura.io/release-notes/",                                                                                               external: true },
       { label: "Community",   href: "https://join.slack.com/t/bugasuraspaces/shared_invite/zt-1zgsj1cxt-zjGy08DwWP2KhnvIJqdq_Q", external: true },
       { label: "Security",    href: "https://bugasura.io/security",                                                                                                     external: true },
+    ],
+  },
+  {
+    heading: "Pricing",
+    links: [
+      { label: "Free Plan",       href: "/pricing" },
+      { label: "Custom / Enterprise", href: "/pricing" },
+      { label: "Testpert Add-on", href: "/pricing" },
+      { label: "Talk to Us",      href: "https://calendly.com/get-bugasura/45min", external: true },
     ],
   },
 ];

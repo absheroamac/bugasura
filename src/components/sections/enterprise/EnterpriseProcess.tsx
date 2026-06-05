@@ -60,7 +60,6 @@ const steps: StepData[] = [
 ];
 
 const MAX_CARD_WIDTH = 400; // px cap so cards aren't enormous on wide screens
-const MAX_INDEX = steps.length - 2; // show 2 at a time → 0,1,2
 
 export default function EnterpriseProcess() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -85,17 +84,25 @@ export default function EnterpriseProcess() {
     return () => ro.disconnect();
   }, []);
 
-  // Card = half content width minus half the gap, capped at MAX_CARD_WIDTH
+  // On mobile (<768px): show 1 card full-width; on desktop: show 2 cards capped at MAX_CARD_WIDTH
+  const isMobile = contentWidth > 0 && contentWidth < 768;
+  const cardsVisible = isMobile ? 1 : 2;
+  const maxIndex = steps.length - cardsVisible;
   const cardWidth = contentWidth > 0
-    ? Math.min((contentWidth - 16) / 2, MAX_CARD_WIDTH)
+    ? (isMobile ? contentWidth : Math.min((contentWidth - 16) / 2, MAX_CARD_WIDTH))
     : 0;
 
   // Translate by one card + gap per step
   const translateX = index * (cardWidth + 16);
 
+  // Clamp index when viewport resizes and maxIndex changes
+  useEffect(() => {
+    setIndex((prev) => Math.min(prev, maxIndex));
+  }, [maxIndex]);
+
   const goTo = useCallback((next: number) => {
-    setIndex(Math.max(0, Math.min(next, MAX_INDEX)));
-  }, []);
+    setIndex(Math.max(0, Math.min(next, maxIndex)));
+  }, [maxIndex]);
 
   return (
     <section
@@ -255,7 +262,7 @@ export default function EnterpriseProcess() {
       <div style={{ display: "flex", justifyContent: "center", gap: "12px", marginTop: "32px" }}>
         {[
           { dir: -1, label: "Previous", Icon: ChevronLeft,  disabled: index === 0 },
-          { dir: +1, label: "Next",     Icon: ChevronRight, disabled: index >= MAX_INDEX },
+          { dir: +1, label: "Next",     Icon: ChevronRight, disabled: index >= maxIndex },
         ].map(({ dir, label, Icon, disabled }) => (
           <button
             key={label}

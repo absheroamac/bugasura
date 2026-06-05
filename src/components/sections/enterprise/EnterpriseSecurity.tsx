@@ -48,19 +48,19 @@ export default function EnterpriseSecurity() {
         </BodyText>
       </div>
 
-      {/* Bento grid — CSS grid with row spanning */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gridTemplateRows: "auto auto", gap: GAP }}>
+      {/* Bento grid — 2-col with row-spanning on desktop, stacked on mobile */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
-        {/* Data residency — spans both rows on the left */}
+        {/* Data residency — spans both rows on desktop */}
         <div
+          className="lg:row-span-2"
           style={{
-            gridColumn: "1",
-            gridRow: "1 / 3",
             borderRadius: RADIUS,
             overflow: "hidden",
             position: "relative",
             display: "flex",
             flexDirection: "column",
+            minHeight: "320px",
           }}
         >
           {/* Full background image */}
@@ -85,7 +85,7 @@ export default function EnterpriseSecurity() {
             <div style={{ ...iconBox, background: "rgba(255,255,255,0.1)" }}>
               <Globe size={28} strokeWidth={1.6} color="#ffffff" />
             </div>
-            <Heading level="subsection" as="h3" color="#ffffff" style={{ fontSize: "28px", lineHeight: 1.2, marginBottom: "10px" }}>
+            <Heading level="subsection" as="h3" color="#ffffff" style={{ fontSize: "clamp(22px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
               Data residency &amp; sovereignty
             </Heading>
             <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
@@ -94,15 +94,15 @@ export default function EnterpriseSecurity() {
           </div>
         </div>
 
-        {/* Row 1 right — Identity & Private AI side by side */}
-        <div style={{ gridColumn: "2", gridRow: "1", display: "grid", gridTemplateColumns: "1fr 1fr", gap: GAP }}>
+        {/* Right top — Identity & Private AI side by side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
           {/* Identity & access management */}
           <div style={{ background: CARD_BG, borderRadius: RADIUS, padding: "28px", display: "flex", flexDirection: "column" }}>
             <div style={iconBox}>
               <KeyRound size={28} strokeWidth={1.6} color="#1A1A1A" />
             </div>
-            <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "28px", lineHeight: 1.2, marginBottom: "10px" }}>
+            <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
               Identity &amp; access management
             </Heading>
             <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "13px", lineHeight: 1.65 }}>
@@ -115,7 +115,7 @@ export default function EnterpriseSecurity() {
             <div style={iconBox}>
               <Cpu size={28} strokeWidth={1.6} color="#1A1A1A" />
             </div>
-            <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "28px", lineHeight: 1.2, marginBottom: "10px" }}>
+            <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
               Private AI processing
             </Heading>
             <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "13px", lineHeight: 1.65 }}>
@@ -125,12 +125,12 @@ export default function EnterpriseSecurity() {
 
         </div>
 
-        {/* Row 2 right — Penetration testing */}
-        <div style={{ gridColumn: "2", gridRow: "2", background: "#FDD9C8", borderRadius: RADIUS, padding: "28px 32px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        {/* Right bottom — Penetration testing */}
+        <div style={{ background: "#FDD9C8", borderRadius: RADIUS, padding: "28px 32px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
           <div style={iconBox}>
             <ShieldAlert size={28} strokeWidth={1.6} color="#1A1A1A" />
           </div>
-          <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "28px", lineHeight: 1.2, marginBottom: "10px" }}>
+          <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
             Penetration testing
           </Heading>
           <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
@@ -142,29 +142,27 @@ export default function EnterpriseSecurity() {
 
       {/* SOC 2 — full width below grid */}
       <div
+        className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
         style={{
           marginTop: GAP,
           background: "#DCDCDC",
           borderRadius: RADIUS,
           padding: "28px 32px",
-          display: "flex",
-          alignItems: "center",
-          gap: "24px",
         }}
       >
-        <div style={{ ...iconBox, marginBottom: 0 }}>
+        <div style={{ ...iconBox, marginBottom: 0, flexShrink: 0 }}>
           <BadgeCheck size={28} strokeWidth={1.6} color="#1A1A1A" />
         </div>
         <div style={{ flex: 1 }}>
-          <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "28px", lineHeight: 1.2, marginBottom: "8px" }}>
+          <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "8px" }}>
             SOC 2 Type II certification
           </Heading>
-          <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "14px", lineHeight: 1.65, maxWidth: "70%" }}>
+          <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
             Full audit report available under NDA. Covers security, availability, processing integrity, confidentiality, and privacy trust service criteria.
           </BodyText>
         </div>
-        <div style={{ flexShrink: 0 }}>
-          <Button href="#" variant="outline">
+        <div className="w-full sm:w-auto sm:flex-shrink-0">
+          <Button href="#" variant="outline" className="w-full sm:w-auto justify-center sm:justify-start">
             Download security overview
           </Button>
         </div>

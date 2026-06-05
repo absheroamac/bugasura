@@ -209,7 +209,7 @@ function LayerPanel({
             >
               {card.title}
             </p>
-            <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", lineHeight: 1.55, color: "#1A0A00" }}>
+            <p className="line-clamp-1 lg:line-clamp-none" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", lineHeight: 1.55, color: "#1A0A00" }}>
               {card.desc}
             </p>
           </div>

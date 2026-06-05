@@ -104,7 +104,7 @@ export default function EnterprisePersonas() {
               level="subsection"
               as="h3"
               color="var(--dark)"
-              style={{ fontSize: "32px", lineHeight: 1.0, marginBottom: "14px" }}
+              style={{ fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.0, marginBottom: "14px" }}
             >
               {p.title}
             </Heading>
