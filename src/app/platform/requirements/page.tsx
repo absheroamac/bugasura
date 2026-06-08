@@ -66,6 +66,7 @@ export default function RequirementsPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <FeaturesPlatformFlow

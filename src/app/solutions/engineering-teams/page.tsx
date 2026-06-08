@@ -6,6 +6,7 @@ import SolutionsCards from "@/components/sections/solutions/SolutionsCards";
 import SolutionsFeatureRow from "@/components/sections/solutions/SolutionsFeatureRow";
 import SolutionsPlatformLayers from "@/components/sections/solutions/SolutionsPlatformLayers";
 import SolutionsTestimonial from "@/components/sections/solutions/SolutionsTestimonial";
+import DashboardEmbed from "@/components/ui/DashboardEmbed";
 
 export const metadata = {
   title: "Bugasura for Engineering Teams — Ship with quality built in",
@@ -68,6 +69,7 @@ export default function EngineeringTeamsPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <SolutionsFeatureRow
@@ -86,6 +88,7 @@ export default function EngineeringTeamsPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />
 
       <SolutionsFeatureRow
@@ -104,6 +107,7 @@ export default function EngineeringTeamsPage() {
         bg="#B2D9EC"
         checkColor="#0077C2"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <SolutionsPlatformLayers

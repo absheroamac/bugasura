@@ -65,6 +65,7 @@ export default function BugTrackerPage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />
 
       <FeaturesPlatformFlow

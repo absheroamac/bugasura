@@ -65,6 +65,7 @@ export default function KnowledgeBasePage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <SolutionsFeatureRow
