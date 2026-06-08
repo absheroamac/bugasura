@@ -98,7 +98,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         style={{ backgroundColor: CTA_BG }}
       >
         {/* Left: copy + buttons */}
-        <div className="flex flex-col lg:max-w-[620px]">
+        <div className="flex flex-col lg:max-w-[680px]">
           <Heading
             level="section"
             as="h2"

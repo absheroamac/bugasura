@@ -5,6 +5,7 @@ import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
 import SolutionsFeatureRow from "@/components/sections/solutions/SolutionsFeatureRow";
 import FeaturesPlatformFlow from "@/components/sections/features/FeaturesPlatformFlow";
 import SolutionsTestimonial from "@/components/sections/solutions/SolutionsTestimonial";
+import DashboardEmbed from "@/components/ui/DashboardEmbed";
 
 export const metadata = {
   title: "MCP Server & Integrations — Bugasura",
@@ -101,22 +102,6 @@ export default function IntegrationsPage() {
       />
 
       <SolutionsFeatureRow
-        label="MCP Server"
-        labelColor="#AC1515"
-        heading="Your AI coding assistant, now with full QA context."
-        body="Connect Bugasura's MCP server to Claude or Cursor and your developers can query test coverage, open defects, and requirement status without leaving their editor. When they're about to ship a change, they'll know what's at risk before they push."
-        items={[
-          "Works with Claude Desktop, Cursor, VS Code, and Windsurf",
-          "Query open bugs, test coverage, and requirements in natural language",
-          "Create and update Bugasura issues directly from your editor",
-          "Self-hosted MCP option for air-gap and enterprise environments",
-        ]}
-        bg="#FDD9C8"
-        checkColor="#AC1515"
-        imageLeft={false}
-      />
-
-      <SolutionsFeatureRow
         label="Chrome Reporter"
         labelColor="#C47200"
         heading="Capture bugs from anywhere — in seconds."
@@ -130,6 +115,7 @@ export default function IntegrationsPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <SolutionsFeatureRow
@@ -142,6 +128,7 @@ export default function IntegrationsPage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />
 
       <FeaturesPlatformFlow
@@ -173,7 +160,7 @@ export default function IntegrationsPage() {
       />
 
       <Footer cta={{
-        heading: <>Connect Bugasura to where{<br />}your team works.</>,
+        heading: <>Connect Bugasura to where  your team works.</>,
         body: "MCP server is open source. REST API is free. Chrome Reporter is free. Start in minutes.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

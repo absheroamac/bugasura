@@ -4,6 +4,7 @@ import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
 import SolutionsFeatureRow from "@/components/sections/solutions/SolutionsFeatureRow";
 import FeaturesPlatformFlow from "@/components/sections/features/FeaturesPlatformFlow";
 import SolutionsTestimonial from "@/components/sections/solutions/SolutionsTestimonial";
+import DashboardEmbed from "@/components/ui/DashboardEmbed";
 
 export const metadata = {
   title: "Bug Tracker — Bugasura",
@@ -47,22 +48,7 @@ export default function BugTrackerPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-      />
-
-      <SolutionsFeatureRow
-        label="Duplicate Detection"
-        labelColor="#C47200"
-        heading="Never file the same bug twice — or spend time figuring out if you did."
-        body="The Duplicate Bug Asura monitors every incoming report and flags semantic duplicates in real time — not just exact matches, but the same underlying issue described differently by different reporters. Your backlog stays clean without manual triage overhead."
-        items={[
-          "Semantic duplicate detection with confidence scoring",
-          "Instant Slack notification with link to original issue",
-          "Auto-merge suggestion with one-click confirmation",
-          "Backlog health score — track dedup improvement over time",
-        ]}
-        bg="#FFDAA8"
-        checkColor="#C47200"
-        imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <SolutionsFeatureRow
@@ -110,7 +96,7 @@ export default function BugTrackerPage() {
       />
 
       <Footer cta={{
-        heading: <>The bug tracker your whole{<br />}team will actually use.</>,
+        heading: <>The bug tracker your whole  team will actually use.</>,
         body: "Free forever. Unlimited bugs, unlimited users, unlimited projects.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

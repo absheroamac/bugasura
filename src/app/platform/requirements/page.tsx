@@ -4,6 +4,7 @@ import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
 import SolutionsFeatureRow from "@/components/sections/solutions/SolutionsFeatureRow";
 import FeaturesPlatformFlow from "@/components/sections/features/FeaturesPlatformFlow";
 import SolutionsTestimonial from "@/components/sections/solutions/SolutionsTestimonial";
+import DashboardEmbed from "@/components/ui/DashboardEmbed";
 
 export const metadata = {
   title: "Requirements Management — Bugasura",
@@ -48,6 +49,7 @@ export default function RequirementsPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />
 
       <SolutionsFeatureRow
@@ -64,22 +66,6 @@ export default function RequirementsPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-      />
-
-      <SolutionsFeatureRow
-        label="Change Impact"
-        labelColor="#0077B6"
-        heading="When a requirement changes, know what breaks before you ship."
-        body="Requirement volatility is the biggest silent cause of test coverage gaps. When a requirement is modified, Bugasura flags every test case linked to it — so your QA lead knows exactly what needs reviewing before the next build goes out."
-        items={[
-          "Automatic coverage gap alerts on requirement changes",
-          "Affected test case list generated instantly on edit",
-          "Dependency view — see upstream and downstream impacts",
-          "Slack and Jira notifications for flagged coverage gaps",
-        ]}
-        bg="#B2D9EC"
-        checkColor="#0077B6"
-        imageLeft={false}
       />
 
       <FeaturesPlatformFlow
@@ -111,7 +97,7 @@ export default function RequirementsPage() {
       />
 
       <Footer cta={{
-        heading: <>Requirements connected to your{<br />}whole QA system.</>,
+        heading: <>Requirements connected to your  whole QA system.</>,
         body: "Free for unlimited users and projects. No setup, no import friction.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

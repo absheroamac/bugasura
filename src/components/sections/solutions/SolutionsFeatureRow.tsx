@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Heading, BodyText, Button } from "@/components/ui";
 
 function CheckItem({ text, color }: { text: string; color: string }) {
@@ -28,6 +29,7 @@ interface SolutionsFeatureRowProps {
   imageLeft?: boolean;
   imageSlot?: React.ReactNode;
   itemsSlot?: React.ReactNode;
+  screenshot?: string;
 }
 
 export default function SolutionsFeatureRow({
@@ -43,6 +45,7 @@ export default function SolutionsFeatureRow({
   imageLeft = false,
   imageSlot,
   itemsSlot,
+  screenshot,
 }: SolutionsFeatureRowProps) {
   const resolvedCheckColor = checkColor || labelColor;
   const placeholderBg = "rgba(255,255,255,0.5)";
@@ -97,12 +100,39 @@ export default function SolutionsFeatureRow({
     </div>
   );
 
+  const screenshotBlock = screenshot ? (
+    <div
+      className="w-full rounded-3xl overflow-hidden relative"
+      style={{ aspectRatio: "5 / 4", backgroundColor: "rgba(255,255,255,0.6)", border: "1.5px solid rgba(255,255,255,0.85)" }}
+    >
+      <div
+        className="absolute inset-0 overflow-hidden"
+        style={{ top: "24px", left: "24px", borderTopLeftRadius: "16px" }}
+      >
+        <Image
+          src={screenshot}
+          alt=""
+          fill
+          className="object-cover object-left-top"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  ) : null;
+
   const imageBlock = imageSlot ? (
     <div
-      className="hidden lg:flex flex-shrink-0 items-center justify-center"
-      style={{ width: "45%", alignSelf: "stretch", minHeight: "360px" }}
+      className="hidden lg:flex flex-shrink-0"
+      style={{ width: "45%", alignSelf: "stretch", minHeight: "360px", overflow: "hidden" }}
     >
       {imageSlot}
+    </div>
+  ) : screenshotBlock ? (
+    <div
+      className="hidden lg:flex flex-shrink-0 items-end"
+      style={{ width: "45%", alignSelf: "stretch", minHeight: "360px" }}
+    >
+      {screenshotBlock}
     </div>
   ) : (
     <div
@@ -121,7 +151,7 @@ export default function SolutionsFeatureRow({
   return (
     <section
       className="rounded-[32px]"
-      style={{ backgroundColor: bg, padding: "clamp(48px, 8vw, 80px) clamp(24px, 6vw, 80px)" }}
+      style={{ backgroundColor: bg, padding: "clamp(48px, 8vw, 80px) clamp(24px, 6vw, 80px)", overflowX: "hidden" }}
     >
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch">
         {imageLeft ? imageBlock : copyBlock}

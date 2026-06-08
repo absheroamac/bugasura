@@ -4,6 +4,7 @@ import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
 import SolutionsFeatureRow from "@/components/sections/solutions/SolutionsFeatureRow";
 import FeaturesPlatformFlow from "@/components/sections/features/FeaturesPlatformFlow";
 import SolutionsTestimonial from "@/components/sections/solutions/SolutionsTestimonial";
+import DashboardEmbed from "@/components/ui/DashboardEmbed";
 
 export const metadata = {
   title: "Test Management — Bugasura",
@@ -47,6 +48,7 @@ export default function TestManagementPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <SolutionsFeatureRow
@@ -63,6 +65,7 @@ export default function TestManagementPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />
 
       <SolutionsFeatureRow
@@ -79,6 +82,7 @@ export default function TestManagementPage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <FeaturesPlatformFlow
@@ -110,7 +114,7 @@ export default function TestManagementPage() {
       />
 
       <Footer cta={{
-        heading: <>Test management that knows{<br />}what you&apos;re building.</>,
+        heading: <>Test management that knows  what you&apos;re building.</>,
         body: "Free for unlimited users, unlimited test cases, unlimited sprints.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

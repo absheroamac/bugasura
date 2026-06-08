@@ -142,7 +142,7 @@ export default function EngineeringTeamsPage() {
 
 
       <Footer cta={{
-        heading: <>Quality built into how your{<br />}engineering team works.</>,
+        heading: <>Quality built into how your  engineering team works.</>,
         body: "Free for your whole team. MCP server is open source. Start in minutes.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

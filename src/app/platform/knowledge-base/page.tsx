@@ -4,6 +4,7 @@ import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
 import SolutionsFeatureRow from "@/components/sections/solutions/SolutionsFeatureRow";
 import FeaturesPlatformFlow from "@/components/sections/features/FeaturesPlatformFlow";
 import SolutionsTestimonial from "@/components/sections/solutions/SolutionsTestimonial";
+import DashboardEmbed from "@/components/ui/DashboardEmbed";
 
 export const metadata = {
   title: "Knowledge Base — Bugasura",
@@ -47,6 +48,7 @@ export default function KnowledgeBasePage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />
 
       <SolutionsFeatureRow
@@ -79,6 +81,7 @@ export default function KnowledgeBasePage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
       <FeaturesPlatformFlow
@@ -110,7 +113,7 @@ export default function KnowledgeBasePage() {
       />
 
       <Footer cta={{
-        heading: <>Build the context layer{<br />}your QA runs on.</>,
+        heading: <>Build the context layer  your QA runs on.</>,
         body: "Free for unlimited users. Start ingesting docs in minutes.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

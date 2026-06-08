@@ -161,7 +161,7 @@ export default function LeadersPage() {
 
 
       <Footer cta={{
-        heading: <>See what your quality risk{<br />}actually looks like.</>,
+        heading: <>See what your quality risk  actually looks like.</>,
         body: "Book a 30-minute demo — we'll show you Eagle Eye against your actual product context.",
         primaryLabel: "Book a demo",
         primaryHref: "https://calendly.com/get-bugasura/45min",

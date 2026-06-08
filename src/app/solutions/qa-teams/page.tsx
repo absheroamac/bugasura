@@ -142,7 +142,7 @@ export default function QATeamsPage() {
 
 
       <Footer cta={{
-        heading: <>Build the strongest QA team{<br />}in your competitive set.</>,
+        heading: <>Build the strongest QA team  in your competitive set.</>,
         body: "Free for your whole team. No seat limits, no feature gates on the core platform.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",
