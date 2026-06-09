@@ -41,7 +41,7 @@ export default function EnterpriseSecurity() {
           Documentation,<br />not just claims.
         </Heading>
         <BodyText
-          color="rgba(30,30,30,0.55)"
+          color="rgba(30,30,30,0.8)"
           style={{ fontSize: "15px", lineHeight: 1.7 }}
         >
           Infosec teams need documentation, not a marketing page. Here&apos;s what&apos;s available — ask us for anything not listed.
@@ -61,14 +61,16 @@ export default function EnterpriseSecurity() {
             display: "flex",
             flexDirection: "column",
             minHeight: "320px",
+            background: "#2B2B2B",
           }}
         >
-          {/* Full background image */}
+          {/* Full background image — hidden on small screens for readability, replaced by solid dark gray */}
           <Image
             src="/enterprise/card1-bg-v4.png"
             alt=""
             aria-hidden
             fill
+            className="hidden sm:block"
             style={{ objectFit: "cover", objectPosition: "bottom" }}
           />
           {/* Content overlay */}
@@ -105,7 +107,7 @@ export default function EnterpriseSecurity() {
             <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
               Identity &amp; access management
             </Heading>
-            <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "13px", lineHeight: 1.65 }}>
+            <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "13px", lineHeight: 1.65 }}>
               SSO via Okta, Azure AD, Google Workspace, and custom SAML. MFA enforced. Role-based access controls across all modules.
             </BodyText>
           </div>
@@ -118,7 +120,7 @@ export default function EnterpriseSecurity() {
             <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
               Private AI processing
             </Heading>
-            <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "13px", lineHeight: 1.65 }}>
+            <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "13px", lineHeight: 1.65 }}>
               All Testpert AI runs within your deployment. Your requirements, test data, and defect history never leave your environment or train any external model.
             </BodyText>
           </div>
@@ -133,7 +135,7 @@ export default function EnterpriseSecurity() {
           <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
             Penetration testing
           </Heading>
-          <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+          <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
             Annual third-party penetration tests. Results and remediation documentation available on request for infosec review.
           </BodyText>
         </div>
@@ -157,13 +159,13 @@ export default function EnterpriseSecurity() {
           <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "8px" }}>
             SOC 2 Type II certification
           </Heading>
-          <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+          <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
             Full audit report available under NDA. Covers security, availability, processing integrity, confidentiality, and privacy trust service criteria.
           </BodyText>
         </div>
-        <div className="w-full sm:w-auto sm:flex-shrink-0">
-          <Button href="#" variant="outline" className="w-full sm:w-auto justify-center sm:justify-start">
-            Download security overview
+        <div className="sm:flex-shrink-0">
+          <Button href="#" variant="dark" size="md" className="justify-center">
+            Download overview
           </Button>
         </div>
       </div>

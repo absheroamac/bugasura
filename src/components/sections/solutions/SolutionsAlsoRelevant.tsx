@@ -50,7 +50,7 @@ export default function SolutionsAlsoRelevant({ links }: SolutionsAlsoRelevantPr
               </Heading>
               <ArrowRight size={18} color="rgba(30,30,30,0.3)" style={{ flexShrink: 0, marginTop: "2px" }} />
             </div>
-            <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+            <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
               {desc}
             </BodyText>
           </Link>

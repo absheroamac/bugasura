@@ -226,7 +226,7 @@ export default function EnterpriseProcess() {
 
               {/* Description */}
               <BodyText
-                color="rgba(30,30,30,0.6)"
+                color="rgba(30,30,30,0.8)"
                 style={{ fontSize: "14px", lineHeight: 1.65, marginBottom: "24px", flex: 1 }}
               >
                 {step.desc}

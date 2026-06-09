@@ -50,7 +50,7 @@ export default function PricingPlans() {
       style={{ backgroundColor: "var(--cream)", padding: "80px clamp(24px, 6vw, 80px)" }}
     >
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16 mb-12">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-16 mb-12">
         <div className="flex-shrink-0">
           <Heading
             level="section"
@@ -62,7 +62,7 @@ export default function PricingPlans() {
           </Heading>
         </div>
         <BodyText
-          color="rgba(30,30,30,0.5)"
+          color="rgba(30,30,30,0.8)"
           style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "380px" }}
         >
           The full platform is free for every team. Custom pricing is only for on-prem, Testpert AI, or enterprise-scale execution.
@@ -118,7 +118,7 @@ export default function PricingPlans() {
             </div>
           </div>
 
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "14px", fontStyle: "italic", color: "rgba(30,30,30,0.65)", lineHeight: 1.6, marginBottom: "28px", maxWidth: "340px" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "rgba(30,30,30,0.8)", lineHeight: 1.6, marginBottom: "28px", maxWidth: "340px" }}>
             &ldquo;The full platform. No seat limits. No feature gates. No expiry date on being free.&rdquo;
           </p>
 
@@ -172,7 +172,7 @@ export default function PricingPlans() {
             </div>
           </div>
 
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "14px", fontStyle: "italic", color: "rgba(30,30,30,0.65)", lineHeight: 1.6, marginBottom: "28px", maxWidth: "340px" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "rgba(30,30,30,0.8)", lineHeight: 1.6, marginBottom: "28px", maxWidth: "340px" }}>
             &ldquo;For teams running Bugasura at scale, on-prem, or with Testpert AI capabilities built in.&rdquo;
           </p>
 
@@ -215,7 +215,7 @@ export default function PricingPlans() {
             {CUSTOM_USE_CASES.map((item) => (
               <div key={item} className="flex items-start gap-3">
                 <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", fontWeight: 600, color: "#0077C2", flexShrink: 0, lineHeight: 1.55 }}>→</span>
-                <BodyText color="rgba(30,30,30,0.75)" style={{ fontSize: "13px", lineHeight: 1.55 }}>
+                <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "13px", lineHeight: 1.55 }}>
                   {item}
                 </BodyText>
               </div>

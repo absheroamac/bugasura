@@ -17,7 +17,7 @@ export default function TestManagementPage() {
       <Navbar />
 
       <SolutionsHero
-        headline={<>Test management built for teams that ship with AI.</>}
+        headline={<>Test management for<br/>teams that ship with AI.</>}
         body="Plan test cycles, track coverage, and manage execution — in a system that already knows your requirements and risk surface. Not a standalone tool. The execution layer of a connected platform."
         darkText={true}
         illustration="/illustrations/test-management.png"

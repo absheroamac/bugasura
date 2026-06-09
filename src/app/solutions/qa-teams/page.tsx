@@ -1,4 +1,4 @@
-import { Users, Infinity, Star } from "lucide-react";
+import { Users, Infinity, Star, Puzzle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
@@ -7,6 +7,7 @@ import SolutionsFeatureRow from "@/components/sections/solutions/SolutionsFeatur
 import SolutionsPlatformLayers from "@/components/sections/solutions/SolutionsPlatformLayers";
 import SolutionsTestimonial from "@/components/sections/solutions/SolutionsTestimonial";
 import DashboardEmbed from "@/components/ui/DashboardEmbed";
+import PlatformLogoCarousel from "@/components/sections/platform/PlatformLogoCarousel";
 
 export const metadata = {
   title: "Bugasura for QA Teams — Deeper coverage, sharper risk decisions",
@@ -30,8 +31,11 @@ export default function QATeamsPage() {
           { Icon: Users,    iconColor: "#29A5FF", label: "50,000+ QA engineers worldwide" },
           { Icon: Infinity, iconColor: "#CC7A00", label: "Free forever" },
           { Icon: Star,     iconColor: "#E52727", label: "#1 on Product Hunt" },
+          { Icon: Puzzle,   iconColor: "#0077C2", label: "25+ integrations" },
         ]}
       />
+
+      <PlatformLogoCarousel />
 
       <SolutionsCards
         heading="Quality engineering gets stronger when AI gets faster."
@@ -39,16 +43,25 @@ export default function QATeamsPage() {
         bg="var(--cream)"
         cards={[
           {
+            eyebrow: "AI-Assisted Testing",
+            eyebrowColor: "#E52727",
             title: "From writing tests to making test decisions",
             body: "Bugasura generates the test cases. Your QA lead reviews, refines, and approves them. The expert judgment stays with your team — the tedious first draft doesn't.",
+            image: "/qa/card-01.png",
           },
           {
+            eyebrow: "Risk Intelligence",
+            eyebrowColor: "#C47200",
             title: "From gut-feel coverage to risk-mapped coverage",
             body: "Coverage decisions backed by actual risk data — requirements, defect history, business impact — not sprint pressure and intuition. Test what matters most, not what's easiest to test.",
+            image: "/qa/card-02.png",
           },
           {
+            eyebrow: "Team Knowledge",
+            eyebrowColor: "#0077C2",
             title: "From individual knowledge to team intelligence",
             body: "The institutional knowledge your senior testers carry — which modules are fragile, which edge cases always break — captured in the Knowledge Base and available to everyone, every sprint.",
+            image: "/qa/card-03.png",
           },
         ]}
       />
@@ -146,7 +159,7 @@ export default function QATeamsPage() {
 
 
       <Footer cta={{
-        heading: <>Build the strongest QA team  in your competitive set.</>,
+        heading: <>Build the strongest QA team in your competitive set.</>,
         body: "Free for your whole team. No seat limits, no feature gates on the core platform.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

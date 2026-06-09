@@ -1,4 +1,4 @@
-import { Zap, Bug, Cpu } from "lucide-react";
+import { Zap, Bug, Cpu, Puzzle } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
@@ -30,6 +30,7 @@ export default function EngineeringTeamsPage() {
           { Icon: Zap,  iconColor: "#CC7A00", label: "Free forever" },
           { Icon: Bug,  iconColor: "#E52727", label: "Unlimited bug reports" },
           { Icon: Cpu,  iconColor: "#29A5FF", label: "MCP server included" },
+          { Icon: Puzzle, iconColor: "#0077C2", label: "25+ integrations" },
         ]}
       />
 
@@ -146,7 +147,7 @@ export default function EngineeringTeamsPage() {
 
 
       <Footer cta={{
-        heading: <>Quality built into how your  engineering team works.</>,
+        heading: <>Quality built into how your engineering team works.</>,
         body: "Free for your whole team. MCP server is open source. Start in minutes.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

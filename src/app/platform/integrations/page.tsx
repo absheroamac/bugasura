@@ -65,7 +65,7 @@ function IntegrationLogoGrid() {
               fontFamily: "'Clash Grotesk', sans-serif",
               fontWeight: 600,
               fontSize: "14px",
-              color: "rgba(30,30,30,0.7)",
+              color: "rgba(30,30,30,0.8)",
               textAlign: "center",
               lineHeight: 1.2,
             }}
@@ -160,7 +160,7 @@ export default function IntegrationsPage() {
       />
 
       <Footer cta={{
-        heading: <>Connect Bugasura to where  your team works.</>,
+        heading: <>Connect Bugasura to where your team works.</>,
         body: "MCP server is open source. REST API is free. Chrome Reporter is free. Start in minutes.",
         primaryLabel: "Start for free",
         primaryHref: "https://my.bugasura.io?go=sign_up",

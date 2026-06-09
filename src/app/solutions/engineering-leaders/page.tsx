@@ -1,4 +1,4 @@
-import { ShieldCheck, Layers, TrendingUp } from "lucide-react";
+import { ShieldCheck, Layers, TrendingUp, Users } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import SolutionsHero from "@/components/sections/solutions/SolutionsHero";
@@ -19,7 +19,7 @@ export default function LeadersPage() {
       <Navbar />
 
       <SolutionsHero
-        headline={<>Quality risk you can see before it becomes a production incident.</>}
+        headline={<>See quality risk<br/>before it hits production.</>}
         body="Eagle Eye gives engineering and product leaders strategic quality visibility — where risk is concentrated, whether QA coverage is keeping pace with development velocity, and whether the features being shipped are actually ready to ship."
         primaryLabel="Book a demo"
         primaryHref="https://calendly.com/get-bugasura/45min"
@@ -31,6 +31,7 @@ export default function LeadersPage() {
           { Icon: ShieldCheck, iconColor: "#29A5FF", label: "SOC 2 Type II certified" },
           { Icon: Layers,      iconColor: "#CC7A00", label: "Enterprise ready" },
           { Icon: TrendingUp,  iconColor: "#E52727", label: "Compounds over time" },
+          { Icon: Users,       iconColor: "#0077C2", label: "50,000+ engineers worldwide" },
         ]}
       />
 
@@ -166,7 +167,7 @@ export default function LeadersPage() {
 
 
       <Footer cta={{
-        heading: <>See what your quality risk  actually looks like.</>,
+        heading: <>See what your quality risk actually looks like.</>,
         body: "Book a 30-minute demo — we'll show you Eagle Eye against your actual product context.",
         primaryLabel: "Book a demo",
         primaryHref: "https://calendly.com/get-bugasura/45min",

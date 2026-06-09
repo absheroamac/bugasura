@@ -52,7 +52,7 @@ export default function SolutionsHero({
       style={{ background: heroBg }}
     >
       {/* Top: copy left + image placeholder right */}
-      <div className="flex flex-col lg:flex-row lg:items-end gap-0 px-8 lg:px-20 pt-20 lg:pt-28">
+      <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-12 px-8 lg:px-20 pt-20 lg:pt-28">
 
         {/* Left: copy */}
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left pb-12 lg:pb-20">
@@ -102,13 +102,17 @@ export default function SolutionsHero({
               width: "45%",
               alignSelf: "stretch",
               position: "relative",
+              background: "rgba(255,255,255,0.3)",
+              borderRadius: "24px",
+              overflow: "hidden",
+              marginBottom: "32px",
             }}
           >
             <Image
               src={illustration}
               alt=""
               fill
-              style={{ objectFit: "contain", objectPosition: "center" }}
+              style={{ objectFit: "cover", objectPosition: "center" }}
               sizes="45vw"
               priority
             />
@@ -128,7 +132,7 @@ export default function SolutionsHero({
               <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "24px", lineHeight: 1.15, marginBottom: "14px" }}>
                 {card.title}
               </Heading>
-              <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7 }}>
+              <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "15px", lineHeight: 1.7 }}>
                 {card.body}
               </BodyText>
             </div>

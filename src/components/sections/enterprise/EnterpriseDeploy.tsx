@@ -24,7 +24,7 @@ export default function EnterpriseDeploy() {
       style={{ backgroundColor: "#ffffff", padding: "80px clamp(24px, 6vw, 80px)" }}
     >
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16 mb-12">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-16 mb-12">
         <div className="flex-shrink-0">
           <Heading
             level="section"
@@ -36,7 +36,7 @@ export default function EnterpriseDeploy() {
           </Heading>
         </div>
         <BodyText
-          color="rgba(30,30,30,0.5)"
+          color="rgba(30,30,30,0.8)"
           style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "380px" }}
         >
           Two paths. Both enterprise-ready. Choose based on your data residency requirements and IT policy.

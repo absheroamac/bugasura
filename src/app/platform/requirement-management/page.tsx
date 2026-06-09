@@ -17,7 +17,7 @@ export default function RequirementsPage() {
       <Navbar />
 
       <SolutionsHero
-        headline={<>Requirements that stay connected to everything downstream.</>}
+        headline={<>Requirements that stay<br/>connected downstream.</>}
         body="Capture structured requirements, trace them to test cases, and know instantly when a change puts coverage at risk. No more traceability matrices updated manually at the end of a sprint."
         darkText={true}
         illustration="/illustrations/requirements.png"

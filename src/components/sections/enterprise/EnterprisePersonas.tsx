@@ -68,7 +68,7 @@ export default function EnterprisePersonas() {
       style={{ backgroundColor: "var(--cream)", padding: "80px clamp(24px, 6vw, 80px)" }}
     >
       {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-16 mb-12">
+      <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-16 mb-12">
         <div className="flex-shrink-0">
           <Heading
             level="section"
@@ -80,7 +80,7 @@ export default function EnterprisePersonas() {
           </Heading>
         </div>
         <BodyText
-          color="rgba(30,30,30,0.55)"
+          color="rgba(30,30,30,0.8)"
           style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "420px" }}
         >
           Enterprise procurement isn&apos;t one conversation. Here&apos;s what Bugasura covers for each stakeholder in your organisation.
@@ -111,7 +111,7 @@ export default function EnterprisePersonas() {
 
             {/* Body */}
             <BodyText
-              color="rgba(30,30,30,0.55)"
+              color="rgba(30,30,30,0.8)"
               style={{ fontSize: "14px", lineHeight: 1.7, marginBottom: "24px" }}
             >
               {p.body}
@@ -126,7 +126,7 @@ export default function EnterprisePersonas() {
                 <div key={c} className="flex items-start gap-2">
                   <CheckIcon color={p.checkColor} />
                   <BodyText
-                    color="rgba(30,30,30,0.75)"
+                    color="rgba(30,30,30,0.8)"
                     style={{ fontSize: "13px", fontWeight: 500, lineHeight: 1.5 }}
                   >
                     {c}

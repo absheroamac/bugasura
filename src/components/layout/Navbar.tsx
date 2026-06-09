@@ -14,6 +14,7 @@ type DropdownKey = "Platform" | "Solutions" | "Asuras" | "Resources";
 
 const dropdownData: Record<DropdownKey, {
   heading: string;
+  headingDesc?: string;
   headingHref: string;
   arrow: boolean;
   cols: 2 | 3;
@@ -23,12 +24,13 @@ const dropdownData: Record<DropdownKey, {
 }> = {
   Platform: {
     heading: "Platform Overview",
+    headingDesc: "Explore the full platform, end to end",
     headingHref: "/platform",
     arrow: true,
     cols: 3,
     links: [
       { label: "Test Management",  desc: "Plan, run, and report test cycles",           href: "/platform/test-management" },
-      { label: "Requirement Mgmt", desc: "Requirements traced to tests and defects",     href: "/platform/requirements" },
+      { label: "Requirement Mgmt", desc: "Requirements traced to tests and defects",     href: "/platform/requirement-management" },
       { label: "Bug Tracker",      desc: "Capture, triage, and close issues",           href: "/platform/bug-tracker" },
       { label: "Knowledge Base",   desc: "Docs your whole QA process draws from",       href: "/platform/knowledge-base" },
       { label: "Integration & MCP",desc: "Jira, GitHub, Claude, and more",             href: "/platform/integrations" },
@@ -45,7 +47,7 @@ const dropdownData: Record<DropdownKey, {
       { label: "Engineering Teams",    desc: "Fewer bugs reaching production",                href: "/solutions/engineering-teams" },
       { label: "QA Teams",             desc: "Your entire testing workflow, one place",       href: "/solutions/qa-teams" },
       { label: "Enterprise",           desc: "On-prem, SOC 2, SSO, private AI",              href: "/enterprise" },
-      { label: "Engineering Leaders",  desc: "Coverage, risk, and quality at a glance",      href: "/solutions/leaders" },
+      { label: "Engineering Leaders",  desc: "Coverage, risk, and quality at a glance",      href: "/solutions/engineering-leaders" },
     ],
     illustration: "/navbar/dropdown/solutions.png",
     illustrationAspect: 2.12,
@@ -248,13 +250,23 @@ export default function Navbar() {
                 {data.arrow ? (
                   <Link
                     href={data.headingHref}
-                    className="inline-flex items-center gap-1.5 font-semibold mb-6 transition-colors"
-                    style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "var(--dark)" }}
-                    onMouseEnter={e => (e.currentTarget.style.color = "#E52727")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "")}
+                    className="block mb-6 group"
                   >
-                    {data.heading}
-                    <ArrowUpRight size={15} strokeWidth={2.5} />
+                    <span
+                      className="inline-flex items-center gap-1.5 font-semibold transition-colors"
+                      style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "var(--dark)" }}
+                    >
+                      <span className="transition-colors group-hover:text-[#E52727]">{data.heading}</span>
+                      <ArrowUpRight size={15} strokeWidth={2.5} className="transition-colors group-hover:text-[#E52727]" />
+                    </span>
+                    {data.headingDesc && (
+                      <span
+                        className="block"
+                        style={{ fontSize: "12.5px", lineHeight: 1.45, color: "rgba(30,30,30,0.8)", marginTop: "2px" }}
+                      >
+                        {data.headingDesc}
+                      </span>
+                    )}
                   </Link>
                 ) : (
                   <span

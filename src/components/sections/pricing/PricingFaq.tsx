@@ -48,7 +48,7 @@ export default function PricingFaq() {
         >
           Common questions.
         </Heading>
-        <BodyText color="rgba(30,30,30,0.5)" style={{ fontSize: "16px", lineHeight: 1.7 }}>
+        <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "16px", lineHeight: 1.7 }}>
           If something&apos;s not covered here, just ask us.
         </BodyText>
       </div>
@@ -109,7 +109,7 @@ export default function PricingFaq() {
 
               {isOpen && (
                 <div style={{ padding: "0 24px 24px" }}>
-                  <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "15px", lineHeight: 1.7 }}>
+                  <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "15px", lineHeight: 1.7 }}>
                     {a}
                   </BodyText>
                 </div>

@@ -17,7 +17,7 @@ export default function BugTrackerPage() {
       <Navbar />
 
       <SolutionsHero
-        headline={<>Capture, triage, and close bugs — with AI in the loop.</>}
+        headline={<>Capture and close bugs —<br/>with AI in the loop.</>}
         body="Not just a place to log issues. An AI-enriched tracker that auto-deduplicates, contextualises defects against your requirements, and gives engineering exactly what they need to fix fast."
         darkText={true}
         illustration="/illustrations/bug-tracker.png"

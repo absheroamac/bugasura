@@ -52,7 +52,7 @@ export default function FeaturesHighlights({ highlights, bg = "#ffffff" }: Featu
             >
               {h.title}
             </Heading>
-            <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "14px", lineHeight: 1.7 }}>
+            <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.7 }}>
               {h.body}
             </BodyText>
           </div>

@@ -9,7 +9,7 @@ function CheckItem({ text, color }: { text: string; color: string }) {
         <circle cx="10" cy="10" r="10" fill={color} fillOpacity="0.12" />
         <path d="M5.5 10l3 3 6-7" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
-      <BodyText color="rgba(30,30,30,0.7)" style={{ fontSize: "15px", lineHeight: 1.65 }}>
+      <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "15px", lineHeight: 1.65 }}>
         {text}
       </BodyText>
     </div>
@@ -76,7 +76,7 @@ export default function SolutionsFeatureRow({
       </Heading>
 
       <BodyText
-        color="rgba(30,30,30,0.6)"
+        color="rgba(30,30,30,0.8)"
         style={{ fontSize: "16px", lineHeight: 1.75, marginBottom: "32px" }}
       >
         {body}

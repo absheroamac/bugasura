@@ -165,7 +165,7 @@ function LayerPanel({
           <div
             className="w-full rounded-3xl overflow-hidden relative"
             style={{
-              aspectRatio: "5 / 4",
+              aspectRatio: "5 / 3",
               backgroundColor: "rgba(255,255,255,0.6)",
               border: "1.5px solid rgba(255,255,255,0.85)",
             }}

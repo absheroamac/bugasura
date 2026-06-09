@@ -215,23 +215,17 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         © 2026 Moolya Software Testing Pvt. Ltd.
       </p>
 
-      {/* ── Big "Bugasura" wordmark — fills full width ── */}
-      <div className="px-0 pb-8 lg:px-8" style={{ lineHeight: 0.82 }}>
-        <p
-          className="font-semibold select-none"
-          style={{
-            fontFamily: "'Clash Grotesk', sans-serif",
-            fontSize: "21.7vw",
-            letterSpacing: "-0.03em",
-            lineHeight: 0.82,
-            color: "#fff",
-            display: "block",
-            width: "100%",
-            whiteSpace: "nowrap",
-          }}
-        >
-          Bugasura
-        </p>
+      {/* ── Big "Bugasura" wordmark illustration — fills full width ── */}
+      <div className="px-4 lg:px-8 pb-6">
+        <Image
+          src="/footer/footer-wordmark.png"
+          alt="Bugasura"
+          width={1400}
+          height={280}
+          className="w-full h-auto select-none"
+          style={{ display: "block" }}
+          loading="lazy"
+        />
       </div>
     </footer>
   );

@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { Infinity, BadgeDollarSign } from "lucide-react";
+import { BadgeDollarSign } from "lucide-react";
 import { Heading, BodyText, Button } from "@/components/ui";
 
 const stats = [
-  { Icon: Infinity,        label: "Users" },
-  { Icon: Infinity,        label: "Projects" },
-  { Icon: Infinity,        label: "Bug reports" },
-  { Icon: Infinity,        label: "Test cases" },
+  { glyph: "∞", label: "Users" },
+  { glyph: "∞", label: "Projects" },
+  { glyph: "∞", label: "Bug reports" },
+  { glyph: "∞", label: "Test cases" },
   { Icon: BadgeDollarSign, label: "Forever free" },
 ];
 
@@ -39,15 +39,9 @@ export default function PricingHero() {
 
           <BodyText
             color="rgba(255,255,255,0.8)"
-            style={{ fontSize: "17px", lineHeight: 1.75, maxWidth: "460px", marginBottom: "10px" }}
+            style={{ fontSize: "17px", lineHeight: 1.75, maxWidth: "460px", marginBottom: "44px" }}
           >
-            Bugasura is free for unlimited users and unlimited projects — not a trial, not a limited tier. Just free.
-          </BodyText>
-          <BodyText
-            color="rgba(255,255,255,0.5)"
-            style={{ fontSize: "14px", lineHeight: 1.65, maxWidth: "460px", marginBottom: "44px" }}
-          >
-            Custom pricing only when you need on-prem deployment, Testpert AI, or enterprise-scale Asura execution.
+            Bugasura is free for unlimited users and unlimited projects — not a trial, not a limited tier. Just free. Custom pricing only when you need on-prem deployment, Testpert AI, or enterprise-scale Asura execution.
           </BodyText>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
@@ -92,7 +86,7 @@ export default function PricingHero() {
 
       {/* ── Bottom: stat bar ── */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
-        {stats.map(({ Icon, label }) => (
+        {stats.map(({ Icon, glyph, label }) => (
           <div
             key={label}
             className="flex items-center gap-3"
@@ -114,7 +108,13 @@ export default function PricingHero() {
                 flexShrink: 0,
               }}
             >
-              <Icon size={22} strokeWidth={1.6} color="#29A5FF" />
+              {glyph ? (
+                <svg width="22" height="22" viewBox="0 0 256 256" fill="#29A5FF" aria-hidden>
+                  <path d="M248,128a56,56,0,0,1-95.6,39.6l-.33-.35L92.12,99.55a40,40,0,1,0,0,56.9l8.52-9.62a8,8,0,1,1,12,10.61l-8.69,9.81-.33.35a56,56,0,1,1,0-79.2l.33.35,59.95,67.7a40,40,0,1,0,0-56.9l-8.52,9.62a8,8,0,1,1-12-10.61l8.69-9.81.33-.35A56,56,0,0,1,248,128Z" />
+                </svg>
+              ) : Icon ? (
+                <Icon size={22} strokeWidth={1.6} color="#29A5FF" />
+              ) : null}
             </div>
             <p
               style={{

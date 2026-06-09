@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Heading, BodyText } from "@/components/ui";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const AUTO_ADVANCE_MS = 6000;
+const CARD_HEIGHT = 460; // fixed height for both containers
 
 interface Testimonial {
   quote: string;
@@ -15,81 +18,174 @@ interface SolutionsTestimonialProps {
   testimonials: Testimonial[];
 }
 
-const BG_COLORS = ["#FDD9C8", "#FFDAA8", "#B2D9EC", "#DCDCDC"];
+const THEMES = [
+  { cardBg: "#F4D4C8", badgeBg: "#E05C3A" },
+  { cardBg: "#FFDAA8", badgeBg: "#C47200" },
+  { cardBg: "#B2D9EC", badgeBg: "#0077C2" },
+  { cardBg: "#DCDCDC", badgeBg: "#555555" },
+];
 
 export default function SolutionsTestimonial({ testimonials }: SolutionsTestimonialProps) {
   const [active, setActive] = useState(0);
-  const current = testimonials[active];
-  const bg = BG_COLORS[active % BG_COLORS.length];
+  const [isHovered, setIsHovered] = useState(false);
+  const theme = THEMES[active % THEMES.length];
+
+  const goTo = (i: number) => {
+    const n = testimonials.length;
+    setActive(((i % n) + n) % n);
+  };
+
+  useEffect(() => {
+    if (isHovered || testimonials.length <= 1) return;
+    const id = setInterval(() => setActive((p) => (p + 1) % testimonials.length), AUTO_ADVANCE_MS);
+    return () => clearInterval(id);
+  }, [isHovered, testimonials.length]);
 
   return (
-    <section
-      className="rounded-[32px]"
-      style={{ backgroundColor: bg, padding: "clamp(48px, 8vw, 80px) clamp(24px, 6vw, 80px)", transition: "background-color 0.4s ease" }}
+    <div
+      style={{ paddingTop: "0px", paddingBottom: "28px" }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
-
-        {/* Left: quote + nav */}
-        <div className="flex-1 flex flex-col">
-          <svg width="36" height="28" viewBox="0 0 36 28" fill="none" aria-hidden style={{ marginBottom: "24px", opacity: 0.25 }}>
-            <path d="M0 28V16.8C0 7.47 5.6 2.07 16.8 0l1.68 3.36C12.32 4.76 9.1 7.7 8.4 12.6H15.4V28H0ZM20.6 28V16.8C20.6 7.47 26.2 2.07 37.4 0l1.68 3.36C32.92 4.76 29.7 7.7 29 12.6H36V28H20.6Z" fill="#1A1A1A"/>
-          </svg>
-
-          <Heading
-            level="section"
-            as="p"
-            color="var(--dark)"
-            style={{ fontSize: "clamp(20px, 2.5vw, 30px)", lineHeight: 1.4, letterSpacing: "-0.015em", marginBottom: "28px" }}
-          >
-            {current.quote}
-          </Heading>
-
-          <div style={{ marginBottom: "36px" }}>
-            <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", fontWeight: 700, color: "var(--dark)", lineHeight: 1.3 }}>
-              {current.name}
-            </p>
-            <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", marginTop: "2px" }}>
-              {current.role}, {current.company}
-            </BodyText>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="flex items-center gap-2">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setActive(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                style={{
-                  width: i === active ? "28px" : "8px",
-                  height: "8px",
-                  borderRadius: "999px",
-                  background: i === active ? "rgba(30,30,30,0.7)" : "rgba(30,30,30,0.2)",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: 0,
-                  transition: "all 0.25s ease",
-                }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Right: illustration */}
+      {/* Quote badge — in-flow, overlaps the card top edge */}
+      <div
+        className="hidden lg:flex"
+        style={{ marginBottom: "-28px", paddingLeft: `calc(clamp(312px, 33.6vw, 456px) + 16px + clamp(32px, 5vw, 52px))`, position: "relative", zIndex: 10 }}
+      >
         <div
-          className="hidden lg:block flex-shrink-0"
-          style={{ width: "440px", position: "relative", alignSelf: "stretch", minHeight: "300px" }}
+          style={{
+            width: "56px", height: "56px", borderRadius: "16px",
+            background: theme.badgeBg,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "background 0.4s ease",
+          }}
+        >
+          <Image src="/illustrations/quote.svg" alt="" width={28} height={22} />
+        </div>
+      </div>
+
+      {/* Row: image container + gap + card — both same height */}
+      <div className="hidden lg:flex" style={{ gap: "16px", height: `${CARD_HEIGHT}px` }}>
+
+        {/* Image container */}
+        <div
+          style={{
+            width: "clamp(312px, 33.6vw, 456px)",
+            height: `${CARD_HEIGHT}px`,
+            flexShrink: 0,
+            borderRadius: "32px",
+            overflow: "hidden",
+            position: "relative",
+          }}
         >
           <Image
-            src="/illustrations/feedback.png"
+            src="/illustrations/testimonial-character.png"
             alt=""
             fill
-            style={{ objectFit: "contain", objectPosition: "center" }}
-            sizes="440px"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            sizes="380px"
+            priority
           />
         </div>
 
+        {/* Card */}
+        <div
+          className="flex-1 rounded-[32px] overflow-hidden"
+          style={{
+            height: `${CARD_HEIGHT}px`,
+            background: theme.cardBg,
+            transition: "background 0.4s ease",
+          }}
+        >
+          <div className="flex flex-col" style={{ height: "100%", padding: "clamp(32px, 5vw, 52px)", paddingTop: "48px" }}>
+
+            {/* Arrows */}
+            {testimonials.length > 1 && (
+              <div className="flex items-center justify-end gap-2" style={{ marginBottom: "28px", flexShrink: 0 }}>
+                <button onClick={() => goTo(active - 1)} aria-label="Previous" style={{
+                  width: "36px", height: "36px", borderRadius: "999px",
+                  background: "#ffffff", border: "none",
+                  cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <ChevronLeft size={16} color="rgba(0,0,0,0.6)" />
+                </button>
+                <button onClick={() => goTo(active + 1)} aria-label="Next" style={{
+                  width: "36px", height: "36px", borderRadius: "999px",
+                  background: "#ffffff", border: "none",
+                  cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <ChevronRight size={16} color="rgba(0,0,0,0.6)" />
+                </button>
+              </div>
+            )}
+
+            {/* All testimonials stacked, crossfade */}
+            <div style={{ flex: 1, position: "relative", overflow: "hidden" }}>
+              {testimonials.map((t, i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: "absolute", inset: 0,
+                    display: "flex", flexDirection: "column",
+                    opacity: i === active ? 1 : 0,
+                    transition: "opacity 0.4s ease",
+                    pointerEvents: i === active ? "auto" : "none",
+                  }}
+                >
+                  <p style={{
+                    fontFamily: "'Clash Grotesk', sans-serif",
+                    fontWeight: 600,
+                    fontSize: "clamp(17px, 2vw, 26px)",
+                    lineHeight: 1.45,
+                    letterSpacing: "-0.015em",
+                    color: "var(--dark)",
+                    flex: 1,
+                    marginBottom: "32px",
+                  }}>
+                    {t.quote}
+                  </p>
+
+                  <div className="flex items-end justify-between gap-6" style={{ flexShrink: 0 }}>
+                    <div>
+                      <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", fontWeight: 700, color: "var(--dark)", lineHeight: 1.3 }}>
+                        {t.name}
+                      </p>
+                      <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.5)", marginTop: "3px" }}>
+                        {t.role}, {t.company}
+                      </p>
+                    </div>
+                    <p style={{
+                      fontFamily: "'Clash Grotesk', sans-serif",
+                      fontWeight: 700,
+                      fontSize: "clamp(16px, 1.8vw, 24px)",
+                      color: "rgba(30,30,30,0.2)",
+                      letterSpacing: "-0.02em",
+                      textAlign: "right",
+                      flexShrink: 0,
+                    }}>
+                      {t.company}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
+
+      {/* Mobile fallback */}
+      <div className="flex lg:hidden flex-col gap-4">
+        <div style={{ borderRadius: "24px", overflow: "hidden", position: "relative", height: "260px" }}>
+          <Image src="/illustrations/testimonial-character.png" alt="" fill style={{ objectFit: "cover" }} sizes="100vw" />
+        </div>
+        <div style={{ borderRadius: "24px", background: theme.cardBg, padding: "32px", transition: "background 0.4s ease" }}>
+          <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "18px", lineHeight: 1.5, color: "var(--dark)", marginBottom: "24px" }}>
+            {testimonials[active].quote}
+          </p>
+          <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", fontWeight: 700, color: "var(--dark)" }}>{testimonials[active].name}</p>
+          <p style={{ fontFamily: "Inter, sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.5)", marginTop: "3px" }}>{testimonials[active].role}, {testimonials[active].company}</p>
+        </div>
+      </div>
+    </div>
   );
 }

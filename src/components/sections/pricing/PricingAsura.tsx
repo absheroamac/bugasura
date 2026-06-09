@@ -104,7 +104,7 @@ export default function PricingAsura() {
               <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "28px", lineHeight: 1.2, marginBottom: "8px" }}>
                 {name}
               </Heading>
-              <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+              <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
                 {desc}
               </BodyText>
             </div>
@@ -120,7 +120,7 @@ export default function PricingAsura() {
           padding: "20px 28px",
         }}
       >
-        <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "14px", lineHeight: 1.7 }}>
+        <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.7 }}>
           <strong style={{ color: "#1A1A1A" }}>Asura runs are unlimited on the free tier.</strong> The only limit is 50 GB storage — which is more than enough for most teams. Marketplace Asuras from third-party creators may carry their own pricing when they launch.
         </BodyText>
       </div>

@@ -16,13 +16,13 @@ export default function EnterpriseConference() {
             color="var(--dark)"
             style={{ fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "18px" }}
           >
-            Talk to us in person<br />at the conference.
+            Talk to our team directly.
           </Heading>
           <BodyText
-            color="rgba(30,30,30,0.6)"
+            color="rgba(30,30,30,0.8)"
             style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "420px", marginBottom: "36px" }}
           >
-            Our team will be at the conference in July. If you&apos;re evaluating Bugasura for your engineering organisation, book 30 minutes with us — we&apos;d rather have that conversation in person than over email.
+            If you&apos;re evaluating Bugasura for your engineering organisation, book 30 minutes with us — we&apos;d rather have that conversation directly than over email.
           </BodyText>
           <Button
             href="https://calendly.com/get-bugasura/45min"
@@ -47,30 +47,29 @@ export default function EnterpriseConference() {
         >
           {/* Eyebrow */}
           <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "16px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "#E52727", marginBottom: "20px" }}>
-            July Conference
+            Book a call
           </p>
 
           {/* Title */}
           <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "24px", lineHeight: 1.15, marginBottom: "10px" }}>
-            Book a meeting at the event.
+            A 30-minute conversation, on your schedule.
           </Heading>
 
           {/* Body */}
-          <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", lineHeight: 1.65, marginBottom: "24px" }}>
-            We have limited booth slots across both conference days. Pick a time that works and we&apos;ll be there — no back-and-forth needed.
+          <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65, marginBottom: "24px" }}>
+            Pick a time that works for you and we&apos;ll walk through your team&apos;s setup, answer questions, and show you how Bugasura fits in — no back-and-forth needed.
           </BodyText>
 
-          {/* Slot rows */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "20px" }}>
+          {/* What we'll cover */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "24px" }}>
             {[
-              { label: "Jul 15 · 10:00 – 11:00 AM", badge: "Slots available", badgeBg: "rgba(62,207,142,0.12)", badgeBorder: "1px solid rgba(62,207,142,0.3)", badgeColor: "#1D9E75" },
-              { label: "Jul 15 · 2:00 – 4:00 PM",   badge: "2 slots left",    badgeBg: "rgba(201,150,58,0.12)", badgeBorder: "1px solid rgba(201,150,58,0.3)", badgeColor: "#A87820" },
-              { label: "Jul 16 · 11:00 AM – 1:00 PM", badge: "Slots available", badgeBg: "rgba(62,207,142,0.12)", badgeBorder: "1px solid rgba(62,207,142,0.3)", badgeColor: "#1D9E75" },
-              { label: "Jul 16 · 3:00 – 5:00 PM",   badge: "Full",           badgeBg: "rgba(30,30,30,0.06)", badgeBorder: "1px solid rgba(30,30,30,0.1)", badgeColor: "rgba(30,30,30,0.4)" },
-            ].map(({ label, badge, badgeBg, badgeBorder, badgeColor }) => (
+              "Your team's current QA workflow and tooling",
+              "Where Bugasura fits — and where it doesn't",
+              "Pricing, deployment options, and rollout timeline",
+            ].map((item) => (
               <div
-                key={label}
-                className="flex items-center justify-between"
+                key={item}
+                className="flex items-center"
                 style={{
                   background: "rgba(30,30,30,0.04)",
                   borderRadius: "12px",
@@ -79,10 +78,7 @@ export default function EnterpriseConference() {
                 }}
               >
                 <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", fontWeight: 500, color: "var(--dark)" }}>
-                  {label}
-                </span>
-                <span style={{ padding: "4px 12px", borderRadius: "999px", background: badgeBg, border: badgeBorder, fontFamily: "'Clash Grotesk', sans-serif", fontSize: "12px", fontWeight: 600, color: badgeColor, flexShrink: 0 }}>
-                  {badge}
+                  {item}
                 </span>
               </div>
             ))}
@@ -96,7 +92,7 @@ export default function EnterpriseConference() {
             variant="primary"
             className="w-full justify-center"
           >
-            Reserve your slot →
+            Schedule a call →
           </Button>
         </div>
       </div>
