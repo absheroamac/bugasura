@@ -175,9 +175,6 @@ export default function SolutionsTestimonial({ testimonials }: SolutionsTestimon
 
       {/* Mobile fallback */}
       <div className="flex lg:hidden flex-col gap-4">
-        <div style={{ borderRadius: "24px", overflow: "hidden", position: "relative", height: "260px" }}>
-          <Image src="/illustrations/testimonial-character.png" alt="" fill style={{ objectFit: "cover" }} sizes="100vw" />
-        </div>
         <div style={{ borderRadius: "24px", background: theme.cardBg, padding: "32px", transition: "background 0.4s ease" }}>
           <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "18px", lineHeight: 1.5, color: "var(--dark)", marginBottom: "24px" }}>
             {testimonials[active].quote}
