@@ -50,7 +50,7 @@ export default function SolutionsTestimonial({ testimonials }: SolutionsTestimon
       {/* Quote badge — in-flow, overlaps the card top edge */}
       <div
         className="hidden lg:flex"
-        style={{ marginBottom: "-28px", paddingLeft: `calc(clamp(312px, 33.6vw, 456px) + 16px + clamp(32px, 5vw, 52px))`, position: "relative", zIndex: 10 }}
+        style={{ marginBottom: "-28px", paddingLeft: `calc(clamp(312px, 33.6vw, 456px) + clamp(32px, 5vw, 52px))`, position: "relative", zIndex: 10 }}
       >
         <div
           style={{
@@ -64,40 +64,40 @@ export default function SolutionsTestimonial({ testimonials }: SolutionsTestimon
         </div>
       </div>
 
-      {/* Row: image container + gap + card — both same height */}
-      <div className="hidden lg:flex" style={{ gap: "16px", height: `${CARD_HEIGHT}px` }}>
+      {/* Card — image inside, full height, content on the right */}
+      <div className="hidden lg:flex" style={{ height: `${CARD_HEIGHT}px` }}>
 
-        {/* Image container */}
         <div
-          style={{
-            width: "clamp(312px, 33.6vw, 456px)",
-            height: `${CARD_HEIGHT}px`,
-            flexShrink: 0,
-            borderRadius: "32px",
-            overflow: "hidden",
-            position: "relative",
-          }}
-        >
-          <Image
-            src="/illustrations/testimonial-character.png"
-            alt=""
-            fill
-            style={{ objectFit: "cover", objectPosition: "center" }}
-            sizes="380px"
-            priority
-          />
-        </div>
-
-        {/* Card */}
-        <div
-          className="flex-1 rounded-[32px] overflow-hidden"
+          className="flex-1 flex rounded-[32px] overflow-hidden"
           style={{
             height: `${CARD_HEIGHT}px`,
             background: theme.cardBg,
             transition: "background 0.4s ease",
           }}
         >
-          <div className="flex flex-col" style={{ height: "100%", padding: "clamp(32px, 5vw, 52px)", paddingTop: "48px" }}>
+          {/* Image — inside card, full height, padded from left edge */}
+          <div
+            style={{
+              width: "clamp(312px, 33.6vw, 456px)",
+              height: "100%",
+              flexShrink: 0,
+              boxSizing: "border-box",
+              paddingLeft: "20px",
+            }}
+          >
+            <div style={{ position: "relative", width: "100%", height: "100%" }}>
+              <Image
+                src="/illustrations/testimonial-character.png"
+                alt=""
+                fill
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                sizes="380px"
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col flex-1" style={{ height: "100%", padding: "clamp(32px, 5vw, 52px)", paddingTop: "48px" }}>
 
             {/* Arrows */}
             {testimonials.length > 1 && (
