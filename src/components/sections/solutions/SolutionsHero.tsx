@@ -96,23 +96,13 @@ export default function SolutionsHero({
 
         {/* Right: illustration */}
         {illustration && (
-          <div
-            className="hidden lg:block flex-shrink-0"
-            style={{
-              width: "45%",
-              alignSelf: "stretch",
-              position: "relative",
-              background: "rgba(255,255,255,0.3)",
-              borderRadius: "24px",
-              overflow: "hidden",
-              marginBottom: "32px",
-            }}
-          >
+          <div className="hidden lg:flex flex-shrink-0 items-end" style={{ width: "45%" }}>
             <Image
               src={illustration}
               alt=""
-              fill
-              style={{ objectFit: "cover", objectPosition: "center" }}
+              width={1518}
+              height={1425}
+              style={{ width: "100%", height: "auto" }}
               sizes="45vw"
               priority
             />

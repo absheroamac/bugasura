@@ -17,7 +17,7 @@ export default function RequirementsPage() {
       <Navbar />
 
       <SolutionsHero
-        headline={<>Requirements that stay<br/>connected downstream.</>}
+        headline={<>Requirements that stay connected downstream.</>}
         body="Capture structured requirements, trace them to test cases, and know instantly when a change puts coverage at risk. No more traceability matrices updated manually at the end of a sprint."
         darkText={true}
         illustration="/illustrations/requirements.png"
@@ -67,6 +67,40 @@ export default function RequirementsPage() {
         checkColor="#C47200"
         imageLeft={true}
         imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+      />
+
+      <SolutionsFeatureRow
+        label="Manage Test Data"
+        labelColor="#0077B6"
+        heading="Test data that's structured, versioned, and always in sync with your requirements."
+        body="Test data management in most QA tools is an afterthought — a folder of CSV files no one trusts. In Bugasura, test data is a first-class entity linked to the requirements it supports. When a requirement changes, the test data sets that cover it are flagged for review automatically."
+        items={[
+          "Test data sets linked directly to requirements and test cases",
+          "Version control — know which data set was used in which test run",
+          "Environment-specific data sets: dev / staging / production variants",
+          "Change impact alerts when linked requirements are updated",
+        ]}
+        bg="#B2D9EC"
+        checkColor="#0077B6"
+        imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+      />
+
+      <SolutionsFeatureRow
+        label="User Journey Workflow"
+        labelColor="#555555"
+        heading="Map requirements to end-to-end user journeys — not just individual stories."
+        body="User stories describe individual actions. User journeys describe what a real customer actually does across your product. Bugasura lets you map requirements to complete journeys — so your test strategy covers the flow a user actually takes, not just the endpoint they arrive at."
+        items={[
+          "Journey builder — map multi-step user flows from linked requirements",
+          "Journey-to-requirement traceability — every step covered",
+          "Identify coverage gaps across the full flow, not just per story",
+          "Journey templates reusable across product areas and sprints",
+        ]}
+        bg="#DCDCDC"
+        checkColor="#555555"
+        imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />
 
       <FeaturesPlatformFlow

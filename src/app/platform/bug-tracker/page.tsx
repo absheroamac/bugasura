@@ -17,7 +17,7 @@ export default function BugTrackerPage() {
       <Navbar />
 
       <SolutionsHero
-        headline={<>Capture and close bugs —<br/>with AI in the loop.</>}
+        headline={<>Capture and close bugs — with AI in the loop.</>}
         body="Not just a place to log issues. An AI-enriched tracker that auto-deduplicates, contextualises defects against your requirements, and gives engineering exactly what they need to fix fast."
         darkText={true}
         illustration="/illustrations/bug-tracker.png"
@@ -53,7 +53,7 @@ export default function BugTrackerPage() {
 
       <SolutionsFeatureRow
         label="Defect Traceability"
-        labelColor="#0077B6"
+        labelColor="#C47200"
         heading="Bugs that link back to requirements — not just to a sprint."
         body="Every defect is connected to the requirement it violates and the test case that caught it. When the same area of the product keeps producing bugs, the pattern is visible — and so is the conversation with product about whether the requirement was ever correct."
         items={[
@@ -62,8 +62,42 @@ export default function BugTrackerPage() {
           "Defect history feeds back into the Context layer for future sprints",
           "Eagle Eye integration — defect trends in the exec quality view",
         ]}
+        bg="#FFDAA8"
+        checkColor="#C47200"
+        imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+      />
+
+      <SolutionsFeatureRow
+        label="Execution Evidence"
+        labelColor="#0077B6"
+        heading="Every bug report backed by the evidence engineers actually need."
+        body="A screenshot is a start. Bugasura captures the full execution context — screen recording, network logs, console errors, environment details, and reproduction steps — and attaches it to the bug automatically. Engineering opens a ticket and knows exactly what happened, on what, and why."
+        items={[
+          "One-click screen capture and video recording attachment",
+          "Network request logs captured alongside the bug",
+          "Console error capture — no digging in DevTools required",
+          "Environment details auto-captured: browser, OS, viewport, user session",
+        ]}
         bg="#B2D9EC"
         checkColor="#0077B6"
+        imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+      />
+
+      <SolutionsFeatureRow
+        label="Browser Execution History"
+        labelColor="#555555"
+        heading="A complete record of every browser session — so nothing is ever lost."
+        body="When a tester runs a manual browser test in Bugasura, the session is recorded. Every click, scroll, network call, and state change — logged and replayable. If a bug surfaces two days later in the same flow, the execution history tells you exactly what the environment looked like when it passed."
+        items={[
+          "Full session replay for every browser-based test execution",
+          "Network activity timeline alongside UI interactions",
+          "Session snapshots at each test step — before and after state",
+          "Cross-reference past executions to spot environmental regressions",
+        ]}
+        bg="#DCDCDC"
+        checkColor="#555555"
         imageLeft={true}
         imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
       />

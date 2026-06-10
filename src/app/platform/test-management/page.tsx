@@ -17,7 +17,7 @@ export default function TestManagementPage() {
       <Navbar />
 
       <SolutionsHero
-        headline={<>Test management for<br/>teams that ship with AI.</>}
+        headline={<>Test management for teams that ship with AI.</>}
         body="Plan test cycles, track coverage, and manage execution — in a system that already knows your requirements and risk surface. Not a standalone tool. The execution layer of a connected platform."
         darkText={true}
         illustration="/illustrations/test-management.png"
@@ -82,6 +82,57 @@ export default function TestManagementPage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+      />
+
+      <SolutionsFeatureRow
+        label="Test Repository"
+        labelColor="#555555"
+        heading="One library for every test case your team has ever written."
+        body="The Test Repository is the single source of truth for your entire test suite. Every case — manual, automated, Asura-run — lives here, versioned and searchable. Reuse cases across sprints, link them to new requirements, and never start from zero again."
+        items={[
+          "Centralised library across all projects and sprints",
+          "Version history — see how test cases evolved over time",
+          "Reuse and clone cases across requirements and sprints",
+          "Filter by tag, component, status, or coverage area",
+        ]}
+        bg="#DCDCDC"
+        checkColor="#555555"
+        imageLeft={true}
+        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+      />
+
+      <SolutionsFeatureRow
+        label="Test Runs"
+        labelColor="#AC1515"
+        heading="Structured test runs that track every outcome — not just pass or fail."
+        body="A test run in Bugasura isn't just a checklist. It's a structured execution cycle where every case is tracked with its result, linked defects, tester notes, and time data. When a run ends, you have a complete record — not a pile of comments in a spreadsheet."
+        items={[
+          "Pass / Fail / Blocked / Skipped per test case, per run",
+          "Defects auto-linked to the cases that caught them",
+          "Run history per requirement and per sprint",
+          "Re-run failed cases with a single click — context preserved",
+        ]}
+        bg="#FDD9C8"
+        checkColor="#AC1515"
+        imageLeft={false}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+      />
+
+      <SolutionsFeatureRow
+        label="Execution"
+        labelColor="#C47200"
+        heading="Run tests the way your team actually works — manual, automated, or agent-driven."
+        body="Not every test should be automated. Not every test should be manual. Bugasura supports all three execution modes in one plan — so your team uses the right approach for each case, not the only approach they have tooling for."
+        items={[
+          "Manual execution with step-by-step guided UI",
+          "Automated test case linkage — results pulled in automatically",
+          "Asura-driven execution for browser flows and API contracts",
+          "Mixed-mode runs — manual and automated in the same sprint plan",
+        ]}
+        bg="#FFDAA8"
+        checkColor="#C47200"
+        imageLeft={true}
         imageSlot={<DashboardEmbed src="/dashboard-preview" />}
       />
 
