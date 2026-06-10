@@ -176,6 +176,24 @@ export default function SolutionsTestimonial({ testimonials }: SolutionsTestimon
       {/* Mobile fallback */}
       <div className="flex lg:hidden flex-col gap-4">
         <div style={{ borderRadius: "24px", background: theme.cardBg, padding: "32px", transition: "background 0.4s ease" }}>
+          {testimonials.length > 1 && (
+            <div className="flex items-center justify-end gap-2" style={{ marginBottom: "20px" }}>
+              <button onClick={() => goTo(active - 1)} aria-label="Previous" style={{
+                width: "36px", height: "36px", borderRadius: "999px",
+                background: "#ffffff", border: "none",
+                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <ChevronLeft size={16} color="rgba(0,0,0,0.6)" />
+              </button>
+              <button onClick={() => goTo(active + 1)} aria-label="Next" style={{
+                width: "36px", height: "36px", borderRadius: "999px",
+                background: "#ffffff", border: "none",
+                cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                <ChevronRight size={16} color="rgba(0,0,0,0.6)" />
+              </button>
+            </div>
+          )}
           <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "18px", lineHeight: 1.5, color: "var(--dark)", marginBottom: "24px" }}>
             {testimonials[active].quote}
           </p>
