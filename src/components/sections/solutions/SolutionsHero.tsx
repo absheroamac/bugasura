@@ -52,7 +52,7 @@ export default function SolutionsHero({
       style={{ background: heroBg }}
     >
       {/* Top: copy left + image placeholder right */}
-      <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-12 px-8 lg:px-20 pt-20 lg:pt-28">
+      <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 px-8 lg:px-20 pt-20 lg:pt-28">
 
         {/* Left: copy */}
         <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left pb-12 lg:pb-20">
@@ -96,7 +96,7 @@ export default function SolutionsHero({
 
         {/* Right: illustration */}
         {illustration && (
-          <div className="hidden lg:flex flex-shrink-0 items-end" style={{ width: "45%" }}>
+          <div className="hidden lg:flex flex-shrink-0 items-start" style={{ width: "45%" }}>
             <Image
               src={illustration}
               alt=""
