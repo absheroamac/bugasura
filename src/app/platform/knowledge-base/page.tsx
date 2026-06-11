@@ -48,7 +48,7 @@ export default function KnowledgeBasePage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/knowledge-base" />}
       />
 
       <SolutionsFeatureRow
@@ -65,7 +65,7 @@ export default function KnowledgeBasePage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/knowledge-base" />}
       />
 
       <SolutionsFeatureRow
@@ -82,7 +82,7 @@ export default function KnowledgeBasePage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/teams" />}
       />
 
       <FeaturesPlatformFlow

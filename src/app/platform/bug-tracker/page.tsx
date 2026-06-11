@@ -48,7 +48,7 @@ export default function BugTrackerPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/issues" />}
       />
 
       <SolutionsFeatureRow
@@ -65,7 +65,7 @@ export default function BugTrackerPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/defect-traceability" />}
       />
 
       <SolutionsFeatureRow
@@ -82,7 +82,7 @@ export default function BugTrackerPage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/sprint-coverage-report" />}
       />
 
       <SolutionsFeatureRow
@@ -99,7 +99,7 @@ export default function BugTrackerPage() {
         bg="#DCDCDC"
         checkColor="#555555"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/test-case-detail" />}
       />
 
       <FeaturesPlatformFlow

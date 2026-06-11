@@ -115,7 +115,7 @@ export default function IntegrationsPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/settings/reporters" />}
       />
 
       <SolutionsFeatureRow
@@ -128,7 +128,7 @@ export default function IntegrationsPage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/settings" />}
       />
 
       <FeaturesPlatformFlow

@@ -82,7 +82,7 @@ export default function TestManagementPage() {
         bg="#B2D9EC"
         checkColor="#0077B6"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/sprint-coverage" />}
       />
 
       <SolutionsFeatureRow
@@ -99,7 +99,7 @@ export default function TestManagementPage() {
         bg="#DCDCDC"
         checkColor="#555555"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/test-repo" />}
       />
 
       <SolutionsFeatureRow
@@ -116,7 +116,7 @@ export default function TestManagementPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/sprint-runs" />}
       />
 
       <SolutionsFeatureRow
@@ -133,7 +133,7 @@ export default function TestManagementPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/sprint-execution" />}
       />
 
       <FeaturesPlatformFlow

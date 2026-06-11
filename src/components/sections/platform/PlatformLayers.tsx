@@ -15,7 +15,7 @@ const EMBED_SCALE = 0.46;
 const layers = [
   {
     id: "context",
-    dashboardSrc: "/dashboard-preview/plan",
+    dashboardSrc: "/dashboard-preview/knowledge-base",
     label: "Context",
     labelColor: "#AC1515",
     bg: "#FDD9C8",
@@ -32,7 +32,7 @@ const layers = [
   },
   {
     id: "refine",
-    dashboardSrc: "/dashboard-preview/plan",
+    dashboardSrc: "/dashboard-preview/sprint-refine",
     label: "Refine",
     labelColor: "#C47200",
     bg: "#FFDAA8",
@@ -49,7 +49,7 @@ const layers = [
   },
   {
     id: "generate",
-    dashboardSrc: "/dashboard-preview",
+    dashboardSrc: "/dashboard-preview/sprint-generate",
     label: "Generate",
     labelColor: "#0077B6",
     bg: "#B2D9EC",
@@ -66,7 +66,7 @@ const layers = [
   },
   {
     id: "execute",
-    dashboardSrc: "/dashboard-preview",
+    dashboardSrc: "/dashboard-preview/sprint-reports",
     label: "Execute",
     labelColor: "#555555",
     bg: "#DCDCDC",
