@@ -48,7 +48,7 @@ export default function TestManagementPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/sprint-generate" />}
       />
 
       <SolutionsFeatureRow

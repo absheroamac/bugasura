@@ -82,7 +82,7 @@ export default function QATeamsPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/sprint-generate" />}
       />
 
       <SolutionsFeatureRow
@@ -101,7 +101,7 @@ export default function QATeamsPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/asura-agents" />}
       />
 
       <SolutionsFeatureRow
@@ -120,7 +120,7 @@ export default function QATeamsPage() {
         bg="#B2D9EC"
         checkColor="#0077C2"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/knowledge-base" />}
       />
 
       <SolutionsPlatformLayers

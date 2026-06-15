@@ -70,7 +70,7 @@ export default function EngineeringTeamsPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/mcp-server" />}
       />
 
       <SolutionsFeatureRow
@@ -89,7 +89,7 @@ export default function EngineeringTeamsPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/issues" />}
       />
 
       <SolutionsFeatureRow
@@ -108,7 +108,7 @@ export default function EngineeringTeamsPage() {
         bg="#B2D9EC"
         checkColor="#0077C2"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/asura-agents" />}
       />
 
       <SolutionsPlatformLayers

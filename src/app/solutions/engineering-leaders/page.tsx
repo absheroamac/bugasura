@@ -71,7 +71,7 @@ export default function LeadersPage() {
         bg="#FDD9C8"
         checkColor="#AC1515"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/eagle-eye" />}
       />
 
       <SolutionsFeatureRow
@@ -90,7 +90,7 @@ export default function LeadersPage() {
         bg="#FFDAA8"
         checkColor="#C47200"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/requirements" />}
       />
 
       <SolutionsFeatureRow
@@ -109,7 +109,7 @@ export default function LeadersPage() {
         bg="#B2D9EC"
         checkColor="#0077C2"
         imageLeft={false}
-        imageSlot={<DashboardEmbed src="/dashboard-preview" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/platform-intelligence" />}
       />
 
       <SolutionsFeatureRow
@@ -128,7 +128,7 @@ export default function LeadersPage() {
         bg="#DCDCDC"
         checkColor="#555555"
         imageLeft={true}
-        imageSlot={<DashboardEmbed src="/dashboard-preview/plan" />}
+        imageSlot={<DashboardEmbed src="/dashboard-preview/testpert" />}
       />
 
       <SolutionsPlatformLayers
