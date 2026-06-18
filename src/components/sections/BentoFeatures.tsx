@@ -85,7 +85,7 @@ export default function BentoFeatures() {
               </BodyText>
             </div>
             <div className="mt-8">
-              <Button href="https://bugasura.io/user-journey" target="_blank" rel="noopener noreferrer" variant="dark" className="w-full lg:w-auto justify-center">
+              <Button href="/solutions/engineering-leaders" variant="dark" className="w-full lg:w-auto justify-center">
                 <span className="lg:hidden">Eagle Eye</span>
                 <span className="hidden lg:inline">See Eagle Eye</span>
               </Button>
