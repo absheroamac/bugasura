@@ -1,13 +1,12 @@
 import Image from "next/image";
-import { BadgeDollarSign } from "lucide-react";
+import { Users, BadgeDollarSign, Puzzle, Bug } from "lucide-react";
 import { Heading, BodyText, Button } from "@/components/ui";
 
-const stats = [
-  { glyph: "∞", label: "Users" },
-  { glyph: "∞", label: "Projects" },
-  { glyph: "∞", label: "Bug reports" },
-  { glyph: "∞", label: "Test cases" },
-  { Icon: BadgeDollarSign, label: "Forever free" },
+const cards = [
+  { Icon: Users,           label: "Unlimited users",      desc: "Every teammate on the same plan, no per-seat pricing, no surprises" },
+  { Icon: Bug,             label: "Unlimited bug reports", desc: "Log as many issues as you need — no caps, no overages, ever" },
+  { Icon: BadgeDollarSign, label: "Free forever",          desc: "Core Bugasura is free with no trial period or time limit" },
+  { Icon: Puzzle,          label: "25+ integrations",      desc: "Connect Jira, GitHub, Slack, Linear and more out of the box" },
 ];
 
 export default function PricingHero() {
@@ -84,49 +83,15 @@ export default function PricingHero() {
 
       </div>
 
-      {/* ── Bottom: stat bar ── */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
-        {stats.map(({ Icon, glyph, label }) => (
-          <div
-            key={label}
-            className="flex items-center gap-3"
-            style={{
-              background: "#FFF6E2",
-              borderRadius: "16px",
-              padding: "12px 16px",
-            }}
-          >
-            <div
-              style={{
-                width: "44px",
-                height: "44px",
-                borderRadius: "12px",
-                background: "rgba(41,165,255,0.12)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
-              {glyph ? (
-                <svg width="22" height="22" viewBox="0 0 256 256" fill="#29A5FF" aria-hidden>
-                  <path d="M248,128a56,56,0,0,1-95.6,39.6l-.33-.35L92.12,99.55a40,40,0,1,0,0,56.9l8.52-9.62a8,8,0,1,1,12,10.61l-8.69,9.81-.33.35a56,56,0,1,1,0-79.2l.33.35,59.95,67.7a40,40,0,1,0,0-56.9l-8.52,9.62a8,8,0,1,1-12-10.61l8.69-9.81.33-.35A56,56,0,0,1,248,128Z" />
-                </svg>
-              ) : Icon ? (
-                <Icon size={22} strokeWidth={1.6} color="#29A5FF" />
-              ) : null}
+      {/* ── Bottom: 4 cream cards ── */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
+        {cards.map(({ Icon, label, desc }) => (
+          <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "20px" }}>
+            <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(0,119,194,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
+              <Icon size={22} strokeWidth={1.6} color="#0077C2" />
             </div>
-            <p
-              style={{
-                fontFamily: "'Clash Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: "14px",
-                color: "#1A1A1A",
-                lineHeight: 1.3,
-              }}
-            >
-              {label}
-            </p>
+            <Heading level="card" as="h3" color="#1A1A1A" style={{ fontSize: "clamp(16px, 1.5vw, 20px)", marginBottom: "8px" }}>{label}</Heading>
+            <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "13px", lineHeight: 1.6 }}>{desc}</BodyText>
           </div>
         ))}
       </div>

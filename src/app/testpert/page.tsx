@@ -95,19 +95,20 @@ export default function TestpertPage() {
           </div>
         </div>
 
-        {/* Badge bar */}
+        {/* Stat cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
           {[
-            { Icon: Brain,    iconColor: "#29A5FF", label: "Expert-in-the-loop" },
-            { Icon: Target,   iconColor: "#F0A030", label: "Context-driven testing" },
-            { Icon: TrendingUp, iconColor: "#E52727", label: "Risk-based coverage" },
-            { Icon: Cpu,      iconColor: "#6B7280", label: "Private AI processing" },
-          ].map(({ Icon, iconColor, label }) => (
-            <div key={label} className="flex items-center gap-3" style={{ background: "#FFF6E2", borderRadius: "16px", padding: "12px 16px" }}>
-              <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: `${iconColor}14`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Icon size={22} strokeWidth={1.6} color={iconColor} />
+            { Icon: Brain,      label: "Expert-in-the-loop",     desc: "Senior QA judgment applied at AI speed and scale" },
+            { Icon: Target,     label: "Context-driven testing",  desc: "Tests built from your product knowledge, not scripts" },
+            { Icon: TrendingUp, label: "Risk-based coverage",     desc: "Coverage prioritised by business and user impact" },
+            { Icon: Cpu,        label: "Private AI processing",   desc: "Your data never trains any model. Ever." },
+          ].map(({ Icon, label, desc }) => (
+            <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "20px" }}>
+              <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(0,119,194,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
+                <Icon size={22} strokeWidth={1.6} color="#0077C2" />
               </div>
-              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "14px", color: "#1A1A1A", lineHeight: 1.3, margin: 0 }}>{label}</p>
+              <Heading level="card" as="h3" color="#1A1A1A" style={{ fontSize: "clamp(16px, 1.5vw, 20px)", marginBottom: "8px" }}>{label}</Heading>
+              <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "13px", lineHeight: 1.6 }}>{desc}</BodyText>
             </div>
           ))}
         </div>
@@ -138,49 +139,51 @@ export default function TestpertPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mt-10 lg:mt-14">
 
           {/* Left — Other AI tools */}
-          <div className="flex flex-col" style={{ border: "1.5px solid rgba(30,30,30,0.15)", borderRadius: "24px", padding: "32px" }}>
-            <div className="text-center lg:text-left" style={{ marginBottom: "8px" }}>
-              <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1 }}>
-                Other AI testing tools
+          <div className="flex flex-col" style={{ borderRadius: "24px", overflow: "hidden" }}>
+            <Image src="/illustrations/comparison-right.png" alt="" width={800} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
+            <div style={{ padding: "32px" }}>
+              <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1, marginBottom: "8px" }}>
+                The Stitched Together Stack
               </Heading>
+              <ul className="mt-6">
+                {[
+                  "No understanding of product context or business risk",
+                  "Generates tests from scripts, not from knowledge",
+                  "Replaces your testers — no expert review before execution",
+                  "Coverage gaps invisible until something breaks in production",
+                  "Every sprint starts from scratch — no intelligence compounds",
+                ].map((point) => (
+                  <li key={point} className="flex items-start gap-4 py-4" style={{ borderTop: "1px solid rgba(20,10,0,0.1)" }}>
+                    <span className="flex-shrink-0" style={{ fontSize: "16px", color: "rgba(20,10,0,0.35)", fontWeight: 600, lineHeight: 1.6, marginTop: "1px" }}>✕</span>
+                    <BodyText as="span" color="rgba(20,10,0,0.6)" className="text-[16px] lg:text-[18px]">{point}</BodyText>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="mt-6">
-              {[
-                "No understanding of product context or business risk",
-                "Generates tests from scripts, not from knowledge",
-                "Replaces your testers — no expert review before execution",
-                "Coverage gaps invisible until something breaks in production",
-                "Every sprint starts from scratch — no intelligence compounds",
-              ].map((point) => (
-                <li key={point} className="flex items-start gap-4 py-4" style={{ borderTop: "1px solid rgba(20,10,0,0.1)" }}>
-                  <span className="flex-shrink-0" style={{ fontSize: "16px", color: "rgba(20,10,0,0.35)", fontWeight: 600, lineHeight: 1.6, marginTop: "1px" }}>✕</span>
-                  <BodyText as="span" color="rgba(20,10,0,0.6)" className="text-[16px] lg:text-[18px]">{point}</BodyText>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Right — Testpert */}
-          <div className="flex flex-col" style={{ border: "1.5px solid #0077C2", borderRadius: "24px", padding: "32px" }}>
-            <div className="text-center lg:text-left" style={{ marginBottom: "8px" }}>
-              <Heading level="subsection" as="h3" color="#0077C2" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1 }}>
-                Testpert
+          <div className="flex flex-col" style={{ borderRadius: "24px", overflow: "hidden" }}>
+            <Image src="/illustrations/comparison-left.png" alt="" width={800} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
+            <div style={{ padding: "32px" }}>
+              <Heading level="subsection" as="h3" color="#0077C2" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1, marginBottom: "8px" }}>
+                The Bugasura Platform
               </Heading>
+              <ul className="mt-6">
+                {[
+                  "Ingests your full product context before writing a single test",
+                  "Asks expert questions to surface risk and clarify ambiguity",
+                  "Expert-in-the-loop — humans approve, AI executes at scale",
+                  "Risk-based prioritisation against business and user impact",
+                  "Platform intelligence compounds — smarter every sprint",
+                ].map((point) => (
+                  <li key={point} className="flex items-start gap-4 py-4" style={{ borderTop: "1px solid rgba(0,119,194,0.15)" }}>
+                    <span className="flex-shrink-0" style={{ fontSize: "16px", color: "#0077C2", fontWeight: 600, lineHeight: 1.6, marginTop: "1px" }}>✓</span>
+                    <BodyText as="span" color="#1A0A00" className="text-[16px] lg:text-[18px]" style={{ fontWeight: 600 }}>{point}</BodyText>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="mt-6">
-              {[
-                "Ingests your full product context before writing a single test",
-                "Asks expert questions to surface risk and clarify ambiguity",
-                "Expert-in-the-loop — humans approve, AI executes at scale",
-                "Risk-based prioritisation against business and user impact",
-                "Platform intelligence compounds — smarter every sprint",
-              ].map((point) => (
-                <li key={point} className="flex items-start gap-4 py-4" style={{ borderTop: "1px solid rgba(0,119,194,0.15)" }}>
-                  <span className="flex-shrink-0" style={{ fontSize: "16px", color: "#0077C2", fontWeight: 600, lineHeight: 1.6, marginTop: "1px" }}>✓</span>
-                  <BodyText as="span" color="#1A0A00" className="text-[16px] lg:text-[18px]" style={{ fontWeight: 600 }}>{point}</BodyText>
-                </li>
-              ))}
-            </ul>
           </div>
 
         </div>

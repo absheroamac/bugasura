@@ -34,8 +34,9 @@ const dropdownData: Record<DropdownKey, {
       { label: "Bug Tracker",      desc: "Capture, triage, and close issues",           href: "/platform/bug-tracker" },
       { label: "Knowledge Base",   desc: "Docs your whole QA process draws from",       href: "/platform/knowledge-base" },
       { label: "Integration & MCP",desc: "Jira, GitHub, Claude, and more",             href: "/platform/integrations" },
+      { label: "Testpert",         desc: "AI testing with expert-in-the-loop judgment", href: "/testpert" },
     ],
-    illustration: "/navbar/dropdown/illustration.png",
+    illustration: "/navbar/dropdown/itsfree.png",
     illustrationAspect: 2.12,
   },
   Solutions: {
@@ -78,7 +79,7 @@ const dropdownData: Record<DropdownKey, {
       { label: "Blog",        desc: "Testing strategy and product updates",      href: "https://bugasura.io/blog/",                                                                                                                     external: true },
       { label: "Changelog",   desc: "What shipped in every release",            href: "https://bugasura.io/release-notes/",                                                                                                            external: true },
       { label: "Community",   desc: "50,000+ Bugasura users",                   href: "https://join.slack.com/t/bugasuraspaces/shared_invite/zt-1zgsj1cxt-zjGy08DwWP2KhnvIJqdq_Q", external: true },
-      { label: "Security",    desc: "Compliance, data residency, trust",        href: "https://bugasura.io/security",                                                                                                                  external: true },
+      { label: "Security",    desc: "Compliance, data residency, trust",        href: "/security" },
     ],
     illustration: "/navbar/dropdown/illustration.png",
     illustrationAspect: 2.12,
@@ -88,7 +89,7 @@ const dropdownData: Record<DropdownKey, {
 const navLinks: { label: string; href: string; dropdown: boolean; badge: string | null }[] = [
   { label: "Platform",  href: "#", dropdown: true,  badge: null },
   { label: "Solutions", href: "#", dropdown: true,  badge: null },
-  { label: "Asuras",   href: "#", dropdown: true,  badge: "Agents" },
+  { label: "Asuras",   href: "/asuras", dropdown: false, badge: "Agents" },
   { label: "Pricing",  href: "/pricing", dropdown: false, badge: null },
   { label: "Resources",href: "#", dropdown: true,  badge: null },
 ];

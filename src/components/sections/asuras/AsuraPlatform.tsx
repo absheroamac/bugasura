@@ -21,6 +21,7 @@ const steps: { title: React.ReactNode; body: string }[] = [
 export default function AsuraPlatform() {
   return (
     <section
+      id="platform"
       className="rounded-[32px] px-4 py-10 lg:px-16 lg:py-20"
       style={{ backgroundColor: "#FFF6E2" }}
     >

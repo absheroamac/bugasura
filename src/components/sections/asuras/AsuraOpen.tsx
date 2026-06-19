@@ -75,6 +75,7 @@ export default function AsuraOpen() {
 
   return (
     <section
+      id="build"
       className="rounded-[32px] px-4 py-10 lg:px-20 lg:py-[72px]"
       style={{ backgroundColor: "#29A5FF" }}
     >

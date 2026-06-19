@@ -3,26 +3,10 @@ import { ShieldCheck, Globe, BadgeCheck, Server } from "lucide-react";
 import { Button, Heading, BodyText } from "@/components/ui";
 
 const badges = [
-  {
-    Icon: ShieldCheck,
-    iconColor: "#29A5FF",
-    label: "SOC 2 Type II certified",
-  },
-  {
-    Icon: Globe,
-    iconColor: "#6B7280",
-    label: "Data hosted in India & Singapore",
-  },
-  {
-    Icon: BadgeCheck,
-    iconColor: "#F0A030",
-    label: "SSO & SAML supported",
-  },
-  {
-    Icon: Server,
-    iconColor: "#6B7280",
-    label: "On-prem available",
-  },
+  { Icon: ShieldCheck, label: "SOC 2 Type II certified",           desc: "Independently audited — security, availability, and privacy controls verified" },
+  { Icon: Globe,       label: "Data hosted in India & Singapore",  desc: "Dedicated infrastructure with regional data residency guarantees" },
+  { Icon: BadgeCheck,  label: "SSO & SAML supported",             desc: "Enterprise identity management with your existing IdP" },
+  { Icon: Server,      label: "On-prem available",                 desc: "Deploy on your own infrastructure — full data sovereignty" },
 ];
 
 export default function EnterpriseHero() {
@@ -98,41 +82,13 @@ export default function EnterpriseHero() {
 
       {/* ── Bottom: 4 compliance cards ── */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
-        {badges.map(({ Icon, iconColor, label }) => (
-          <div
-            key={label}
-            className="flex items-center gap-4"
-            style={{
-              background: "#FFF6E2",
-              borderRadius: "16px",
-              padding: "12px 16px",
-            }}
-          >
-            <div
-              style={{
-                width: "44px",
-                height: "44px",
-                borderRadius: "12px",
-                background: `${iconColor}14`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
-              <Icon size={22} strokeWidth={1.6} color={iconColor} />
+        {badges.map(({ Icon, label, desc }) => (
+          <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "20px" }}>
+            <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(0,119,194,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
+              <Icon size={22} strokeWidth={1.6} color="#0077C2" />
             </div>
-            <p
-              style={{
-                fontFamily: "'Clash Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: "14px",
-                color: "#1A1A1A",
-                lineHeight: 1.3,
-              }}
-            >
-              {label}
-            </p>
+            <Heading level="card" as="h3" color="#1A1A1A" style={{ fontSize: "clamp(16px, 1.5vw, 20px)", marginBottom: "8px" }}>{label}</Heading>
+            <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "13px", lineHeight: 1.6 }}>{desc}</BodyText>
           </div>
         ))}
       </div>

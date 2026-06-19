@@ -27,10 +27,10 @@ export default function EngineeringTeamsPage() {
         secondaryHref="https://bugasura.io/mcp-server"
         illustration="/illustrations/engineering-teams.png"
         trustBadges={[
-          { Icon: Zap,  iconColor: "#CC7A00", label: "Free forever" },
-          { Icon: Bug,  iconColor: "#E52727", label: "Unlimited bug reports" },
-          { Icon: Cpu,  iconColor: "#29A5FF", label: "MCP server included" },
-          { Icon: Puzzle, iconColor: "#0077C2", label: "25+ integrations" },
+          { Icon: Zap,    iconColor: "#CC7A00", label: "Free forever",          desc: "Full platform, unlimited users and projects — no credit card required" },
+          { Icon: Bug,    iconColor: "#E52727", label: "Unlimited bug reports",  desc: "Capture, triage, and track every defect without hitting a ceiling" },
+          { Icon: Cpu,    iconColor: "#29A5FF", label: "MCP server included",    desc: "Quality context inside Claude and Cursor — right where engineers work" },
+          { Icon: Puzzle, iconColor: "#0077C2", label: "25+ integrations",       desc: "GitHub, Jira, Slack, Asana, ClickUp, Linear, and more" },
         ]}
       />
 

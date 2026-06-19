@@ -28,10 +28,10 @@ export default function QATeamsPage() {
         secondaryHref="https://calendly.com/get-bugasura/45min"
         illustration="/illustrations/qa-teams.png"
         trustBadges={[
-          { Icon: Users,    iconColor: "#29A5FF", label: "50,000+ QA engineers worldwide" },
-          { Icon: Infinity, iconColor: "#CC7A00", label: "Free forever" },
-          { Icon: Star,     iconColor: "#E52727", label: "#1 on Product Hunt" },
-          { Icon: Puzzle,   iconColor: "#0077C2", label: "25+ integrations" },
+          { Icon: Users,    iconColor: "#29A5FF", label: "50,000+ QA engineers worldwide", desc: "Trusted by QA teams at companies of all sizes across 80+ countries" },
+          { Icon: Infinity, iconColor: "#CC7A00", label: "Free forever",                   desc: "Full platform access, unlimited users and projects — no credit card" },
+          { Icon: Star,     iconColor: "#E52727", label: "#1 on Product Hunt",             desc: "Top-ranked QA tool by the developer community" },
+          { Icon: Puzzle,   iconColor: "#0077C2", label: "25+ integrations",               desc: "GitHub, Jira, Slack, Asana, ClickUp, Linear, and more" },
         ]}
       />
 

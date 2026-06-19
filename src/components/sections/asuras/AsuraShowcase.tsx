@@ -90,6 +90,7 @@ export default function AsuraShowcase() {
 
   return (
     <section
+      id="asuras"
       className="rounded-[32px]"
       style={{ backgroundColor: "#F0A030", padding: "72px 0 24px" }}
     >

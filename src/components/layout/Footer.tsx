@@ -14,6 +14,7 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
     heading: "Platform",
     links: [
       { label: "Platform Overview",  href: "/platform" },
+      { label: "Testpert",           href: "/testpert" },
       { label: "Test Management",    href: "https://bugasura.io/test-management",           external: true },
       { label: "Bug Tracker",        href: "https://bugasura.io/ai-issue-tracker",          external: true },
       { label: "Requirement Mgmt",   href: "https://bugasura.io/requirements-management",   external: true },
@@ -24,8 +25,8 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
   {
     heading: "Solutions",
     links: [
-      { label: "Engineering Teams",   href: "#", disabled: true },
-      { label: "QA Teams",            href: "#", disabled: true },
+      { label: "Engineering Teams",   href: "/solutions/engineering-teams" },
+      { label: "QA Teams",            href: "/solutions/qa-teams" },
       { label: "Engineering Leaders", href: "https://bugasura.io/user-journey", external: true },
       { label: "Enterprise",          href: "/enterprise" },
     ],
@@ -34,11 +35,12 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
     heading: "Asuras",
     links: [
       { label: "World of Asuras",    href: "/asuras" },
-      { label: "Browser Asura",      href: "https://bugasura.io/bug-reporters",    external: true },
-      { label: "API Asura",          href: "#", disabled: true },
-      { label: "Duplicate Bugasura", href: "https://bugasura.io/ai-issue-tracker", external: true },
-      { label: "Mobile Asura",       href: "https://bugasura.io/bug-reporters",    external: true },
-      { label: "Build an Asura",     href: "#", disabled: true, muted: true },
+      { label: "Browser Asura",      href: "/asuras#asuras" },
+      { label: "API Asura",          href: "/asuras#asuras" },
+      { label: "Duplicate Bug Asura", href: "/asuras#asuras" },
+      { label: "Mobile Asura",       href: "/asuras#asuras" },
+      { label: "Platform Intelligence", href: "/asuras#platform" },
+      { label: "Build an Asura",     href: "/asuras#build" },
     ],
   },
   {
@@ -48,7 +50,7 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
       { label: "Blog",        href: "https://bugasura.io/blog/",                                                                                                        external: true },
       { label: "Changelog",   href: "https://bugasura.io/release-notes/",                                                                                               external: true },
       { label: "Community",   href: "https://join.slack.com/t/bugasuraspaces/shared_invite/zt-1zgsj1cxt-zjGy08DwWP2KhnvIJqdq_Q", external: true },
-      { label: "Security",    href: "https://bugasura.io/security",                                                                                                     external: true },
+      { label: "Security",    href: "/security" },
     ],
   },
   {

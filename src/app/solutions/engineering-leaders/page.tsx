@@ -28,10 +28,10 @@ export default function LeadersPage() {
         illustration="/illustrations/engineering-leaders.png"
         illustrationPortrait={true}
         trustBadges={[
-          { Icon: ShieldCheck, iconColor: "#29A5FF", label: "SOC 2 Type II certified" },
-          { Icon: Layers,      iconColor: "#CC7A00", label: "Enterprise ready" },
-          { Icon: TrendingUp,  iconColor: "#E52727", label: "Compounds over time" },
-          { Icon: Users,       iconColor: "#0077C2", label: "50,000+ engineers worldwide" },
+          { Icon: ShieldCheck, iconColor: "#29A5FF", label: "SOC 2 Type II certified",       desc: "Independently audited — security, availability, and privacy controls verified" },
+          { Icon: Layers,      iconColor: "#CC7A00", label: "Enterprise ready",              desc: "SSO, SAML, data residency, on-prem deployment, and dedicated support" },
+          { Icon: TrendingUp,  iconColor: "#E52727", label: "Compounds over time",           desc: "Platform intelligence gets smarter every sprint — not a static tool" },
+          { Icon: Users,       iconColor: "#0077C2", label: "50,000+ engineers worldwide",   desc: "Trusted by engineering teams at high-growth and enterprise companies" },
         ]}
       />
 

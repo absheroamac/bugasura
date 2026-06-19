@@ -78,7 +78,7 @@ export default function SecurityPage() {
         className="rounded-[32px] overflow-hidden"
         style={{ background: "linear-gradient(160deg, #0077C2 0%, #29A5FF 60%, #4DB8FF 100%)" }}
       >
-        <div className="flex flex-col lg:flex-row lg:items-end gap-0 px-8 lg:px-20 pt-20 lg:pt-28">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-0 px-8 lg:px-20 pt-20 lg:pt-28">
           <div className="flex-1 flex flex-col items-start pb-12 lg:pb-20">
             <Heading
               level="hero"
@@ -117,19 +117,20 @@ export default function SecurityPage() {
           </div>
         </div>
 
-        {/* Stat bar */}
+        {/* Stat cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
           {[
-            { Icon: Shield,    label: "SOC 2 Type II Compliant" },
-            { Icon: Server,    label: "AWS Global Infrastructure" },
-            { Icon: Lock,      label: "End-to-End Encryption" },
-            { Icon: HardDrive, label: "Multi-Tier Backup Policy" },
-          ].map(({ Icon, label }) => (
-            <div key={label} className="flex items-center gap-3" style={{ background: "#FFF6E2", borderRadius: "16px", padding: "12px 16px" }}>
-              <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(41,165,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Icon size={22} strokeWidth={1.6} color="#29A5FF" />
+            { Icon: Shield,    label: "SOC 2 Type II Compliant",  desc: "Independently audited by an AICPA-licensed firm. Covers security, availability, processing integrity, confidentiality, and privacy." },
+            { Icon: Server,    label: "AWS Global Infrastructure", desc: "Built on AWS with multi-region redundancy, 24/7 monitoring, and world-class uptime SLAs." },
+            { Icon: Lock,      label: "End-to-End Encryption",     desc: "All data encrypted in transit with TLS and at rest with AES-256. No plaintext storage." },
+            { Icon: HardDrive, label: "Multi-Tier Backup Policy",  desc: "Daily, 6-hourly, and weekly backups across two providers and two geographic regions." },
+          ].map(({ Icon, label, desc }) => (
+            <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "20px" }}>
+              <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(0,119,194,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
+                <Icon size={22} strokeWidth={1.6} color="#0077C2" />
               </div>
-              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "14px", color: "#1A1A1A", lineHeight: 1.3, margin: 0 }}>{label}</p>
+              <Heading level="card" as="h3" color="#1A1A1A" style={{ fontSize: "clamp(16px, 1.5vw, 20px)", marginBottom: "8px" }}>{label}</Heading>
+              <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "13px", lineHeight: 1.6 }}>{desc}</BodyText>
             </div>
           ))}
         </div>
