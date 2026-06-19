@@ -135,11 +135,11 @@ export default function TestpertPage() {
         </BodyText>
 
         {/* Two-column comparison */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mt-10 lg:mt-14">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 mt-10 lg:mt-14">
 
           {/* Left — Other AI tools */}
-          <div className="flex flex-col">
-            <div className="text-center lg:text-left" style={{ padding: "8px 0 20px" }}>
+          <div className="flex flex-col" style={{ border: "1.5px solid rgba(30,30,30,0.15)", borderRadius: "24px", padding: "32px" }}>
+            <div className="text-center lg:text-left" style={{ marginBottom: "8px" }}>
               <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1 }}>
                 Other AI testing tools
               </Heading>
@@ -161,8 +161,8 @@ export default function TestpertPage() {
           </div>
 
           {/* Right — Testpert */}
-          <div className="flex flex-col">
-            <div className="text-center lg:text-left" style={{ padding: "8px 0 20px" }}>
+          <div className="flex flex-col" style={{ border: "1.5px solid #0077C2", borderRadius: "24px", padding: "32px" }}>
+            <div className="text-center lg:text-left" style={{ marginBottom: "8px" }}>
               <Heading level="subsection" as="h3" color="#0077C2" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1 }}>
                 Testpert
               </Heading>
@@ -175,7 +175,7 @@ export default function TestpertPage() {
                 "Risk-based prioritisation against business and user impact",
                 "Platform intelligence compounds — smarter every sprint",
               ].map((point) => (
-                <li key={point} className="flex items-start gap-4 py-4" style={{ borderTop: "1px solid rgba(20,10,0,0.1)" }}>
+                <li key={point} className="flex items-start gap-4 py-4" style={{ borderTop: "1px solid rgba(0,119,194,0.15)" }}>
                   <span className="flex-shrink-0" style={{ fontSize: "16px", color: "#0077C2", fontWeight: 600, lineHeight: 1.6, marginTop: "1px" }}>✓</span>
                   <BodyText as="span" color="#1A0A00" className="text-[16px] lg:text-[18px]" style={{ fontWeight: 600 }}>{point}</BodyText>
                 </li>
