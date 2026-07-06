@@ -66,6 +66,66 @@ const prizes = [
   },
 ];
 
+function AccordionStep({ step, isLast }: { step: typeof steps[0]; isLast: boolean }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      style={{
+        borderTop: "1px solid rgba(255,255,255,0.2)",
+        borderBottom: isLast ? "1px solid rgba(255,255,255,0.2)" : undefined,
+      }}
+    >
+      <button
+        className="w-full flex items-center gap-6 lg:gap-10 py-6 text-left"
+        onClick={() => setOpen(o => !o)}
+      >
+        <Heading
+          level="subsection"
+          as="p"
+          color={open ? "#ffffff" : "rgba(255,255,255,0.35)"}
+          style={{ fontSize: "clamp(24px, 3vw, 42px)", lineHeight: 1, flexShrink: 0, width: "56px", letterSpacing: "-0.02em", transition: "color 0.2s" }}
+        >
+          {step.num}
+        </Heading>
+        <Heading level="step" as="h3" color="#ffffff" style={{ fontSize: "clamp(17px, 2vw, 22px)", flex: 1, textAlign: "left" }}>
+          {step.title}
+        </Heading>
+        <div
+          style={{
+            width: "28px", height: "28px", borderRadius: "50%",
+            background: "rgba(255,255,255,0.15)", flexShrink: 0,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: "transform 0.2s",
+            transform: open ? "rotate(45deg)" : "none",
+          }}
+        >
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M6 1v10M1 6h10" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+          </svg>
+        </div>
+      </button>
+      {open && (
+        <div className="pb-6 pl-[88px] lg:pl-[104px]" style={{ marginTop: "-8px" }}>
+          <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "52ch" }}>
+            {step.body}
+          </BodyText>
+          {step.tag && (
+            <div
+              className="inline-flex items-center gap-1.5 mt-3"
+              style={{ background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "100px", padding: "4px 12px" }}
+            >
+              <Check size={12} color="rgba(255,255,255,0.9)" strokeWidth={2.5} />
+              <span style={{ fontSize: "11px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.9)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                {step.tag}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const asuraOptions = [
   "Vega — the Regression Hunter",
   "Kali — the Chaos Tester",
@@ -243,7 +303,7 @@ export default function AsuraEventPage() {
         className="rounded-[32px] px-6 lg:px-20 py-16 lg:py-24"
         style={{ background: "linear-gradient(160deg, #0077C2 0%, #29A5FF 60%, #4DB8FF 100%)" }}
       >
-        <div className="max-w-[1080px] mx-auto">
+        <div className="max-w-[1200px] mx-auto">
           <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
             The booth contest
           </BodyText>
@@ -259,47 +319,48 @@ export default function AsuraEventPage() {
             Everything below happens right here, at this booth, in about two minutes.
           </BodyText>
 
-          <div className="flex flex-col">
-            {steps.map((step, i) => (
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+            {/* Steps accordion */}
+            <div className="flex-1 flex flex-col">
+              {steps.map((step, i) => (
+                <AccordionStep
+                  key={step.num}
+                  step={step}
+                  isLast={i === steps.length - 1}
+                />
+              ))}
+            </div>
+
+            {/* Right image panel */}
+            <div
+              className="hidden lg:block flex-shrink-0 sticky top-24"
+              style={{ width: "380px" }}
+            >
               <div
-                key={step.num}
-                className="flex gap-6 lg:gap-10 py-7"
-                style={{ borderTop: "1px solid rgba(255,255,255,0.2)", borderBottom: i === steps.length - 1 ? "1px solid rgba(255,255,255,0.2)" : undefined }}
+                style={{
+                  borderRadius: "24px",
+                  overflow: "hidden",
+                  background: "rgba(255,255,255,0.12)",
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  aspectRatio: "3/4",
+                }}
               >
-                <Heading
-                  level="subsection"
-                  as="p"
-                  color="rgba(255,255,255,0.35)"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)", lineHeight: 1, flexShrink: 0, width: "60px", letterSpacing: "-0.02em" }}
-                >
-                  {step.num}
-                </Heading>
-                <div>
-                  <Heading level="step" as="h3" color="#ffffff" style={{ fontSize: "clamp(18px, 2vw, 24px)", marginBottom: "8px" }}>
-                    {step.title}
-                  </Heading>
-                  <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "56ch" }}>
-                    {step.body}
-                  </BodyText>
-                  {step.tag && (
-                    <div
-                      className="inline-flex items-center gap-1.5 mt-3"
-                      style={{
-                        background: "rgba(255,255,255,0.15)",
-                        border: "1px solid rgba(255,255,255,0.3)",
-                        borderRadius: "100px",
-                        padding: "4px 12px",
-                      }}
-                    >
-                      <Check size={12} color="rgba(255,255,255,0.9)" strokeWidth={2.5} />
-                      <span style={{ fontSize: "11px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, color: "rgba(255,255,255,0.9)", letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                        {step.tag}
-                      </span>
-                    </div>
-                  )}
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=760&q=80"
+                  alt="Bugasura booth event"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
               </div>
-            ))}
+              <div
+                className="mt-3 px-5 py-4"
+                style={{ background: "rgba(255,255,255,0.1)", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.15)" }}
+              >
+                <BodyText color="#ffffff" style={{ fontSize: "13px", lineHeight: 1.6, opacity: 0.9 }}>
+                  📸 Strike a pose at the mask cutout, post with <strong>#WorldOfAsuras</strong> and tag <strong>@Bugasura</strong> to enter the contest.
+                </BodyText>
+              </div>
+            </div>
           </div>
         </div>
       </section>
