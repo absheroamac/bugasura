@@ -300,24 +300,24 @@ export default function AsuraEventPage() {
         style={{ background: "linear-gradient(160deg, #0077C2 0%, #29A5FF 60%, #4DB8FF 100%)" }}
       >
         <div className="max-w-[1200px] mx-auto">
-          <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
-            The booth contest
-          </BodyText>
-          <Heading
-            level="section"
-            as="h2"
-            color="#ffffff"
-            style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "14px" }}
-          >
-            Five steps to enter the world
-          </Heading>
-          <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "17px", lineHeight: 1.75, maxWidth: "52ch", marginBottom: "48px" }}>
-            Everything below happens right here, at this booth, in about two minutes.
-          </BodyText>
-
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-            {/* Steps accordion */}
+
+            {/* Left: heading + steps */}
             <div className="flex-1 flex flex-col">
+              <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
+                The booth contest
+              </BodyText>
+              <Heading
+                level="section"
+                as="h2"
+                color="#ffffff"
+                style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "14px" }}
+              >
+                Five steps to enter the world
+              </Heading>
+              <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "17px", lineHeight: 1.75, marginBottom: "40px" }}>
+                Everything below happens right here, at this booth, in about two minutes.
+              </BodyText>
               {steps.map((step, i) => (
                 <AccordionStep
                   key={step.num}
@@ -327,9 +327,9 @@ export default function AsuraEventPage() {
               ))}
             </div>
 
-            {/* Right image panel */}
+            {/* Right: image panel — starts from top, full height */}
             <div
-              className="hidden lg:block flex-shrink-0 sticky top-24"
+              className="hidden lg:flex flex-col flex-shrink-0 sticky top-24"
               style={{ width: "380px" }}
             >
               <div
@@ -357,6 +357,7 @@ export default function AsuraEventPage() {
                 </BodyText>
               </div>
             </div>
+
           </div>
         </div>
       </section>
