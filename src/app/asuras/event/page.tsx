@@ -236,28 +236,14 @@ export default function AsuraEventPage() {
           </div>
         </div>
 
-        {/* Train illustration */}
-        <div className="w-full overflow-hidden px-0" style={{ marginBottom: "-4px" }}>
+        {/* Train illustration — transparent PNG, no blue background */}
+        <div className="w-full px-4 lg:px-8" style={{ marginBottom: "-2px" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/asuras/hero-illustration.png"
+            src="/section5/train.png"
             alt="World of Asuras — all agents on the Bugasura train"
             style={{ width: "100%", height: "auto", display: "block" }}
           />
-        </div>
-
-        {/* Stat strip */}
-        <div className="grid grid-cols-3 gap-3 px-6 lg:px-20 pb-8 lg:pb-10">
-          {[
-            { stat: "#WorldOfAsuras", label: "Official hashtag" },
-            { stat: "Free", label: "Marketplace early access" },
-            { stat: "Today only", label: "Booth contest window" },
-          ].map(({ stat, label }) => (
-            <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "16px" }}>
-              <Heading level="card" as="p" color="#1A1A1A" style={{ fontSize: "clamp(12px, 1.8vw, 22px)", marginBottom: "6px", wordBreak: "break-word" }}>{stat}</Heading>
-              <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "12px", lineHeight: 1.5 }}>{label}</BodyText>
-            </div>
-          ))}
         </div>
       </section>
 
