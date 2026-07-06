@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "bugasura-v2",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "/Users/abi/Developer/Frontier/Bugasura v2/bugasura-v2/node_modules/.bin/next",
+      "runtimeArgs": ["dev", "-p", "3002"],
       "port": 3002,
       "autoPort": true
     }
