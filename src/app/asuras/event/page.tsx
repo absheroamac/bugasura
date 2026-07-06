@@ -230,10 +230,20 @@ export default function AsuraEventPage() {
             Bugasura&apos;s AI agent marketplace is coming. Register for early access, choose the Asura you want summoned first, and join the contest happening right here at the booth.
           </BodyText>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
             <Button href="#register" variant="white">Register for early access</Button>
             <Button href="#contest" variant="outline-light">See the contest</Button>
           </div>
+        </div>
+
+        {/* Train illustration */}
+        <div className="w-full overflow-hidden px-0" style={{ marginBottom: "-4px" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/asuras/hero-illustration.png"
+            alt="World of Asuras — all agents on the Bugasura train"
+            style={{ width: "100%", height: "auto", display: "block" }}
+          />
         </div>
 
         {/* Stat strip */}
@@ -243,8 +253,8 @@ export default function AsuraEventPage() {
             { stat: "Free", label: "Marketplace early access" },
             { stat: "Today only", label: "Booth contest window" },
           ].map(({ stat, label }) => (
-            <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "20px" }}>
-              <Heading level="card" as="p" color="#1A1A1A" style={{ fontSize: "clamp(14px, 1.8vw, 22px)", marginBottom: "6px" }}>{stat}</Heading>
+            <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "16px" }}>
+              <Heading level="card" as="p" color="#1A1A1A" style={{ fontSize: "clamp(12px, 1.8vw, 22px)", marginBottom: "6px", wordBreak: "break-word" }}>{stat}</Heading>
               <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "12px", lineHeight: 1.5 }}>{label}</BodyText>
             </div>
           ))}
