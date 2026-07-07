@@ -8,7 +8,7 @@ import { Heading, BodyText, Button } from "@/components/ui";
 import LogoScroller from "@/components/sections/LogoScroller";
 
 /* ─── Replace with your deployed Google Apps Script Web App URL ─── */
-const GOOGLE_SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYaaKN3iv9BSaH7Pnx-Eb2JqhK4FrKfy1KmB06TtWWyRZlNenE9V-srLM-Yyt1a2Lb9Q/exec";
 
 const steps = [
   {
@@ -32,7 +32,7 @@ const steps = [
   {
     num: "04",
     title: "Strike a pose, post it",
-    body: "Get your photo at the booth mask cutout. Post it on Instagram, LinkedIn or X with #WorldOfAsuras and tag @Bugasura.",
+    body: "Get your photo at the Asura cutout. Post it on Instagram, LinkedIn or X with #WorldOfAsuras and tag @Bugasura.",
     tag: null,
   },
   {
@@ -216,7 +216,8 @@ function BetaModal({ onClose }: { onClose: () => void }) {
       existing.push(payload);
       localStorage.setItem("bugasuraBetaSignups", JSON.stringify(existing));
     } catch {}
-    fetch(GOOGLE_SCRIPT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }).catch(() => {});
+    const params = new URLSearchParams(payload as Record<string, string>);
+    fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: "GET", mode: "no-cors" }).catch(() => {});
     setSubmitting(false);
     setDone(true);
   };
@@ -412,7 +413,7 @@ export default function AsuraEventPage() {
     setError(false);
     setSubmitting(true);
 
-    const data = { ...form, timestamp: new Date().toISOString() };
+    const data = { ...form, timestamp: new Date().toISOString(), type: "contest_registration" };
 
     try {
       const existing = JSON.parse(localStorage.getItem("worldOfAsurasEntries") || "[]");
@@ -421,12 +422,8 @@ export default function AsuraEventPage() {
     } catch {}
 
     if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("PASTE_YOUR")) {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      }).catch(() => {});
+      const params = new URLSearchParams(data as Record<string, string>);
+      await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: "GET", mode: "no-cors" }).catch(() => {});
     }
 
     setSubmitting(false);
@@ -475,26 +472,29 @@ export default function AsuraEventPage() {
           </div>
 
           {/* ── Event brief cards ── */}
-          <div className="w-full grid grid-cols-3 gap-4" style={{ paddingTop: "100px", overflow: "visible", position: "relative", zIndex: 10 }}>
+          <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4" style={{ paddingTop: "100px", overflow: "visible", position: "relative", zIndex: 10 }}>
 
             {/* Wide card — contest */}
-            <div className="col-span-2 text-left" style={{ background: "#FFF6E2", borderRadius: "24px", overflow: "visible", position: "relative", padding: "32px 32px 32px 310px" }}>
+            <div className="lg:col-span-2 text-left" style={{ background: "#FFF6E2", borderRadius: "24px", overflow: "visible", position: "relative", padding: "32px 32px 32px 32px" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/hero-card-asura.png"
                 alt="Asura"
+                className="hidden lg:block"
                 style={{ position: "absolute", top: "-140px", left: "0", width: "300px", height: "calc(100% + 140px)", objectFit: "contain", objectPosition: "bottom center" }}
               />
+              <div className="lg:pl-[278px]">
               <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" }}>Photo Contest</BodyText>
               <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "12px" }}>Win up to ₹15,000</Heading>
               <BodyText color="rgba(30,30,30,0.7)" style={{ lineHeight: 1.65, marginBottom: "24px" }}>
                 Click a pic with the Asura cutout · Post on LinkedIn, Instagram or X with <strong style={{ color: "var(--dark)" }}>#WorldOfAsuras</strong> · Tag <strong style={{ color: "var(--dark)" }}>@Bugasura</strong>
               </BodyText>
               <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="primary">Participate</Button>
+              </div>
             </div>
 
             {/* Narrow card — booth */}
-            <div className="col-span-1 flex flex-col justify-between text-left" style={{ background: "#F0A030", borderRadius: "24px", padding: "32px" }}>
+            <div className="lg:col-span-1 flex flex-col justify-between text-left" style={{ background: "#F0A030", borderRadius: "24px", padding: "32px" }}>
               <div>
                 <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "20px" }}>We&apos;re at Booth B2</Heading>
                 <div>
@@ -731,7 +731,7 @@ export default function AsuraEventPage() {
                     Your Asura · {selectedAsura}
                   </BodyText>
                   <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "38ch", marginBottom: "28px" }}>
-                    Get your photo at the booth mask cutout, then post it using the hashtag below and tag <strong>@Bugasura</strong> to enter the contest.
+                    Get your photo at the Asura cutout, then post it using the hashtag below and tag <strong>@Bugasura</strong> to enter the contest.
                   </BodyText>
                   <div className="flex items-center justify-between gap-4 w-full mb-6" style={{ background: "rgba(30,30,30,0.06)", border: "1px dashed rgba(30,30,30,0.2)", borderRadius: "16px", padding: "16px 20px" }}>
                     <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(18px, 2.5vw, 26px)" }}>#WorldOfAsuras</Heading>
