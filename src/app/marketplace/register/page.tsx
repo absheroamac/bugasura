@@ -551,7 +551,7 @@ export default function AsuraEventPage() {
   const [form, setForm] = useState({ name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "", asura: "" });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(false);
+  const [, setError] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [selectedAsura, setSelectedAsura] = useState("");
 
