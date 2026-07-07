@@ -173,14 +173,137 @@ const betaSteps = [
   },
 ];
 
+const COUNTRY_CODES = [
+  { code: "+91",  flag: "🇮🇳", label: "India" },
+  { code: "+1",   flag: "🇺🇸", label: "United States" },
+  { code: "+44",  flag: "🇬🇧", label: "United Kingdom" },
+  { code: "+61",  flag: "🇦🇺", label: "Australia" },
+  { code: "+65",  flag: "🇸🇬", label: "Singapore" },
+  { code: "+971", flag: "🇦🇪", label: "UAE" },
+  { code: "+49",  flag: "🇩🇪", label: "Germany" },
+  { code: "+33",  flag: "🇫🇷", label: "France" },
+  { code: "+81",  flag: "🇯🇵", label: "Japan" },
+  { code: "+82",  flag: "🇰🇷", label: "South Korea" },
+  { code: "+86",  flag: "🇨🇳", label: "China" },
+  { code: "+7",   flag: "🇷🇺", label: "Russia" },
+  { code: "+55",  flag: "🇧🇷", label: "Brazil" },
+  { code: "+52",  flag: "🇲🇽", label: "Mexico" },
+  { code: "+1",   flag: "🇨🇦", label: "Canada" },
+  { code: "+31",  flag: "🇳🇱", label: "Netherlands" },
+  { code: "+46",  flag: "🇸🇪", label: "Sweden" },
+  { code: "+47",  flag: "🇳🇴", label: "Norway" },
+  { code: "+45",  flag: "🇩🇰", label: "Denmark" },
+  { code: "+358", flag: "🇫🇮", label: "Finland" },
+  { code: "+41",  flag: "🇨🇭", label: "Switzerland" },
+  { code: "+43",  flag: "🇦🇹", label: "Austria" },
+  { code: "+32",  flag: "🇧🇪", label: "Belgium" },
+  { code: "+351", flag: "🇵🇹", label: "Portugal" },
+  { code: "+34",  flag: "🇪🇸", label: "Spain" },
+  { code: "+39",  flag: "🇮🇹", label: "Italy" },
+  { code: "+48",  flag: "🇵🇱", label: "Poland" },
+  { code: "+420", flag: "🇨🇿", label: "Czech Republic" },
+  { code: "+36",  flag: "🇭🇺", label: "Hungary" },
+  { code: "+40",  flag: "🇷🇴", label: "Romania" },
+  { code: "+380", flag: "🇺🇦", label: "Ukraine" },
+  { code: "+30",  flag: "🇬🇷", label: "Greece" },
+  { code: "+90",  flag: "🇹🇷", label: "Turkey" },
+  { code: "+972", flag: "🇮🇱", label: "Israel" },
+  { code: "+966", flag: "🇸🇦", label: "Saudi Arabia" },
+  { code: "+974", flag: "🇶🇦", label: "Qatar" },
+  { code: "+965", flag: "🇰🇼", label: "Kuwait" },
+  { code: "+973", flag: "🇧🇭", label: "Bahrain" },
+  { code: "+968", flag: "🇴🇲", label: "Oman" },
+  { code: "+20",  flag: "🇪🇬", label: "Egypt" },
+  { code: "+27",  flag: "🇿🇦", label: "South Africa" },
+  { code: "+234", flag: "🇳🇬", label: "Nigeria" },
+  { code: "+254", flag: "🇰🇪", label: "Kenya" },
+  { code: "+233", flag: "🇬🇭", label: "Ghana" },
+  { code: "+92",  flag: "🇵🇰", label: "Pakistan" },
+  { code: "+880", flag: "🇧🇩", label: "Bangladesh" },
+  { code: "+94",  flag: "🇱🇰", label: "Sri Lanka" },
+  { code: "+977", flag: "🇳🇵", label: "Nepal" },
+  { code: "+960", flag: "🇲🇻", label: "Maldives" },
+  { code: "+62",  flag: "🇮🇩", label: "Indonesia" },
+  { code: "+60",  flag: "🇲🇾", label: "Malaysia" },
+  { code: "+66",  flag: "🇹🇭", label: "Thailand" },
+  { code: "+84",  flag: "🇻🇳", label: "Vietnam" },
+  { code: "+63",  flag: "🇵🇭", label: "Philippines" },
+  { code: "+64",  flag: "🇳🇿", label: "New Zealand" },
+  { code: "+54",  flag: "🇦🇷", label: "Argentina" },
+  { code: "+56",  flag: "🇨🇱", label: "Chile" },
+  { code: "+57",  flag: "🇨🇴", label: "Colombia" },
+  { code: "+51",  flag: "🇵🇪", label: "Peru" },
+];
+
+const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+const isValidMobile = (v: string) => /^\d{7,15}$/.test(v.replace(/[\s\-()]/g, ""));
+
+function PhoneInput({ value, countryCode, onValueChange, onCountryChange, style }: {
+  value: string; countryCode: string;
+  onValueChange: (v: string) => void; onCountryChange: (v: string) => void;
+  style?: React.CSSProperties;
+}) {
+  const [isCustom, setIsCustom] = useState(false);
+  const [customCode, setCustomCode] = useState("");
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value === "custom") {
+      setIsCustom(true);
+      setCustomCode("");
+      onCountryChange("");
+    } else {
+      setIsCustom(false);
+      onCountryChange(e.target.value);
+    }
+  };
+
+  const handleCustomChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCustomCode(e.target.value);
+    onCountryChange(e.target.value);
+  };
+
+  return (
+    <div style={{ display: "flex", gap: "8px" }}>
+      {isCustom ? (
+        <input
+          type="text"
+          placeholder="+00"
+          value={customCode}
+          onChange={handleCustomChange}
+          style={{ ...style, width: "80px", flexShrink: 0 }}
+        />
+      ) : (
+        <select
+          value={countryCode}
+          onChange={handleSelectChange}
+          style={{ ...style, width: "100px", flexShrink: 0, paddingLeft: "8px", paddingRight: "4px" }}
+        >
+          {COUNTRY_CODES.map((c, i) => (
+            <option key={i} value={c.code}>{c.flag} {c.code}</option>
+          ))}
+          <option value="custom">Other</option>
+        </select>
+      )}
+      <input
+        type="tel"
+        placeholder="98765 43210"
+        value={value}
+        onChange={e => onValueChange(e.target.value)}
+        style={{ ...style, flex: 1 }}
+      />
+    </div>
+  );
+}
+
 function BetaModal({ onClose }: { onClose: () => void }) {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [data, setData] = useState<Record<string, string | string[]>>({
-    name: "", email: "", company: "", role: "",
+    name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "",
     expectation: "", audience: "", usecases: [],
   });
+  const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -196,21 +319,42 @@ function BetaModal({ onClose }: { onClose: () => void }) {
     setData(prev => ({ ...prev, [field]: arr.includes(val) ? arr.filter(v => v !== val) : [...arr, val] }));
   };
 
+  const validateContact = () => {
+    const errs: Record<string, string> = {};
+    if (!data.name) errs.name = "Name is required";
+    if (!data.email) errs.email = "Email is required";
+    else if (!isValidEmail(data.email as string)) errs.email = "Enter a valid email address";
+    if (!data.role) errs.role = "Please select your role";
+    if (data.mobile && !isValidMobile(data.mobile as string)) errs.mobile = "Enter a valid mobile number";
+    return errs;
+  };
+
   const canNext = () => {
-    if (current.id === "contact") return !!(data.name && data.email && data.role);
+    if (current.id === "contact") {
+      if (!data.name || !data.email || !data.role) return false;
+      if (!isValidEmail(data.email as string)) return false;
+      if (data.mobile && !isValidMobile(data.mobile as string)) return false;
+      return true;
+    }
     if (current.multi) return (data[current.id] as string[]).length > 0;
     if (current.options) return !!data[current.id];
     return !!(data[current.id] as string)?.trim();
   };
 
   const handleNext = () => {
+    if (current.id === "contact") {
+      const errs = validateContact();
+      setContactErrors(errs);
+      if (Object.keys(errs).length > 0) return;
+    }
     if (step < total - 1) { setStep(s => s + 1); }
     else { handleSubmit(); }
   };
 
   const handleSubmit = async () => {
     setSubmitting(true);
-    const payload = { ...data, usecases: (data.usecases as string[]).join(", "), timestamp: new Date().toISOString(), type: "beta_signup" };
+    const fullMobile = data.mobile ? `${data.mobileCountry} ${data.mobile}` : "";
+    const payload = { ...data, mobile: fullMobile, usecases: (data.usecases as string[]).join(", "), timestamp: new Date().toISOString(), type: "beta_signup" };
     try {
       const existing = JSON.parse(localStorage.getItem("bugasuraBetaSignups") || "[]");
       existing.push(payload);
@@ -288,13 +432,24 @@ function BetaModal({ onClose }: { onClose: () => void }) {
               {/* ── Contact fields ── */}
               {current.id === "contact" && (
                 <div>
-                  <input placeholder="Your name" value={data.name as string} onChange={e => setData(p => ({ ...p, name: e.target.value }))} style={inputStyle} />
-                  <input placeholder="Work email" type="email" value={data.email as string} onChange={e => setData(p => ({ ...p, email: e.target.value }))} style={inputStyle} />
+                  <input placeholder="Your name" value={data.name as string} onChange={e => { setData(p => ({ ...p, name: e.target.value })); setContactErrors(p => ({ ...p, name: "" })); }} style={{ ...inputStyle, borderColor: contactErrors.name ? "var(--red)" : undefined }} />
+                  {contactErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "10px" }}>{contactErrors.name}</p>}
+                  <input placeholder="Work email" type="email" value={data.email as string} onChange={e => { setData(p => ({ ...p, email: e.target.value })); setContactErrors(p => ({ ...p, email: "" })); }} style={{ ...inputStyle, borderColor: contactErrors.email ? "var(--red)" : undefined }} />
+                  {contactErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "10px" }}>{contactErrors.email}</p>}
+                  <PhoneInput
+                    value={data.mobile as string}
+                    countryCode={data.mobileCountry as string}
+                    onValueChange={v => { setData(p => ({ ...p, mobile: v })); setContactErrors(p => ({ ...p, mobile: "" })); }}
+                    onCountryChange={v => setData(p => ({ ...p, mobileCountry: v }))}
+                    style={{ ...inputStyle, borderColor: contactErrors.mobile ? "var(--red)" : undefined }}
+                  />
+                  {contactErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "10px" }}>{contactErrors.mobile}</p>}
                   <input placeholder="Company" value={data.company as string} onChange={e => setData(p => ({ ...p, company: e.target.value }))} style={{ ...inputStyle }} />
-                  <select value={data.role as string} onChange={e => setData(p => ({ ...p, role: e.target.value }))} style={{ ...inputStyle, marginBottom: 0 }}>
+                  <select value={data.role as string} onChange={e => { setData(p => ({ ...p, role: e.target.value })); setContactErrors(p => ({ ...p, role: "" })); }} style={{ ...inputStyle, marginBottom: 0, borderColor: contactErrors.role ? "var(--red)" : undefined }}>
                     <option value="" disabled>Your role</option>
                     {["SDET", "QA Engineer / Tester", "Developer", "Product Manager", "Engineering / QA Lead", "Founder / CXO", "Other"].map(r => <option key={r}>{r}</option>)}
                   </select>
+                  {contactErrors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "4px" }}>{contactErrors.role}</p>}
                 </div>
               )}
 
@@ -393,10 +548,11 @@ function BetaModal({ onClose }: { onClose: () => void }) {
 
 export default function AsuraEventPage() {
   const [betaOpen, setBetaOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", mobile: "", company: "", role: "", asura: "" });
+  const [form, setForm] = useState({ name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "", asura: "" });
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [selectedAsura, setSelectedAsura] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -406,14 +562,21 @@ export default function AsuraEventPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.mobile || !form.company || !form.role || !form.asura) {
-      setError(true);
-      return;
-    }
+    const errs: Record<string, string> = {};
+    if (!form.name) errs.name = "Name is required";
+    if (!form.email) errs.email = "Email is required";
+    else if (!isValidEmail(form.email)) errs.email = "Enter a valid email address";
+    if (!form.mobile) errs.mobile = "Mobile number is required";
+    else if (!isValidMobile(form.mobile)) errs.mobile = "Enter a valid mobile number";
+    if (!form.company) errs.company = "Company is required";
+    if (!form.role) errs.role = "Please select your role";
+    if (!form.asura) errs.asura = "Please choose your Asura";
+    setFieldErrors(errs);
+    if (Object.keys(errs).length > 0) { setError(true); return; }
     setError(false);
     setSubmitting(true);
 
-    const data = { ...form, timestamp: new Date().toISOString(), type: "contest_registration" };
+    const data = { ...form, mobile: `${form.mobileCountry} ${form.mobile}`, timestamp: new Date().toISOString(), type: "contest_registration" };
 
     try {
       const existing = JSON.parse(localStorage.getItem("worldOfAsurasEntries") || "[]");
@@ -625,13 +788,16 @@ export default function AsuraEventPage() {
             <img
               src="/event-title.svg"
               alt="World of Asuras Contest"
-              style={{ width: "min(1400px, 100%)", height: "auto", display: "block" }}
+              className="w-full md:w-auto"
+              style={{ width: "min(1400px, 200%)", maxWidth: "200%", height: "auto", display: "block" }}
             />
           </div>
 
-          <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "60ch", margin: "-100px auto 48px", textAlign: "center" }}>
+          <div className="mt-6 md:-mt-[100px]">
+          <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "60ch", margin: "0 auto 48px", textAlign: "center" }}>
             Click a photo with the Asura cutout at our booth, post it on LinkedIn, Instagram, or X with <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong> and tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> — the best posts and a lucky draw from all valid entries win big.
           </BodyText>
+          </div>
 
           {/* ── PRIZES ── */}
           <div id="prizes" className="mb-16 lg:mb-24">
@@ -669,7 +835,7 @@ export default function AsuraEventPage() {
                       <Heading level="section" as="h3" color="var(--dark)" style={{ fontSize: "32px", marginBottom: "14px" }}>
                         {name}
                       </Heading>
-                      <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "16px", lineHeight: 1.4 }}>
+                      <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "15px", lineHeight: 1.4 }}>
                         {desc}
                       </BodyText>
                     </div>
@@ -752,39 +918,50 @@ export default function AsuraEventPage() {
                   <form onSubmit={handleSubmit} noValidate>
                     <div className="mb-4">
                       <label style={labelStyle}>Full name</label>
-                      <input name="name" type="text" placeholder="Ada Lovelace" value={form.name} onChange={handleChange} style={inputStyle} />
+                      <input name="name" type="text" placeholder="Ada Lovelace" value={form.name} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, name: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.name ? "var(--red)" : undefined }} />
+                      {fieldErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.name}</p>}
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                       <div>
                         <label style={labelStyle}>Email</label>
-                        <input name="email" type="email" placeholder="ada@company.com" value={form.email} onChange={handleChange} style={inputStyle} />
+                        <input name="email" type="email" placeholder="ada@company.com" value={form.email} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, email: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.email ? "var(--red)" : undefined }} />
+                        {fieldErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.email}</p>}
                       </div>
                       <div>
                         <label style={labelStyle}>Mobile number</label>
-                        <input name="mobile" type="tel" placeholder="+91 98765 43210" value={form.mobile} onChange={handleChange} style={inputStyle} />
+                        <PhoneInput
+                          value={form.mobile}
+                          countryCode={form.mobileCountry}
+                          onValueChange={v => { setForm(p => ({ ...p, mobile: v })); setFieldErrors(p => ({ ...p, mobile: "" })); }}
+                          onCountryChange={v => setForm(p => ({ ...p, mobileCountry: v }))}
+                          style={{ ...inputStyle, borderColor: fieldErrors.mobile ? "var(--red)" : undefined }}
+                        />
+                        {fieldErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.mobile}</p>}
                       </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                       <div>
                         <label style={labelStyle}>Company</label>
-                        <input name="company" type="text" placeholder="Where you work" value={form.company} onChange={handleChange} style={inputStyle} />
+                        <input name="company" type="text" placeholder="Where you work" value={form.company} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, company: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.company ? "var(--red)" : undefined }} />
+                        {fieldErrors.company && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.company}</p>}
                       </div>
                       <div>
                         <label style={labelStyle}>Your role</label>
-                        <select name="role" value={form.role} onChange={handleChange} style={inputStyle}>
+                        <select name="role" value={form.role} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, role: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.role ? "var(--red)" : undefined }}>
                           <option value="" disabled>Select one</option>
                           {roleOptions.map(r => <option key={r}>{r}</option>)}
                         </select>
+                        {fieldErrors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.role}</p>}
                       </div>
                     </div>
                     <div className="mb-6">
                       <label style={labelStyle}>Which Asura would you like to see first?</label>
-                      <select name="asura" value={form.asura} onChange={handleChange} style={inputStyle}>
+                      <select name="asura" value={form.asura} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, asura: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.asura ? "var(--red)" : undefined }}>
                         <option value="" disabled>Choose your Asura</option>
                         {asuraOptions.map(a => <option key={a}>{a}</option>)}
                       </select>
+                      {fieldErrors.asura && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.asura}</p>}
                     </div>
-                    {error && <BodyText color="var(--red)" style={{ fontSize: "13px", marginBottom: "16px" }}>Please fill in every field before summoning your Asura.</BodyText>}
                     <button type="submit" disabled={submitting} className="w-full flex items-center justify-center gap-2" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", letterSpacing: "0.02em", padding: "16px 24px", borderRadius: "12px", background: submitting ? "rgba(229,39,39,0.5)" : "var(--red)", color: "#ffffff", border: "none", cursor: submitting ? "wait" : "pointer", transition: "opacity 0.2s" }}>
                       {submitting ? "Summoning…" : "Summon my Asura"}
                       {!submitting && <ArrowRight size={16} strokeWidth={2.5} />}
@@ -814,7 +991,7 @@ export default function AsuraEventPage() {
                 #WorldOfAsuras
               </Heading>
             </div>
-            <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "16px", lineHeight: 1.7, maxWidth: "44ch", margin: "0 auto" }}>
+            <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "44ch", margin: "0 auto" }}>
               Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use this hashtag on your post — that&apos;s what makes your entry count toward the contest.
             </BodyText>
           </div>
