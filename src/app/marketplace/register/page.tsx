@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, ArrowRight, X, ChevronRight, ChevronLeft } from "lucide-react";
+import { Check, ArrowRight, X, ChevronRight, ChevronLeft, Monitor, BookOpen, Gift } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Heading, BodyText, Button } from "@/components/ui";
@@ -83,7 +83,7 @@ function AccordionStep({ step, isLast }: { step: typeof steps[0]; isLast: boolea
         <Heading
           level="subsection"
           as="p"
-          color={open ? "#ffffff" : "rgba(255,255,255,0.35)"}
+          color={open ? "#ffffff" : "rgba(255,255,255,0.5)"}
           style={{ fontSize: "clamp(16px, 2vw, 24px)", lineHeight: 1, flexShrink: 0, width: "40px", letterSpacing: "-0.02em", transition: "color 0.2s" }}
         >
           {step.num}
@@ -107,7 +107,7 @@ function AccordionStep({ step, isLast }: { step: typeof steps[0]; isLast: boolea
       </button>
       {open && (
         <div className="pb-6 pl-[88px] lg:pl-[104px]" style={{ marginTop: "-8px" }}>
-          <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "52ch" }}>
+          <BodyText color="#ffffff" style={{ fontSize: "17px", lineHeight: 1.75, maxWidth: "52ch" }}>
             {step.body}
           </BodyText>
           {step.tag && (
@@ -154,38 +154,22 @@ const betaSteps = [
     sub: "We'll use this to keep you in the loop.",
   },
   {
-    id: "tenure",
-    question: "How long have you been using Bugasura?",
-    sub: "Give us a rough idea — even if it's been a while.",
-    options: ["Less than a month", "1–6 months", "6–12 months", "1–2 years", "2+ years", "Haven't started yet"],
-  },
-  {
-    id: "currentUse",
-    question: "What do you use Bugasura for?",
-    sub: "Describe your day-to-day workflow.",
-  },
-  {
-    id: "usecases",
-    question: "What use case(s) are you planning to use the Bugasura Agent Marketplace for?",
-    sub: "Pick everything that applies.",
-    options: ["Automated regression testing", "API testing", "Security & vulnerability scanning", "Performance testing", "Mobile app testing", "Duplicate bug detection", "Building custom AI test agents", "Integrating into CI/CD pipelines", "Other"],
-    multi: true,
+    id: "expectation",
+    question: "What do you expect from the Bugasura Agent Marketplace?",
+    sub: "Be as specific or as vague as you like.",
   },
   {
     id: "audience",
-    question: "Are you planning to build for yourself, your team, or for others?",
-    sub: "This helps us understand how you'll deploy Asuras.",
-    options: ["Just myself", "My QA / engineering team", "Multiple teams in my org", "External clients / customers", "Not sure yet"],
+    question: "Are you planning to build agents for yourself, your team, your company, or others?",
+    sub: "Pick the one that fits best.",
+    options: ["Just myself", "My QA / engineering team", "My entire company", "External clients / customers", "Not sure yet"],
   },
   {
-    id: "currentSolution",
-    question: "How are you currently solving this problem?",
-    sub: "Tools, scripts, manual effort — whatever you're using today.",
-  },
-  {
-    id: "expectation",
-    question: "What's your expectation from the Bugasura Agent Marketplace?",
-    sub: "Be as specific or as vague as you like.",
+    id: "usecases",
+    question: "What use cases would you like to solve using the marketplace?",
+    sub: "Pick everything that applies.",
+    options: ["Automated regression testing", "API testing", "Security & vulnerability scanning", "Performance testing", "Mobile app testing", "Duplicate bug detection", "Building custom AI test agents", "CI/CD integration", "Other"],
+    multi: true,
   },
 ];
 
@@ -195,7 +179,7 @@ function BetaModal({ onClose }: { onClose: () => void }) {
   const [submitting, setSubmitting] = useState(false);
   const [data, setData] = useState<Record<string, string | string[]>>({
     name: "", email: "", company: "", role: "",
-    tenure: "", currentUse: "", usecases: [], audience: "", currentSolution: "", expectation: "",
+    expectation: "", audience: "", usecases: [],
   });
 
   useEffect(() => {
@@ -457,18 +441,17 @@ export default function AsuraEventPage() {
 
       {/* ── HERO ── */}
       <section
-        className="rounded-[32px] overflow-hidden relative"
+        className="rounded-[32px] relative"
         style={{ backgroundColor: "var(--red)" }}
       >
-        {/* Landing page background image */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/hero/Background.png"
-          alt=""
-          aria-hidden
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", zIndex: 0 }}
-        />
+        {/* Background image clipped inside its own rounded wrapper */}
+        <div className="absolute inset-0 rounded-[32px] overflow-hidden" style={{ zIndex: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/hero/Background.png" alt="" aria-hidden style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom" }} />
+        </div>
         <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-20 pt-20 lg:pt-28 pb-4">
+
+          <BodyText color="rgba(255,255,255,0.8)" style={{ fontSize: "18px", fontWeight: 700, letterSpacing: "0.02em", marginBottom: "8px" }}>TribeQonf · Bengaluru</BodyText>
 
           <Heading
             level="hero"
@@ -476,7 +459,7 @@ export default function AsuraEventPage() {
             color="#ffffff"
             style={{ fontSize: "clamp(44px, 6vw, 92px)", lineHeight: 1.0, letterSpacing: "-0.03em", maxWidth: "16ch", marginBottom: "24px" }}
           >
-            Welcome to the World of Asuras
+            Welcome to the<br />World of Asuras
           </Heading>
 
           <BodyText
@@ -486,10 +469,61 @@ export default function AsuraEventPage() {
             Bugasura&apos;s AI agent marketplace is coming. Register for early access, choose the Asura you want summoned first, and join the contest happening right here at the booth.
           </BodyText>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12">
             <Button onClick={() => setBetaOpen(true)} variant="white">Register for early access</Button>
-            <Button href="#contest" variant="outline-light">See the contest</Button>
+            <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="outline-light">Join the Contest</Button>
           </div>
+
+          {/* ── Event brief cards ── */}
+          <div className="w-full grid grid-cols-3 gap-4" style={{ paddingTop: "100px", overflow: "visible", position: "relative", zIndex: 10 }}>
+
+            {/* Wide card — contest */}
+            <div className="col-span-2 text-left" style={{ background: "#FFF6E2", borderRadius: "24px", overflow: "visible", position: "relative", padding: "32px 32px 32px 310px" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero-card-asura.png"
+                alt="Asura"
+                style={{ position: "absolute", top: "-140px", left: "0", width: "300px", height: "calc(100% + 140px)", objectFit: "contain", objectPosition: "bottom center" }}
+              />
+              <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" }}>Photo Contest</BodyText>
+              <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "12px" }}>Win up to ₹15,000</Heading>
+              <BodyText color="rgba(30,30,30,0.7)" style={{ lineHeight: 1.65, marginBottom: "24px" }}>
+                Click a pic with the Asura cutout · Post on LinkedIn, Instagram or X with <strong style={{ color: "var(--dark)" }}>#WorldOfAsuras</strong> · Tag <strong style={{ color: "var(--dark)" }}>@Bugasura</strong>
+              </BodyText>
+              <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="primary">Participate</Button>
+            </div>
+
+            {/* Narrow card — booth */}
+            <div className="col-span-1 flex flex-col justify-between text-left" style={{ background: "#F0A030", borderRadius: "24px", padding: "32px" }}>
+              <div>
+                <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "20px" }}>We&apos;re at Booth B2</Heading>
+                <div>
+                  {[
+                    { icon: <Monitor size={16} />, text: "Live Bugasura demo" },
+                    { icon: <BookOpen size={16} />, text: "Book signing with Pradeep" },
+                    { icon: <Gift size={16} />, text: "Free goodies while stocks last" },
+                  ].map(({ icon, text }) => (
+                    <div key={text} className="flex items-center gap-2" style={{ marginBottom: "10px" }}>
+                      <span style={{ color: "var(--dark)", flexShrink: 0 }}>{icon}</span>
+                      <BodyText color="var(--dark)" style={{ fontWeight: 600 }}>{text}</BodyText>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="flex gap-8" style={{ marginTop: "24px", paddingTop: "20px", borderTop: "1px solid rgba(30,30,30,0.15)" }}>
+                <div>
+                  <BodyText color="rgba(30,30,30,0.5)" style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>Event</BodyText>
+                  <Heading level="step" as="p" color="var(--dark)" style={{ fontSize: "18px" }}>TribeQonf</Heading>
+                </div>
+                <div>
+                  <BodyText color="rgba(30,30,30,0.5)" style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>Date</BodyText>
+                  <Heading level="step" as="p" color="var(--dark)" style={{ fontSize: "18px" }}>Jul 10–11, 2026</Heading>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
         {/* Train illustration — transparent PNG, no blue background */}
@@ -524,7 +558,7 @@ export default function AsuraEventPage() {
             level="section"
             as="h2"
             color="#1E1E1E"
-            style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "20px" }}
+            style={{ fontSize: "clamp(48px, 5vw, 68px)", lineHeight: 1.0, letterSpacing: "-0.03em", marginBottom: "20px" }}
           >
             A marketplace of AI agents built for QA — each one an Asura
           </Heading>
@@ -565,6 +599,10 @@ export default function AsuraEventPage() {
               </div>
             ))}
           </div>
+
+          <div className="flex justify-center mt-12">
+            <Button onClick={() => setBetaOpen(true)} variant="dark">Register for Early Access</Button>
+          </div>
         </div>
       </section>
 
@@ -577,6 +615,8 @@ export default function AsuraEventPage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/hero/Background.png" alt="" aria-hidden
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", zIndex: 0 }} />
+        {/* Bottom darkening gradient */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(30,0,0,0.75) 100%)", zIndex: 1 }} />
         <div className="relative z-10 max-w-[1200px] mx-auto">
 
           {/* Title graphic */}
@@ -589,6 +629,10 @@ export default function AsuraEventPage() {
             />
           </div>
 
+          <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "60ch", margin: "-100px auto 48px", textAlign: "center" }}>
+            Click a photo with the Asura cutout at our booth, post it on LinkedIn, Instagram, or X with <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong> and tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> — the best posts and a lucky draw from all valid entries win big.
+          </BodyText>
+
           {/* ── PRIZES ── */}
           <div id="prizes" className="mb-16 lg:mb-24">
             <div className="max-w-[1080px] mx-auto">
@@ -599,7 +643,7 @@ export default function AsuraEventPage() {
                 level="section"
                 as="h2"
                 color="#ffffff"
-                style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "48px" }}
+                style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "16px" }}
               >
                 What you can win
               </Heading>
@@ -615,24 +659,24 @@ export default function AsuraEventPage() {
                     }}
                   >
                     {/* Text content */}
-                    <div className="flex flex-col items-center text-center" style={{ padding: "32px 32px 24px" }}>
+                    <div className="flex flex-col items-center text-center" style={{ padding: "36px 32px 28px" }}>
                       <BodyText
                         color={highlight ? "#E52727" : "#0077C2"}
-                        style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "12px" }}
+                        style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}
                       >
                         {rank}
                       </BodyText>
-                      <Heading level="step" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2vw, 26px)", marginBottom: "12px", lineHeight: 1.2 }}>
+                      <Heading level="section" as="h3" color="var(--dark)" style={{ fontSize: "32px", marginBottom: "14px" }}>
                         {name}
                       </Heading>
-                      <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "14px", lineHeight: 1.7 }}>
+                      <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "16px", lineHeight: 1.4 }}>
                         {desc}
                       </BodyText>
                     </div>
                     {/* Illustration */}
                     <div className="mt-auto">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={image} alt={name} style={{ width: "100%", height: "220px", objectFit: "cover", objectPosition: "top center", display: "block" }} />
+                      <img src={image} alt={name} style={{ width: "100%", height: "260px", objectFit: "cover", objectPosition: "top center", display: "block" }} />
                     </div>
                   </div>
                 ))}
@@ -702,7 +746,6 @@ export default function AsuraEventPage() {
               ) : (
                 <div style={{ background: "#FFF6E2", borderRadius: "28px", padding: "44px 36px" }}>
                   <div className="text-center mb-8">
-                    <BodyText color="#0077C2" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "10px" }}>Step 01 of 05</BodyText>
                     <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "clamp(24px, 3vw, 36px)", marginBottom: "8px" }}>Register for the contest</Heading>
                     <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", lineHeight: 1.65 }}>You&apos;ll get your Asura and your entry seal the second you submit.</BodyText>
                   </div>
