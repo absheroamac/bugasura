@@ -111,6 +111,18 @@ const asuraOptions = [
   "Mobile Asura — iOS and Android. Real devices. Real flows",
 ];
 
+const asuraImageMap: Record<string, string> = {
+  "Browser Asura": "/asura-browser.png",
+  "API Asura": "/asura-api.png",
+  "Duplicate Asura": "/asura-duplicate.png",
+  "Mobile Asura": "/asura-mobile.png",
+};
+
+function getAsuraImage(asuraOption: string): string {
+  const key = Object.keys(asuraImageMap).find(k => asuraOption.startsWith(k));
+  return key ? asuraImageMap[key] : "/asura-browser.png";
+}
+
 const roleOptions = [
   "QA Engineer / Tester",
   "SDET",
@@ -571,7 +583,7 @@ export default function AsuraEventPage() {
     setSubmitted(true);
   };
 
-  const shareText = encodeURIComponent(`I just entered the World of Asuras at Bugasura's booth! My Asura: ${selectedAsura} #WorldOfAsuras @Bugasura`);
+  const shareText = encodeURIComponent(`I just entered the World of Asuras at Bugasura's booth! My Asura: ${selectedAsura} #WorldOfAsuras #bugasura @Bugasura`);
 
   return (
     <main className="flex flex-col gap-2">
@@ -878,21 +890,28 @@ export default function AsuraEventPage() {
             >
               {submitted ? (
                 <div className="flex flex-col items-center text-center" style={{ background: "#FFF6E2", borderRadius: "28px", padding: "48px 32px" }}>
-                  <div style={{ width: "72px", height: "72px", borderRadius: "20px", background: "rgba(229,39,39,0.12)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
-                    <Check size={32} color="var(--red)" strokeWidth={2} />
+                  <div style={{ position: "relative", marginBottom: "24px" }}>
+                    <img
+                      src={getAsuraImage(selectedAsura)}
+                      alt={selectedAsura}
+                      style={{ width: "180px", height: "180px", objectFit: "contain", filter: "drop-shadow(0 8px 24px rgba(229,39,39,0.25))" }}
+                    />
+                    <div style={{ position: "absolute", bottom: "-8px", right: "-8px", width: "32px", height: "32px", borderRadius: "50%", background: "var(--red)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Check size={16} color="#fff" strokeWidth={3} />
+                    </div>
                   </div>
                   <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "clamp(24px, 3vw, 36px)", marginBottom: "10px" }}>
                     You&apos;ve entered the World of Asuras
                   </Heading>
-                  <BodyText color="#0077C2" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "16px" }}>
-                    Your Asura · {selectedAsura}
+                  <BodyText color="var(--red)" style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "16px" }}>
+                    Your Asura · {selectedAsura.split(" —")[0]}
                   </BodyText>
                   <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "38ch", marginBottom: "28px" }}>
                     Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> and <strong>#bugasura</strong> to enter the contest.
                   </BodyText>
                   <div className="flex items-center justify-between gap-4 w-full mb-6" style={{ background: "rgba(30,30,30,0.06)", border: "1px dashed rgba(30,30,30,0.2)", borderRadius: "16px", padding: "16px 20px" }}>
-                    <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(18px, 2.5vw, 26px)" }}>#WorldOfAsuras</Heading>
-                    <button onClick={() => { navigator.clipboard.writeText("#WorldOfAsuras"); }} style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "12px", color: "#0077C2", background: "rgba(0,119,194,0.1)", border: "1px solid rgba(0,119,194,0.3)", borderRadius: "100px", padding: "6px 14px", cursor: "pointer", letterSpacing: "0.05em" }}>Copy</button>
+                    <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(16px, 2vw, 22px)" }}>#WorldOfAsuras #bugasura</Heading>
+                    <button onClick={() => { navigator.clipboard.writeText("#WorldOfAsuras #bugasura"); }} style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "12px", color: "#0077C2", background: "rgba(0,119,194,0.1)", border: "1px solid rgba(0,119,194,0.3)", borderRadius: "100px", padding: "6px 14px", cursor: "pointer", letterSpacing: "0.05em", flexShrink: 0 }}>Copy</button>
                   </div>
                   <div className="flex gap-3 flex-wrap justify-center mb-6">
                     <a href={`https://twitter.com/intent/tweet?text=${shareText}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "var(--dark)", background: "rgba(30,30,30,0.08)", border: "1px solid rgba(30,30,30,0.12)", borderRadius: "100px", padding: "10px 20px", textDecoration: "none" }}>Share on X</a>
@@ -979,12 +998,12 @@ export default function AsuraEventPage() {
                 padding: "14px 32px",
               }}
             >
-              <Heading level="subsection" as="p" color="#ffffff" style={{ fontSize: "clamp(24px, 4vw, 44px)", letterSpacing: "-0.02em" }}>
-                #WorldOfAsuras
+              <Heading level="subsection" as="p" color="#ffffff" style={{ fontSize: "clamp(20px, 3.5vw, 38px)", letterSpacing: "-0.02em" }}>
+                #WorldOfAsuras #bugasura
               </Heading>
             </div>
             <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "44ch", margin: "0 auto" }}>
-              Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use this hashtag on your post — that&apos;s what makes your entry count toward the contest.
+              Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use these hashtags on your post — that&apos;s what makes your entry count toward the contest.
             </BodyText>
           </div>
 
