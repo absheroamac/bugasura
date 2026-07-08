@@ -109,7 +109,12 @@ const asuraOptions = [
   "API Asura — Every contract. Every edge. Every regression",
   "Duplicate Asura — One bug, one ticket. Every time",
   "Mobile Asura — iOS and Android. Real devices. Real flows",
+  "Other",
 ];
+
+function getISTTimestamp() {
+  return new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+}
 
 const asuraImageMap: Record<string, string> = {
   "Browser Asura": "/asura-browser.png",
@@ -124,7 +129,7 @@ function getAsuraImage(asuraOption: string): string {
 }
 
 const roleOptions = [
-  "QA Engineer / Tester",
+  "Exploratory Tester",
   "SDET",
   "Developer",
   "Product Manager",
@@ -293,6 +298,30 @@ function BetaModal({ onClose }: { onClose: () => void }) {
     expectation: "", audience: "", usecases: [],
   });
   const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
+  const [contestAsura, setContestAsura] = useState("");
+  const [contestCustomAsura, setContestCustomAsura] = useState("");
+  const [contestSubmitting, setContestSubmitting] = useState(false);
+  const [contestDone, setContestDone] = useState(false);
+  const [contestAsuraError, setContestAsuraError] = useState("");
+
+  const resolvedContestAsura = contestAsura === "Other" ? contestCustomAsura : contestAsura;
+
+  const handleContestSubmit = async () => {
+    if (!contestAsura) { setContestAsuraError("Please choose your Asura"); return; }
+    if (contestAsura === "Other" && !contestCustomAsura.trim()) { setContestAsuraError("Please describe your Asura"); return; }
+    setContestAsuraError("");
+    setContestSubmitting(true);
+    const payload = {
+      name: data.name as string, email: data.email as string,
+      mobile: data.mobile ? `${data.mobileCountry} ${data.mobile}` : "",
+      company: data.company as string, role: data.role as string,
+      asura: resolvedContestAsura, timestamp: getISTTimestamp(), type: "contest_registration",
+    };
+    const params = new URLSearchParams(payload as Record<string, string>);
+    fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: "GET", mode: "no-cors" }).catch(() => {});
+    setContestSubmitting(false);
+    setContestDone(true);
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -343,7 +372,7 @@ function BetaModal({ onClose }: { onClose: () => void }) {
   const handleSubmit = async () => {
     setSubmitting(true);
     const fullMobile = data.mobile ? `${data.mobileCountry} ${data.mobile}` : "";
-    const payload = { ...data, mobile: fullMobile, usecases: (data.usecases as string[]).join(", "), timestamp: new Date().toISOString(), type: "beta_signup" };
+    const payload = { ...data, mobile: fullMobile, usecases: (data.usecases as string[]).join(", "), timestamp: getISTTimestamp(), type: "beta_signup" };
     try {
       const existing = JSON.parse(localStorage.getItem("bugasuraBetaSignups") || "[]");
       existing.push(payload);
@@ -389,17 +418,79 @@ function BetaModal({ onClose }: { onClose: () => void }) {
         <div className="flex flex-col overflow-y-auto" style={{ padding: "40px 40px 32px" }}>
           {done ? (
             /* ── Success ── */
-            <div className="flex flex-col items-center text-center py-8">
+            <div className="flex flex-col items-center text-center py-4">
               <div style={{ width: "64px", height: "64px", borderRadius: "20px", background: "rgba(229,39,39,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
                 <Check size={28} color="var(--red)" strokeWidth={2.5} />
               </div>
               <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "28px", marginBottom: "12px" }}>You&apos;re on the list.</Heading>
-              <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "36ch" }}>
+              <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "36ch", marginBottom: "32px" }}>
                 We&apos;ll reach out before the Bugasura Agent Marketplace opens. Your input will directly shape what we build.
               </BodyText>
-              <button onClick={onClose} style={{ marginTop: "28px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "14px", color: "var(--red)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
-                Close
-              </button>
+
+              {contestDone ? (
+                /* ── Contest success ── */
+                <div className="w-full flex flex-col items-center" style={{ background: "rgba(229,39,39,0.06)", borderRadius: "20px", padding: "28px 24px" }}>
+                  <div style={{ position: "relative", marginBottom: "16px" }}>
+                    <img src={getAsuraImage(resolvedContestAsura)} alt={resolvedContestAsura} style={{ width: "120px", height: "120px", objectFit: "contain", filter: "drop-shadow(0 6px 16px rgba(229,39,39,0.25))" }} />
+                    <div style={{ position: "absolute", bottom: "-6px", right: "-6px", width: "26px", height: "26px", borderRadius: "50%", background: "var(--red)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <Check size={12} color="#fff" strokeWidth={3} />
+                    </div>
+                  </div>
+                  <BodyText color="var(--red)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "8px" }}>
+                    Contest entry submitted
+                  </BodyText>
+                  <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "18px", marginBottom: "8px" }}>
+                    Your Asura · {resolvedContestAsura.split(" —")[0]}
+                  </Heading>
+                  <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "13px", lineHeight: 1.6 }}>
+                    Click a picture at Booth B2 and post with <strong>#WorldOfAsuras</strong> <strong>#bugasura</strong> to enter.
+                  </BodyText>
+                </div>
+              ) : (
+                /* ── Contest opt-in ── */
+                <div className="w-full text-left" style={{ borderTop: "1px solid rgba(30,30,30,0.1)", paddingTop: "24px" }}>
+                  <BodyText color="var(--dark)" style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>Want to enter the booth contest?</BodyText>
+                  <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "13px", lineHeight: 1.6, marginBottom: "16px" }}>
+                    Pick your Asura and we&apos;ll register your contest entry too — no extra form needed.
+                  </BodyText>
+                  <select
+                    value={contestAsura}
+                    onChange={e => { setContestAsura(e.target.value); setContestAsuraError(""); }}
+                    style={{ width: "100%", padding: "14px 16px", borderRadius: "12px", border: `1px solid ${contestAsuraError ? "var(--red)" : "rgba(30,30,30,0.15)"}`, background: "#ffffff", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "#1E1E1E", outline: "none", marginBottom: "10px" }}
+                  >
+                    <option value="" disabled>Choose your Asura</option>
+                    {asuraOptions.map(a => <option key={a}>{a}</option>)}
+                  </select>
+                  {contestAsura === "Other" && (
+                    <input
+                      type="text"
+                      placeholder="Describe the Asura you'd want"
+                      value={contestCustomAsura}
+                      onChange={e => { setContestCustomAsura(e.target.value); setContestAsuraError(""); }}
+                      style={{ width: "100%", padding: "14px 16px", borderRadius: "12px", border: "1px solid rgba(30,30,30,0.15)", background: "#ffffff", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "#1E1E1E", outline: "none", marginBottom: "10px" }}
+                    />
+                  )}
+                  {contestAsuraError && <p style={{ color: "var(--red)", fontSize: "12px", marginBottom: "10px" }}>{contestAsuraError}</p>}
+                  <button
+                    onClick={handleContestSubmit}
+                    disabled={contestSubmitting}
+                    className="w-full flex items-center justify-center gap-2"
+                    style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "14px", padding: "14px 20px", borderRadius: "12px", background: contestSubmitting ? "rgba(229,39,39,0.5)" : "var(--red)", color: "#ffffff", border: "none", cursor: contestSubmitting ? "wait" : "pointer" }}
+                  >
+                    {contestSubmitting ? "Entering…" : "Enter the contest"}
+                    {!contestSubmitting && <ArrowRight size={15} strokeWidth={2.5} />}
+                  </button>
+                  <button onClick={onClose} style={{ marginTop: "12px", width: "100%", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.4)", background: "none", border: "none", cursor: "pointer" }}>
+                    No thanks, close
+                  </button>
+                </div>
+              )}
+
+              {contestDone && (
+                <button onClick={onClose} style={{ marginTop: "20px", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.45)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
+                  Close
+                </button>
+              )}
             </div>
           ) : (
             <>
@@ -437,7 +528,7 @@ function BetaModal({ onClose }: { onClose: () => void }) {
                   <input placeholder="Company" value={data.company as string} onChange={e => setData(p => ({ ...p, company: e.target.value }))} style={{ ...inputStyle }} />
                   <select value={data.role as string} onChange={e => { setData(p => ({ ...p, role: e.target.value })); setContactErrors(p => ({ ...p, role: "" })); }} style={{ ...inputStyle, marginBottom: 0, borderColor: contactErrors.role ? "var(--red)" : undefined }}>
                     <option value="" disabled>Your role</option>
-                    {["SDET", "QA Engineer / Tester", "Developer", "Product Manager", "Engineering / QA Lead", "Founder / CXO", "Other"].map(r => <option key={r}>{r}</option>)}
+                    {["SDET", "Exploratory Tester", "Developer", "Product Manager", "Engineering / QA Lead", "Founder / CXO", "Other"].map(r => <option key={r}>{r}</option>)}
                   </select>
                   {contactErrors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "4px" }}>{contactErrors.role}</p>}
                 </div>
@@ -539,15 +630,18 @@ function BetaModal({ onClose }: { onClose: () => void }) {
 export default function AsuraEventPage() {
   const [betaOpen, setBetaOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "", asura: "" });
+  const [customAsura, setCustomAsura] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [, setError] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [selectedAsura, setSelectedAsura] = useState("");
 
+  const resolvedAsura = form.asura === "Other" ? customAsura : form.asura;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-    if (e.target.name === "asura") setSelectedAsura(e.target.value);
+    if (e.target.name === "asura") setSelectedAsura(e.target.value === "Other" ? customAsura : e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -561,12 +655,14 @@ export default function AsuraEventPage() {
     if (!form.company) errs.company = "Company is required";
     if (!form.role) errs.role = "Please select your role";
     if (!form.asura) errs.asura = "Please choose your Asura";
+    else if (form.asura === "Other" && !customAsura.trim()) errs.asura = "Please describe your Asura";
     setFieldErrors(errs);
     if (Object.keys(errs).length > 0) { setError(true); return; }
     setError(false);
     setSubmitting(true);
+    if (form.asura === "Other") setSelectedAsura(customAsura);
 
-    const data = { ...form, mobile: `${form.mobileCountry} ${form.mobile}`, timestamp: new Date().toISOString(), type: "contest_registration" };
+    const data = { ...form, asura: resolvedAsura, mobile: `${form.mobileCountry} ${form.mobile}`, timestamp: getISTTimestamp(), type: "contest_registration" };
 
     try {
       const existing = JSON.parse(localStorage.getItem("worldOfAsurasEntries") || "[]");
@@ -971,6 +1067,15 @@ export default function AsuraEventPage() {
                         <option value="" disabled>Choose your Asura</option>
                         {asuraOptions.map(a => <option key={a}>{a}</option>)}
                       </select>
+                      {form.asura === "Other" && (
+                        <input
+                          type="text"
+                          placeholder="Describe the Asura you'd want"
+                          value={customAsura}
+                          onChange={e => { setCustomAsura(e.target.value); setFieldErrors(p => ({ ...p, asura: "" })); }}
+                          style={{ ...inputStyle, marginTop: "8px" }}
+                        />
+                      )}
                       {fieldErrors.asura && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.asura}</p>}
                     </div>
                     <button type="submit" disabled={submitting} className="w-full flex items-center justify-center gap-2" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", letterSpacing: "0.02em", padding: "16px 24px", borderRadius: "12px", background: submitting ? "rgba(229,39,39,0.5)" : "var(--red)", color: "#ffffff", border: "none", cursor: submitting ? "wait" : "pointer", transition: "opacity 0.2s" }}>
