@@ -32,40 +32,17 @@ const steps = [
   {
     num: "04",
     title: "Strike a pose, post it",
-    body: "Get your photo at the Asura cutout. Post it on Instagram, LinkedIn or X with #WorldOfAsuras and tag @Bugasura.",
+    body: "Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag Bugasura, and use #WorldOfAsuras and #bugasura.",
     tag: null,
   },
   {
     num: "05",
     title: "Winners announced at close",
-    body: "Best posts and a lucky draw from every valid entry are picked at the end of the event. Winners are announced live at the booth.",
+    body: "Winners will be selected from valid entries based on maximum likes and reach on their posts. Top 10 entries will win prizes from the total prize pool worth ₹25,000. Winners will be announced after verification by the Bugasura team.",
     tag: null,
   },
 ];
 
-const prizes = [
-  {
-    rank: "Best post · Grand boon",
-    name: "The Sovereign Asura",
-    desc: "₹15,000 voucher + a founding-member badge on the Marketplace + a 1:1 onboarding session when it launches.",
-    highlight: true,
-    image: "/prize-sovereign.png",
-  },
-  {
-    rank: "Runner-up",
-    name: "The Warrior Asura",
-    desc: "₹7,500 voucher + early-access Marketplace credits.",
-    highlight: false,
-    image: "/prize-warrior.png",
-  },
-  {
-    rank: "Lucky draw · all entries",
-    name: "The Wanderer’s Boon",
-    desc: "Bugasura merch pack + guaranteed early-access invite when the Marketplace opens.",
-    highlight: false,
-    image: "/prize-wanderer.png",
-  },
-];
 
 function AccordionStep({ step, isLast }: { step: typeof steps[0]; isLast: boolean }) {
   const [open, setOpen] = useState(false);
@@ -649,9 +626,9 @@ export default function AsuraEventPage() {
               />
               <div className="lg:pl-[278px]">
               <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" }}>Photo Contest</BodyText>
-              <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "12px" }}>Win up to ₹15,000</Heading>
+              <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "12px" }}>Prize pool worth ₹25,000</Heading>
               <BodyText color="rgba(30,30,30,0.7)" style={{ lineHeight: 1.65, marginBottom: "24px" }}>
-                Click a pic with the Asura cutout · Post on LinkedIn, Instagram or X with <strong style={{ color: "var(--dark)" }}>#WorldOfAsuras</strong> · Tag <strong style={{ color: "var(--dark)" }}>@Bugasura</strong>
+                Click a picture with the Bugasura Asura cutout at Booth B2 · Post on LinkedIn, Instagram, or any social media · Tag <strong style={{ color: "var(--dark)" }}>@Bugasura</strong> · Use <strong style={{ color: "var(--dark)" }}>#WorldOfAsuras</strong> and <strong style={{ color: "var(--dark)" }}>#bugasura</strong>
               </BodyText>
               <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="primary">Participate</Button>
               </div>
@@ -796,7 +773,7 @@ export default function AsuraEventPage() {
 
           <div className="mt-6 md:-mt-[100px]">
           <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "60ch", margin: "0 auto 48px", textAlign: "center" }}>
-            Click a photo with the Asura cutout at our booth, post it on LinkedIn, Instagram, or X with <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong> and tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> — the best posts and a lucky draw from all valid entries win big.
+            Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong>, and use <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong> and <strong style={{ color: "#ffffff" }}>#bugasura</strong> — top 10 entries based on likes and reach will win exciting prizes from a total prize pool worth ₹25,000.
           </BodyText>
           </div>
 
@@ -814,39 +791,52 @@ export default function AsuraEventPage() {
               >
                 What you can win
               </Heading>
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-8">
-                {prizes.map(({ rank, name, desc, highlight, image }) => (
-                  <div
-                    key={name}
-                    className="flex flex-col overflow-hidden"
+              {/* Full-width horizontal prize card */}
+              <style>{`
+                @keyframes prize-glow {
+                  0%, 100% { box-shadow: 0 0 24px 4px rgba(255,166,0,0.35), 0 0 60px 12px rgba(255,166,0,0.12); }
+                  50% { box-shadow: 0 0 40px 10px rgba(255,166,0,0.55), 0 0 90px 24px rgba(255,166,0,0.22); }
+                }
+              `}</style>
+              <div
+                className="flex flex-col lg:flex-row mb-8"
+                style={{
+                  background: "#FFF6E2",
+                  borderRadius: "24px",
+                  border: "2px solid rgba(255,166,0,0.7)",
+                  overflow: "visible",
+                  animation: "prize-glow 2.8s ease-in-out infinite",
+                  position: "relative",
+                }}
+              >
+                {/* Left: text */}
+                <div className="flex flex-col justify-center" style={{ padding: "48px 48px 48px 48px", flex: 1 }}>
+                  <BodyText color="var(--red)" style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
+                    Prize Pool · 10 Winners
+                  </BodyText>
+                  <Heading level="section" as="h3" color="var(--dark)" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "20px" }}>
+                    Exciting tech gadgets worth ₹25,000
+                  </Heading>
+                  <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "42ch" }}>
+                    Top 10 contest winners will win exciting prizes from a total prize pool worth ₹25,000. Winners selected based on likes and reach — announced after verification by the Bugasura team.
+                  </BodyText>
+                </div>
+                {/* Right: illustration — overflows top */}
+                <div className="lg:w-[340px] flex-shrink-0" style={{ position: "relative", overflow: "visible", display: "flex", alignItems: "flex-end" }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/prize-asura.png"
+                    alt="Prize"
                     style={{
-                      background: "#FFF6E2",
-                      borderRadius: "24px",
-                      border: highlight ? "2px solid rgba(255,166,0,0.6)" : "1px solid rgba(30,30,30,0.08)",
+                      width: "100%",
+                      height: "auto",
+                      display: "block",
+                      objectFit: "contain",
+                      objectPosition: "bottom center",
+                      marginTop: "-20%",
                     }}
-                  >
-                    {/* Text content */}
-                    <div className="flex flex-col items-center text-center" style={{ padding: "36px 32px 28px" }}>
-                      <BodyText
-                        color={highlight ? "#E52727" : "#0077C2"}
-                        style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px" }}
-                      >
-                        {rank}
-                      </BodyText>
-                      <Heading level="section" as="h3" color="var(--dark)" style={{ fontSize: "32px", marginBottom: "14px" }}>
-                        {name}
-                      </Heading>
-                      <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "15px", lineHeight: 1.4 }}>
-                        {desc}
-                      </BodyText>
-                    </div>
-                    {/* Illustration */}
-                    <div className="mt-auto">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={image} alt={name} style={{ width: "100%", height: "260px", objectFit: "cover", objectPosition: "top center", display: "block" }} />
-                    </div>
-                  </div>
-                ))}
+                  />
+                </div>
               </div>
               <BodyText color="#ffffff" style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1.7, textAlign: "center", maxWidth: "60ch", margin: "0 auto" }}>
                 Everyone who registers — win or not — gets early access to the Bugasura Agent Marketplace ahead of public launch.
@@ -898,7 +888,7 @@ export default function AsuraEventPage() {
                     Your Asura · {selectedAsura}
                   </BodyText>
                   <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "38ch", marginBottom: "28px" }}>
-                    Get your photo at the Asura cutout, then post it using the hashtag below and tag <strong>@Bugasura</strong> to enter the contest.
+                    Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> and <strong>#bugasura</strong> to enter the contest.
                   </BodyText>
                   <div className="flex items-center justify-between gap-4 w-full mb-6" style={{ background: "rgba(30,30,30,0.06)", border: "1px dashed rgba(30,30,30,0.2)", borderRadius: "16px", padding: "16px 20px" }}>
                     <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(18px, 2.5vw, 26px)" }}>#WorldOfAsuras</Heading>
