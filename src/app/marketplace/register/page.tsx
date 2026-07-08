@@ -20,7 +20,7 @@ const steps = [
   {
     num: "02",
     title: "Choose your Asura",
-    body: "Tell us which bug-hunting demon you'd want summoned first — regression, security, performance, API or UI. It shapes what we build next.",
+    body: "Tell us which Asura you'd want summoned first — Browser, API, Duplicate, or Mobile. It shapes what we build next.",
     tag: null,
   },
   {
@@ -128,12 +128,10 @@ function AccordionStep({ step, isLast }: { step: typeof steps[0]; isLast: boolea
 }
 
 const asuraOptions = [
-  "Vega — the Regression Hunter",
-  "Kali — the Chaos Tester",
-  "Indra — the Performance Sentinel",
-  "Nikumbha — the Security Breaker",
-  "Shesha — the API Slitherer",
-  "Mahisha — the UI Shapeshifter",
+  "Browser Asura — Hunts bugs across every page, every flow, every state",
+  "API Asura — Every contract. Every edge. Every regression",
+  "Duplicate Asura — One bug, one ticket. Every time",
+  "Mobile Asura — iOS and Android. Real devices. Real flows",
 ];
 
 const roleOptions = [
