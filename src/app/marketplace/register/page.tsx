@@ -238,9 +238,10 @@ const COUNTRY_CODES = [
 const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 const isValidMobile = (v: string) => /^\d{7,15}$/.test(v.replace(/[\s\-()]/g, ""));
 
-function PhoneInput({ value, countryCode, onValueChange, onCountryChange, style }: {
+function PhoneInput({ value, countryCode, onValueChange, onCountryChange, onBlur, style }: {
   value: string; countryCode: string;
   onValueChange: (v: string) => void; onCountryChange: (v: string) => void;
+  onBlur?: () => void;
   style?: React.CSSProperties;
 }) {
   const [isCustom, setIsCustom] = useState(false);
@@ -289,6 +290,7 @@ function PhoneInput({ value, countryCode, onValueChange, onCountryChange, style 
         placeholder="98765 43210"
         value={value}
         onChange={e => onValueChange(e.target.value)}
+        onBlur={onBlur}
         style={{ ...style, flex: 1 }}
       />
     </div>
@@ -433,17 +435,18 @@ function BetaModal({ onClose }: { onClose: () => void }) {
               {current.id === "contact" && (
                 <div>
                   <input placeholder="Your name" value={data.name as string} onChange={e => { setData(p => ({ ...p, name: e.target.value })); setContactErrors(p => ({ ...p, name: "" })); }} style={{ ...inputStyle, borderColor: contactErrors.name ? "var(--red)" : undefined }} />
-                  {contactErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "10px" }}>{contactErrors.name}</p>}
-                  <input placeholder="Work email" type="email" value={data.email as string} onChange={e => { setData(p => ({ ...p, email: e.target.value })); setContactErrors(p => ({ ...p, email: "" })); }} style={{ ...inputStyle, borderColor: contactErrors.email ? "var(--red)" : undefined }} />
-                  {contactErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "10px" }}>{contactErrors.email}</p>}
+                  {contactErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{contactErrors.name}</p>}
+                  <input placeholder="Work email" type="email" value={data.email as string} onChange={e => { setData(p => ({ ...p, email: e.target.value })); setContactErrors(p => ({ ...p, email: "" })); }} onBlur={() => { if (data.email && !isValidEmail(data.email as string)) setContactErrors(p => ({ ...p, email: "Enter a valid email address" })); }} style={{ ...inputStyle, borderColor: contactErrors.email ? "var(--red)" : undefined }} />
+                  {contactErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{contactErrors.email}</p>}
                   <PhoneInput
                     value={data.mobile as string}
                     countryCode={data.mobileCountry as string}
                     onValueChange={v => { setData(p => ({ ...p, mobile: v })); setContactErrors(p => ({ ...p, mobile: "" })); }}
                     onCountryChange={v => setData(p => ({ ...p, mobileCountry: v }))}
+                    onBlur={() => { if (data.mobile && !isValidMobile(data.mobile as string)) setContactErrors(p => ({ ...p, mobile: "Enter a valid mobile number" })); }}
                     style={{ ...inputStyle, borderColor: contactErrors.mobile ? "var(--red)" : undefined }}
                   />
-                  {contactErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "10px" }}>{contactErrors.mobile}</p>}
+                  {contactErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{contactErrors.mobile}</p>}
                   <input placeholder="Company" value={data.company as string} onChange={e => setData(p => ({ ...p, company: e.target.value }))} style={{ ...inputStyle }} />
                   <select value={data.role as string} onChange={e => { setData(p => ({ ...p, role: e.target.value })); setContactErrors(p => ({ ...p, role: "" })); }} style={{ ...inputStyle, marginBottom: 0, borderColor: contactErrors.role ? "var(--red)" : undefined }}>
                     <option value="" disabled>Your role</option>
@@ -919,13 +922,13 @@ export default function AsuraEventPage() {
                     <div className="mb-4">
                       <label style={labelStyle}>Full name</label>
                       <input name="name" type="text" placeholder="Ada Lovelace" value={form.name} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, name: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.name ? "var(--red)" : undefined }} />
-                      {fieldErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.name}</p>}
+                      {fieldErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.name}</p>}
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                       <div>
                         <label style={labelStyle}>Email</label>
-                        <input name="email" type="email" placeholder="ada@company.com" value={form.email} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, email: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.email ? "var(--red)" : undefined }} />
-                        {fieldErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.email}</p>}
+                        <input name="email" type="email" placeholder="ada@company.com" value={form.email} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, email: "" })); }} onBlur={() => { if (form.email && !isValidEmail(form.email)) setFieldErrors(p => ({ ...p, email: "Enter a valid email address" })); }} style={{ ...inputStyle, borderColor: fieldErrors.email ? "var(--red)" : undefined }} />
+                        {fieldErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.email}</p>}
                       </div>
                       <div>
                         <label style={labelStyle}>Mobile number</label>
@@ -934,16 +937,17 @@ export default function AsuraEventPage() {
                           countryCode={form.mobileCountry}
                           onValueChange={v => { setForm(p => ({ ...p, mobile: v })); setFieldErrors(p => ({ ...p, mobile: "" })); }}
                           onCountryChange={v => setForm(p => ({ ...p, mobileCountry: v }))}
+                          onBlur={() => { if (form.mobile && !isValidMobile(form.mobile)) setFieldErrors(p => ({ ...p, mobile: "Enter a valid mobile number" })); }}
                           style={{ ...inputStyle, borderColor: fieldErrors.mobile ? "var(--red)" : undefined }}
                         />
-                        {fieldErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.mobile}</p>}
+                        {fieldErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.mobile}</p>}
                       </div>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                       <div>
                         <label style={labelStyle}>Company</label>
                         <input name="company" type="text" placeholder="Where you work" value={form.company} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, company: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.company ? "var(--red)" : undefined }} />
-                        {fieldErrors.company && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.company}</p>}
+                        {fieldErrors.company && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.company}</p>}
                       </div>
                       <div>
                         <label style={labelStyle}>Your role</label>
@@ -951,7 +955,7 @@ export default function AsuraEventPage() {
                           <option value="" disabled>Select one</option>
                           {roleOptions.map(r => <option key={r}>{r}</option>)}
                         </select>
-                        {fieldErrors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.role}</p>}
+                        {fieldErrors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.role}</p>}
                       </div>
                     </div>
                     <div className="mb-6">
@@ -960,7 +964,7 @@ export default function AsuraEventPage() {
                         <option value="" disabled>Choose your Asura</option>
                         {asuraOptions.map(a => <option key={a}>{a}</option>)}
                       </select>
-                      {fieldErrors.asura && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "8px" }}>{fieldErrors.asura}</p>}
+                      {fieldErrors.asura && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.asura}</p>}
                     </div>
                     <button type="submit" disabled={submitting} className="w-full flex items-center justify-center gap-2" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", letterSpacing: "0.02em", padding: "16px 24px", borderRadius: "12px", background: submitting ? "rgba(229,39,39,0.5)" : "var(--red)", color: "#ffffff", border: "none", cursor: submitting ? "wait" : "pointer", transition: "opacity 0.2s" }}>
                       {submitting ? "Summoning…" : "Summon my Asura"}
