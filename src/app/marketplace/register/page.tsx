@@ -822,7 +822,7 @@ export default function AsuraEventPage() {
                   </BodyText>
                 </div>
                 {/* Right: illustration — overflows top */}
-                <div className="lg:w-[340px] flex-shrink-0" style={{ position: "relative", overflow: "visible", display: "flex", alignItems: "flex-end" }}>
+                <div className="lg:w-[340px] flex-shrink-0 mt-8 lg:mt-0" style={{ position: "relative", overflow: "visible", display: "flex", alignItems: "flex-end" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src="/prize-asura.png"
