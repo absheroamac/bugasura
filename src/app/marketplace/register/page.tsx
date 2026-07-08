@@ -106,7 +106,7 @@ function AccordionStep({ step, isLast }: { step: typeof steps[0]; isLast: boolea
         </div>
       </button>
       {open && (
-        <div className="pb-6 pl-[88px] lg:pl-[104px]" style={{ marginTop: "-8px" }}>
+        <div className="pb-6 pl-[64px] lg:pl-[80px]" style={{ marginTop: "-8px" }}>
           <BodyText color="#ffffff" style={{ fontSize: "17px", lineHeight: 1.75, maxWidth: "52ch" }}>
             {step.body}
           </BodyText>
@@ -629,9 +629,9 @@ export default function AsuraEventPage() {
             Bugasura&apos;s AI agent marketplace is coming. Register for early access, choose the Asura you want summoned first, and join the contest happening right here at the booth.
           </BodyText>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12">
-            <Button onClick={() => setBetaOpen(true)} variant="white">Register for early access</Button>
-            <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="outline-light">Join the Contest</Button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center mb-12 w-full sm:w-auto">
+            <Button onClick={() => setBetaOpen(true)} variant="white" className="justify-center">Register for early access</Button>
+            <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="outline-light" className="justify-center">Join the Contest</Button>
           </div>
 
           {/* ── Event brief cards ── */}
@@ -1002,7 +1002,7 @@ export default function AsuraEventPage() {
 
       <Footer cta={{
         heading: <>
-          <span className="lg:block">Your Asura is</span>
+          <span className="lg:block">Your Asura is </span>
           <span className="lg:block">waiting.</span>
         </>,
         body: "Start on Bugasura's free tier — and access the first Asuras as they launch to early users.",
