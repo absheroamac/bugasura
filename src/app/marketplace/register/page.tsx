@@ -20,13 +20,13 @@ const steps = [
   {
     num: "02",
     title: "Choose your Asura",
-    body: "Tell us which Asura you'd want summoned first — Browser, API, Duplicate, or Mobile. It shapes what we build next.",
+    body: "Tell us which Asura you'd want summoned first: Browser, API, Duplicate, or Mobile. It shapes what we build next.",
     tag: null,
   },
   {
     num: "03",
     title: "Receive your seal",
-    body: "The moment you register, you'll see your Asura and your personal hashtag on screen — that's your entry seal for the contest.",
+    body: "The moment you register, you'll see your Asura and your personal hashtag on screen. That's your entry seal for the contest.",
     tag: "Instant on submit",
   },
   {
@@ -105,10 +105,10 @@ function AccordionStep({ step, isLast }: { step: typeof steps[0]; isLast: boolea
 }
 
 const asuraOptions = [
-  "Browser Asura — Hunts bugs across every page, every flow, every state",
-  "API Asura — Every contract. Every edge. Every regression",
-  "Duplicate Asura — One bug, one ticket. Every time",
-  "Mobile Asura — iOS and Android. Real devices. Real flows",
+  "Browser Asura: Hunts bugs across every page, every flow, every state",
+  "API Asura: Every contract. Every edge. Every regression",
+  "Duplicate Asura: One bug, one ticket. Every time",
+  "Mobile Asura: iOS and Android. Real devices. Real flows",
   "Other",
 ];
 
@@ -440,7 +440,7 @@ function BetaModal({ onClose }: { onClose: () => void }) {
                     Contest entry submitted
                   </BodyText>
                   <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "18px", marginBottom: "8px" }}>
-                    Your Asura · {resolvedContestAsura.split(" —")[0]}
+                    Your Asura · {resolvedContestAsura.split(": ")[0]}
                   </Heading>
                   <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "13px", lineHeight: 1.6 }}>
                     Click a picture at Booth B2 and post with <strong>#WorldOfAsuras</strong> to enter.
@@ -809,10 +809,10 @@ export default function AsuraEventPage() {
             color="#1E1E1E"
             style={{ fontSize: "clamp(48px, 5vw, 68px)", lineHeight: 1.0, letterSpacing: "-0.03em", marginBottom: "20px" }}
           >
-            A marketplace of AI agents built for QA — each one an Asura
+            A marketplace of AI agents built for QA, each one an Asura
           </Heading>
           <BodyText color="rgba(0,0,0,0.7)" style={{ fontSize: "17px", lineHeight: 1.75, maxWidth: "60ch", margin: "0 auto 48px" }}>
-            Every Asura is a specialised AI agent — one hunts regressions, one breaks your security, one shapeshifts across your UI. The Bugasura Agent Marketplace lets you summon the right one for the job instead of building test coverage by hand. It&apos;s launching soon, and everyone who registers here gets in before the public.
+            Every Asura is a specialised AI agent. One hunts regressions, one breaks your security, one shapeshifts across your UI. The Bugasura Agent Marketplace lets you summon the right one for the job instead of building test coverage by hand. It&apos;s launching soon, and everyone who registers here gets in before the public.
           </BodyText>
 
           {/* Asura pods illustration */}
@@ -827,7 +827,7 @@ export default function AsuraEventPage() {
             {[
               {
                 title: "The Marketplace",
-                body: "A growing library of purpose-built AI testing agents you can deploy into your Bugasura workspace — for regression, performance, security, API, and UI testing. Built on the same Asura AI that already powers Bugasura today.",
+                body: "A growing library of purpose-built AI testing agents you can deploy into your Bugasura workspace, for regression, performance, security, API, and UI testing. Built on the same Asura AI that already powers Bugasura today.",
               },
               {
                 title: "Early Access",
@@ -835,7 +835,7 @@ export default function AsuraEventPage() {
               },
               {
                 title: "Your Asura, Your Rules",
-                body: "Pick the Asura you want summoned first — Browser, API, Duplicate Bug, or Mobile. Your vote shapes which agents get prioritised when the Marketplace launches.",
+                body: "Pick the Asura you want summoned first: Browser, API, Duplicate Bug, or Mobile. Your vote shapes which agents get prioritised when the Marketplace launches.",
               },
             ].map(({ title, body }) => (
               <div
@@ -881,7 +881,7 @@ export default function AsuraEventPage() {
 
           <div className="mt-6 md:-mt-[100px]">
           <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "60ch", margin: "0 auto 48px", textAlign: "center" }}>
-            Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong>, and use <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong> — top 10 entries based on likes and reach will win exciting prizes from a total prize pool worth ₹25,000.
+            Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong>, and use <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong>. Top 10 entries based on likes and reach will win exciting prizes from a total prize pool worth ₹25,000.
           </BodyText>
           </div>
 
@@ -926,7 +926,7 @@ export default function AsuraEventPage() {
                     Exciting tech gadgets worth ₹25,000
                   </Heading>
                   <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "42ch" }}>
-                    Top 10 contest winners will win exciting prizes from a total prize pool worth ₹25,000. Winners selected based on likes and reach — announced after verification by the Bugasura team.
+                    Top 10 contest winners will win exciting prizes from a total prize pool worth ₹25,000. Winners selected based on likes and reach, announced after verification by the Bugasura team.
                   </BodyText>
                 </div>
                 {/* Right: illustration — overflows top */}
@@ -947,7 +947,7 @@ export default function AsuraEventPage() {
                 </div>
               </div>
               <BodyText color="#ffffff" style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1.7, textAlign: "center", maxWidth: "60ch", margin: "0 auto" }}>
-                Everyone who registers — win or not — gets early access to the Bugasura Agent Marketplace ahead of public launch.
+                Everyone who registers, win or not, gets early access to the Bugasura Agent Marketplace ahead of public launch.
               </BodyText>
             </div>
           </div>
@@ -1000,7 +1000,7 @@ export default function AsuraEventPage() {
                     You&apos;ve entered the World of Asuras
                   </Heading>
                   <BodyText color="var(--red)" style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "16px" }}>
-                    Your Asura · {selectedAsura.split(" —")[0]}
+                    Your Asura · {selectedAsura.split(": ")[0]}
                   </BodyText>
                   <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "38ch", marginBottom: "28px" }}>
                     Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> to enter the contest.
@@ -1108,7 +1108,7 @@ export default function AsuraEventPage() {
               </Heading>
             </div>
             <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "44ch", margin: "0 auto" }}>
-              Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use this hashtag on your post — that&apos;s what makes your entry count toward the contest.
+              Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use this hashtag on your post. That&apos;s what makes your entry count toward the contest.
             </BodyText>
           </div>
 
@@ -1121,7 +1121,7 @@ export default function AsuraEventPage() {
           <span className="lg:block">Your Asura is </span>
           <span className="lg:block">waiting.</span>
         </>,
-        body: "Start on Bugasura's free tier — and access the first Asuras as they launch to early users.",
+        body: "Start on Bugasura's free tier and access the first Asuras as they launch to early users.",
         primaryLabel: "Start for Free",
         primaryHref: "https://my.bugasura.io?go=sign_up",
         secondaryLabel: "Explore Asuras",
