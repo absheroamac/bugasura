@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, ArrowRight, X, ChevronRight, ChevronLeft, Monitor, BookOpen, Gift } from "lucide-react";
+import { Check, ArrowRight, X, Monitor, BookOpen, Gift } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Heading, BodyText, Button } from "@/components/ui";
@@ -139,31 +139,6 @@ const roleOptions = [
 ];
 
 /* ─── Beta Signup Modal ─── */
-const betaSteps = [
-  {
-    id: "contact",
-    question: "Let's start with the basics.",
-    sub: "We'll use this to keep you in the loop.",
-  },
-  {
-    id: "expectation",
-    question: "What do you expect from the Bugasura Agent Marketplace?",
-    sub: "Be as specific or as vague as you like.",
-  },
-  {
-    id: "audience",
-    question: "Are you planning to build agents for yourself, your team, your company, or others?",
-    sub: "Pick the one that fits best.",
-    options: ["Just myself", "My QA / engineering team", "My entire company", "External clients / customers", "Not sure yet"],
-  },
-  {
-    id: "usecases",
-    question: "What use cases would you like to solve using the marketplace?",
-    sub: "Pick everything that applies.",
-    options: ["Automated regression testing", "API testing", "Security & vulnerability scanning", "Performance testing", "Mobile app testing", "Duplicate bug detection", "Building custom AI test agents", "CI/CD integration", "Other"],
-    multi: true,
-  },
-];
 
 const COUNTRY_CODES = [
   { code: "+91",  flag: "🇮🇳", label: "India" },
@@ -290,89 +265,34 @@ function PhoneInput({ value, countryCode, onValueChange, onCountryChange, onBlur
 }
 
 function BetaModal({ onClose }: { onClose: () => void }) {
-  const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [data, setData] = useState<Record<string, string | string[]>>({
-    name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "",
-    expectation: "", audience: "", usecases: [],
-  });
-  const [contactErrors, setContactErrors] = useState<Record<string, string>>({});
-  const [contestAsura, setContestAsura] = useState("");
-  const [contestCustomAsura, setContestCustomAsura] = useState("");
-  const [contestSubmitting, setContestSubmitting] = useState(false);
-  const [contestDone, setContestDone] = useState(false);
-  const [contestAsuraError, setContestAsuraError] = useState("");
-
-  const resolvedContestAsura = contestAsura === "Other" ? contestCustomAsura : contestAsura;
-
-  const handleContestSubmit = async () => {
-    if (!contestAsura) { setContestAsuraError("Please choose your Asura"); return; }
-    if (contestAsura === "Other" && !contestCustomAsura.trim()) { setContestAsuraError("Please describe your Asura"); return; }
-    setContestAsuraError("");
-    setContestSubmitting(true);
-    const payload = {
-      name: data.name as string, email: data.email as string,
-      mobile: data.mobile ? `${data.mobileCountry} ${data.mobile}` : "",
-      company: data.company as string, role: data.role as string,
-      asura: resolvedContestAsura, timestamp: getISTTimestamp(), type: "contest_registration",
-    };
-    const params = new URLSearchParams(payload as Record<string, string>);
-    fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: "GET", mode: "no-cors" }).catch(() => {});
-    setContestSubmitting(false);
-    setContestDone(true);
-  };
+  const [data, setData] = useState({ name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "" });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => { document.body.style.overflow = ""; };
   }, []);
 
-  const current = betaSteps[step];
-  const total = betaSteps.length;
-  const progress = ((step) / total) * 100;
-
-  const toggle = (field: string, val: string) => {
-    const arr = (data[field] as string[]) || [];
-    setData(prev => ({ ...prev, [field]: arr.includes(val) ? arr.filter(v => v !== val) : [...arr, val] }));
-  };
-
-  const validateContact = () => {
+  const validate = () => {
     const errs: Record<string, string> = {};
     if (!data.name) errs.name = "Name is required";
     if (!data.email) errs.email = "Email is required";
-    else if (!isValidEmail(data.email as string)) errs.email = "Enter a valid email address";
+    else if (!isValidEmail(data.email)) errs.email = "Enter a valid email address";
     if (!data.role) errs.role = "Please select your role";
-    if (data.mobile && !isValidMobile(data.mobile as string)) errs.mobile = "Enter a valid mobile number";
+    if (data.mobile && !isValidMobile(data.mobile)) errs.mobile = "Enter a valid mobile number";
     return errs;
   };
 
-  const canNext = () => {
-    if (current.id === "contact") {
-      if (!data.name || !data.email || !data.role) return false;
-      if (!isValidEmail(data.email as string)) return false;
-      if (data.mobile && !isValidMobile(data.mobile as string)) return false;
-      return true;
-    }
-    if (current.multi) return (data[current.id] as string[]).length > 0;
-    if (current.options) return !!data[current.id];
-    return !!(data[current.id] as string)?.trim();
-  };
-
-  const handleNext = () => {
-    if (current.id === "contact") {
-      const errs = validateContact();
-      setContactErrors(errs);
-      if (Object.keys(errs).length > 0) return;
-    }
-    if (step < total - 1) { setStep(s => s + 1); }
-    else { handleSubmit(); }
-  };
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate();
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
     setSubmitting(true);
     const fullMobile = data.mobile ? `${data.mobileCountry} ${data.mobile}` : "";
-    const payload = { ...data, mobile: fullMobile, usecases: (data.usecases as string[]).join(", "), timestamp: getISTTimestamp(), type: "beta_signup" };
+    const payload = { ...data, mobile: fullMobile, timestamp: getISTTimestamp(), type: "beta_signup" };
     try {
       const existing = JSON.parse(localStorage.getItem("bugasuraBetaSignups") || "[]");
       existing.push(payload);
@@ -398,14 +318,9 @@ function BetaModal({ onClose }: { onClose: () => void }) {
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
-        className="relative w-full max-w-[580px] flex flex-col"
+        className="relative w-full max-w-[540px] flex flex-col"
         style={{ background: "#FFF6E2", borderRadius: "28px", overflow: "hidden", maxHeight: "90vh" }}
       >
-        {/* Progress bar */}
-        <div style={{ height: "4px", background: "rgba(30,30,30,0.08)" }}>
-          <div style={{ height: "100%", width: `${done ? 100 : progress}%`, background: "var(--red)", transition: "width 0.4s ease" }} />
-        </div>
-
         {/* Close */}
         <button
           onClick={onClose}
@@ -418,207 +333,52 @@ function BetaModal({ onClose }: { onClose: () => void }) {
         <div className="flex flex-col overflow-y-auto" style={{ padding: "40px 40px 32px" }}>
           {done ? (
             /* ── Success ── */
-            <div className="flex flex-col items-center text-center py-4">
+            <div className="flex flex-col items-center text-center py-8">
               <div style={{ width: "64px", height: "64px", borderRadius: "20px", background: "rgba(229,39,39,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "20px" }}>
                 <Check size={28} color="var(--red)" strokeWidth={2.5} />
               </div>
               <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "28px", marginBottom: "12px" }}>You&apos;re on the list.</Heading>
-              <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "36ch", marginBottom: "32px" }}>
+              <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "36ch", marginBottom: "28px" }}>
                 We&apos;ll reach out before the Bugasura Agent Marketplace opens. Your input will directly shape what we build.
               </BodyText>
-
-              {contestDone ? (
-                /* ── Contest success ── */
-                <div className="w-full flex flex-col items-center" style={{ background: "rgba(229,39,39,0.06)", borderRadius: "20px", padding: "28px 24px" }}>
-                  <div style={{ position: "relative", marginBottom: "16px" }}>
-                    <img src={getAsuraImage(resolvedContestAsura)} alt={resolvedContestAsura} style={{ width: "120px", height: "120px", objectFit: "contain", filter: "drop-shadow(0 6px 16px rgba(229,39,39,0.25))" }} />
-                    <div style={{ position: "absolute", bottom: "-6px", right: "-6px", width: "26px", height: "26px", borderRadius: "50%", background: "var(--red)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Check size={12} color="#fff" strokeWidth={3} />
-                    </div>
-                  </div>
-                  <BodyText color="var(--red)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "8px" }}>
-                    Contest entry submitted
-                  </BodyText>
-                  <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "18px", marginBottom: "8px" }}>
-                    Your Asura · {resolvedContestAsura.split(": ")[0]}
-                  </Heading>
-                  <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "13px", lineHeight: 1.6 }}>
-                    Click a picture at Booth B2 and post with <strong>#WorldOfAsuras</strong> to enter.
-                  </BodyText>
-                </div>
-              ) : (
-                /* ── Contest opt-in ── */
-                <div className="w-full text-left" style={{ borderTop: "1px solid rgba(30,30,30,0.1)", paddingTop: "24px" }}>
-                  <BodyText color="var(--dark)" style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>Want to register for the Photo Booth contest?</BodyText>
-                  <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "13px", lineHeight: 1.6, marginBottom: "16px" }}>
-                    Pick your Asura, post on social media, and win exciting prizes from a ₹25,000 prize pool.
-                  </BodyText>
-                  <select
-                    value={contestAsura}
-                    onChange={e => { setContestAsura(e.target.value); setContestAsuraError(""); }}
-                    style={{ width: "100%", padding: "14px 16px", borderRadius: "12px", border: `1px solid ${contestAsuraError ? "var(--red)" : "rgba(30,30,30,0.15)"}`, background: "#ffffff", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "#1E1E1E", outline: "none", marginBottom: "10px" }}
-                  >
-                    <option value="" disabled>Choose your Asura</option>
-                    {asuraOptions.map(a => <option key={a}>{a}</option>)}
-                  </select>
-                  {contestAsura === "Other" && (
-                    <input
-                      type="text"
-                      placeholder="Describe the Asura you'd want"
-                      value={contestCustomAsura}
-                      onChange={e => { setContestCustomAsura(e.target.value); setContestAsuraError(""); }}
-                      style={{ width: "100%", padding: "14px 16px", borderRadius: "12px", border: "1px solid rgba(30,30,30,0.15)", background: "#ffffff", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "15px", color: "#1E1E1E", outline: "none", marginBottom: "10px" }}
-                    />
-                  )}
-                  {contestAsuraError && <p style={{ color: "var(--red)", fontSize: "12px", marginBottom: "10px" }}>{contestAsuraError}</p>}
-                  <button
-                    onClick={handleContestSubmit}
-                    disabled={contestSubmitting}
-                    className="w-full flex items-center justify-center gap-2"
-                    style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "14px", padding: "14px 20px", borderRadius: "12px", background: contestSubmitting ? "rgba(229,39,39,0.5)" : "var(--red)", color: "#ffffff", border: "none", cursor: contestSubmitting ? "wait" : "pointer" }}
-                  >
-                    {contestSubmitting ? "Entering…" : "Enter the contest"}
-                    {!contestSubmitting && <ArrowRight size={15} strokeWidth={2.5} />}
-                  </button>
-                  <button onClick={onClose} style={{ marginTop: "12px", width: "100%", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.4)", background: "none", border: "none", cursor: "pointer" }}>
-                    No thanks, close
-                  </button>
-                </div>
-              )}
-
-              {contestDone && (
-                <button onClick={onClose} style={{ marginTop: "20px", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.45)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
-                  Close
-                </button>
-              )}
+              <button onClick={onClose} style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.45)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
+                Close
+              </button>
             </div>
           ) : (
             <>
-              {/* Step counter */}
-              <BodyText color="rgba(30,30,30,0.4)" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "20px" }}>
-                {step + 1} / {total}
-              </BodyText>
-
-              {/* Question */}
-              <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "clamp(20px, 3vw, 26px)", marginBottom: "8px", lineHeight: 1.2 }}>
-                {current.question}
+              <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "clamp(20px, 3vw, 26px)", marginBottom: "6px", lineHeight: 1.2 }}>
+                Register for early access.
               </Heading>
-              {current.sub && (
-                <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", lineHeight: 1.6, marginBottom: "24px" }}>
-                  {current.sub}
-                </BodyText>
-              )}
-
-              {/* ── Contact fields ── */}
-              {current.id === "contact" && (
-                <div>
-                  <input placeholder="Your name" value={data.name as string} onChange={e => { setData(p => ({ ...p, name: e.target.value })); setContactErrors(p => ({ ...p, name: "" })); }} style={{ ...inputStyle, borderColor: contactErrors.name ? "var(--red)" : undefined }} />
-                  {contactErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{contactErrors.name}</p>}
-                  <input placeholder="Work email" type="email" value={data.email as string} onChange={e => { setData(p => ({ ...p, email: e.target.value })); setContactErrors(p => ({ ...p, email: "" })); }} onBlur={() => { if (data.email && !isValidEmail(data.email as string)) setContactErrors(p => ({ ...p, email: "Enter a valid email address" })); }} style={{ ...inputStyle, borderColor: contactErrors.email ? "var(--red)" : undefined }} />
-                  {contactErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{contactErrors.email}</p>}
-                  <PhoneInput
-                    value={data.mobile as string}
-                    countryCode={data.mobileCountry as string}
-                    onValueChange={v => { setData(p => ({ ...p, mobile: v })); setContactErrors(p => ({ ...p, mobile: "" })); }}
-                    onCountryChange={v => setData(p => ({ ...p, mobileCountry: v }))}
-                    onBlur={() => { if (data.mobile && !isValidMobile(data.mobile as string)) setContactErrors(p => ({ ...p, mobile: "Enter a valid mobile number" })); }}
-                    style={{ ...inputStyle, borderColor: contactErrors.mobile ? "var(--red)" : undefined }}
-                  />
-                  {contactErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{contactErrors.mobile}</p>}
-                  <input placeholder="Company" value={data.company as string} onChange={e => setData(p => ({ ...p, company: e.target.value }))} style={{ ...inputStyle }} />
-                  <select value={data.role as string} onChange={e => { setData(p => ({ ...p, role: e.target.value })); setContactErrors(p => ({ ...p, role: "" })); }} style={{ ...inputStyle, marginBottom: 0, borderColor: contactErrors.role ? "var(--red)" : undefined }}>
-                    <option value="" disabled>Your role</option>
-                    {["SDET", "Exploratory Tester", "Developer", "Product Manager", "Engineering / QA Lead", "Founder / CXO", "Other"].map(r => <option key={r}>{r}</option>)}
-                  </select>
-                  {contactErrors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "4px" }}>{contactErrors.role}</p>}
-                </div>
-              )}
-
-              {/* ── Option pills (single) ── */}
-              {current.options && !current.multi && (
-                <div className="flex flex-wrap gap-2">
-                  {current.options.map(opt => (
-                    <button
-                      key={opt}
-                      onClick={() => setData(p => ({ ...p, [current.id]: opt }))}
-                      style={{
-                        fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px",
-                        padding: "10px 18px", borderRadius: "100px", cursor: "pointer",
-                        border: data[current.id] === opt ? "2px solid var(--red)" : "1.5px solid rgba(30,30,30,0.15)",
-                        background: data[current.id] === opt ? "rgba(229,39,39,0.08)" : "#ffffff",
-                        color: data[current.id] === opt ? "var(--red)" : "#1E1E1E",
-                        transition: "all 0.15s",
-                      }}
-                    >
-                      {opt}
-                    </button>
-                  ))}
-                </div>
-              )}
-
-              {/* ── Option pills (multi) ── */}
-              {current.options && current.multi && (
-                <div className="flex flex-wrap gap-2">
-                  {current.options.map(opt => {
-                    const selected = (data[current.id] as string[]).includes(opt);
-                    return (
-                      <button
-                        key={opt}
-                        onClick={() => toggle(current.id, opt)}
-                        style={{
-                          fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px",
-                          padding: "10px 18px", borderRadius: "100px", cursor: "pointer",
-                          border: selected ? "2px solid var(--red)" : "1.5px solid rgba(30,30,30,0.15)",
-                          background: selected ? "rgba(229,39,39,0.08)" : "#ffffff",
-                          color: selected ? "var(--red)" : "#1E1E1E",
-                          transition: "all 0.15s",
-                        }}
-                      >
-                        {selected && "✓ "}{opt}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* ── Free text ── */}
-              {!current.options && current.id !== "contact" && (
-                <textarea
-                  placeholder="Type your answer here…"
-                  rows={4}
-                  value={data[current.id] as string}
-                  onChange={e => setData(p => ({ ...p, [current.id]: e.target.value }))}
-                  style={{ ...inputStyle, resize: "vertical", marginBottom: 0 }}
+              <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", lineHeight: 1.6, marginBottom: "24px" }}>
+                We&apos;ll keep you in the loop before the Marketplace opens.
+              </BodyText>
+              <form onSubmit={handleSubmit} noValidate>
+                <input placeholder="Your name" value={data.name} onChange={e => { setData(p => ({ ...p, name: e.target.value })); setErrors(p => ({ ...p, name: "" })); }} style={{ ...inputStyle, borderColor: errors.name ? "var(--red)" : undefined }} />
+                {errors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "12px" }}>{errors.name}</p>}
+                <input placeholder="Work email" type="email" value={data.email} onChange={e => { setData(p => ({ ...p, email: e.target.value })); setErrors(p => ({ ...p, email: "" })); }} onBlur={() => { if (data.email && !isValidEmail(data.email)) setErrors(p => ({ ...p, email: "Enter a valid email address" })); }} style={{ ...inputStyle, borderColor: errors.email ? "var(--red)" : undefined }} />
+                {errors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "12px" }}>{errors.email}</p>}
+                <PhoneInput
+                  value={data.mobile}
+                  countryCode={data.mobileCountry}
+                  onValueChange={v => { setData(p => ({ ...p, mobile: v })); setErrors(p => ({ ...p, mobile: "" })); }}
+                  onCountryChange={v => setData(p => ({ ...p, mobileCountry: v }))}
+                  onBlur={() => { if (data.mobile && !isValidMobile(data.mobile)) setErrors(p => ({ ...p, mobile: "Enter a valid mobile number" })); }}
+                  style={{ ...inputStyle, borderColor: errors.mobile ? "var(--red)" : undefined }}
                 />
-              )}
-
-              {/* ── Navigation ── */}
-              <div className="flex items-center justify-between mt-8">
-                <button
-                  onClick={() => setStep(s => s - 1)}
-                  disabled={step === 0}
-                  className="flex items-center gap-1"
-                  style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: step === 0 ? "rgba(30,30,30,0.25)" : "rgba(30,30,30,0.55)", background: "none", border: "none", cursor: step === 0 ? "default" : "pointer" }}
-                >
-                  <ChevronLeft size={16} /> Back
+                {errors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "-8px", marginBottom: "12px" }}>{errors.mobile}</p>}
+                <input placeholder="Company" value={data.company} onChange={e => setData(p => ({ ...p, company: e.target.value }))} style={{ ...inputStyle }} />
+                <select value={data.role} onChange={e => { setData(p => ({ ...p, role: e.target.value })); setErrors(p => ({ ...p, role: "" })); }} style={{ ...inputStyle, marginBottom: 0, borderColor: errors.role ? "var(--red)" : undefined }}>
+                  <option value="" disabled>Your role</option>
+                  {roleOptions.map(r => <option key={r}>{r}</option>)}
+                </select>
+                {errors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "4px", marginBottom: "12px" }}>{errors.role}</p>}
+                <button type="submit" disabled={submitting} className="w-full flex items-center justify-center gap-2 mt-5" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", padding: "16px 24px", borderRadius: "12px", background: submitting ? "rgba(229,39,39,0.5)" : "var(--red)", color: "#ffffff", border: "none", cursor: submitting ? "wait" : "pointer" }}>
+                  {submitting ? "Submitting…" : "Get early access"}
+                  {!submitting && <ArrowRight size={16} strokeWidth={2.5} />}
                 </button>
+              </form>
 
-                <button
-                  onClick={handleNext}
-                  disabled={!canNext() || submitting}
-                  className="flex items-center gap-2"
-                  style={{
-                    fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "14px",
-                    padding: "12px 24px", borderRadius: "12px", border: "none", cursor: canNext() ? "pointer" : "default",
-                    background: canNext() ? "var(--red)" : "rgba(30,30,30,0.1)",
-                    color: canNext() ? "#ffffff" : "rgba(30,30,30,0.3)",
-                    transition: "all 0.2s",
-                  }}
-                >
-                  {submitting ? "Submitting…" : step === total - 1 ? "Submit" : "Next"}
-                  {!submitting && <ChevronRight size={16} />}
-                </button>
-              </div>
             </>
           )}
         </div>
