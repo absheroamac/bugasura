@@ -32,7 +32,7 @@ const steps = [
   {
     num: "04",
     title: "Strike a pose, post it",
-    body: "Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag Bugasura, and use #WorldOfAsuras and #bugasura.",
+    body: "Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag Bugasura, and use #WorldOfAsuras.",
     tag: null,
   },
   {
@@ -443,7 +443,7 @@ function BetaModal({ onClose }: { onClose: () => void }) {
                     Your Asura · {resolvedContestAsura.split(" —")[0]}
                   </Heading>
                   <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "13px", lineHeight: 1.6 }}>
-                    Click a picture at Booth B2 and post with <strong>#WorldOfAsuras</strong> <strong>#bugasura</strong> to enter.
+                    Click a picture at Booth B2 and post with <strong>#WorldOfAsuras</strong> to enter.
                   </BodyText>
                 </div>
               ) : (
@@ -679,7 +679,7 @@ export default function AsuraEventPage() {
     setSubmitted(true);
   };
 
-  const shareText = encodeURIComponent(`I just entered the World of Asuras at Bugasura's booth! My Asura: ${selectedAsura} #WorldOfAsuras #bugasura @Bugasura`);
+  const shareText = encodeURIComponent(`I just entered the World of Asuras at Bugasura's booth! My Asura: ${selectedAsura} #WorldOfAsuras @Bugasura`);
 
   return (
     <main className="flex flex-col gap-2">
@@ -736,7 +736,7 @@ export default function AsuraEventPage() {
               <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" }}>Photo Contest</BodyText>
               <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "12px" }}>Prize pool worth ₹25,000</Heading>
               <BodyText color="rgba(30,30,30,0.7)" style={{ lineHeight: 1.65, marginBottom: "24px" }}>
-                Click a picture with the Bugasura Asura cutout at Booth B2 · Post on LinkedIn, Instagram, or any social media · Tag <strong style={{ color: "var(--dark)" }}>@Bugasura</strong> · Use <strong style={{ color: "var(--dark)" }}>#WorldOfAsuras</strong> and <strong style={{ color: "var(--dark)" }}>#bugasura</strong>
+                Click a picture with the Bugasura Asura cutout at Booth B2 · Post on LinkedIn, Instagram, or any social media · Tag <strong style={{ color: "var(--dark)" }}>@Bugasura</strong> · Use <strong style={{ color: "var(--dark)" }}>#WorldOfAsuras</strong>
               </BodyText>
               <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="primary">Participate</Button>
               </div>
@@ -881,7 +881,7 @@ export default function AsuraEventPage() {
 
           <div className="mt-6 md:-mt-[100px]">
           <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "60ch", margin: "0 auto 48px", textAlign: "center" }}>
-            Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong>, and use <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong> and <strong style={{ color: "#ffffff" }}>#bugasura</strong> — top 10 entries based on likes and reach will win exciting prizes from a total prize pool worth ₹25,000.
+            Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong>, and use <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong> — top 10 entries based on likes and reach will win exciting prizes from a total prize pool worth ₹25,000.
           </BodyText>
           </div>
 
@@ -1003,11 +1003,11 @@ export default function AsuraEventPage() {
                     Your Asura · {selectedAsura.split(" —")[0]}
                   </BodyText>
                   <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "38ch", marginBottom: "28px" }}>
-                    Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> and <strong>#bugasura</strong> to enter the contest.
+                    Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> and to enter the contest.
                   </BodyText>
                   <div className="flex items-center justify-between gap-4 w-full mb-6" style={{ background: "rgba(30,30,30,0.06)", border: "1px dashed rgba(30,30,30,0.2)", borderRadius: "16px", padding: "16px 20px" }}>
-                    <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(16px, 2vw, 22px)" }}>#WorldOfAsuras #bugasura</Heading>
-                    <button onClick={() => { navigator.clipboard.writeText("#WorldOfAsuras #bugasura"); }} style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "12px", color: "#0077C2", background: "rgba(0,119,194,0.1)", border: "1px solid rgba(0,119,194,0.3)", borderRadius: "100px", padding: "6px 14px", cursor: "pointer", letterSpacing: "0.05em", flexShrink: 0 }}>Copy</button>
+                    <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(16px, 2vw, 22px)" }}>#WorldOfAsuras</Heading>
+                    <button onClick={() => { navigator.clipboard.writeText("#WorldOfAsuras"); }} style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "12px", color: "#0077C2", background: "rgba(0,119,194,0.1)", border: "1px solid rgba(0,119,194,0.3)", borderRadius: "100px", padding: "6px 14px", cursor: "pointer", letterSpacing: "0.05em", flexShrink: 0 }}>Copy</button>
                   </div>
                   <div className="flex gap-3 flex-wrap justify-center mb-6">
                     <a href={`https://twitter.com/intent/tweet?text=${shareText}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "var(--dark)", background: "rgba(30,30,30,0.08)", border: "1px solid rgba(30,30,30,0.12)", borderRadius: "100px", padding: "10px 20px", textDecoration: "none" }}>Share on X</a>
@@ -1104,7 +1104,7 @@ export default function AsuraEventPage() {
               }}
             >
               <Heading level="subsection" as="p" color="#ffffff" style={{ fontSize: "clamp(20px, 3.5vw, 38px)", letterSpacing: "-0.02em" }}>
-                #WorldOfAsuras #bugasura
+                #WorldOfAsuras
               </Heading>
             </div>
             <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "44ch", margin: "0 auto" }}>
