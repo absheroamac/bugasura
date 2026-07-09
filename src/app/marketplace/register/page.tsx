@@ -935,15 +935,16 @@ export default function AsuraEventPage() {
                   <img
                     src="/prize-asura.png"
                     alt="Prize"
+                    className="prize-img"
                     style={{
                       width: "100%",
                       height: "auto",
                       display: "block",
                       objectFit: "contain",
                       objectPosition: "bottom center",
-                      marginTop: "-20%",
                     }}
                   />
+                  <style>{`.prize-img { margin-top: 0; } @media (min-width: 1024px) { .prize-img { margin-top: -20%; } }`}</style>
                 </div>
               </div>
               <BodyText color="#ffffff" style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1.7, textAlign: "center", maxWidth: "60ch", margin: "0 auto" }}>
