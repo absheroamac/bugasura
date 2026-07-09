@@ -1003,7 +1003,7 @@ export default function AsuraEventPage() {
                     Your Asura · {selectedAsura.split(" —")[0]}
                   </BodyText>
                   <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "38ch", marginBottom: "28px" }}>
-                    Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> and to enter the contest.
+                    Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> to enter the contest.
                   </BodyText>
                   <div className="flex items-center justify-between gap-4 w-full mb-6" style={{ background: "rgba(30,30,30,0.06)", border: "1px dashed rgba(30,30,30,0.2)", borderRadius: "16px", padding: "16px 20px" }}>
                     <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(16px, 2vw, 22px)" }}>#WorldOfAsuras</Heading>
@@ -1108,7 +1108,7 @@ export default function AsuraEventPage() {
               </Heading>
             </div>
             <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "44ch", margin: "0 auto" }}>
-              Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use these hashtags on your post — that&apos;s what makes your entry count toward the contest.
+              Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use this hashtag on your post — that&apos;s what makes your entry count toward the contest.
             </BodyText>
           </div>
 
