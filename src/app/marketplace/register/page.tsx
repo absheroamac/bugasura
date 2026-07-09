@@ -449,9 +449,9 @@ function BetaModal({ onClose }: { onClose: () => void }) {
               ) : (
                 /* ── Contest opt-in ── */
                 <div className="w-full text-left" style={{ borderTop: "1px solid rgba(30,30,30,0.1)", paddingTop: "24px" }}>
-                  <BodyText color="var(--dark)" style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>Want to enter the booth contest?</BodyText>
+                  <BodyText color="var(--dark)" style={{ fontSize: "15px", fontWeight: 700, marginBottom: "4px" }}>Want to register for the Photo Booth contest?</BodyText>
                   <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "13px", lineHeight: 1.6, marginBottom: "16px" }}>
-                    Pick your Asura and we&apos;ll register your contest entry too — no extra form needed.
+                    Pick your Asura, post on social media, and win exciting prizes from a ₹25,000 prize pool.
                   </BodyText>
                   <select
                     value={contestAsura}
