@@ -27,10 +27,6 @@ export async function generateMetadata({
   };
 }
 
-export default function SharePage({
-  searchParams,
-}: {
-  searchParams: { name?: string; position?: string };
-}) {
+export default function SharePage() {
   redirect(`/asuras`);
 }
