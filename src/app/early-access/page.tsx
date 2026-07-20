@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { Heading, BodyText } from "@/components/ui";
+import Navbar from "@/components/layout/Navbar";
 
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbwYaaKN3iv9BSaH7Pnx-Eb2JqhK4FrKfy1KmB06TtWWyRZlNenE9V-srLM-Yyt1a2Lb9Q/exec";
@@ -136,6 +137,8 @@ export default function EarlyAccessPage() {
   };
 
   return (
+    <>
+    <Navbar />
     <div
       style={{
         minHeight: "100vh",
@@ -148,18 +151,6 @@ export default function EarlyAccessPage() {
         padding: "24px 16px",
       }}
     >
-      {/* Logo top-left */}
-      <a
-        href="/"
-        style={{
-          position: "fixed", top: "24px", left: "28px", zIndex: 10,
-          display: "flex", alignItems: "center", gap: "8px", textDecoration: "none",
-        }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/logo.svg" alt="Bugasura" height={32} style={{ height: "32px" }} onError={e => { (e.target as HTMLImageElement).style.display = "none"; }} />
-      </a>
-
       {/* Card */}
       <div
         style={{
@@ -318,5 +309,6 @@ export default function EarlyAccessPage() {
         }
       `}</style>
     </div>
+    </>
   );
 }
