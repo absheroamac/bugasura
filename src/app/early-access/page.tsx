@@ -125,7 +125,8 @@ export default function EarlyAccessPage() {
   };
 
   const caption = `I'm #${position} in line to build my own QA Agent in the World of Asuras. Are you behind me? bugasura.io/asuras`;
-  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://bugasura.io/asuras")}&summary=${encodeURIComponent(caption)}`;
+  const sharePageUrl = `https://bugasura.io/share?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`;
+  const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(sharePageUrl)}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(caption).then(() => {
@@ -168,44 +169,25 @@ export default function EarlyAccessPage() {
               <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "14px", marginBottom: "6px" }}>
                 Congrats! you&apos;re on the list
               </BodyText>
-              <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: "10px", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px" }}>
                 <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "48px", color: "var(--red)", lineHeight: 1 }}>
                   #{position}
                 </span>
-                <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "18px", color: "var(--dark)", fontWeight: 600 }}>
-                  in the World of Asuras
+                <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "18px", color: "var(--dark)", fontWeight: 600, textAlign: "left", lineHeight: 1.3 }}>
+                  in the World<br />of Asuras
                 </span>
               </div>
             </div>
 
-            {/* Share card */}
+            {/* Share card — uses the OG image route */}
             <div style={{ padding: "20px 32px 0" }}>
-              <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden" }}>
+              <div style={{ borderRadius: "16px", overflow: "hidden" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/beta-share-card.png" alt="Share card" style={{ width: "100%", display: "block" }} />
-                {/* Name + number overlay on the sign */}
-                <div style={{
-                  position: "absolute", top: "52%", left: "8%", width: "30%",
-                  textAlign: "center", transform: "translateY(-50%)",
-                }}>
-                  <div style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "clamp(9px, 2.2vw, 14px)", color: "#1E1E1E", lineHeight: 1.2 }}>
-                    {data.name || "You"}
-                  </div>
-                  <div style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "clamp(12px, 2.8vw, 20px)", color: "var(--red)", lineHeight: 1.1 }}>
-                    #{position}
-                  </div>
-                </div>
-                {/* Caption overlay on right */}
-                <div style={{
-                  position: "absolute", top: "55%", left: "52%", right: "4%",
-                  transform: "translateY(-50%)",
-                }}>
-                  <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "clamp(7px, 1.6vw, 11px)", color: "#ffffff", lineHeight: 1.5, margin: 0 }}>
-                    I&apos;m{" "}
-                    <span style={{ color: "#FFD700", fontWeight: 700 }}>#{position}</span>{" "}
-                    in line<br />to build my own QA Agent.<br />Are you behind me?
-                  </p>
-                </div>
+                <img
+                  src={`/api/og?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`}
+                  alt="Share card"
+                  style={{ width: "100%", display: "block" }}
+                />
               </div>
             </div>
 
@@ -272,7 +254,7 @@ export default function EarlyAccessPage() {
             boxShadow: "0 32px 80px rgba(0,0,0,0.45)", minHeight: "560px",
           }}
         >
-          {/* Left — banner */}
+          {/* Left — banner (hidden on mobile) */}
           <div className="beta-banner" style={{ flex: "0 0 460px", overflow: "hidden", display: "flex" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/beta-banner.png" alt="World of Asuras" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -351,7 +333,7 @@ export default function EarlyAccessPage() {
         <style>{`
           @media (max-width: 700px) {
             .beta-card { flex-direction: column !important; }
-            .beta-banner { flex: 0 0 240px !important; width: 100% !important; }
+            .beta-banner { display: none !important; }
           }
         `}</style>
       </div>
