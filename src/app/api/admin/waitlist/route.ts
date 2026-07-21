@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase";
 import { cookies } from "next/headers";
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   const session = cookies().get("admin_session")?.value;
   if (!session || session !== process.env.ADMIN_SESSION_SECRET) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

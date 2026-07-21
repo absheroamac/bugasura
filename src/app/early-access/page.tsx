@@ -5,8 +5,6 @@ import { ArrowRight, Check } from "lucide-react";
 import { Heading, BodyText } from "@/components/ui";
 import Navbar from "@/components/layout/Navbar";
 
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbwYaaKN3iv9BSaH7Pnx-Eb2JqhK4FrKfy1KmB06TtWWyRZlNenE9V-srLM-Yyt1a2Lb9Q/exec";
 
 const roleOptions = [
   "Exploratory Tester", "SDET", "Developer", "Product Manager",
@@ -31,12 +29,6 @@ const COUNTRY_CODES = [
 const isValidEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
 const isValidMobile = (v: string) => /^\d{7,15}$/.test(v.replace(/[\s\-()]/g, ""));
 
-function getISTTimestamp() {
-  return new Date().toLocaleString("en-IN", {
-    timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
-  });
-}
 
 function randomPosition() {
   return Math.floor(Math.random() * 400) + 700;
@@ -87,7 +79,7 @@ export default function EarlyAccessPage() {
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [position, setPosition] = useState(randomPosition);
-  const [shareToken, setShareToken] = useState("");
+  const [_shareToken, setShareToken] = useState("");
   const [bumped, setBumped] = useState(false);
   const [copied, setCopied] = useState(false);
   const [data, setData] = useState({
