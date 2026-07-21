@@ -86,7 +86,9 @@ function PhoneInput({ value, countryCode, onValueChange, onCountryChange, onBlur
 export default function EarlyAccessPage() {
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [position] = useState(randomPosition);
+  const [position, setPosition] = useState(randomPosition);
+  const [shareToken, setShareToken] = useState("");
+  const [bumped, setBumped] = useState(false);
   const [copied, setCopied] = useState(false);
   const [data, setData] = useState({
     name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "",
@@ -117,11 +119,38 @@ export default function EarlyAccessPage() {
     if (Object.keys(errs).length > 0) return;
     setSubmitting(true);
     const fullMobile = data.mobile ? `${data.mobileCountry} ${data.mobile}` : "";
-    const payload = { ...data, mobile: fullMobile, timestamp: getISTTimestamp(), type: "beta_signup" };
-    const params = new URLSearchParams(payload as Record<string, string>);
-    fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: "GET", mode: "no-cors" }).catch(() => {});
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: data.name, email: data.email, mobile: fullMobile, company: data.company, role: data.role }),
+      });
+      const json = await res.json();
+      if (json.position) setPosition(json.position);
+      if (json.share_token) setShareToken(json.share_token);
+      if (json.bumps === 100) setBumped(true);
+    } catch {
+      // fallback — still show success even if API fails
+    }
     setSubmitting(false);
     setDone(true);
+  };
+
+  const handleShare = async () => {
+    handleCopy();
+    if (!bumped) {
+      try {
+        const res = await fetch("/api/waitlist/share", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: data.email }),
+        });
+        const json = await res.json();
+        if (json.effective_position) setPosition(json.effective_position);
+        setBumped(true);
+      } catch { /* ignore */ }
+    }
+    window.open(linkedInUrl, "_blank");
   };
 
   const caption = `I'm #${position} in line to build my own QA Agent in the World of Asuras. Are you behind me? bugasura.io/asuras`;
@@ -179,16 +208,56 @@ export default function EarlyAccessPage() {
               </div>
             </div>
 
-            {/* Share card — uses the OG image route */}
+            {/* Share card — with download button */}
             <div style={{ padding: "20px 32px 0" }}>
-              <div style={{ borderRadius: "16px", overflow: "hidden" }}>
+              <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/api/og?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`}
                   alt="Share card"
                   style={{ width: "100%", display: "block" }}
                 />
+                {/* Download button — top right */}
+                <a
+                  href={`/api/og?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`}
+                  download={`bugasura-${position}.png`}
+                  style={{
+                    position: "absolute", top: "10px", right: "10px",
+                    background: "rgba(0,0,0,0.55)", backdropFilter: "blur(6px)",
+                    borderRadius: "8px", padding: "7px 10px",
+                    display: "flex", alignItems: "center", gap: "6px",
+                    color: "#ffffff", textDecoration: "none",
+                    fontFamily: "'Clash Grotesk', sans-serif", fontSize: "12px", fontWeight: 600,
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download
+                </a>
               </div>
+            </div>
+
+            {/* 3-step instructions */}
+            <div style={{ padding: "20px 32px 0" }}>
+              {[
+                { n: "1", title: "Copy caption & download image", desc: "Use the caption below and save your personalised Asura card above." },
+                { n: "2", title: "Post on LinkedIn", desc: "Share the image with the caption on LinkedIn to let the world know you're in." },
+                { n: "3", title: "You're bumped — we'll verify", desc: "Your position moves up immediately. Our team will verify your post before beta access is granted." },
+              ].map(({ n, title, desc }) => (
+                <div key={n} style={{ display: "flex", gap: "14px", marginBottom: "14px" }}>
+                  <div style={{
+                    flexShrink: 0, width: "28px", height: "28px", borderRadius: "50%",
+                    border: "2px solid var(--red)", color: "var(--red)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "13px",
+                  }}>{n}</div>
+                  <div>
+                    <div style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "15px", color: "var(--dark)", marginBottom: "3px" }}>{title}</div>
+                    <div style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", color: "rgba(30,30,30,0.55)", lineHeight: 1.5 }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Caption + buttons */}
@@ -214,20 +283,19 @@ export default function EarlyAccessPage() {
                 </button>
               </div>
 
-              <a
-                href={linkedInUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleShare}
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center",
                   width: "100%", padding: "16px 24px", borderRadius: "12px",
-                  background: "var(--red)", color: "#ffffff", textDecoration: "none",
+                  background: bumped ? "rgba(229,39,39,0.4)" : "var(--red)",
+                  color: "#ffffff", border: "none", cursor: bumped ? "default" : "pointer",
                   fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "13px",
                   letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "12px",
                 }}
               >
-                Share on LinkedIn &amp; Jump to #{position - 1}
-              </a>
+                {bumped ? "Shared — you're bumped up!" : "Share on LinkedIn & Jump the Queue"}
+              </button>
 
               <div style={{ textAlign: "center" }}>
                 <a href="/" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.4)", textDecoration: "none" }}>
