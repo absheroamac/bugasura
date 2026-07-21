@@ -79,7 +79,7 @@ export default function EarlyAccessPage() {
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [position, setPosition] = useState(randomPosition);
-  const [_shareToken, setShareToken] = useState("");
+  const [, setShareToken] = useState("");
   const [bumped, setBumped] = useState(false);
   const [copied, setCopied] = useState(false);
   const [data, setData] = useState({
