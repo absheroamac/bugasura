@@ -86,7 +86,7 @@ export default function AdminDashboard() {
   const SortIcon = ({ k }: { k: SortKey }) => sortKey !== k ? <span style={{ opacity: 0.3 }}> ↕</span> : sortDir === "asc" ? <span style={{ color: "#E52727" }}> ↑</span> : <span style={{ color: "#E52727" }}> ↓</span>;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#f5f0e8", fontFamily: "'Clash Grotesk', sans-serif" }}>
+    <div style={{ minHeight: "100vh", background: "#fff", fontFamily: "'Clash Grotesk', sans-serif" }}>
       {/* Header — exact same floating pill as site navbar */}
       <header style={{ position: "fixed", top: "24px", left: "24px", right: "24px", zIndex: 50, display: "flex", justifyContent: "center", pointerEvents: "none" }}>
         <div style={{ position: "relative", width: "100%", maxWidth: "1400px", pointerEvents: "auto" }}>
@@ -108,7 +108,8 @@ export default function AdminDashboard() {
         </div>
       </header>
 
-      <div style={{ padding: "28px 32px", maxWidth: "1400px", margin: "0 auto", paddingTop: "115px" }}>
+      <div style={{ padding: "24px", paddingTop: "115px" }}>
+      <div style={{ background: "#f5f0e8", borderRadius: "24px", padding: "28px 32px", maxWidth: "1400px", margin: "0 auto" }}>
         {/* Metrics */}
         {metrics && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px", marginBottom: "28px" }}>
@@ -207,6 +208,7 @@ export default function AdminDashboard() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );
