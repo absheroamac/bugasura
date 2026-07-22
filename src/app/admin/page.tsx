@@ -86,50 +86,51 @@ export default function AdminDashboard() {
   const SortIcon = ({ k }: { k: SortKey }) => sortKey !== k ? <span style={{ opacity: 0.3 }}> ↕</span> : sortDir === "asc" ? <span style={{ color: "#E52727" }}> ↑</span> : <span style={{ color: "#E52727" }}> ↓</span>;
 
   return (
-    <div style={{ minHeight: "100vh", background: "#fff", fontFamily: "'Clash Grotesk', sans-serif" }}>
-      {/* Header — exact same floating pill as site navbar */}
-      <header style={{ position: "fixed", top: "24px", left: "24px", right: "24px", zIndex: 50, display: "flex", justifyContent: "center", pointerEvents: "none" }}>
-        <div style={{ position: "relative", width: "100%", maxWidth: "1400px", pointerEvents: "auto" }}>
-          <div style={{ position: "relative", height: "67px" }}>
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "stretch" }}>
+    <div style={{ minHeight: "100vh", background: "#ffffff", fontFamily: "'Clash Grotesk', sans-serif", overflowX: "hidden" }}>
+      <style>{`body { background-color: #ffffff !important; overflow-x: hidden; } html { overflow-x: hidden; }`}</style>
+      {/* Admin header — same pill design, logo + sign out only */}
+      <div className="fixed top-2 left-2 right-2 lg:top-6 lg:left-6 lg:right-6 z-50 flex justify-center pointer-events-none">
+        <div className="relative w-full max-w-[1400px] pointer-events-auto">
+          <div className="relative" style={{ height: "67px" }}>
+            <div className="absolute inset-0 flex items-stretch">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/hero/navbar/Left.svg" alt="" aria-hidden width={56} height={67} style={{ display: "block", flexShrink: 0, marginRight: "-1px" }} />
-              <div style={{ flex: 1, backgroundColor: "#FFF6E2" }} />
+              <img src="/hero/navbar/Left.svg" alt="" aria-hidden width={56} height={67} style={{ display: "block", flexShrink: 0, marginRight: "-1px", filter: "saturate(0) brightness(1.1)" }} />
+              <div className="flex-1" style={{ backgroundColor: "#ffffff" }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/hero/navbar/right.svg" alt="" aria-hidden width={56} height={67} style={{ display: "block", flexShrink: 0, marginLeft: "-1px" }} />
+              <img src="/hero/navbar/right.svg" alt="" aria-hidden width={56} height={67} style={{ display: "block", flexShrink: 0, marginLeft: "-1px", filter: "saturate(0) brightness(1.1)" }} />
             </div>
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 48px" }}>
-              <Image src="/logo.png" alt="Bugasura" width={130} height={34} style={{ height: "34px", width: "auto" }} priority />
-              <button onClick={handleLogout} style={{ background: "none", border: "1px solid rgba(30,30,30,0.2)", color: "#1E1E1E", padding: "7px 18px", borderRadius: "8px", cursor: "pointer", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "14px", fontWeight: 600 }}>
+            <div className="absolute inset-0 flex items-center justify-between px-6 lg:px-12">
+              <Image src="/logo.png" alt="Bugasura" width={110} height={28} className="h-[28px] lg:h-[34px] w-auto" priority />
+              <button onClick={handleLogout} style={{ background: "none", border: "1px solid rgba(30,30,30,0.2)", color: "#1E1E1E", padding: "6px 14px", borderRadius: "8px", cursor: "pointer", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", fontWeight: 600 }}>
                 Sign out
               </button>
             </div>
           </div>
         </div>
-      </header>
+      </div>
 
-      <div style={{ padding: "24px", paddingTop: "115px" }}>
-      <div style={{ background: "#f5f0e8", borderRadius: "24px", padding: "28px 32px", maxWidth: "1400px", margin: "0 auto" }}>
+      <div className="px-2 sm:px-4 lg:px-6 pt-[96px] lg:pt-[115px]" style={{ background: "#FFF6E2" }}>
+      <div style={{ background: "#FFF6E2", borderRadius: "20px", padding: "12px", maxWidth: "1400px", margin: "0 auto", minHeight: "calc(100vh - 112px)" }} className="sm:p-5 lg:p-8">
         {/* Metrics */}
         {metrics && (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px", marginBottom: "28px" }}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-4 lg:mb-7">
             {[
               { label: "Total Signups", value: metrics.total, color: "#1E1E1E" },
               { label: "Joined Today", value: metrics.today, color: "#1E1E1E" },
               { label: "Shared & Bumped", value: metrics.bumped, color: "#E52727" },
               { label: "Waiting to Share", value: metrics.not_shared, color: "#1E1E1E" },
             ].map(({ label, value, color }) => (
-              <div key={label} style={{ background: "#fff", borderRadius: "14px", padding: "20px 24px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-                <div style={{ fontSize: "12px", color: "rgba(30,30,30,0.5)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "8px" }}>{label}</div>
-                <div style={{ fontSize: "36px", fontWeight: 700, color, lineHeight: 1 }}>{value}</div>
+              <div key={label} style={{ background: "#fff", borderRadius: "14px", padding: "16px 20px", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+                <div style={{ fontSize: "11px", color: "rgba(30,30,30,0.5)", letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "6px" }}>{label}</div>
+                <div style={{ fontSize: "32px", fontWeight: 700, color, lineHeight: 1 }}>{value}</div>
               </div>
             ))}
           </div>
         )}
 
         {/* Filters */}
-        <div style={{ background: "#fff", borderRadius: "14px", padding: "16px 20px", marginBottom: "16px", display: "flex", gap: "12px", flexWrap: "wrap", alignItems: "center", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
-          <input style={{ ...inp, flex: "1", minWidth: "200px" }} placeholder="Search name, email, company…" value={search} onChange={e => setSearch(e.target.value)} />
+        <div style={{ background: "#fff", borderRadius: "14px", padding: "14px 16px", marginBottom: "12px", display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+          <input style={{ ...inp, flex: "1", minWidth: "160px" }} placeholder="Search name, email, company…" value={search} onChange={e => setSearch(e.target.value)} />
           <select style={{ ...inp }} value={roleFilter} onChange={e => setRoleFilter(e.target.value)}>
             <option value="">All roles</option>
             {roles.map(r => <option key={r} value={r}>{r}</option>)}
@@ -143,7 +144,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Table */}
-        <div style={{ background: "#fff", borderRadius: "14px", overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
+        <div style={{ background: "#fff", borderRadius: "14px", overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", maxWidth: "100%", minWidth: 0 }}>
           {loading ? (
             <div style={{ padding: "60px", textAlign: "center", color: "rgba(30,30,30,0.4)", fontSize: "14px" }}>Loading…</div>
           ) : (
