@@ -30,7 +30,7 @@ export default function AdminDashboard() {
   const [sortDir, setSortDir] = useState<SortDir>("asc");
 
   useEffect(() => {
-    fetch("/api/admin/waitlist")
+    fetch("/internal/api/v1/admin/waitlist")
       .then(r => { if (r.status === 401) router.push("/admin/login"); return r.json(); })
       .then(d => { setMetrics(d.metrics); setRows(d.rows || []); setLoading(false); })
       .catch(() => setLoading(false));
@@ -62,7 +62,7 @@ export default function AdminDashboard() {
   };
 
   const handleLogout = async () => {
-    await fetch("/api/admin/logout", { method: "POST" });
+    await fetch("/internal/api/v1/admin/logout", { method: "POST" });
     router.push("/admin/login");
   };
 

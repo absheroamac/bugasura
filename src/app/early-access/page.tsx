@@ -112,7 +112,7 @@ export default function EarlyAccessPage() {
     setSubmitting(true);
     const fullMobile = data.mobile ? `${data.mobileCountry} ${data.mobile}` : "";
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch("/internal/api/v1/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: data.name, email: data.email, mobile: fullMobile, company: data.company, role: data.role }),
@@ -132,7 +132,7 @@ export default function EarlyAccessPage() {
     handleCopy();
     if (!bumped) {
       try {
-        const res = await fetch("/api/waitlist/share", {
+        const res = await fetch("/internal/api/v1/waitlist/share", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email: data.email }),
