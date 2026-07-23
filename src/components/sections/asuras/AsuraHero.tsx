@@ -53,8 +53,8 @@ export default function AsuraHero() {
             </BodyText>
 
             <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-3 mt-8 w-full lg:w-auto">
-              <Button href="https://my.bugasura.io?go=sign_up" target="_blank" rel="noopener noreferrer" variant="white" className="w-full lg:w-auto justify-center">
-                Start Free
+              <Button href="/early-access" variant="white" className="w-full lg:w-auto justify-center">
+                Register for Early Access
               </Button>
               <Button href="https://calendly.com/get-bugasura/45min" target="_blank" rel="noopener noreferrer" variant="outline-light" className="w-full lg:w-auto justify-center">
                 Book a Demo
