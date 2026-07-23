@@ -99,8 +99,8 @@ export default function AdminDashboard() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/hero/navbar/right.svg" alt="" aria-hidden width={56} height={67} style={{ display: "block", flexShrink: 0, marginLeft: "-1px", filter: "saturate(0) brightness(1.1)" }} />
             </div>
-            <div className="absolute inset-0 flex items-center justify-between px-6 lg:px-12">
-              <Image src="/logo.png" alt="Bugasura" width={110} height={28} className="h-[28px] lg:h-[34px] w-auto" priority />
+            <div className="absolute inset-0 flex items-center justify-between" style={{ paddingLeft: "36px", paddingRight: "36px" }}>
+              <Image src="/bugasura-logo.png" alt="Bugasura" width={160} height={30} className="h-[22px] lg:h-[28px] w-auto" priority />
               <button onClick={handleLogout} style={{ background: "none", border: "1px solid rgba(30,30,30,0.2)", color: "#1E1E1E", padding: "6px 14px", borderRadius: "8px", cursor: "pointer", fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", fontWeight: 600 }}>
                 Sign out
               </button>
