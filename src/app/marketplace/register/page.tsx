@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Check, ArrowRight, X, Monitor, BookOpen, Gift } from "lucide-react";
+import { Check, ArrowRight, X } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Heading, BodyText, Button } from "@/components/ui";
@@ -447,7 +447,7 @@ export default function AsuraEventPage() {
 
       {/* ── HERO ── */}
       <section
-        className="rounded-[32px] relative"
+        className="rounded-[32px] relative overflow-hidden"
         style={{ backgroundColor: "var(--red)" }}
       >
         {/* Background image clipped inside its own rounded wrapper */}
@@ -455,14 +455,13 @@ export default function AsuraEventPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/hero/Background.png" alt="" aria-hidden style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom" }} />
         </div>
-        <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-20 pt-20 lg:pt-28 pb-4">
-
-          <BodyText color="rgba(255,255,255,0.8)" style={{ fontSize: "18px", fontWeight: 700, letterSpacing: "0.02em", marginBottom: "8px" }}>TribeQonf · Bengaluru</BodyText>
+        <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-20 pt-20 lg:pt-28" style={{ paddingBottom: 0 }}>
 
           <Heading
             level="hero"
             as="h1"
             color="#ffffff"
+            className="mt-8 lg:mt-0"
             style={{ fontSize: "clamp(44px, 6vw, 92px)", lineHeight: 1.0, letterSpacing: "-0.03em", maxWidth: "16ch", marginBottom: "24px" }}
           >
             Welcome to the<br />World of Asuras
@@ -475,68 +474,15 @@ export default function AsuraEventPage() {
             Bugasura&apos;s AI agent marketplace is coming. Register for early access, choose the Asura you want summoned first, and join the contest happening right here at the booth.
           </BodyText>
 
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-stretch sm:items-center mb-12 w-full sm:w-auto">
-            <Button onClick={() => setBetaOpen(true)} variant="white" className="justify-center">Register for early access</Button>
-            <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="outline-light" className="justify-center">Join the Contest</Button>
+          <div className="flex justify-center mb-6 w-full sm:w-auto">
+            <Button href="/early-access" variant="white" className="justify-center">Register for early access</Button>
           </div>
 
-          {/* ── Event brief cards ── */}
-          <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4" style={{ paddingTop: "100px", overflow: "visible", position: "relative", zIndex: 10 }}>
-
-            {/* Wide card — contest */}
-            <div className="lg:col-span-2 text-left" style={{ background: "#FFF6E2", borderRadius: "24px", overflow: "visible", position: "relative", padding: "32px 32px 32px 32px" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/hero-card-asura.png"
-                alt="Asura"
-                className="hidden lg:block"
-                style={{ position: "absolute", top: "-140px", left: "0", width: "300px", height: "calc(100% + 140px)", objectFit: "contain", objectPosition: "bottom center" }}
-              />
-              <div className="lg:pl-[278px]">
-              <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: "10px" }}>Photo Contest</BodyText>
-              <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "12px" }}>Prize pool worth ₹25,000</Heading>
-              <BodyText color="rgba(30,30,30,0.7)" style={{ lineHeight: 1.65, marginBottom: "24px" }}>
-                Click a picture with the Bugasura Asura cutout at Booth B2 · Post on LinkedIn, Instagram, or any social media · Tag <strong style={{ color: "var(--dark)" }}>@Bugasura</strong> · Use <strong style={{ color: "var(--dark)" }}>#WorldOfAsuras</strong>
-              </BodyText>
-              <Button onClick={() => document.getElementById('contest')?.scrollIntoView({ behavior: 'smooth' })} variant="primary">Participate</Button>
-              </div>
-            </div>
-
-            {/* Narrow card — booth */}
-            <div className="lg:col-span-1 flex flex-col justify-between text-left" style={{ background: "#F0A030", borderRadius: "24px", padding: "32px" }}>
-              <div>
-                <Heading level="step" as="h3" color="var(--dark)" style={{ marginBottom: "20px" }}>We&apos;re at Booth B2</Heading>
-                <div>
-                  {[
-                    { icon: <Monitor size={16} />, text: "Live Bugasura demo" },
-                    { icon: <BookOpen size={16} />, text: "Book signing with Pradeep" },
-                    { icon: <Gift size={16} />, text: "Free goodies while stocks last" },
-                  ].map(({ icon, text }) => (
-                    <div key={text} className="flex items-center gap-2" style={{ marginBottom: "10px" }}>
-                      <span style={{ color: "var(--dark)", flexShrink: 0 }}>{icon}</span>
-                      <BodyText color="var(--dark)" style={{ fontWeight: 600 }}>{text}</BodyText>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="flex gap-8" style={{ marginTop: "24px", paddingTop: "20px", borderTop: "1px solid rgba(30,30,30,0.15)" }}>
-                <div>
-                  <BodyText color="rgba(30,30,30,0.5)" style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>Event</BodyText>
-                  <Heading level="step" as="p" color="var(--dark)" style={{ fontSize: "18px" }}>TribeQonf</Heading>
-                </div>
-                <div>
-                  <BodyText color="rgba(30,30,30,0.5)" style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>Date</BodyText>
-                  <Heading level="step" as="p" color="var(--dark)" style={{ fontSize: "18px" }}>Jul 10–11, 2026</Heading>
-                </div>
-              </div>
-            </div>
-
-          </div>
 
         </div>
 
         {/* Train illustration — transparent PNG, no blue background */}
-        <div className="relative z-10 w-full px-4 lg:px-8" style={{ marginBottom: "-2px" }}>
+        <div className="relative z-10 w-[130%] -ml-[15%] lg:w-full lg:ml-0 px-0 lg:px-8 mt-4 lg:-mt-[100px]" style={{ marginBottom: "-2px", pointerEvents: "none" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/section5/train.png"
@@ -556,7 +502,7 @@ export default function AsuraEventPage() {
       {/* ── WHAT IS THIS ── */}
       <section
         id="intro"
-        className="rounded-[32px] px-6 lg:px-20 py-16 lg:py-24"
+        className="rounded-[32px] px-6 lg:px-20 py-16 lg:py-24 overflow-hidden"
         style={{ backgroundColor: "#F0A030" }}
       >
         <div className="max-w-[1080px] mx-auto text-center">
@@ -576,12 +522,11 @@ export default function AsuraEventPage() {
           </BodyText>
 
           {/* Asura pods illustration */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/asura-pods.png"
-            alt="Asuras in pods — the Bugasura Agent Marketplace"
-            style={{ width: "100%", height: "auto", display: "block", marginBottom: "48px" }}
-          />
+          <div className="pods-wrap" style={{ marginBottom: "48px" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/asura-pods.png" alt="Asuras in pods — the Bugasura Agent Marketplace" style={{ width: "100%", height: "auto", display: "block" }} />
+          </div>
+          <style>{`.pods-wrap img { transform: scale(1); } @media (max-width: 1023px) { .pods-wrap img { transform: scale(1.4); transform-origin: center center; } }`}</style>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 text-left">
             {[
@@ -610,269 +555,8 @@ export default function AsuraEventPage() {
           </div>
 
           <div className="flex justify-center mt-12">
-            <Button onClick={() => setBetaOpen(true)} variant="dark">Register for Early Access</Button>
+            <Button href="/early-access" variant="dark">Register for Early Access</Button>
           </div>
-        </div>
-      </section>
-
-      {/* ── CONTEST STEPS ── */}
-      <section
-        id="contest"
-        className="rounded-[32px] px-6 lg:px-20 py-16 lg:py-24 relative overflow-hidden"
-        style={{ backgroundColor: "var(--red)" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/hero/Background.png" alt="" aria-hidden
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", zIndex: 0 }} />
-        {/* Bottom darkening gradient */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(30,0,0,0.75) 100%)", zIndex: 1 }} />
-        <div className="relative z-10 max-w-[1200px] mx-auto">
-
-          {/* Title graphic */}
-          <div className="flex justify-center mb-10">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/event-title.svg"
-              alt="World of Asuras Contest"
-              className="w-full md:w-auto"
-              style={{ width: "min(1400px, 200%)", maxWidth: "200%", height: "auto", display: "block" }}
-            />
-          </div>
-
-          <div className="mt-6 md:-mt-[100px]">
-          <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "18px", lineHeight: 1.75, maxWidth: "60ch", margin: "0 auto 48px", textAlign: "center" }}>
-            Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong>, and use <strong style={{ color: "#ffffff" }}>#WorldOfAsuras</strong>. Top 10 entries based on likes and reach will win exciting prizes from a total prize pool worth ₹25,000.
-          </BodyText>
-          </div>
-
-          {/* ── PRIZES ── */}
-          <div id="prizes" className="mb-16 lg:mb-24">
-            <div className="max-w-[1080px] mx-auto">
-              <BodyText color="rgba(255,166,0,0.8)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
-                Boons for the bold
-              </BodyText>
-              <Heading
-                level="section"
-                as="h2"
-                color="#ffffff"
-                style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "16px" }}
-              >
-                What you can win
-              </Heading>
-              {/* Full-width horizontal prize card */}
-              <style>{`
-                @keyframes prize-glow {
-                  0%, 100% { box-shadow: 0 0 24px 4px rgba(255,166,0,0.35), 0 0 60px 12px rgba(255,166,0,0.12); }
-                  50% { box-shadow: 0 0 40px 10px rgba(255,166,0,0.55), 0 0 90px 24px rgba(255,166,0,0.22); }
-                }
-              `}</style>
-              <div
-                className="flex flex-col lg:flex-row mb-8"
-                style={{
-                  background: "#FFF6E2",
-                  borderRadius: "24px",
-                  border: "2px solid rgba(255,166,0,0.7)",
-                  overflow: "visible",
-                  animation: "prize-glow 2.8s ease-in-out infinite",
-                  position: "relative",
-                }}
-              >
-                {/* Left: text */}
-                <div className="flex flex-col justify-center" style={{ padding: "48px 48px 48px 48px", flex: 1 }}>
-                  <BodyText color="var(--red)" style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
-                    Prize Pool · 10 Winners
-                  </BodyText>
-                  <Heading level="section" as="h3" color="var(--dark)" style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "20px" }}>
-                    Exciting tech gadgets worth ₹25,000
-                  </Heading>
-                  <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "15px", lineHeight: 1.6, maxWidth: "42ch" }}>
-                    Top 10 contest winners will win exciting prizes from a total prize pool worth ₹25,000. Winners selected based on likes and reach, announced after verification by the Bugasura team.
-                  </BodyText>
-                </div>
-                {/* Right: illustration — overflows top */}
-                <div className="lg:w-[340px] flex-shrink-0 mt-8 lg:mt-0" style={{ position: "relative", overflow: "visible", display: "flex", alignItems: "flex-end" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/prize-asura.png"
-                    alt="Prize"
-                    className="prize-img"
-                    style={{
-                      width: "100%",
-                      height: "auto",
-                      display: "block",
-                      objectFit: "contain",
-                      objectPosition: "bottom center",
-                    }}
-                  />
-                  <style>{`.prize-img { margin-top: 0; } @media (min-width: 1024px) { .prize-img { margin-top: -20%; } }`}</style>
-                </div>
-              </div>
-              <BodyText color="#ffffff" style={{ fontSize: "18px", fontWeight: 700, lineHeight: 1.7, textAlign: "center", maxWidth: "60ch", margin: "0 auto" }}>
-                Everyone who registers, win or not, gets early access to the Bugasura Agent Marketplace ahead of public launch.
-              </BodyText>
-            </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
-
-            {/* Left: heading + steps */}
-            <div className="flex-1 flex flex-col">
-              <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
-                The booth contest
-              </BodyText>
-              <Heading
-                level="section"
-                as="h2"
-                color="#ffffff"
-                style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1.05, letterSpacing: "-0.025em", marginBottom: "14px" }}
-              >
-                Five steps to enter the world
-              </Heading>
-              <BodyText color="rgba(255,255,255,0.75)" style={{ fontSize: "17px", lineHeight: 1.75, marginBottom: "40px" }}>
-                Everything below happens right here, at this booth, in about two minutes.
-              </BodyText>
-              {steps.map((step, i) => (
-                <AccordionStep
-                  key={step.num}
-                  step={step}
-                  isLast={i === steps.length - 1}
-                />
-              ))}
-            </div>
-
-            {/* Right: form panel */}
-            <div
-              id="register"
-              className="w-full lg:w-1/2 flex-shrink-0 lg:sticky lg:top-24"
-            >
-              {submitted ? (
-                <div className="flex flex-col items-center text-center" style={{ background: "#FFF6E2", borderRadius: "28px", padding: "48px 32px" }}>
-                  <div style={{ position: "relative", marginBottom: "24px" }}>
-                    <img
-                      src={getAsuraImage(selectedAsura)}
-                      alt={selectedAsura}
-                      style={{ width: "180px", height: "180px", objectFit: "contain", filter: "drop-shadow(0 8px 24px rgba(229,39,39,0.25))" }}
-                    />
-                    <div style={{ position: "absolute", bottom: "-8px", right: "-8px", width: "32px", height: "32px", borderRadius: "50%", background: "var(--red)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Check size={16} color="#fff" strokeWidth={3} />
-                    </div>
-                  </div>
-                  <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "clamp(24px, 3vw, 36px)", marginBottom: "10px" }}>
-                    You&apos;ve entered the World of Asuras
-                  </Heading>
-                  <BodyText color="var(--red)" style={{ fontSize: "13px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "16px" }}>
-                    Your Asura · {selectedAsura.split(": ")[0]}
-                  </BodyText>
-                  <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "38ch", marginBottom: "28px" }}>
-                    Click a picture with the Bugasura Asura cutout at Booth B2, post it on LinkedIn, Instagram, or any social media channel, tag <strong>@Bugasura</strong>, and use <strong>#WorldOfAsuras</strong> to enter the contest.
-                  </BodyText>
-                  <div className="flex items-center justify-between gap-4 w-full mb-6" style={{ background: "rgba(30,30,30,0.06)", border: "1px dashed rgba(30,30,30,0.2)", borderRadius: "16px", padding: "16px 20px" }}>
-                    <Heading level="card" as="p" color="var(--dark)" style={{ fontSize: "clamp(16px, 2vw, 22px)" }}>#WorldOfAsuras</Heading>
-                    <button onClick={() => { navigator.clipboard.writeText("#WorldOfAsuras"); }} style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "12px", color: "#0077C2", background: "rgba(0,119,194,0.1)", border: "1px solid rgba(0,119,194,0.3)", borderRadius: "100px", padding: "6px 14px", cursor: "pointer", letterSpacing: "0.05em", flexShrink: 0 }}>Copy</button>
-                  </div>
-                  <div className="flex gap-3 flex-wrap justify-center mb-6">
-                    <a href={`https://twitter.com/intent/tweet?text=${shareText}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "var(--dark)", background: "rgba(30,30,30,0.08)", border: "1px solid rgba(30,30,30,0.12)", borderRadius: "100px", padding: "10px 20px", textDecoration: "none" }}>Share on X</a>
-                    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://bugasura.io/asuras/event")}`} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "var(--dark)", background: "rgba(30,30,30,0.08)", border: "1px solid rgba(30,30,30,0.12)", borderRadius: "100px", padding: "10px 20px", textDecoration: "none" }}>Share on LinkedIn</a>
-                  </div>
-                  <button onClick={() => setSubmitted(false)} style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.45)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>Submit another entry</button>
-                </div>
-              ) : (
-                <div style={{ background: "#FFF6E2", borderRadius: "28px", padding: "44px 36px" }}>
-                  <div className="text-center mb-8">
-                    <Heading level="step" as="h2" color="var(--dark)" style={{ fontSize: "clamp(24px, 3vw, 36px)", marginBottom: "8px" }}>Register for the contest</Heading>
-                    <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "14px", lineHeight: 1.65 }}>You&apos;ll get your Asura and your entry seal the second you submit.</BodyText>
-                  </div>
-                  <form onSubmit={handleSubmit} noValidate>
-                    <div className="mb-4">
-                      <label style={labelStyle}>Full name</label>
-                      <input name="name" type="text" placeholder="Ada Lovelace" value={form.name} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, name: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.name ? "var(--red)" : undefined }} />
-                      {fieldErrors.name && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.name}</p>}
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <label style={labelStyle}>Email</label>
-                        <input name="email" type="email" placeholder="ada@company.com" value={form.email} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, email: "" })); }} onBlur={() => { if (form.email && !isValidEmail(form.email)) setFieldErrors(p => ({ ...p, email: "Enter a valid email address" })); }} style={{ ...inputStyle, borderColor: fieldErrors.email ? "var(--red)" : undefined }} />
-                        {fieldErrors.email && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.email}</p>}
-                      </div>
-                      <div>
-                        <label style={labelStyle}>Mobile number</label>
-                        <PhoneInput
-                          value={form.mobile}
-                          countryCode={form.mobileCountry}
-                          onValueChange={v => { setForm(p => ({ ...p, mobile: v })); setFieldErrors(p => ({ ...p, mobile: "" })); }}
-                          onCountryChange={v => setForm(p => ({ ...p, mobileCountry: v }))}
-                          onBlur={() => { if (form.mobile && !isValidMobile(form.mobile)) setFieldErrors(p => ({ ...p, mobile: "Enter a valid mobile number" })); }}
-                          style={{ ...inputStyle, borderColor: fieldErrors.mobile ? "var(--red)" : undefined }}
-                        />
-                        {fieldErrors.mobile && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.mobile}</p>}
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-                      <div>
-                        <label style={labelStyle}>Company</label>
-                        <input name="company" type="text" placeholder="Where you work" value={form.company} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, company: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.company ? "var(--red)" : undefined }} />
-                        {fieldErrors.company && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.company}</p>}
-                      </div>
-                      <div>
-                        <label style={labelStyle}>Your role</label>
-                        <select name="role" value={form.role} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, role: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.role ? "var(--red)" : undefined }}>
-                          <option value="" disabled>Select one</option>
-                          {roleOptions.map(r => <option key={r}>{r}</option>)}
-                        </select>
-                        {fieldErrors.role && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.role}</p>}
-                      </div>
-                    </div>
-                    <div className="mb-6">
-                      <label style={labelStyle}>Which Asura would you like to see first?</label>
-                      <select name="asura" value={form.asura} onChange={e => { handleChange(e); setFieldErrors(p => ({ ...p, asura: "" })); }} style={{ ...inputStyle, borderColor: fieldErrors.asura ? "var(--red)" : undefined }}>
-                        <option value="" disabled>Choose your Asura</option>
-                        {asuraOptions.map(a => <option key={a}>{a}</option>)}
-                      </select>
-                      {form.asura === "Other" && (
-                        <input
-                          type="text"
-                          placeholder="Describe the Asura you'd want"
-                          value={customAsura}
-                          onChange={e => { setCustomAsura(e.target.value); setFieldErrors(p => ({ ...p, asura: "" })); }}
-                          style={{ ...inputStyle, marginTop: "8px" }}
-                        />
-                      )}
-                      {fieldErrors.asura && <p style={{ color: "var(--red)", fontSize: "12px", marginTop: "10px", marginBottom: "14px" }}>{fieldErrors.asura}</p>}
-                    </div>
-                    <button type="submit" disabled={submitting} className="w-full flex items-center justify-center gap-2" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", letterSpacing: "0.02em", padding: "16px 24px", borderRadius: "12px", background: submitting ? "rgba(229,39,39,0.5)" : "var(--red)", color: "#ffffff", border: "none", cursor: submitting ? "wait" : "pointer", transition: "opacity 0.2s" }}>
-                      {submitting ? "Summoning…" : "Summon my Asura"}
-                      {!submitting && <ArrowRight size={16} strokeWidth={2.5} />}
-                    </button>
-                    <BodyText color="rgba(30,30,30,0.4)" style={{ fontSize: "12px", textAlign: "center", marginTop: "14px", lineHeight: 1.6 }}>By registering you agree to be contacted about early access to the Bugasura Agent Marketplace.</BodyText>
-                  </form>
-                </div>
-              )}
-            </div>
-
-          </div>
-
-          {/* ── HASHTAG STRIP ── */}
-          <div className="mt-16 lg:mt-24 text-center">
-            <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "16px" }}>
-              Your entry seal
-            </BodyText>
-            <div
-              className="inline-flex items-center gap-3 mx-auto mb-6"
-              style={{
-                border: "2px solid rgba(255,255,255,0.4)",
-                borderRadius: "100px",
-                padding: "14px 32px",
-              }}
-            >
-              <Heading level="subsection" as="p" color="#ffffff" style={{ fontSize: "clamp(20px, 3.5vw, 38px)", letterSpacing: "-0.02em" }}>
-                #WorldOfAsuras
-              </Heading>
-            </div>
-            <BodyText color="rgba(255,255,255,0.7)" style={{ fontSize: "15px", lineHeight: 1.7, maxWidth: "44ch", margin: "0 auto" }}>
-              Tag <strong style={{ color: "#ffffff" }}>@Bugasura</strong> and use this hashtag on your post. That&apos;s what makes your entry count toward the contest.
-            </BodyText>
-          </div>
-
         </div>
       </section>
 
