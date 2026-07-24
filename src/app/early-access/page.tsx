@@ -213,7 +213,7 @@ export default function EarlyAccessPage() {
             </div>
 
             {/* Position */}
-            <div style={{ padding: "24px 32px 0", textAlign: "center" }}>
+            <div className="px-4 sm:px-8" style={{ paddingTop: "24px", textAlign: "center" }}>
               <BodyText color="rgba(30,30,30,0.6)" style={{ fontSize: "14px", marginBottom: "6px" }}>
                 Congrats! you&apos;re on the list
               </BodyText>
@@ -228,17 +228,17 @@ export default function EarlyAccessPage() {
             </div>
 
             {/* Share card — with download button */}
-            <div style={{ padding: "20px 32px 0" }}>
+            <div className="px-4 sm:px-8" style={{ paddingTop: "20px" }}>
               <div style={{ position: "relative", borderRadius: "16px", overflow: "hidden" }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`/api/og?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`}
+                  src={`/internal/api/v1/og?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`}
                   alt="Share card"
                   style={{ width: "100%", display: "block" }}
                 />
                 {/* Download button — top right */}
                 <a
-                  href={`/api/og?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`}
+                  href={`/internal/api/v1/og?name=${encodeURIComponent((data.name || "YOU").toUpperCase())}&position=${position}`}
                   download={`bugasura-${position}.png`}
                   style={{
                     position: "absolute", top: "10px", right: "10px",
@@ -258,7 +258,7 @@ export default function EarlyAccessPage() {
             </div>
 
             {/* Steps + share flow */}
-            <div style={{ padding: "20px 32px 28px" }}>
+            <div className="px-4 sm:px-8" style={{ paddingTop: "20px", paddingBottom: "28px" }}>
               {/* Step 1: Copy & post */}
               {[
                 { n: "1", title: "Copy caption & download image", desc: "Use the caption below and save your personalised Asura card above." },
@@ -322,7 +322,7 @@ export default function EarlyAccessPage() {
                   <div style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", fontWeight: 600, color: "var(--dark)", marginBottom: "8px" }}>
                     After posting, paste your LinkedIn post URL here:
                   </div>
-                  <div style={{ display: "flex", gap: "8px", marginBottom: "4px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "4px" }}>
                     <input
                       type="url"
                       placeholder="https://www.linkedin.com/posts/..."
@@ -337,13 +337,16 @@ export default function EarlyAccessPage() {
                     />
                     <button
                       onClick={handleBumpSubmit}
-                      disabled={submittingBump}
+                      disabled={submittingBump || !linkedinUrl.trim().match(/linkedin\.com/)}
                       style={{
                         padding: "12px 20px", borderRadius: "10px",
-                        background: submittingBump ? "rgba(229,39,39,0.5)" : "var(--red)",
-                        color: "#ffffff", border: "none", cursor: submittingBump ? "wait" : "pointer",
+                        background: submittingBump || !linkedinUrl.trim().match(/linkedin\.com/)
+                          ? "rgba(229,39,39,0.35)"
+                          : "var(--red)",
+                        color: "#ffffff", border: "none",
+                        cursor: submittingBump || !linkedinUrl.trim().match(/linkedin\.com/) ? "not-allowed" : "pointer",
                         fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "13px",
-                        whiteSpace: "nowrap",
+                        whiteSpace: "nowrap", transition: "background 0.2s",
                       }}
                     >
                       {submittingBump ? "Submitting…" : "Submit & Jump"}

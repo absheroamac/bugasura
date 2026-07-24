@@ -7,6 +7,7 @@ type Row = {
   id: string; name: string; email: string; mobile: string | null;
   company: string | null; role: string; position: number; bumps: number;
   share_token: string; shared_at: string | null; created_at: string;
+  linkedin_post_url: string | null; verified: boolean | null;
 };
 
 type Metrics = { total: number; bumped: number; not_shared: number; today: number };
@@ -25,7 +26,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [roleFilter, setRoleFilter] = useState("");
-  const [bumpFilter, setBumpFilter] = useState<"all" | "bumped" | "not_shared">("all");
+  const [bumpFilter, setBumpFilter] = useState<"all" | "bumped" | "not_shared" | "verified" | "unverified">("all");
   const [sortKey, setSortKey] = useState<SortKey>("position");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
 
@@ -47,6 +48,8 @@ export default function AdminDashboard() {
     if (roleFilter) data = data.filter(r => r.role === roleFilter);
     if (bumpFilter === "bumped") data = data.filter(r => r.bumps > 0);
     if (bumpFilter === "not_shared") data = data.filter(r => r.bumps === 0);
+    if (bumpFilter === "verified") data = data.filter(r => r.verified === true);
+    if (bumpFilter === "unverified") data = data.filter(r => r.bumps > 0 && !r.verified);
     data.sort((a, b) => {
       const av = sortKey === "position" ? a.position - a.bumps : a[sortKey];
       const bv = sortKey === "position" ? b.position - b.bumps : b[sortKey];
@@ -64,6 +67,15 @@ export default function AdminDashboard() {
   const handleLogout = async () => {
     await fetch("/internal/api/v1/admin/logout", { method: "POST" });
     router.push("/admin/login");
+  };
+
+  const handleVerify = async (id: string) => {
+    await fetch("/internal/api/v1/admin/verify", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    setRows(prev => prev.map(r => r.id === id ? { ...r, verified: true } : r));
   };
 
   const th: React.CSSProperties = {
@@ -139,6 +151,8 @@ export default function AdminDashboard() {
             <option value="all">All entries</option>
             <option value="bumped">Bumped only</option>
             <option value="not_shared">Not shared yet</option>
+            <option value="verified">Verified</option>
+            <option value="unverified">Bumped, not verified</option>
           </select>
           <span style={{ fontSize: "13px", color: "rgba(30,30,30,0.4)", marginLeft: "auto" }}>{filtered.length} entries</span>
         </div>
@@ -167,6 +181,7 @@ export default function AdminDashboard() {
                         {label}<SortIcon k={key} />
                       </th>
                     ))}
+                    <th style={{ ...th, cursor: "default" }}>LinkedIn Post</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -198,11 +213,50 @@ export default function AdminDashboard() {
                         </td>
                         <td style={{ ...td, color: "rgba(30,30,30,0.5)", fontSize: "12px" }}>{fmt(row.shared_at)}</td>
                         <td style={{ ...td, color: "rgba(30,30,30,0.5)", fontSize: "12px" }}>{fmt(row.created_at)}</td>
+                        <td style={td}>
+                          {row.linkedin_post_url ? (
+                            <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "nowrap" }}>
+                              <a
+                                href={row.linkedin_post_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  display: "inline-flex", alignItems: "center", gap: "5px",
+                                  padding: "4px 12px", borderRadius: "6px",
+                                  background: "#E52727", color: "#fff",
+                                  fontFamily: "'Clash Grotesk', sans-serif", fontSize: "12px", fontWeight: 600,
+                                  textDecoration: "none", whiteSpace: "nowrap",
+                                }}
+                              >
+                                Open
+                              </a>
+                              {row.verified ? (
+                                <span style={{ background: "rgba(34,197,94,0.12)", color: "#16a34a", padding: "3px 10px", borderRadius: "20px", fontSize: "12px", fontWeight: 700, whiteSpace: "nowrap" }}>
+                                  ✓ Verified
+                                </span>
+                              ) : (
+                                <button
+                                  onClick={() => handleVerify(row.id)}
+                                  style={{
+                                    padding: "4px 10px", borderRadius: "6px",
+                                    border: "1px solid rgba(30,30,30,0.2)", background: "#fff",
+                                    fontFamily: "'Clash Grotesk', sans-serif", fontSize: "12px", fontWeight: 600,
+                                    color: "#1E1E1E", cursor: "pointer", whiteSpace: "nowrap",
+                                  }}
+                                >
+                                  Mark Verified
+                                </button>
+                              )}
+                            </div>
+                          ) : (
+                            <span style={{ color: "rgba(30,30,30,0.25)", fontSize: "12px" }}>—</span>
+                          )}
+                        </td>
                       </tr>
                     );
                   })}
                   {filtered.length === 0 && (
-                    <tr><td colSpan={9} style={{ ...td, textAlign: "center", color: "rgba(30,30,30,0.3)", padding: "40px" }}>No entries found</td></tr>
+                    <tr><td colSpan={10} style={{ ...td, textAlign: "center", color: "rgba(30,30,30,0.3)", padding: "40px" }}>No entries found</td></tr>
                   )}
                 </tbody>
               </table>
