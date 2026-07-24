@@ -79,9 +79,13 @@ export default function EarlyAccessPage() {
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [position, setPosition] = useState(randomPosition);
+  const [displayPosition, setDisplayPosition] = useState(randomPosition);
   const [, setShareToken] = useState("");
   const [bumped, setBumped] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [linkedinUrl, setLinkedinUrl] = useState("");
+  const [linkedinError, setLinkedinError] = useState("");
+  const [submittingBump, setSubmittingBump] = useState(false);
   const [data, setData] = useState({
     name: "", email: "", mobile: "", mobileCountry: "+91", company: "", role: "",
   });
@@ -118,7 +122,7 @@ export default function EarlyAccessPage() {
         body: JSON.stringify({ name: data.name, email: data.email, mobile: fullMobile, company: data.company, role: data.role }),
       });
       const json = await res.json();
-      if (json.position) setPosition(json.position);
+      if (json.position) { setPosition(json.position); setDisplayPosition(json.position); }
       if (json.share_token) setShareToken(json.share_token);
       if (json.bumps === 100) setBumped(true);
     } catch {
@@ -128,20 +132,43 @@ export default function EarlyAccessPage() {
     setDone(true);
   };
 
-  const handleShare = async () => {
-    handleCopy();
-    if (!bumped) {
-      try {
-        const res = await fetch("/internal/api/v1/waitlist/share", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: data.email }),
-        });
-        const json = await res.json();
-        if (json.effective_position) setPosition(json.effective_position);
-        setBumped(true);
-      } catch { /* ignore */ }
+  const animatePosition = (from: number, to: number) => {
+    const duration = 1500;
+    const start = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setDisplayPosition(Math.round(from - (from - to) * eased));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const handleBumpSubmit = async () => {
+    if (!linkedinUrl.trim()) { setLinkedinError("Please paste your LinkedIn post URL"); return; }
+    setLinkedinError("");
+    setSubmittingBump(true);
+    try {
+      const res = await fetch("/internal/api/v1/waitlist/share", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: data.email, linkedin_post_url: linkedinUrl.trim() }),
+      });
+      const json = await res.json();
+      if (!res.ok) { setLinkedinError(json.error || "Something went wrong"); setSubmittingBump(false); return; }
+      if (json.effective_position) {
+        animatePosition(position, json.effective_position);
+        setPosition(json.effective_position);
+      }
+      setBumped(true);
+    } catch {
+      setLinkedinError("Something went wrong, please try again");
     }
+    setSubmittingBump(false);
+  };
+
+  const handleShare = () => {
+    handleCopy();
     window.open(linkedInUrl, "_blank");
   };
 
@@ -191,8 +218,8 @@ export default function EarlyAccessPage() {
                 Congrats! you&apos;re on the list
               </BodyText>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px" }}>
-                <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "48px", color: "var(--red)", lineHeight: 1 }}>
-                  #{position}
+                <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "48px", color: "var(--red)", lineHeight: 1, transition: "color 0.2s" }}>
+                  #{displayPosition}
                 </span>
                 <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "18px", color: "var(--dark)", fontWeight: 600, textAlign: "left", lineHeight: 1.3 }}>
                   in the World<br />of Asuras
@@ -230,12 +257,13 @@ export default function EarlyAccessPage() {
               </div>
             </div>
 
-            {/* 3-step instructions */}
-            <div style={{ padding: "20px 32px 0" }}>
+            {/* Steps + share flow */}
+            <div style={{ padding: "20px 32px 28px" }}>
+              {/* Step 1: Copy & post */}
               {[
                 { n: "1", title: "Copy caption & download image", desc: "Use the caption below and save your personalised Asura card above." },
-                { n: "2", title: "Post on LinkedIn", desc: "Share the image with the caption on LinkedIn to let the world know you're in." },
-                { n: "3", title: "You're bumped — we'll verify", desc: "Your position moves up immediately. Our team will verify your post before beta access is granted." },
+                { n: "2", title: "Post on LinkedIn", desc: "Share the image with the caption on LinkedIn." },
+                { n: "3", title: "Paste your post link below & submit", desc: "Once you've posted, paste the URL of your LinkedIn post and hit Submit to jump the queue." },
               ].map(({ n, title, desc }) => (
                 <div key={n} style={{ display: "flex", gap: "14px", marginBottom: "14px" }}>
                   <div style={{
@@ -250,10 +278,8 @@ export default function EarlyAccessPage() {
                   </div>
                 </div>
               ))}
-            </div>
 
-            {/* Caption + buttons */}
-            <div style={{ padding: "16px 32px 28px" }}>
+              {/* Caption copy row */}
               <div style={{
                 display: "flex", alignItems: "center", gap: "10px",
                 background: "#ffffff", border: "1px solid rgba(30,30,30,0.15)",
@@ -275,21 +301,72 @@ export default function EarlyAccessPage() {
                 </button>
               </div>
 
+              {/* Share on LinkedIn button */}
               <button
                 onClick={handleShare}
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  width: "100%", padding: "16px 24px", borderRadius: "12px",
-                  background: bumped ? "rgba(229,39,39,0.4)" : "var(--red)",
-                  color: "#ffffff", border: "none", cursor: bumped ? "default" : "pointer",
+                  width: "100%", padding: "14px 24px", borderRadius: "12px",
+                  background: "#0A66C2", color: "#ffffff", border: "none", cursor: "pointer",
                   fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "13px",
-                  letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "12px",
+                  letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "16px", gap: "8px",
                 }}
               >
-                {bumped ? "Shared — you're bumped up!" : "Share on LinkedIn & Jump the Queue"}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                Share on LinkedIn
               </button>
 
-              <div style={{ textAlign: "center" }}>
+              {/* LinkedIn post URL input + submit */}
+              {!bumped ? (
+                <div>
+                  <div style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", fontWeight: 600, color: "var(--dark)", marginBottom: "8px" }}>
+                    After posting, paste your LinkedIn post URL here:
+                  </div>
+                  <div style={{ display: "flex", gap: "8px", marginBottom: "4px" }}>
+                    <input
+                      type="url"
+                      placeholder="https://www.linkedin.com/posts/..."
+                      value={linkedinUrl}
+                      onChange={e => { setLinkedinUrl(e.target.value); setLinkedinError(""); }}
+                      style={{
+                        flex: 1, padding: "12px 14px", borderRadius: "10px",
+                        border: `1px solid ${linkedinError ? "var(--red)" : "rgba(30,30,30,0.15)"}`,
+                        background: "#ffffff", fontFamily: "'Clash Grotesk', sans-serif",
+                        fontSize: "14px", color: "#1E1E1E", outline: "none",
+                      }}
+                    />
+                    <button
+                      onClick={handleBumpSubmit}
+                      disabled={submittingBump}
+                      style={{
+                        padding: "12px 20px", borderRadius: "10px",
+                        background: submittingBump ? "rgba(229,39,39,0.5)" : "var(--red)",
+                        color: "#ffffff", border: "none", cursor: submittingBump ? "wait" : "pointer",
+                        fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "13px",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {submittingBump ? "Submitting…" : "Submit & Jump"}
+                    </button>
+                  </div>
+                  {linkedinError && (
+                    <p style={{ color: "var(--red)", fontSize: "12px", margin: "4px 0 0", fontFamily: "'Clash Grotesk', sans-serif" }}>{linkedinError}</p>
+                  )}
+                </div>
+              ) : (
+                <div style={{
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                  padding: "14px", borderRadius: "12px", background: "rgba(229,39,39,0.08)",
+                  border: "1px solid rgba(229,39,39,0.2)",
+                }}>
+                  <Check size={16} color="var(--red)" strokeWidth={2.5} />
+                  <span style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 700, fontSize: "14px", color: "var(--red)" }}>
+                    You&apos;re bumped up — we&apos;ll verify your post!
+                  </span>
+                </div>
+              )}
+
+              <div style={{ textAlign: "center", marginTop: "16px" }}>
                 <a href="/" style={{ fontFamily: "'Clash Grotesk', sans-serif", fontSize: "13px", color: "rgba(30,30,30,0.4)", textDecoration: "none" }}>
                   Skip, I&apos;ll wait my turn
                 </a>
