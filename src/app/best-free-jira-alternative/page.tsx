@@ -309,7 +309,7 @@ export default function JiraAlternativePage() {
         <div className="mt-12 lg:mt-16 rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(30,30,30,0.08)" }}>
 
           {/* Column headers */}
-          <div className="grid" style={{ gridTemplateColumns: "1fr 1fr 1fr" }}>
+          <div className="grid" style={{ gridTemplateColumns: "26% 1fr 1fr" }}>
             <div style={{ padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
             {/* Bugasura header */}
             <div style={{ padding: "20px 24px", background: "rgba(229,39,39,0.07)", borderBottom: "1px solid rgba(229,39,39,0.12)", borderLeft: "1px solid rgba(229,39,39,0.12)" }}>
@@ -328,7 +328,7 @@ export default function JiraAlternativePage() {
             <div
               key={i}
               className="grid"
-              style={{ gridTemplateColumns: "1fr 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}
+              style={{ gridTemplateColumns: "26% 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}
             >
               {/* Label */}
               <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)" }}>
