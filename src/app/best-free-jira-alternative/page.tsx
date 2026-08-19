@@ -313,9 +313,7 @@ export default function JiraAlternativePage() {
             <div style={{ padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
             {/* Bugasura header */}
             <div style={{ padding: "20px 24px", background: "rgba(229,39,39,0.07)", borderBottom: "1px solid rgba(229,39,39,0.12)", borderLeft: "1px solid rgba(229,39,39,0.12)" }}>
-              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", color: "#E52727" }}>
-                🐛 Bugasura
-              </p>
+              <Image src="/bugasura-logo.png" alt="Bugasura" width={120} height={22} style={{ height: "22px", width: "auto", display: "block" }} />
             </div>
             {/* JIRA header */}
             <div style={{ padding: "20px 24px", background: "rgba(30,30,30,0.03)", borderBottom: "1px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }}>
