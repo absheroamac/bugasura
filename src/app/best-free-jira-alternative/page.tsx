@@ -306,17 +306,14 @@ export default function JiraAlternativePage() {
         </BodyText>
 
         {/* Images + column headers */}
-        <div className="grid grid-cols-2 gap-4 mt-12 lg:mt-16" style={{ gridTemplateColumns: "1fr 140px 1fr" }}>
-
+        <div className="grid gap-4 mt-12 lg:mt-16" style={{ gridTemplateColumns: "140px 1fr 1fr" }}>
+          {/* Label spacer */}
+          <div />
           {/* JIRA image */}
           <div className="rounded-2xl overflow-hidden" style={{ maxHeight: "180px" }}>
             <Image src="/platform/comparison-left.png" alt="JIRA" width={500} height={180}
               className="w-full object-cover block" style={{ objectPosition: "top" }} />
           </div>
-
-          {/* Centre spacer */}
-          <div />
-
           {/* Bugasura image */}
           <div className="rounded-2xl overflow-hidden" style={{ maxHeight: "180px" }}>
             <Image src="/platform/comparison-right.png" alt="Bugasura" width={500} height={180}
@@ -325,44 +322,38 @@ export default function JiraAlternativePage() {
         </div>
 
         {/* Column name headers */}
-        <div className="grid mt-5 mb-1" style={{ gridTemplateColumns: "1fr 140px 1fr" }}>
+        <div className="grid mt-5 mb-1" style={{ gridTemplateColumns: "140px 1fr 1fr" }}>
+          <div />
           <Heading level="subsection" as="h3" color="rgba(30,30,30,0.35)"
             style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.1 }}>JIRA</Heading>
-          <div />
           <Heading level="subsection" as="h3" color="#E52727"
             style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.1 }}>Bugasura</Heading>
         </div>
 
-        {/* Rows: JIRA | label | Bugasura */}
+        {/* Rows: label | JIRA | Bugasura */}
         <div>
           {comparisonRows.map((row, i) => (
             <div
               key={i}
-              className="grid items-center py-4"
-              style={{
-                gridTemplateColumns: "1fr 140px 1fr",
-                borderTop: "1px solid rgba(30,30,30,0.08)",
-              }}
+              className="grid items-start py-4"
+              style={{ gridTemplateColumns: "140px 1fr 1fr", borderTop: "1px solid rgba(30,30,30,0.08)" }}
             >
+              {/* Shared label — left */}
+              <p style={{
+                fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600,
+                fontSize: "11px", color: "rgba(30,30,30,0.45)",
+                letterSpacing: "0.08em", textTransform: "uppercase",
+                paddingTop: "2px",
+              }}>{row.label}</p>
+
               {/* JIRA value */}
-              <div className="flex items-start gap-3 pr-4">
+              <div className="flex items-start gap-3 pr-6">
                 <span style={{ fontSize: "14px", color: "rgba(30,30,30,0.25)", fontWeight: 600, flexShrink: 0, lineHeight: 1.6 }}>✕</span>
                 <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "14px", lineHeight: 1.6 }}>{row.jira}</BodyText>
               </div>
 
-              {/* Shared label — centre */}
-              <div style={{ textAlign: "center" }}>
-                <p style={{
-                  fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600,
-                  fontSize: "11px", color: "rgba(30,30,30,0.5)",
-                  letterSpacing: "0.08em", textTransform: "uppercase",
-                  background: "rgba(30,30,30,0.05)", borderRadius: "100px",
-                  padding: "4px 10px", display: "inline-block",
-                }}>{row.label}</p>
-              </div>
-
               {/* Bugasura value */}
-              <div className="flex items-start gap-3 pl-4">
+              <div className="flex items-start gap-3">
                 <span style={{ fontSize: "14px", color: "#E52727", fontWeight: 600, flexShrink: 0, lineHeight: 1.6 }}>✓</span>
                 <BodyText color="#1E1E1E" style={{ fontSize: "14px", lineHeight: 1.6, fontWeight: 600 }}>{row.bugasura}</BodyText>
               </div>
