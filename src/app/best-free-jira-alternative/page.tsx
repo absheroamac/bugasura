@@ -317,7 +317,7 @@ export default function JiraAlternativePage() {
             </div>
             {/* JIRA header */}
             <div style={{ padding: "20px 24px", background: "rgba(30,30,30,0.03)", borderBottom: "1px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }}>
-              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", color: "rgba(30,30,30,0.45)" }}>
+              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", color: "rgba(30,30,30,0.7)" }}>
                 Traditional platforms
               </p>
             </div>
@@ -349,9 +349,9 @@ export default function JiraAlternativePage() {
               <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)", borderLeft: "1px solid rgba(30,30,30,0.06)" }}>
                 <div className="flex items-center gap-2">
                   <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "rgba(30,30,30,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 3l4 4M7 3l-4 4" stroke="rgba(30,30,30,0.4)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 3l4 4M7 3l-4 4" stroke="rgba(30,30,30,0.6)" strokeWidth="1.5" strokeLinecap="round"/></svg>
                   </span>
-                  <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "14px", lineHeight: 1.5 }}>{row.jira}</BodyText>
+                  <BodyText color="rgba(30,30,30,0.7)" style={{ fontSize: "14px", lineHeight: 1.5 }}>{row.jira}</BodyText>
                 </div>
               </div>
             </div>
