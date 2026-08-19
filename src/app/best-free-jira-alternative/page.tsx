@@ -305,57 +305,56 @@ export default function JiraAlternativePage() {
           A straight look at what JIRA gives you versus what Bugasura gives you — across the things that actually slow teams down.
         </BodyText>
 
-        {/* Images + column headers */}
-        <div className="grid gap-4 mt-12 lg:mt-16" style={{ gridTemplateColumns: "140px 1fr 1fr" }}>
-          {/* Label spacer */}
-          <div />
-          {/* JIRA image */}
-          <div className="rounded-2xl overflow-hidden" style={{ maxHeight: "180px" }}>
-            <Image src="/platform/comparison-left.png" alt="JIRA" width={500} height={180}
-              className="w-full object-cover block" style={{ objectPosition: "top" }} />
-          </div>
-          {/* Bugasura image */}
-          <div className="rounded-2xl overflow-hidden" style={{ maxHeight: "180px" }}>
-            <Image src="/platform/comparison-right.png" alt="Bugasura" width={500} height={180}
-              className="w-full object-cover block" style={{ objectPosition: "top" }} />
-          </div>
-        </div>
+        {/* Comparison table */}
+        <div className="mt-12 lg:mt-16 rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(30,30,30,0.08)" }}>
 
-        {/* Column name headers */}
-        <div className="grid mt-5 mb-1" style={{ gridTemplateColumns: "140px 1fr 1fr" }}>
-          <div />
-          <Heading level="subsection" as="h3" color="rgba(30,30,30,0.35)"
-            style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.1 }}>JIRA</Heading>
-          <Heading level="subsection" as="h3" color="#E52727"
-            style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.1 }}>Bugasura</Heading>
-        </div>
+          {/* Column headers */}
+          <div className="grid" style={{ gridTemplateColumns: "1fr 1fr 1fr" }}>
+            <div style={{ padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
+            {/* Bugasura header */}
+            <div style={{ padding: "20px 24px", background: "rgba(229,39,39,0.07)", borderBottom: "1px solid rgba(229,39,39,0.12)", borderLeft: "1px solid rgba(229,39,39,0.12)" }}>
+              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", color: "#E52727" }}>
+                🐛 Bugasura
+              </p>
+            </div>
+            {/* JIRA header */}
+            <div style={{ padding: "20px 24px", background: "rgba(30,30,30,0.03)", borderBottom: "1px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }}>
+              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", color: "rgba(30,30,30,0.45)" }}>
+                Traditional platforms
+              </p>
+            </div>
+          </div>
 
-        {/* Rows: label | JIRA | Bugasura */}
-        <div>
+          {/* Data rows */}
           {comparisonRows.map((row, i) => (
             <div
               key={i}
-              className="grid items-start py-4"
-              style={{ gridTemplateColumns: "140px 1fr 1fr", borderTop: "1px solid rgba(30,30,30,0.08)" }}
+              className="grid"
+              style={{ gridTemplateColumns: "1fr 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}
             >
-              {/* Shared label — left */}
-              <p style={{
-                fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600,
-                fontSize: "11px", color: "rgba(30,30,30,0.45)",
-                letterSpacing: "0.08em", textTransform: "uppercase",
-                paddingTop: "2px",
-              }}>{row.label}</p>
-
-              {/* JIRA value */}
-              <div className="flex items-start gap-3 pr-6">
-                <span style={{ fontSize: "14px", color: "rgba(30,30,30,0.25)", fontWeight: 600, flexShrink: 0, lineHeight: 1.6 }}>✕</span>
-                <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "14px", lineHeight: 1.6 }}>{row.jira}</BodyText>
+              {/* Label */}
+              <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)" }}>
+                <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "14px", color: "#1E1E1E" }}>{row.label}</p>
               </div>
 
               {/* Bugasura value */}
-              <div className="flex items-start gap-3">
-                <span style={{ fontSize: "14px", color: "#E52727", fontWeight: 600, flexShrink: 0, lineHeight: 1.6 }}>✓</span>
-                <BodyText color="#1E1E1E" style={{ fontSize: "14px", lineHeight: 1.6, fontWeight: 600 }}>{row.bugasura}</BodyText>
+              <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(229,39,39,0.08)", borderLeft: "1px solid rgba(229,39,39,0.1)", background: i % 2 === 0 ? "rgba(229,39,39,0.03)" : "rgba(229,39,39,0.05)" }}>
+                <div className="flex items-center gap-2">
+                  <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "#E52727", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </span>
+                  <BodyText color="#1E1E1E" style={{ fontSize: "14px", lineHeight: 1.5, fontWeight: 600 }}>{row.bugasura}</BodyText>
+                </div>
+              </div>
+
+              {/* JIRA value */}
+              <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)", borderLeft: "1px solid rgba(30,30,30,0.06)" }}>
+                <div className="flex items-center gap-2">
+                  <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "rgba(30,30,30,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M3 3l4 4M7 3l-4 4" stroke="rgba(30,30,30,0.4)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                  </span>
+                  <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "14px", lineHeight: 1.5 }}>{row.jira}</BodyText>
+                </div>
               </div>
             </div>
           ))}
