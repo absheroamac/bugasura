@@ -305,89 +305,69 @@ export default function JiraAlternativePage() {
           A straight look at what JIRA gives you versus what Bugasura gives you — across the things that actually slow teams down.
         </BodyText>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-12 lg:mt-16">
+        {/* Images + column headers */}
+        <div className="grid grid-cols-2 gap-4 mt-12 lg:mt-16" style={{ gridTemplateColumns: "1fr 140px 1fr" }}>
 
-          {/* ── Left: JIRA ── */}
-          <div className="flex flex-col">
-            {/* Small image thumbnail */}
-            <div className="rounded-2xl overflow-hidden w-full" style={{ maxHeight: "200px" }}>
-              <Image
-                src="/platform/comparison-left.png"
-                alt="JIRA"
-                width={600}
-                height={200}
-                className="w-full object-cover block"
-                style={{ objectPosition: "top" }}
-              />
-            </div>
-
-            {/* Column header */}
-            <div className="flex items-center gap-3 mt-6 mb-2">
-              <Heading level="subsection" as="h3" color="rgba(30,30,30,0.4)"
-                style={{ fontSize: "clamp(20px, 2.5vw, 32px)", lineHeight: 1.1 }}>
-                JIRA
-              </Heading>
-            </div>
-
-            {/* Rows with label titles */}
-            <ul>
-              {comparisonRows.map((row, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-4 py-4"
-                  style={{ borderTop: "1px solid rgba(30,30,30,0.08)" }}
-                >
-                  <span style={{ fontSize: "15px", color: "rgba(30,30,30,0.25)", fontWeight: 600, lineHeight: 1.6, flexShrink: 0, marginTop: "1px" }}>✕</span>
-                  <div>
-                    <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", color: "rgba(30,30,30,0.35)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "3px" }}>{row.label}</p>
-                    <BodyText color="rgba(30,30,30,0.5)" style={{ fontSize: "14px", lineHeight: 1.6 }}>{row.jira}</BodyText>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          {/* JIRA image */}
+          <div className="rounded-2xl overflow-hidden" style={{ maxHeight: "180px" }}>
+            <Image src="/platform/comparison-left.png" alt="JIRA" width={500} height={180}
+              className="w-full object-cover block" style={{ objectPosition: "top" }} />
           </div>
 
-          {/* ── Right: Bugasura ── */}
-          <div className="flex flex-col">
-            {/* Small image thumbnail */}
-            <div className="rounded-2xl overflow-hidden w-full" style={{ maxHeight: "200px" }}>
-              <Image
-                src="/platform/comparison-right.png"
-                alt="Bugasura"
-                width={600}
-                height={200}
-                className="w-full object-cover block"
-                style={{ objectPosition: "top" }}
-              />
-            </div>
+          {/* Centre spacer */}
+          <div />
 
-            {/* Column header */}
-            <div className="flex items-center gap-3 mt-6 mb-2">
-              <Heading level="subsection" as="h3" color="#E52727"
-                style={{ fontSize: "clamp(20px, 2.5vw, 32px)", lineHeight: 1.1 }}>
-                Bugasura
-              </Heading>
-            </div>
-
-            {/* Rows with label titles */}
-            <ul>
-              {comparisonRows.map((row, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-4 py-4"
-                  style={{ borderTop: "1px solid rgba(30,30,30,0.08)" }}
-                >
-                  <span style={{ fontSize: "15px", color: "#E52727", fontWeight: 600, lineHeight: 1.6, flexShrink: 0, marginTop: "1px" }}>✓</span>
-                  <div>
-                    <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", color: "#E52727", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "3px" }}>{row.label}</p>
-                    <BodyText color="#1E1E1E" style={{ fontSize: "14px", lineHeight: 1.6, fontWeight: 600 }}>{row.bugasura}</BodyText>
-                  </div>
-                </li>
-              ))}
-            </ul>
+          {/* Bugasura image */}
+          <div className="rounded-2xl overflow-hidden" style={{ maxHeight: "180px" }}>
+            <Image src="/platform/comparison-right.png" alt="Bugasura" width={500} height={180}
+              className="w-full object-cover block" style={{ objectPosition: "top" }} />
           </div>
+        </div>
 
+        {/* Column name headers */}
+        <div className="grid mt-5 mb-1" style={{ gridTemplateColumns: "1fr 140px 1fr" }}>
+          <Heading level="subsection" as="h3" color="rgba(30,30,30,0.35)"
+            style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.1 }}>JIRA</Heading>
+          <div />
+          <Heading level="subsection" as="h3" color="#E52727"
+            style={{ fontSize: "clamp(18px, 2.5vw, 28px)", lineHeight: 1.1 }}>Bugasura</Heading>
+        </div>
+
+        {/* Rows: JIRA | label | Bugasura */}
+        <div>
+          {comparisonRows.map((row, i) => (
+            <div
+              key={i}
+              className="grid items-center py-4"
+              style={{
+                gridTemplateColumns: "1fr 140px 1fr",
+                borderTop: "1px solid rgba(30,30,30,0.08)",
+              }}
+            >
+              {/* JIRA value */}
+              <div className="flex items-start gap-3 pr-4">
+                <span style={{ fontSize: "14px", color: "rgba(30,30,30,0.25)", fontWeight: 600, flexShrink: 0, lineHeight: 1.6 }}>✕</span>
+                <BodyText color="rgba(30,30,30,0.45)" style={{ fontSize: "14px", lineHeight: 1.6 }}>{row.jira}</BodyText>
+              </div>
+
+              {/* Shared label — centre */}
+              <div style={{ textAlign: "center" }}>
+                <p style={{
+                  fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600,
+                  fontSize: "11px", color: "rgba(30,30,30,0.5)",
+                  letterSpacing: "0.08em", textTransform: "uppercase",
+                  background: "rgba(30,30,30,0.05)", borderRadius: "100px",
+                  padding: "4px 10px", display: "inline-block",
+                }}>{row.label}</p>
+              </div>
+
+              {/* Bugasura value */}
+              <div className="flex items-start gap-3 pl-4">
+                <span style={{ fontSize: "14px", color: "#E52727", fontWeight: 600, flexShrink: 0, lineHeight: 1.6 }}>✓</span>
+                <BodyText color="#1E1E1E" style={{ fontSize: "14px", lineHeight: 1.6, fontWeight: 600 }}>{row.bugasura}</BodyText>
+              </div>
+            </div>
+          ))}
         </div>
 
         <div className="flex justify-center mt-14">
