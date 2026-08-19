@@ -9,30 +9,17 @@ import { Heading, BodyText, Button, Eyebrow } from "@/components/ui";
 
 /* ─── Combined comparison data ─── */
 
-const jiraPoints = [
-  "10 users free — then $12.48 per user per month",
-  "Time-consuming, complex setup and configuration",
-  "Steep learning curve — new hires lose days",
-  "Limited AI features with no smart tracking",
-  "Manual bug input — no context capture",
-  "Performance degrades as your project grows",
-  "No built-in reporters — everything is manual",
-  "No duplicate detection — backlogs get polluted",
-  "No screen annotation or console log capture",
-  "Basic dashboards — built by hand every time",
-];
-
-const bugasuraPoints = [
-  "Fully free — all features, unlimited users, forever",
-  "Quick setup with pre-configured projects",
-  "Intuitive UI — your team is tracking bugs on day one",
-  "Built-in AI for smart categorisation and descriptions",
-  "Automated reporters capture screenshots, logs, device info",
-  "Optimised for high volume — built by testers who push tools hard",
-  "Chrome, web widget, and Android reporters included",
-  "Duplicate Asura detects dupes before they hit the backlog",
-  "Screen-wise annotation and session replay built in",
-  "Automatic dashboards — zero setup required",
+const comparisonRows = [
+  { label: "Pricing",        jira: "$12.48/user/month after 10 users",             bugasura: "Fully free — all features, unlimited users, forever" },
+  { label: "Setup",          jira: "Time-consuming, complex configuration",         bugasura: "Quick setup with pre-configured projects" },
+  { label: "Ease of use",    jira: "Steep learning curve — new hires lose days",   bugasura: "Intuitive UI — your team tracks bugs on day one" },
+  { label: "AI",             jira: "Limited AI features with no smart tracking",   bugasura: "Built-in AI for smart categorisation and descriptions" },
+  { label: "Bug reporting",  jira: "Manual input — no context capture",            bugasura: "Automated reporters capture screenshots, logs, device info" },
+  { label: "Performance",    jira: "Degrades as your project grows",               bugasura: "Optimised for high volume — built by testers" },
+  { label: "Reporters",      jira: "No built-in reporters — everything is manual", bugasura: "Chrome, web widget, and Android reporters included" },
+  { label: "Duplicates",     jira: "No duplicate detection — backlogs get polluted", bugasura: "Duplicate Asura detects dupes before they hit the backlog" },
+  { label: "Annotations",    jira: "No screen annotation or console log capture",  bugasura: "Screen-wise annotation and session replay built in" },
+  { label: "Dashboards",     jira: "Manual dashboard creation every time",         bugasura: "Automatic dashboards — zero setup required" },
 ];
 
 const reviews = [
@@ -315,43 +302,47 @@ export default function JiraAlternativePage() {
           className="text-center mx-auto mt-6"
           style={{ fontSize: "16px", lineHeight: 1.65, maxWidth: "480px" }}
         >
-          A straight look at what JIRA gives you versus what Bugasura gives you — across pricing, features, and the things that actually slow teams down.
+          A straight look at what JIRA gives you versus what Bugasura gives you — across the things that actually slow teams down.
         </BodyText>
 
-        {/* Two-column comparison */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mt-12 lg:mt-16">
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-12 lg:mt-16">
 
           {/* ── Left: JIRA ── */}
           <div className="flex flex-col">
-            <div className="rounded-3xl overflow-hidden w-full">
+            {/* Small image thumbnail */}
+            <div className="rounded-2xl overflow-hidden w-full" style={{ maxHeight: "200px" }}>
               <Image
                 src="/platform/comparison-left.png"
-                alt="JIRA — the stitched-together stack"
-                width={680}
-                height={380}
-                className="w-full h-auto block"
+                alt="JIRA"
+                width={600}
+                height={200}
+                className="w-full object-cover block"
+                style={{ objectPosition: "top" }}
               />
             </div>
 
-            <Heading
-              level="subsection"
-              as="h3"
-              color="rgba(30,30,30,0.45)"
-              className="mt-8"
-              style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1 }}
-            >
-              JIRA
-            </Heading>
+            {/* Column header */}
+            <div className="flex items-center gap-3 mt-6 mb-2">
+              <Heading level="subsection" as="h3" color="rgba(30,30,30,0.4)"
+                style={{ fontSize: "clamp(20px, 2.5vw, 32px)", lineHeight: 1.1 }}>
+                JIRA
+              </Heading>
+            </div>
 
-            <ul className="mt-6">
-              {jiraPoints.map((point, i) => (
+            {/* Rows with label titles */}
+            <ul>
+              {comparisonRows.map((row, i) => (
                 <li
                   key={i}
                   className="flex items-start gap-4 py-4"
                   style={{ borderTop: "1px solid rgba(30,30,30,0.08)" }}
                 >
-                  <span style={{ fontSize: "16px", color: "rgba(30,30,30,0.3)", fontWeight: 600, lineHeight: 1.6, flexShrink: 0, marginTop: "1px" }}>✕</span>
-                  <BodyText color="rgba(30,30,30,0.55)" style={{ fontSize: "clamp(14px, 1.4vw, 16px)", lineHeight: 1.65 }}>{point}</BodyText>
+                  <span style={{ fontSize: "15px", color: "rgba(30,30,30,0.25)", fontWeight: 600, lineHeight: 1.6, flexShrink: 0, marginTop: "1px" }}>✕</span>
+                  <div>
+                    <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", color: "rgba(30,30,30,0.35)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "3px" }}>{row.label}</p>
+                    <BodyText color="rgba(30,30,30,0.5)" style={{ fontSize: "14px", lineHeight: 1.6 }}>{row.jira}</BodyText>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -359,35 +350,39 @@ export default function JiraAlternativePage() {
 
           {/* ── Right: Bugasura ── */}
           <div className="flex flex-col">
-            <div className="rounded-3xl overflow-hidden w-full">
+            {/* Small image thumbnail */}
+            <div className="rounded-2xl overflow-hidden w-full" style={{ maxHeight: "200px" }}>
               <Image
                 src="/platform/comparison-right.png"
-                alt="Bugasura — unified bug tracking platform"
-                width={680}
-                height={380}
-                className="w-full h-auto block"
+                alt="Bugasura"
+                width={600}
+                height={200}
+                className="w-full object-cover block"
+                style={{ objectPosition: "top" }}
               />
             </div>
 
-            <Heading
-              level="subsection"
-              as="h3"
-              color="#E52727"
-              className="mt-8"
-              style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1 }}
-            >
-              Bugasura
-            </Heading>
+            {/* Column header */}
+            <div className="flex items-center gap-3 mt-6 mb-2">
+              <Heading level="subsection" as="h3" color="#E52727"
+                style={{ fontSize: "clamp(20px, 2.5vw, 32px)", lineHeight: 1.1 }}>
+                Bugasura
+              </Heading>
+            </div>
 
-            <ul className="mt-6">
-              {bugasuraPoints.map((point, i) => (
+            {/* Rows with label titles */}
+            <ul>
+              {comparisonRows.map((row, i) => (
                 <li
                   key={i}
                   className="flex items-start gap-4 py-4"
                   style={{ borderTop: "1px solid rgba(30,30,30,0.08)" }}
                 >
-                  <span style={{ fontSize: "16px", color: "#E52727", fontWeight: 600, lineHeight: 1.6, flexShrink: 0, marginTop: "1px" }}>✓</span>
-                  <BodyText color="#1E1E1E" style={{ fontSize: "clamp(14px, 1.4vw, 16px)", lineHeight: 1.65, fontWeight: 600 }}>{point}</BodyText>
+                  <span style={{ fontSize: "15px", color: "#E52727", fontWeight: 600, lineHeight: 1.6, flexShrink: 0, marginTop: "1px" }}>✓</span>
+                  <div>
+                    <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", color: "#E52727", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "3px" }}>{row.label}</p>
+                    <BodyText color="#1E1E1E" style={{ fontSize: "14px", lineHeight: 1.6, fontWeight: 600 }}>{row.bugasura}</BodyText>
+                  </div>
                 </li>
               ))}
             </ul>
