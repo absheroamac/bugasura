@@ -362,12 +362,12 @@ export default function JiraAlternativePage() {
         </BodyText>
 
         {/* Comparison table */}
-        <div className="mt-12 lg:mt-16 overflow-x-auto -mx-4 px-4 lg:mx-0 lg:px-0">
-        <div className="rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(30,30,30,0.08)", minWidth: "560px" }}>
+        <div className="mt-12 lg:mt-16 overflow-x-auto -mx-4 lg:mx-0">
+        <div className="rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(30,30,30,0.08)", minWidth: "480px" }}>
 
           {/* Column headers */}
-          <div className="grid" style={{ gridTemplateColumns: "26% 1fr 1fr" }}>
-            <div style={{ padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
+          <div className="grid" style={{ gridTemplateColumns: "140px 1fr 1fr" }}>
+            <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 2, padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
             {/* Bugasura header */}
             <div style={{ padding: "20px 24px", background: "rgba(229,39,39,0.07)", borderBottom: "1px solid rgba(229,39,39,0.12)", borderLeft: "1px solid rgba(229,39,39,0.12)" }}>
               <Image src="/bugasura-logo.png" alt="Bugasura" width={120} height={22} style={{ height: "22px", width: "auto", display: "block" }} />
@@ -383,10 +383,10 @@ export default function JiraAlternativePage() {
             <div
               key={i}
               className="grid"
-              style={{ gridTemplateColumns: "26% 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}
+              style={{ gridTemplateColumns: "140px 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}
             >
               {/* Label */}
-              <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)" }}>
+              <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 1, padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
                 <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "14px", color: "#1E1E1E" }}>{row.label}</p>
               </div>
 
@@ -428,16 +428,16 @@ export default function JiraAlternativePage() {
           {/* Feature checklist — collapsible */}
           {showFeatures && (
             <>
-              <div className="grid" style={{ gridTemplateColumns: "26% 1fr 1fr" }}>
-                <div style={{ padding: "16px 24px", background: "rgba(30,30,30,0.03)", borderTop: "2px solid rgba(30,30,30,0.08)" }}>
+              <div className="grid" style={{ gridTemplateColumns: "140px 1fr 1fr" }}>
+                <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 1, padding: "16px 24px", background: "rgba(30,30,30,0.03)", borderTop: "2px solid rgba(30,30,30,0.08)" }}>
                   <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(30,30,30,0.4)" }}>Feature checklist</p>
                 </div>
                 <div style={{ padding: "16px 24px", background: "rgba(229,39,39,0.05)", borderTop: "2px solid rgba(229,39,39,0.15)", borderLeft: "1px solid rgba(229,39,39,0.12)" }} />
                 <div style={{ padding: "16px 24px", background: "rgba(30,30,30,0.02)", borderTop: "2px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }} />
               </div>
               {featureRows.map((row, i) => (
-                <div key={i} className="grid" style={{ gridTemplateColumns: "26% 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
-                  <div style={{ padding: "14px 24px", borderTop: "1px solid rgba(30,30,30,0.05)" }}>
+                <div key={i} className="grid" style={{ gridTemplateColumns: "140px 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+                  <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 1, padding: "14px 24px", borderTop: "1px solid rgba(30,30,30,0.05)", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
                     <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "#1E1E1E" }}>{row.label}</p>
                   </div>
                   <div style={{ padding: "14px 24px", background: "rgba(229,39,39,0.05)", borderTop: "1px solid rgba(229,39,39,0.08)", borderLeft: "1px solid rgba(229,39,39,0.08)", display: "flex", alignItems: "center" }}>
