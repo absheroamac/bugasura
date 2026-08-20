@@ -363,7 +363,7 @@ export default function JiraAlternativePage() {
 
         {/* Comparison table */}
         <div className="mt-12 lg:mt-16 overflow-x-auto -mx-4 lg:mx-0">
-        <div className="rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(30,30,30,0.08)", minWidth: "480px" }}>
+        <div style={{ border: "1px solid rgba(30,30,30,0.08)", minWidth: "480px", borderRadius: "20px", overflow: "clip" }}>
 
           {/* Column headers */}
           <div className="grid" style={{ gridTemplateColumns: "140px 1fr 1fr" }}>
