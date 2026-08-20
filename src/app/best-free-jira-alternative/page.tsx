@@ -1,32 +1,112 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Zap, FileText, DollarSign, MousePointer, BarChart3 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LogoScroller from "@/components/sections/LogoScroller";
-import { Heading, BodyText, Button, Eyebrow } from "@/components/ui";
+import Testimonials from "@/components/sections/Testimonials";
+import { Heading, BodyText, Button } from "@/components/ui";
 
 /* ─── Combined comparison data ─── */
 
 const comparisonRows = [
-  { label: "Pricing",        jira: "$12.48/user/month after 10 users",             bugasura: "Fully free — all features, unlimited users, forever" },
-  { label: "Setup",          jira: "Time-consuming, complex configuration",         bugasura: "Quick setup with pre-configured projects" },
-  { label: "Ease of use",    jira: "Steep learning curve — new hires lose days",   bugasura: "Intuitive UI — your team tracks bugs on day one" },
-  { label: "AI",             jira: "Limited AI features with no smart tracking",   bugasura: "Built-in AI for smart categorisation and descriptions" },
-  { label: "Bug reporting",  jira: "Manual input — no context capture",            bugasura: "Automated reporters capture screenshots, logs, device info" },
-  { label: "Performance",    jira: "Degrades as your project grows",               bugasura: "Optimised for high volume — built by testers" },
-  { label: "Reporters",      jira: "No built-in reporters — everything is manual", bugasura: "Chrome, web widget, and Android reporters included" },
-  { label: "Duplicates",     jira: "No duplicate detection — backlogs get polluted", bugasura: "Duplicate Asura detects dupes before they hit the backlog" },
-  { label: "Annotations",    jira: "No screen annotation or console log capture",  bugasura: "Screen-wise annotation and session replay built in" },
-  { label: "Dashboards",     jira: "Manual dashboard creation every time",         bugasura: "Automatic dashboards — zero setup required" },
+  { label: "Cost",              jira: "Expensive — $12.48/user/month after 10 users",          bugasura: "Fully free — all features, unlimited users, forever" },
+  { label: "Setup",             jira: "Time-consuming, complex configuration",                  bugasura: "Quick setup with pre-configured projects" },
+  { label: "Ease of use",       jira: "Steep learning curve, overwhelming for new users",       bugasura: "Intuitive interface — easy to learn and use from day one" },
+  { label: "AI integration",    jira: "Limited or no AI-powered features",                      bugasura: "Built-in AI for smart issue tracking, categorisation and descriptions" },
+  { label: "Bug reporting",     jira: "Manual input or third-party integrations required",      bugasura: "Integrated reporters for annotations, screen capture, session replay and console errors" },
+  { label: "Performance",       jira: "Slows down with large number of issues",                 bugasura: "Optimised for high performance — even with many issues" },
+  { label: "Customization",     jira: "Complex, can lead to overcomplicated workflows",         bugasura: "Balanced options — maintaining simplicity and flexibility" },
+  { label: "Mobile experience", jira: "Limited functionality in mobile app",                    bugasura: "Fully responsive design across all devices" },
+  { label: "Collaboration",     jira: "Basic features, often requires add-ons",                 bugasura: "Integrated real-time collaboration tools built in" },
+  { label: "Dashboards",        jira: "Manual query writing needed to create dashboards",       bugasura: "Automatic dashboards from usage of tracker and reporter" },
 ];
 
-const reviews = [
-  { quote: "JIRA is a project management tool that has slowly metastasised into a full-time job.", tag: "Engineering Manager" },
-  { quote: "Every new team member spends 3 days just learning how to file a ticket correctly.", tag: "QA Lead" },
-  { quote: "The fact that basic features cost extra is genuinely insulting.", tag: "CTO, Series B startup" },
+type FeatureRow = { label: string; bugasura: boolean; jira: boolean };
+const featureRows: FeatureRow[] = [
+  { label: "Create, edit and delete issues",            bugasura: true,  jira: true  },
+  { label: "Customizable issue fields",                 bugasura: true,  jira: true  },
+  { label: "Create, update and delete projects",        bugasura: true,  jira: true  },
+  { label: "Pin, unpin, archive projects",              bugasura: true,  jira: false },
+  { label: "Duplicate projects",                        bugasura: true,  jira: true  },
+  { label: "Duplicate or transfer issues",              bugasura: true,  jira: false },
+  { label: "Customizable workflow control",             bugasura: true,  jira: true  },
+  { label: "Sort and filter by severity, tags",         bugasura: true,  jira: true  },
+  { label: "Generate visual bug reports",               bugasura: true,  jira: false },
+  { label: "Customizable access controls",              bugasura: true,  jira: true  },
+  { label: "Detect duplicate issues (AI)",              bugasura: true,  jira: false },
+  { label: "AI suggestions for similar issues",         bugasura: true,  jira: false },
+  { label: "Link related issues",                       bugasura: true,  jira: true  },
+  { label: "Map issues to sprints",                     bugasura: true,  jira: true  },
+  { label: "Screen annotation via reporter",            bugasura: true,  jira: false },
+  { label: "Chrome reporter",                           bugasura: true,  jira: false },
+  { label: "Android reporter",                          bugasura: true,  jira: false },
+  { label: "Integration with GitHub",                   bugasura: true,  jira: true  },
+  { label: "Integration with Slack",                    bugasura: true,  jira: true  },
+  { label: "Integration with Zendesk",                  bugasura: true,  jira: false },
+  { label: "Integration with Asana",                    bugasura: true,  jira: false },
+  { label: "Integration with ClickUp",                  bugasura: true,  jira: false },
+  { label: "Integration with Glitchtip",                bugasura: true,  jira: false },
+  { label: "Email notifications",                       bugasura: true,  jira: true  },
+  { label: "Export to CSV",                             bugasura: true,  jira: true  },
+  { label: "Comment on issues",                         bugasura: true,  jira: true  },
 ];
+
+
+const jiraQuotes = [
+  { text: "Yeah, the Jira web app is ass slow. Thankfully all I need to do with Jira is read the ticket and maybe reply with some comments. All the workflow, tagging, and a billion required fields bullshit I punt off to my project manager to do." },
+  { text: "Jira is a tire fire. It should be condemned and officially designated a superfund site. My goddamn ticket tracker shouldn't spin up my fans when I try to do something as austere as access the backlog, but, as we all know, it's impossible to display tickets without 21 MB of JavaScript and 164 HTTP requests. Yes, those are real numbers." },
+  { text: "Jira is too complicated and companies like to add their own extensions to it making it even more complicated — it's not meant for devs but for project managers, and project managers like to make the devs do their job in that horrific tool." },
+  { text: "We use JIRA. I hate it. It would absolutely not work well for helpdesk tickets. I use it for infosec projects and it works ok but I would rather use literally anything else." },
+  { text: "Leave it to fucking Atlassian to come up with the dumbest, most bullshit idea imaginable — letting every damn person in a project edit each other's comments — and then have the nerve to force customers to shell out more money for a paid plan just to disable this god-awful 'feature.' What a fucking scam." },
+  { text: "Every time I open Jira I feel like I need a roadmap just to file a bug. The interface is a monument to complexity for complexity's sake. It's what happens when you design software for the person buying it, not the person using it." },
+  { text: "Jira has 47 ways to do everything and a correct way to do nothing. The backlog is a black hole. Sprints are a liturgy. And somehow, after all these years, attaching a file still feels like an accomplishment." },
+];
+
+function JiraQuoteRotator() {
+  const [idx, setIdx] = useState(0);
+  useEffect(() => { setIdx(Math.floor(Math.random() * jiraQuotes.length)); }, []);
+  const next = () => setIdx((i) => (i + 1) % jiraQuotes.length);
+  return (
+    <div style={{ maxWidth: "860px", margin: "0 auto", background: "transparent" }}>
+      {/* Paper background card */}
+      <div
+        style={{
+          backgroundImage: "url('/paper-bg.png')",
+          backgroundSize: "100% 100%",
+          backgroundColor: "transparent",
+          padding: "clamp(32px, 6vw, 60px) clamp(24px, 6vw, 64px) clamp(24px, 4vw, 32px)",
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "320px",
+        }}
+      >
+        <div style={{ height: "1px", background: "rgba(30,30,30,0.15)", marginBottom: "32px" }} />
+        <p style={{ fontFamily: "'Caveat', cursive", fontSize: "clamp(22px, 2.2vw, 28px)", lineHeight: 1.4, color: "#1E1E1E", flex: 1 }}>
+          {jiraQuotes[idx].text}
+        </p>
+        <div style={{ height: "1px", background: "rgba(30,30,30,0.15)", marginTop: "32px", marginBottom: "20px" }} />
+        <div style={{ display: "flex", justifyContent: "flex-end", paddingBottom: "12px" }}>
+          <button
+            onClick={next}
+            style={{ background: "#1E1E1E", border: "none", cursor: "pointer", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "#ffffff", padding: "10px 20px", borderRadius: "100px" }}
+          >
+            Another opinion →
+          </button>
+        </div>
+      </div>
+      {/* Attribution */}
+      <p style={{ textAlign: "center", marginTop: "20px", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(30,30,30,0.35)" }}>
+        Powered by{" "}
+        <a href="https://www.ifuckinghatejira.com" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(30,30,30,0.5)", textDecoration: "none" }}>
+          ifuckinghatejira.com
+        </a>
+      </p>
+    </div>
+  );
+}
 
 function CheckIcon({ color }: { color: string }) {
   return (
@@ -38,6 +118,7 @@ function CheckIcon({ color }: { color: string }) {
 }
 
 export default function JiraAlternativePage() {
+  const [showFeatures, setShowFeatures] = useState(false);
   const iconBox: React.CSSProperties = {
     width: "44px", height: "44px", borderRadius: "12px",
     background: "rgba(229,39,39,0.08)",
@@ -52,17 +133,13 @@ export default function JiraAlternativePage() {
       {/* ── HERO — text left / image right ── */}
       <section
         className="rounded-[32px] overflow-hidden"
-        style={{ background: "linear-gradient(160deg, #C01212 0%, #E52727 55%, #FF4F4F 100%)" }}
+        style={{ background: "linear-gradient(160deg, #0077C2 0%, #29A5FF 60%, #4DB8FF 100%)" }}
       >
         {/* Top: copy left + illustration right */}
-        <div className="flex flex-col lg:flex-row lg:items-end gap-0 px-8 lg:px-20 pt-20 lg:pt-28">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-0 px-8 lg:px-20 pt-20 lg:pt-28 pb-12 lg:pb-20">
 
           {/* Left: copy */}
-          <div className="flex-1 flex flex-col items-start pb-12 lg:pb-20">
-            <Eyebrow variant="badge" color="rgba(255,255,255,0.7)" style={{ marginBottom: "20px", border: "1px solid rgba(255,255,255,0.25)", background: "rgba(255,255,255,0.1)" }}>
-              Free Forever · Unlimited Users
-            </Eyebrow>
-
+          <div className="flex-1 flex flex-col items-start">
             <Heading
               level="hero"
               as="h1"
@@ -93,14 +170,14 @@ export default function JiraAlternativePage() {
 
           {/* Right: illustration */}
           <div
-            className="hidden lg:flex flex-shrink-0 items-end justify-center"
-            style={{ width: "520px", marginTop: "-80px" }}
+            className="hidden lg:flex flex-shrink-0 items-center justify-center"
+            style={{ width: "576px" }}
           >
             <Image
-              src="/hero/asura-hero-illustration.png"
+              src="/jira-hero-img.png"
               alt="Bugasura vs JIRA illustration"
-              width={520}
-              height={480}
+              width={576}
+              height={504}
               className="object-contain object-bottom w-full"
               priority
             />
@@ -125,6 +202,24 @@ export default function JiraAlternativePage() {
 
       {/* ── LOGO STRIP ── */}
       <LogoScroller bg="#FFF6E2" logoSet="black" logoOpacity={0.6} />
+
+      {/* ── JIRA REVIEWS — ifuckinghatejira.com embed ── */}
+      <section
+        style={{ padding: "80px clamp(24px, 6vw, 80px)" }}
+      >
+        <div style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto 48px" }}>
+          <Heading
+            level="section"
+            as="h2"
+            color="#1E1E1E"
+            style={{ fontSize: "clamp(28px, 3.5vw, 44px)", lineHeight: 1.1, letterSpacing: "-0.02em" }}
+          >
+            Real people. Real frustration. Anonymous JIRA reviews.
+          </Heading>
+        </div>
+
+        <JiraQuoteRotator />
+      </section>
 
       {/* ── WHY BUGASURA — bento grid ── */}
       <section
@@ -237,47 +332,8 @@ export default function JiraAlternativePage() {
         </div>
       </section>
 
-      {/* ── ANONYMOUS REVIEWS ── */}
-      <section
-        className="rounded-[32px]"
-        style={{ backgroundColor: "#FFF6E2", padding: "80px clamp(24px, 6vw, 80px)" }}
-      >
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-16 mb-12">
-          <div className="flex-shrink-0" style={{ maxWidth: "560px" }}>
-            <Heading
-              level="section"
-              as="h2"
-              color="#1E1E1E"
-              style={{ fontSize: "clamp(32px, 4.5vw, 58px)", lineHeight: 1.05, letterSpacing: "-0.025em" }}
-            >
-              Why so many<br />teams want out.
-            </Heading>
-          </div>
-          <BodyText color="rgba(30,30,30,0.65)" style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "380px" }}>
-            Anonymous reviews from real teams, sourced from ifuckinghatejira.com. This is what people say when they think nobody&apos;s watching.
-          </BodyText>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {reviews.map(({ quote, tag }) => (
-            <div
-              key={tag}
-              style={{ background: "#ffffff", borderRadius: "20px", padding: "32px", border: "1px solid rgba(30,30,30,0.07)", display: "flex", flexDirection: "column", gap: "16px" }}
-            >
-              <BodyText color="#1E1E1E" style={{ fontSize: "16px", lineHeight: 1.65, fontStyle: "italic", flex: 1 }}>
-                &ldquo;{quote}&rdquo;
-              </BodyText>
-              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", color: "rgba(30,30,30,0.35)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                {tag}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-center mt-12">
-          <Button href="https://my.bugasura.io?go=sign_up" variant="primary">Explore AI issue tracker</Button>
-        </div>
-      </section>
+      {/* ── TESTIMONIALS ── */}
+      <Testimonials />
 
       {/* ── COMBINED COMPARISON ── */}
       <section
@@ -306,7 +362,8 @@ export default function JiraAlternativePage() {
         </BodyText>
 
         {/* Comparison table */}
-        <div className="mt-12 lg:mt-16 rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(30,30,30,0.08)" }}>
+        <div className="mt-12 lg:mt-16 overflow-x-auto -mx-4 px-4 lg:mx-0 lg:px-0">
+        <div className="rounded-[20px] overflow-hidden" style={{ border: "1px solid rgba(30,30,30,0.08)", minWidth: "560px" }}>
 
           {/* Column headers */}
           <div className="grid" style={{ gridTemplateColumns: "26% 1fr 1fr" }}>
@@ -317,9 +374,7 @@ export default function JiraAlternativePage() {
             </div>
             {/* JIRA header */}
             <div style={{ padding: "20px 24px", background: "rgba(30,30,30,0.03)", borderBottom: "1px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }}>
-              <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "15px", color: "rgba(30,30,30,0.7)" }}>
-                Traditional platforms
-              </p>
+              <Image src="/jira-logo.png" alt="Jira" width={60} height={22} style={{ height: "22px", width: "auto", display: "block" }} />
             </div>
           </div>
 
@@ -356,36 +411,69 @@ export default function JiraAlternativePage() {
               </div>
             </div>
           ))}
-        </div>
+
+        {/* Toggle button */}
+          <div style={{ borderTop: "1px solid rgba(30,30,30,0.08)", display: "flex", justifyContent: "center", padding: "20px 24px", background: "#fafafa" }}>
+            <button
+              onClick={() => setShowFeatures(v => !v)}
+              style={{ display: "flex", alignItems: "center", gap: "8px", background: "none", border: "1px solid rgba(30,30,30,0.15)", borderRadius: "100px", padding: "10px 20px", cursor: "pointer", fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "#1E1E1E" }}
+            >
+              {showFeatures ? "Hide feature comparison" : "View full feature comparison"}
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ transition: "transform 0.2s", transform: showFeatures ? "rotate(180deg)" : "rotate(0deg)" }}>
+                <path d="M3 5l4 4 4-4" stroke="#1E1E1E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          {/* Feature checklist — collapsible */}
+          {showFeatures && (
+            <>
+              <div className="grid" style={{ gridTemplateColumns: "26% 1fr 1fr" }}>
+                <div style={{ padding: "16px 24px", background: "rgba(30,30,30,0.03)", borderTop: "2px solid rgba(30,30,30,0.08)" }}>
+                  <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(30,30,30,0.4)" }}>Feature checklist</p>
+                </div>
+                <div style={{ padding: "16px 24px", background: "rgba(229,39,39,0.05)", borderTop: "2px solid rgba(229,39,39,0.15)", borderLeft: "1px solid rgba(229,39,39,0.12)" }} />
+                <div style={{ padding: "16px 24px", background: "rgba(30,30,30,0.02)", borderTop: "2px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }} />
+              </div>
+              {featureRows.map((row, i) => (
+                <div key={i} className="grid" style={{ gridTemplateColumns: "26% 1fr 1fr", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+                  <div style={{ padding: "14px 24px", borderTop: "1px solid rgba(30,30,30,0.05)" }}>
+                    <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "#1E1E1E" }}>{row.label}</p>
+                  </div>
+                  <div style={{ padding: "14px 24px", background: "rgba(229,39,39,0.05)", borderTop: "1px solid rgba(229,39,39,0.08)", borderLeft: "1px solid rgba(229,39,39,0.08)", display: "flex", alignItems: "center" }}>
+                    {row.bugasura ? (
+                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "#E52727", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </span>
+                    ) : (
+                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "rgba(30,30,30,0.08)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1l6 6M7 1l-6 6" stroke="rgba(30,30,30,0.4)" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ padding: "14px 24px", background: "rgba(30,30,30,0.02)", borderTop: "1px solid rgba(30,30,30,0.05)", borderLeft: "1px solid rgba(30,30,30,0.05)", display: "flex", alignItems: "center" }}>
+                    {row.jira ? (
+                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "#29A5FF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </span>
+                    ) : (
+                      <span style={{ width: "20px", height: "20px", borderRadius: "50%", background: "rgba(30,30,30,0.06)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M1 1l6 6M7 1l-6 6" stroke="rgba(30,30,30,0.35)" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
+        </div>{/* end inner rounded table */}
+        </div>{/* end scroll wrapper */}
 
         <div className="flex justify-center mt-14">
           <Button href="https://my.bugasura.io?go=sign_up" variant="primary">Don&apos;t book a demo. Just try it FREE.</Button>
         </div>
       </section>
 
-      {/* ── TESTIMONIAL ── */}
-      <section
-        className="rounded-[32px]"
-        style={{ backgroundColor: "#1E1E1E", padding: "80px clamp(24px, 6vw, 80px)" }}
-      >
-        <div style={{ maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
-          <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "32px" }}>
-            Real people. Real switch.
-          </p>
-          <Heading
-            level="section"
-            as="h2"
-            color="#ffffff"
-            style={{ fontSize: "clamp(24px, 3.5vw, 48px)", lineHeight: 1.1, letterSpacing: "-0.02em", marginBottom: "40px" }}
-          >
-            &ldquo;Bugasura has been a more breezy alternative to its competitors like Jira&hellip; As someone who&apos;s worked with both Jira and Bugasura, I&apos;d pick the latter at any given time.&rdquo;
-          </Heading>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
-            <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "16px", color: "#ffffff" }}>Shashank Koundinya</p>
-            <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em", textTransform: "uppercase" }}>via Product Hunt</p>
-          </div>
-        </div>
-      </section>
 
       {/* ── HELP RESOURCES ── */}
       <section
