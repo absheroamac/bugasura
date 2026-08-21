@@ -128,6 +128,16 @@ export default function JiraAlternativePage() {
 
   return (
     <main className="flex flex-col gap-2">
+      <style>{`
+        .cmp-row { display: grid; grid-template-columns: 100px 240px 240px; }
+        .cmp-label { position: sticky; left: 0; box-shadow: 2px 0 6px -2px rgba(0,0,0,0.06); }
+        .cmp-table { min-width: 580px; }
+        @media (min-width: 1024px) {
+          .cmp-row { grid-template-columns: 26% 1fr 1fr; }
+          .cmp-label { position: static; box-shadow: none; }
+          .cmp-table { min-width: 0; }
+        }
+      `}</style>
       <Navbar />
 
       {/* ── HERO — text left / image right ── */}
@@ -363,16 +373,14 @@ export default function JiraAlternativePage() {
 
         {/* Comparison table */}
         <div className="mt-12 lg:mt-16 overflow-x-auto -mx-4 lg:mx-0">
-        <div style={{ border: "1px solid rgba(30,30,30,0.08)", minWidth: "580px", borderRadius: "20px", overflow: "clip" }}>
+        <div className="cmp-table" style={{ border: "1px solid rgba(30,30,30,0.08)", borderRadius: "20px", overflow: "clip" }}>
 
           {/* Column headers */}
-          <div className="grid" style={{ gridTemplateColumns: "100px 240px 240px" }}>
-            <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 2, padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
-            {/* Bugasura header */}
+          <div className="cmp-row">
+            <div className="cmp-label" style={{ zIndex: 2, padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
             <div style={{ padding: "20px 24px", background: "rgba(229,39,39,0.07)", borderBottom: "1px solid rgba(229,39,39,0.12)", borderLeft: "1px solid rgba(229,39,39,0.12)" }}>
               <Image src="/bugasura-logo.png" alt="Bugasura" width={120} height={22} style={{ height: "22px", width: "auto", display: "block" }} />
             </div>
-            {/* JIRA header */}
             <div style={{ padding: "20px 24px", background: "rgba(30,30,30,0.03)", borderBottom: "1px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }}>
               <Image src="/jira-logo.png" alt="Jira" width={60} height={22} style={{ height: "22px", width: "auto", display: "block" }} />
             </div>
@@ -380,17 +388,10 @@ export default function JiraAlternativePage() {
 
           {/* Data rows */}
           {comparisonRows.map((row, i) => (
-            <div
-              key={i}
-              className="grid"
-              style={{ gridTemplateColumns: "100px 240px 240px", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}
-            >
-              {/* Label */}
-              <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 1, padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+            <div key={i} className="cmp-row" style={{ background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+              <div className="cmp-label" style={{ zIndex: 1, padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
                 <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "14px", color: "#1E1E1E" }}>{row.label}</p>
               </div>
-
-              {/* Bugasura value */}
               <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(229,39,39,0.08)", borderLeft: "1px solid rgba(229,39,39,0.1)", background: i % 2 === 0 ? "rgba(229,39,39,0.03)" : "rgba(229,39,39,0.05)" }}>
                 <div className="flex items-center gap-2">
                   <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "#E52727", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -399,8 +400,6 @@ export default function JiraAlternativePage() {
                   <BodyText color="#1E1E1E" style={{ fontSize: "14px", lineHeight: 1.5, fontWeight: 600 }}>{row.bugasura}</BodyText>
                 </div>
               </div>
-
-              {/* JIRA value */}
               <div style={{ padding: "18px 24px", borderTop: "1px solid rgba(30,30,30,0.06)", borderLeft: "1px solid rgba(30,30,30,0.06)" }}>
                 <div className="flex items-center gap-2">
                   <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: "rgba(30,30,30,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
@@ -412,7 +411,7 @@ export default function JiraAlternativePage() {
             </div>
           ))}
 
-        {/* Toggle button */}
+          {/* Toggle button */}
           <div style={{ borderTop: "1px solid rgba(30,30,30,0.08)", display: "flex", justifyContent: "center", padding: "20px 24px", background: "#fafafa" }}>
             <button
               onClick={() => setShowFeatures(v => !v)}
@@ -428,16 +427,16 @@ export default function JiraAlternativePage() {
           {/* Feature checklist — collapsible */}
           {showFeatures && (
             <>
-              <div className="grid" style={{ gridTemplateColumns: "100px 240px 240px" }}>
-                <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 1, padding: "16px 24px", background: "rgba(30,30,30,0.03)", borderTop: "2px solid rgba(30,30,30,0.08)" }}>
+              <div className="cmp-row">
+                <div className="cmp-label" style={{ zIndex: 1, padding: "16px 24px", background: "rgba(30,30,30,0.03)", borderTop: "2px solid rgba(30,30,30,0.08)" }}>
                   <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(30,30,30,0.4)" }}>Feature checklist</p>
                 </div>
                 <div style={{ padding: "16px 24px", background: "rgba(229,39,39,0.05)", borderTop: "2px solid rgba(229,39,39,0.15)", borderLeft: "1px solid rgba(229,39,39,0.12)" }} />
                 <div style={{ padding: "16px 24px", background: "rgba(30,30,30,0.02)", borderTop: "2px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }} />
               </div>
               {featureRows.map((row, i) => (
-                <div key={i} className="grid" style={{ gridTemplateColumns: "100px 240px 240px", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
-                  <div style={{ position: "sticky", left: 0, boxShadow: "2px 0 6px -2px rgba(0,0,0,0.06)", zIndex: 1, padding: "14px 24px", borderTop: "1px solid rgba(30,30,30,0.05)", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+                <div key={i} className="cmp-row" style={{ background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
+                  <div className="cmp-label" style={{ zIndex: 1, padding: "14px 24px", borderTop: "1px solid rgba(30,30,30,0.05)", background: i % 2 === 0 ? "#ffffff" : "#fafafa" }}>
                     <p style={{ fontFamily: "'Clash Grotesk', sans-serif", fontWeight: 600, fontSize: "13px", color: "#1E1E1E" }}>{row.label}</p>
                   </div>
                   <div style={{ padding: "14px 24px", background: "rgba(229,39,39,0.05)", borderTop: "1px solid rgba(229,39,39,0.08)", borderLeft: "1px solid rgba(229,39,39,0.08)", display: "flex", alignItems: "center" }}>
