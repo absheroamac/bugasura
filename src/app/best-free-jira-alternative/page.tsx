@@ -137,6 +137,13 @@ export default function JiraAlternativePage() {
           .cmp-label { position: static; box-shadow: none; }
           .cmp-table { min-width: 0; }
         }
+        @media (max-width: 1023px) {
+          .bento-section {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            padding-bottom: 96px !important;
+          }
+        }
       `}</style>
       <Navbar />
 
@@ -233,8 +240,8 @@ export default function JiraAlternativePage() {
 
       {/* ── WHY BUGASURA — bento grid ── */}
       <section
-        className="rounded-[32px]"
-        style={{ backgroundColor: "#FFA840", padding: "80px clamp(24px, 6vw, 80px)", overflow: "clip" }}
+        className="bento-section rounded-[32px] overflow-hidden"
+        style={{ backgroundColor: "#FFA840", padding: "80px clamp(24px, 6vw, 80px)" }}
       >
         {/* Split header: title left, body right */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-16 mb-12">
