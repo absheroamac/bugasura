@@ -141,6 +141,7 @@ export default function JiraAlternativePage() {
           .bento-section {
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
+            padding-bottom: 40px !important;
           }
         }
       `}</style>
@@ -240,7 +241,7 @@ export default function JiraAlternativePage() {
       {/* ── WHY BUGASURA — bento grid ── */}
       <section
         className="bento-section rounded-[32px] overflow-hidden"
-        style={{ backgroundColor: "#FFA840", padding: "80px clamp(24px, 6vw, 80px)" }}
+        style={{ backgroundColor: "#FFA840", paddingTop: "clamp(48px, 8vw, 80px)", paddingBottom: "clamp(48px, 8vw, 80px)", paddingLeft: "clamp(24px, 6vw, 80px)", paddingRight: "clamp(24px, 6vw, 80px)" }}
       >
         {/* Split header: title left, body right */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-16 mb-12">
