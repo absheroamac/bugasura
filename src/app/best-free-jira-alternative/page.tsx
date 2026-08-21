@@ -129,9 +129,9 @@ export default function JiraAlternativePage() {
   return (
     <main className="flex flex-col gap-2">
       <style>{`
-        .cmp-row { display: grid; grid-template-columns: 100px 240px 240px; }
+        .cmp-row { display: grid; grid-template-columns: 132px 240px 240px; }
         .cmp-label { position: sticky; left: 0; box-shadow: 2px 0 6px -2px rgba(0,0,0,0.06); }
-        .cmp-table { min-width: 580px; }
+        .cmp-table { min-width: 612px; }
         @media (min-width: 1024px) {
           .cmp-row { grid-template-columns: 26% 1fr 1fr; }
           .cmp-label { position: static; box-shadow: none; }
@@ -233,7 +233,7 @@ export default function JiraAlternativePage() {
 
       {/* ── WHY BUGASURA — bento grid ── */}
       <section
-        className="rounded-[32px]"
+        className="rounded-[32px] overflow-hidden"
         style={{ backgroundColor: "#FFA840", padding: "80px clamp(24px, 6vw, 80px)" }}
       >
         {/* Split header: title left, body right */}
