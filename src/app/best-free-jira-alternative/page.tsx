@@ -141,7 +141,6 @@ export default function JiraAlternativePage() {
           .bento-section {
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
-            padding-bottom: 96px !important;
           }
         }
       `}</style>
