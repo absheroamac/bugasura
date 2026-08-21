@@ -139,6 +139,8 @@ export default function JiraAlternativePage() {
         }
         @media (max-width: 1023px) {
           .bento-section {
+            overflow: visible !important;
+            clip-path: inset(0 round 32px);
             padding-bottom: 40px !important;
           }
         }
