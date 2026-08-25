@@ -139,8 +139,6 @@ export default function JiraAlternativePage() {
         }
         @media (max-width: 1023px) {
           .bento-section {
-            overflow: visible !important;
-            clip-path: inset(0 round 32px);
             padding-bottom: 40px !important;
           }
         }
@@ -238,9 +236,23 @@ export default function JiraAlternativePage() {
         <JiraQuoteRotator />
       </section>
 
+      {/* ── PRODUCT SCREENSHOT ── */}
+      <div className="w-full flex justify-center" style={{ marginTop: -32 }}>
+      <div className="rounded-[24px] overflow-hidden" style={{ maxWidth: 580 }}>
+        <Image
+          src="/bugasura-product.png"
+          alt="Bugasura product screenshot"
+          width={1455}
+          height={1081}
+          className="w-full h-auto"
+          loading="lazy"
+        />
+      </div>
+      </div>
+
       {/* ── WHY BUGASURA — bento grid ── */}
       <section
-        className="bento-section rounded-[32px] overflow-hidden"
+        className="bento-section rounded-[32px]"
         style={{ backgroundColor: "#FFA840", paddingTop: "clamp(48px, 8vw, 80px)", paddingBottom: "clamp(48px, 8vw, 80px)", paddingLeft: "clamp(24px, 6vw, 80px)", paddingRight: "clamp(24px, 6vw, 80px)" }}
       >
         {/* Split header: title left, body right */}
@@ -350,7 +362,9 @@ export default function JiraAlternativePage() {
       </section>
 
       {/* ── TESTIMONIALS ── */}
-      <Testimonials />
+      <div className="mt-32 lg:mt-0">
+        <Testimonials />
+      </div>
 
       {/* ── COMBINED COMPARISON ── */}
       <section
