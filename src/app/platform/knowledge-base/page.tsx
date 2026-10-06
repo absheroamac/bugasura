@@ -20,7 +20,7 @@ export default function KnowledgeBasePage() {
         headline={<>The shared brain your QA process runs on.</>}
         body="Not a documentation tool. The AI-indexed context layer that every test decision, risk map, and agent run draws from — so nothing gets tested without understanding what it's supposed to do."
         darkText={true}
-        illustration="/illustrations/knowledge-base.png"
+        illustration="/illustrations/knowledge-base.avif"
         heroBg="#FFA840"
         primaryLabel="Start for free"
         primaryHref="https://my.bugasura.io?go=sign_up"
@@ -87,7 +87,7 @@ export default function KnowledgeBasePage() {
 
       <FeaturesPlatformFlow
         description="Knowledge Base and Requirements together form the full Context layer. Together they give every downstream module — Testpert, test generation, Asuras — the product understanding they need to make good decisions."
-        image="/platform-flow/Context-Active.png"
+        image="/platform-flow/Context-Active.avif"
       />
 
       <SolutionsTestimonial

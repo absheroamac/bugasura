@@ -20,7 +20,7 @@ export default function RequirementsPage() {
         headline={<>Requirements that stay connected downstream.</>}
         body="Capture structured requirements, trace them to test cases, and know instantly when a change puts coverage at risk. No more traceability matrices updated manually at the end of a sprint."
         darkText={true}
-        illustration="/illustrations/requirements.png"
+        illustration="/illustrations/requirements.avif"
         illustrationPortrait={true}
         heroBg="#FFA840"
         primaryLabel="Start for free"
@@ -105,7 +105,7 @@ export default function RequirementsPage() {
 
       <FeaturesPlatformFlow
         description="Requirements captured here inform the Refine layer's risk surface map — so test case generation is always driven by what your product actually needs to do, not by what's easiest to test."
-        image="/platform-flow/Context-Active.png"
+        image="/platform-flow/Context-Active.avif"
       />
 
       <SolutionsTestimonial

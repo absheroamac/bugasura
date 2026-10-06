@@ -15,7 +15,7 @@ export default function BentoFeatures() {
         >
           {/* Full-card background image */}
           <Image
-            src="/section4/card1-bg.png"
+            src="/section4/card1-bg.avif"
             alt="Testpert in action"
             fill
             className="object-cover object-center"

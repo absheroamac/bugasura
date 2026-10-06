@@ -67,7 +67,7 @@ export default function AsuraHero() {
         <div className="hidden lg:flex flex-1 rounded-tl-[28px] overflow-hidden" style={{ minWidth: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/asuras/hero-illustration.png"
+            src="/asuras/hero-illustration.avif"
             alt="World of Asuras — specialized QA agents on the Bugasura train"
             style={{ width: "100%", height: "auto", display: "block" }}
           />

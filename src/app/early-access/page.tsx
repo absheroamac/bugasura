@@ -185,7 +185,7 @@ export default function EarlyAccessPage() {
 
   const pageBg: React.CSSProperties = {
     minHeight: "100vh",
-    backgroundImage: "url('/beta-bg.png')",
+    backgroundImage: "url('/beta-bg.avif')",
     backgroundSize: "cover",
     backgroundPosition: "center top",
     display: "flex",
@@ -209,7 +209,7 @@ export default function EarlyAccessPage() {
             {/* Celebration image — overflows above the card */}
             <div style={{ background: "#F5A623", borderRadius: "28px 28px 0 0", display: "flex", justifyContent: "center", paddingTop: "16px", overflow: "visible", position: "relative" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/beta-success.png" alt="Congrats" style={{ width: "300px", display: "block", marginTop: "-30px", position: "relative", zIndex: 2 }} />
+              <img src="/beta-success.avif" alt="Congrats" style={{ width: "300px", display: "block", marginTop: "-30px", position: "relative", zIndex: 2 }} />
             </div>
 
             {/* Position */}
@@ -397,7 +397,7 @@ export default function EarlyAccessPage() {
           {/* Left — banner (hidden on mobile) */}
           <div className="beta-banner" style={{ flex: "0 0 460px", overflow: "hidden", display: "flex" }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/beta-banner.png" alt="World of Asuras" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src="/beta-banner.avif" alt="World of Asuras" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
 
           {/* Right — form */}

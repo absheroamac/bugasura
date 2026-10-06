@@ -114,7 +114,7 @@ export default function PricingPlans() {
               </BodyText>
             </div>
             <div className="hidden sm:block" style={{ flexShrink: 0, marginBottom: "-36px", marginRight: "-8px" }}>
-              <Image src="/asuras-free-pricing.png" alt="" width={120} height={120} style={{ objectFit: "contain" }} />
+              <Image src="/asuras-free-pricing.avif" alt="" width={120} height={120} style={{ objectFit: "contain" }} />
             </div>
           </div>
 
@@ -168,7 +168,7 @@ export default function PricingPlans() {
               </BodyText>
             </div>
             <div className="hidden sm:block" style={{ flexShrink: 0, marginBottom: "-36px", marginRight: "-8px" }}>
-              <Image src="/asuras-enterprise-pricing.png" alt="" width={120} height={120} style={{ objectFit: "contain" }} />
+              <Image src="/asuras-enterprise-pricing.avif" alt="" width={120} height={120} style={{ objectFit: "contain" }} />
             </div>
           </div>
 

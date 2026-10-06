@@ -106,7 +106,7 @@ export default function SecurityPage() {
 
           <div className="hidden lg:flex flex-shrink-0 items-center justify-center" style={{ width: "45%", alignSelf: "flex-end" }}>
             <Image
-              src="/illustrations/security-hero.png"
+              src="/illustrations/security-hero.avif"
               alt=""
               width={760}
               height={507}

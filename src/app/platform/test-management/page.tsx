@@ -20,7 +20,7 @@ export default function TestManagementPage() {
         headline={<>Test management for teams that ship with AI.</>}
         body="Plan test cycles, track coverage, and manage execution — in a system that already knows your requirements and risk surface. Not a standalone tool. The execution layer of a connected platform."
         darkText={true}
-        illustration="/illustrations/test-management.png"
+        illustration="/illustrations/test-management.avif"
         heroBg="#FFA840"
         primaryLabel="Start for free"
         primaryHref="https://my.bugasura.io?go=sign_up"
@@ -138,7 +138,7 @@ export default function TestManagementPage() {
 
       <FeaturesPlatformFlow
         description="Test Management sits at the Generate layer — it receives the risk surface from Testpert and hands off test plans to the Execute layer. Test results feed back into the Context layer, making every subsequent sprint smarter."
-        image="/platform-flow/Generate-Active.png"
+        image="/platform-flow/Generate-Active.avif"
       />
 
       <SolutionsTestimonial

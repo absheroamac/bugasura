@@ -12,7 +12,7 @@ function CheckIcon({ color }: { color: string }) {
 
 const personas = [
   {
-    illustration: "/enterprise/three-teams/01.png",
+    illustration: "/enterprise/three-teams/01.avif",
     role: "CTO · VP Engineering · Head of QA",
     roleColor: "#E52727",
     roleBg: "rgba(229,39,39,0.08)",
@@ -28,7 +28,7 @@ const personas = [
     checkColor: "#E52727",
   },
   {
-    illustration: "/enterprise/three-teams/02.png",
+    illustration: "/enterprise/three-teams/02.avif",
     role: "IT · InfoSec · Security Lead",
     roleColor: "#29A5FF",
     roleBg: "rgba(41,165,255,0.08)",
@@ -44,7 +44,7 @@ const personas = [
     checkColor: "#29A5FF",
   },
   {
-    illustration: "/enterprise/three-teams/03.png",
+    illustration: "/enterprise/three-teams/03.avif",
     role: "Procurement · Finance · Legal",
     roleColor: "#C9963A",
     roleBg: "rgba(201,150,58,0.08)",

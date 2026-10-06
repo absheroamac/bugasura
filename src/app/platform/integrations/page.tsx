@@ -87,7 +87,7 @@ export default function IntegrationsPage() {
         headline={<>Quality context where developers actually work.</>}
         body="The Bugasura MCP server puts your quality data — requirements, defect history, test coverage, risk signals — directly inside Claude and Cursor. No tab switching, no copy-pasting, no excuses for skipping tests."
         darkText={true}
-        illustration="/illustrations/integrations.png"
+        illustration="/illustrations/integrations.avif"
         heroBg="#FFA840"
         primaryLabel="Start for free"
         primaryHref="https://my.bugasura.io?go=sign_up"
@@ -133,7 +133,7 @@ export default function IntegrationsPage() {
 
       <FeaturesPlatformFlow
         description="MCP and integrations aren't a layer — they're how the platform surfaces everywhere. The entire Bugasura context is accessible to any MCP-compatible AI tool, meaning quality intelligence lives inside every developer's workflow."
-        image="/platform-flow/Execute-Active.png"
+        image="/platform-flow/Execute-Active.avif"
       />
 
       <SolutionsTestimonial

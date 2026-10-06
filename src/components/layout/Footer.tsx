@@ -149,7 +149,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
         {/* Right: character */}
         <div className="hidden lg:block flex-shrink-0" style={{ width: "clamp(240px, 32vw, 420px)" }}>
           <Image
-            src="/footer/character.png"
+            src="/footer/character.avif"
             alt="Bugasura character"
             width={420}
             height={420}
@@ -220,7 +220,7 @@ export default function Footer({ cta }: { cta?: CtaConfig }) {
       {/* ── Big "Bugasura" wordmark illustration — fills full width ── */}
       <div className="px-4 lg:px-8 pb-6">
         <Image
-          src="/footer/footer-wordmark.png"
+          src="/footer/footer-wordmark.avif"
           alt="Bugasura"
           width={1400}
           height={280}

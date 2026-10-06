@@ -123,7 +123,7 @@ export default function AsuraAgents() {
       {/* ── Train illustration — overflows below the blue section — desktop only ── */}
       <div className="hidden lg:block relative z-10 pointer-events-none" style={{ marginTop: "calc(-320px)" }}>
         <Image
-          src="/section5/train.png"
+          src="/section5/train.avif"
           alt="Asura agents on a train"
           width={1400}
           height={500}

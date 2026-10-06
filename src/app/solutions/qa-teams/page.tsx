@@ -26,7 +26,7 @@ export default function QATeamsPage() {
         primaryHref="https://my.bugasura.io?go=sign_up"
         secondaryLabel="See it in action"
         secondaryHref="https://calendly.com/get-bugasura/45min"
-        illustration="/illustrations/qa-teams.png"
+        illustration="/illustrations/qa-teams.avif"
         trustBadges={[
           { Icon: Users,    iconColor: "#29A5FF", label: "50,000+ QA engineers worldwide", desc: "Trusted by QA teams at companies of all sizes across 80+ countries" },
           { Icon: Infinity, iconColor: "#CC7A00", label: "Free forever",                   desc: "Full platform access, unlimited users and projects — no credit card" },
@@ -47,21 +47,21 @@ export default function QATeamsPage() {
             eyebrowColor: "#E52727",
             title: "From writing tests to making test decisions",
             body: "Bugasura generates the test cases. Your QA lead reviews, refines, and approves them. The expert judgment stays with your team — the tedious first draft doesn't.",
-            image: "/qa/card-01.png",
+            image: "/qa/card-01.avif",
           },
           {
             eyebrow: "Risk Intelligence",
             eyebrowColor: "#C47200",
             title: "From gut-feel coverage to risk-mapped coverage",
             body: "Coverage decisions backed by actual risk data — requirements, defect history, business impact — not sprint pressure and intuition. Test what matters most, not what's easiest to test.",
-            image: "/qa/card-02.png",
+            image: "/qa/card-02.avif",
           },
           {
             eyebrow: "Team Knowledge",
             eyebrowColor: "#0077C2",
             title: "From individual knowledge to team intelligence",
             body: "The institutional knowledge your senior testers carry — which modules are fragile, which edge cases always break — captured in the Knowledge Base and available to everyone, every sprint.",
-            image: "/qa/card-03.png",
+            image: "/qa/card-03.avif",
           },
         ]}
       />

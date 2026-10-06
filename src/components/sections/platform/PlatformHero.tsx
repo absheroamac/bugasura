@@ -72,7 +72,7 @@ export default function PlatformHero() {
           }}
         >
           <Image
-            src="/platform/layers.png"
+            src="/platform/layers.avif"
             alt="Bugasura platform layers diagram"
             width={580}
             height={720}
@@ -86,7 +86,7 @@ export default function PlatformHero() {
       <div className="relative lg:-mt-[340px] mt-6">
         {/* Factory illustration — full bleed */}
         <Image
-          src="/platform/illustration.png"
+          src="/platform/illustration.avif"
           alt="Bugasura platform — context, refine, generate, execute in action"
           width={1440}
           height={640}

@@ -106,7 +106,7 @@ export default function ProblemStatement() {
         transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
         <Image
-          src="/section2/illustration1.png"
+          src="/section2/illustration1.avif"
           alt="AI ships fast while QA falls behind"
           width={1400}
           height={700}
@@ -121,7 +121,7 @@ export default function ProblemStatement() {
         style={{ marginTop: "-4vw", marginBottom: "48px" }}
       >
         <Image
-          src="/section2/illustration2.png"
+          src="/section2/illustration2.avif"
           alt="Bugasura mascot looking unimpressed"
           width={280}
           height={220}

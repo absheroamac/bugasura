@@ -7,17 +7,17 @@ const cards = [
   {
     title: "Build on the platform",
     body: "Your Asura runs on Bugasura's context engine. It inherits everything the platform knows about your product requirements, defect history, risk maps. No cold start.",
-    image: "/asuras/s4-card1.png",
+    image: "/asuras/s4-card1.avif",
   },
   {
     title: "Deploy and share",
     body: "Deploy your Asura on your own Bugasura instance, or publish it to the World of Asuras. Other QA teams can discover, fork, and adapt your work.",
-    image: "/asuras/s4-card2.png",
+    image: "/asuras/s4-card2.avif",
   },
   {
     title: "Grow with the marketplace.",
     body: "An SAP testing expert building an SAP Asura. A fintech QA lead building a payment-flow Asura. As the marketplace scales, creator monetization scales with it.",
-    image: "/asuras/s4-card3.png",
+    image: "/asuras/s4-card3.avif",
   },
 ];
 

@@ -36,7 +36,7 @@ const dropdownData: Record<DropdownKey, {
       { label: "Integration & MCP",desc: "Jira, GitHub, Claude, and more",             href: "/platform/integrations" },
       { label: "Testpert",         desc: "AI testing with expert-in-the-loop judgment", href: "/testpert" },
     ],
-    illustration: "/navbar/dropdown/itsfree.png",
+    illustration: "/navbar/dropdown/itsfree.avif",
     illustrationAspect: 2.12,
   },
   Solutions: {
@@ -66,7 +66,7 @@ const dropdownData: Record<DropdownKey, {
       { label: "Mobile Asura",       desc: "iOS and Android testing agent",        href: "#", disabled: true },
       { label: "Build an Asura",     desc: "Create your own agent",               href: "#", disabled: true },
     ],
-    illustration: "/navbar/dropdown/asuras.png",
+    illustration: "/navbar/dropdown/asuras.avif",
     illustrationAspect: 2.36,
   },
   Resources: {
@@ -81,7 +81,7 @@ const dropdownData: Record<DropdownKey, {
       { label: "Community",   desc: "50,000+ Bugasura users",                   href: "https://join.slack.com/t/bugasuraspaces/shared_invite/zt-1zgsj1cxt-zjGy08DwWP2KhnvIJqdq_Q", external: true },
       { label: "Security",    desc: "Compliance, data residency, trust",        href: "/security" },
     ],
-    illustration: "/navbar/dropdown/illustration.png",
+    illustration: "/navbar/dropdown/illustration.avif",
     illustrationAspect: 2.12,
   },
 };

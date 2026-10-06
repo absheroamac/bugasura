@@ -66,7 +66,7 @@ export function PricingTabs() {
               </a>
             </div>
             <div className={styles.planCardTopRight}>
-              <Image src="/asuras-free-pricing.png" alt="" width={300} height={300} className={styles.planMascot} />
+              <Image src="/asuras-free-pricing.avif" alt="" width={300} height={300} className={styles.planMascot} />
             </div>
           </div>
 
@@ -133,7 +133,7 @@ export function PricingTabs() {
               </a>
             </div>
             <div className={styles.planCardTopRight}>
-              <Image src="/asuras-enterprise-pricing.png" alt="" width={300} height={300} className={styles.planMascot} />
+              <Image src="/asuras-enterprise-pricing.avif" alt="" width={300} height={300} className={styles.planMascot} />
             </div>
           </div>
 

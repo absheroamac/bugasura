@@ -115,7 +115,7 @@ export default function PlatformComparison() {
           {/* Image card — full width */}
           <div className="rounded-3xl overflow-hidden w-full">
             <Image
-              src="/platform/comparison-right.png"
+              src="/platform/comparison-right.avif"
               alt="Bugasura platform — unified intelligence"
               width={680}
               height={420}

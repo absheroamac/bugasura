@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heading, BodyText } from "@/components/ui";
@@ -22,7 +23,7 @@ const asuras = [
       "Context-aware flow prioritisation",
     ],
     badge: "Early Access",
-    char: "/asuras/char-browser.png",
+    char: "/asuras/char-browser.avif",
     eyebrowColor: "#D51618",
   },
   {
@@ -41,7 +42,7 @@ const asuras = [
       "Auto-linked to requirements and defect history",
     ],
     badge: "Early Access",
-    char: "/asuras/char-api.png",
+    char: "/asuras/char-api.avif",
     eyebrowColor: "#D51618",
   },
   {
@@ -60,7 +61,7 @@ const asuras = [
       "Works on Bugasura, Jira, and Linear",
     ],
     badge: "Early Access",
-    char: "/asuras/char-duplicate.png",
+    char: "/asuras/char-duplicate.avif",
     eyebrowColor: "#D51618",
   },
   {
@@ -79,7 +80,7 @@ const asuras = [
       "Context-aware test path generation",
     ],
     badge: "Coming Soon",
-    char: "/asuras/char-mobile.png",
+    char: "/asuras/char-mobile.avif",
     eyebrowColor: "#D51618",
   },
 ];
@@ -221,7 +222,7 @@ export default function AsuraShowcase() {
           {/* Centre — jar composition */}
           <div className="flex-1 flex justify-center items-end" style={{ position: "relative", minHeight: "650px" }}>
             <div style={{ position: "relative", width: "525px", height: "650px" }}>
-              <img src="/asuras/jar.png" alt="" aria-hidden style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", zIndex: 1 }} />
+              <Image src="/asuras/jar.avif" alt="" aria-hidden fill sizes="525px" quality={88} style={{ objectFit: "contain", zIndex: 1 }} />
               <div style={{ position: "absolute", bottom: "24%", left: 0, right: 0, display: "flex", justifyContent: "center", alignItems: "flex-end", zIndex: 2 }}>
                 <AnimatePresence mode="wait">
                   <motion.img

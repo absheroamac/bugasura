@@ -53,7 +53,7 @@ export default function PlatformCTA() {
         {/* Right — mascot */}
         <div style={{ flexShrink: 0, width: "clamp(180px, 18vw, 280px)" }}>
           <Image
-            src="/section6/asura.png"
+            src="/section6/asura.avif"
             alt="Bugasura mascot"
             width={280}
             height={280}

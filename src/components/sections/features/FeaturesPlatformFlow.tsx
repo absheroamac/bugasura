@@ -3,7 +3,7 @@ import { Heading, BodyText } from "@/components/ui";
 
 interface FeaturesPlatformFlowProps {
   description: string;
-  image: string; // path relative to /public, e.g. "/platform-flow/Context-Active.png"
+  image: string; // path relative to /public, e.g. "/platform-flow/Context-Active.avif"
 }
 
 export default function FeaturesPlatformFlow({ description, image }: FeaturesPlatformFlowProps) {

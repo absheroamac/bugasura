@@ -74,7 +74,7 @@ function JiraQuoteRotator() {
       {/* Paper background card */}
       <div
         style={{
-          backgroundImage: "url('/paper-bg.png')",
+          backgroundImage: "url('/paper-bg.avif')",
           backgroundSize: "100% 100%",
           backgroundColor: "transparent",
           padding: "clamp(32px, 6vw, 60px) clamp(24px, 6vw, 64px) clamp(24px, 4vw, 32px)",
@@ -189,7 +189,7 @@ export default function JiraAlternativePage() {
             style={{ width: "576px" }}
           >
             <Image
-              src="/jira-hero-img.png"
+              src="/jira-hero-img.avif"
               alt="Bugasura vs JIRA illustration"
               width={576}
               height={504}
@@ -240,7 +240,7 @@ export default function JiraAlternativePage() {
       <div className="w-full flex justify-center" style={{ marginTop: -32 }}>
       <div className="rounded-[24px] overflow-hidden" style={{ maxWidth: 580 }}>
         <Image
-          src="/bugasura-product.png"
+          src="/bugasura-product.avif"
           alt="Bugasura product screenshot"
           width={1455}
           height={1081}
@@ -400,7 +400,7 @@ export default function JiraAlternativePage() {
           <div className="cmp-row">
             <div className="cmp-label" style={{ zIndex: 2, padding: "20px 24px", background: "#ffffff", borderBottom: "1px solid rgba(30,30,30,0.08)" }} />
             <div style={{ padding: "20px 24px", background: "rgba(229,39,39,0.07)", borderBottom: "1px solid rgba(229,39,39,0.12)", borderLeft: "1px solid rgba(229,39,39,0.12)" }}>
-              <Image src="/bugasura-logo.png" alt="Bugasura" width={120} height={22} style={{ height: "22px", width: "auto", display: "block" }} />
+              <Image src="/bugasura-logo.avif" alt="Bugasura" width={120} height={22} style={{ height: "22px", width: "auto", display: "block" }} />
             </div>
             <div style={{ padding: "20px 24px", background: "rgba(30,30,30,0.03)", borderBottom: "1px solid rgba(30,30,30,0.08)", borderLeft: "1px solid rgba(30,30,30,0.08)" }}>
               <Image src="/jira-logo.png" alt="Jira" width={60} height={22} style={{ height: "22px", width: "auto", display: "block" }} />

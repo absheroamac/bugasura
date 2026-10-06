@@ -51,7 +51,7 @@ export default function Hero() {
       {/* ── Jungle background ── */}
       <div className="absolute inset-0 z-0 overflow-hidden rounded-b-[32px]">
         <Image
-          src="/hero/Background.png"
+          src="/hero/Background.avif"
           alt=""
           fill
           className="object-cover object-bottom"
@@ -159,7 +159,7 @@ export default function Hero() {
           {/* Mouth — absolutely centred inside the stage */}
           <div className="absolute inset-0 flex items-center justify-center">
             <Image
-              src="/hero/asura-mouth.png"
+              src="/hero/asura-mouth.avif"
               alt="Asura — Bugasura mascot"
               width={1040}
               height={480}

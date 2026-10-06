@@ -87,7 +87,7 @@ export default function SolutionsTestimonial({ testimonials }: SolutionsTestimon
           >
             <div style={{ position: "relative", width: "100%", height: "100%" }}>
               <Image
-                src="/illustrations/testimonial-character.png"
+                src="/illustrations/testimonial-character.avif"
                 alt=""
                 fill
                 style={{ objectFit: "cover", objectPosition: "center" }}

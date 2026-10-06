@@ -25,7 +25,7 @@ export default function EngineeringTeamsPage() {
         primaryHref="https://my.bugasura.io?go=sign_up"
         secondaryLabel="View MCP docs"
         secondaryHref="https://bugasura.io/mcp-server"
-        illustration="/illustrations/engineering-teams.png"
+        illustration="/illustrations/engineering-teams.avif"
         trustBadges={[
           { Icon: Zap,    iconColor: "#CC7A00", label: "Free forever",          desc: "Full platform, unlimited users and projects — no credit card required" },
           { Icon: Bug,    iconColor: "#E52727", label: "Unlimited bug reports",  desc: "Capture, triage, and track every defect without hitting a ceiling" },

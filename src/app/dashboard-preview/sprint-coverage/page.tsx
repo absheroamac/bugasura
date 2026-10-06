@@ -128,7 +128,7 @@ export default function SprintCoveragePage() {
           <div style={{ flex: 1, background: "#ffffff", borderRadius: "14px", border: "1px solid rgba(30,30,30,0.07)", overflow: "auto", minHeight: 0 }}>
             <div style={{ minWidth: "900px", padding: "24px", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Image
-                src="/dashboard-preview/sprint-coverage-infographic.png"
+                src="/dashboard-preview/sprint-coverage-infographic.avif"
                 alt="Test coverage outline mind map showing Flows, Scenarios, Test Focus Areas and Features"
                 width={1280}
                 height={840}

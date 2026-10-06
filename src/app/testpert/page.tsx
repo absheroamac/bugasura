@@ -84,7 +84,7 @@ export default function TestpertPage() {
             style={{ width: "45%", alignSelf: "flex-end" }}
           >
             <Image
-              src="/illustrations/testpert-hero.png"
+              src="/illustrations/testpert-hero.avif"
               alt=""
               width={760}
               height={507}
@@ -140,7 +140,7 @@ export default function TestpertPage() {
 
           {/* Left — Other AI tools */}
           <div className="flex flex-col" style={{ borderRadius: "24px", overflow: "hidden" }}>
-            <Image src="/illustrations/comparison-right.png" alt="" width={800} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
+            <Image src="/illustrations/comparison-right.avif" alt="" width={800} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
             <div style={{ padding: "32px" }}>
               <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1, marginBottom: "8px" }}>
                 The Stitched Together Stack
@@ -164,7 +164,7 @@ export default function TestpertPage() {
 
           {/* Right — Testpert */}
           <div className="flex flex-col" style={{ borderRadius: "24px", overflow: "hidden" }}>
-            <Image src="/illustrations/comparison-left.png" alt="" width={800} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
+            <Image src="/illustrations/comparison-left.avif" alt="" width={800} height={400} style={{ width: "100%", height: "auto", display: "block" }} />
             <div style={{ padding: "32px" }}>
               <Heading level="subsection" as="h3" color="#0077C2" style={{ fontSize: "clamp(22px, 3vw, 38px)", lineHeight: 1.1, marginBottom: "8px" }}>
                 The Bugasura Platform
@@ -207,7 +207,7 @@ export default function TestpertPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {[
             {
-              illustration: "/illustrations/qa-teams.png",
+              illustration: "/illustrations/qa-teams.avif",
               role: "Expert Q&A Engine",
               roleColor: "#E52727",
               title: "Expert questions before the first test.",
@@ -220,7 +220,7 @@ export default function TestpertPage() {
               ],
             },
             {
-              illustration: "/illustrations/knowledge-base.png",
+              illustration: "/illustrations/knowledge-base.avif",
               role: "Context-Driven Coverage",
               roleColor: "#0077C2",
               title: "Coverage from context, not scripts.",
@@ -233,7 +233,7 @@ export default function TestpertPage() {
               ],
             },
             {
-              illustration: "/illustrations/engineering-leaders.png",
+              illustration: "/illustrations/engineering-leaders.avif",
               role: "Expert-in-the-Loop",
               roleColor: "#C47200",
               title: "Human expertise amplified, not replaced.",

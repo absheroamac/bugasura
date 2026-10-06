@@ -67,7 +67,7 @@ export default function Integrations() {
         {/* Asura illustration */}
         <div className="mt-8" style={{ width: "clamp(340px, 90vw, 720px)" }}>
           <Image
-            src="/section6/asura.png"
+            src="/section6/asura.avif"
             alt="Bugasura Asura holding integration logos"
             width={720}
             height={720}

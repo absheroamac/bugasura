@@ -71,7 +71,7 @@ export default function PricingHero() {
           style={{ width: "45%", alignSelf: "center" }}
         >
           <Image
-            src="/illustrations/pricing.png"
+            src="/illustrations/pricing.avif"
             alt=""
             width={760}
             height={507}

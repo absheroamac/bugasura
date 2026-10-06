@@ -66,7 +66,7 @@ export default function EnterpriseSecurity() {
         >
           {/* Full background image — hidden on small screens for readability, replaced by solid dark gray */}
           <Image
-            src="/enterprise/card1-bg-v4.png"
+            src="/enterprise/card1-bg-v4.avif"
             alt=""
             aria-hidden
             fill

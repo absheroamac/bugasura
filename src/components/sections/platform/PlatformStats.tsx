@@ -48,7 +48,7 @@ export default function PlatformStats() {
 
       {/* Bugasura Everywhere illustration — full width below stats */}
       <Image
-        src="/platform/bugasura-everywhere.png"
+        src="/platform/bugasura-everywhere.avif"
         alt="Bugasura — teams worldwide"
         width={1440}
         height={560}

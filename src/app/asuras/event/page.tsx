@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Check, ArrowRight, X, ChevronRight, ChevronLeft } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Image from "next/image";
 import { Heading, BodyText, Button } from "@/components/ui";
 import LogoScroller from "@/components/sections/LogoScroller";
 
@@ -49,21 +50,21 @@ const prizes = [
     name: "The Sovereign Asura",
     desc: "₹15,000 voucher + a founding-member badge on the Marketplace + a 1:1 onboarding session when it launches.",
     highlight: true,
-    image: "/prize-sovereign.png",
+    image: "/prize-sovereign.avif",
   },
   {
     rank: "Runner-up",
     name: "The Warrior Asura",
     desc: "₹7,500 voucher + early-access Marketplace credits.",
     highlight: false,
-    image: "/prize-warrior.png",
+    image: "/prize-warrior.avif",
   },
   {
     rank: "Lucky draw · all entries",
     name: "The Wanderer’s Boon",
     desc: "Bugasura merch pack + guaranteed early-access invite when the Marketplace opens.",
     highlight: false,
-    image: "/prize-wanderer.png",
+    image: "/prize-wanderer.avif",
   },
 ];
 
@@ -461,12 +462,14 @@ export default function AsuraEventPage() {
         style={{ backgroundColor: "var(--red)" }}
       >
         {/* Landing page background image */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/hero/Background.png"
+        <Image
+          src="/hero/Background.avif"
           alt=""
           aria-hidden
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", zIndex: 0 }}
+          fill
+          sizes="100vw"
+          quality={85}
+          style={{ objectFit: "cover", objectPosition: "bottom", zIndex: 0 }}
         />
         <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-20 pt-20 lg:pt-28 pb-4">
 
@@ -494,10 +497,13 @@ export default function AsuraEventPage() {
 
         {/* Train illustration — transparent PNG, no blue background */}
         <div className="relative z-10 w-full px-4 lg:px-8" style={{ marginBottom: "-2px" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/section5/train.png"
+          <Image
+            src="/section5/train.avif"
             alt="World of Asuras — all agents on the Bugasura train"
+            width={2400}
+            height={793}
+            sizes="(max-width: 1023px) 100vw, 1280px"
+            quality={88}
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
@@ -533,10 +539,13 @@ export default function AsuraEventPage() {
           </BodyText>
 
           {/* Asura pods illustration */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/asura-pods.png"
+          <Image
+            src="/asura-pods.avif"
             alt="Asuras in pods — the Bugasura Agent Marketplace"
+            width={2400}
+            height={748}
+            sizes="(max-width: 1023px) 100vw, 1280px"
+            quality={88}
             style={{ width: "100%", height: "auto", display: "block", marginBottom: "48px" }}
           />
 
@@ -574,9 +583,8 @@ export default function AsuraEventPage() {
         className="rounded-[32px] px-6 lg:px-20 py-16 lg:py-24 relative overflow-hidden"
         style={{ backgroundColor: "var(--red)" }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/hero/Background.png" alt="" aria-hidden
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom", zIndex: 0 }} />
+        <Image src="/hero/Background.avif" alt="" aria-hidden fill sizes="100vw" quality={85}
+          style={{ objectFit: "cover", objectPosition: "bottom", zIndex: 0 }} />
         <div className="relative z-10 max-w-[1200px] mx-auto">
 
           {/* Title graphic */}

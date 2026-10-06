@@ -69,7 +69,7 @@ export default function EnterpriseHero() {
           style={{ width: "576px", marginTop: "-120px" }}
         >
           <Image
-            src="/enterprise/enterprise_hero.png"
+            src="/enterprise/enterprise_hero.avif"
             alt="Enterprise platform illustration"
             width={576}
             height={504}

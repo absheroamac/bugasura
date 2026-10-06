@@ -20,7 +20,7 @@ export default function BugTrackerPage() {
         headline={<>Capture and close bugs — with AI in the loop.</>}
         body="Not just a place to log issues. An AI-enriched tracker that auto-deduplicates, contextualises defects against your requirements, and gives engineering exactly what they need to fix fast."
         darkText={true}
-        illustration="/illustrations/bug-tracker.png"
+        illustration="/illustrations/bug-tracker.avif"
         heroBg="#FFA840"
         primaryLabel="Start for free"
         primaryHref="https://my.bugasura.io?go=sign_up"
@@ -104,7 +104,7 @@ export default function BugTrackerPage() {
 
       <FeaturesPlatformFlow
         description="Defects captured here close the intelligence loop — they flow back into the Context layer as defect history, making the next sprint's risk mapping and test generation more accurate than the last."
-        image="/platform-flow/Execute-Active.png"
+        image="/platform-flow/Execute-Active.avif"
       />
 
       <SolutionsTestimonial

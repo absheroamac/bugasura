@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Check, ArrowRight, X } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Image from "next/image";
 import { Heading, BodyText, Button } from "@/components/ui";
 import LogoScroller from "@/components/sections/LogoScroller";
 
@@ -287,8 +288,7 @@ export default function AsuraEventPage() {
       >
         {/* Background image clipped inside its own rounded wrapper */}
         <div className="absolute inset-0 rounded-[32px] overflow-hidden" style={{ zIndex: 0 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/hero/Background.png" alt="" aria-hidden style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "bottom" }} />
+          <Image src="/hero/Background.avif" alt="" aria-hidden fill sizes="100vw" quality={85} style={{ objectFit: "cover", objectPosition: "bottom" }} />
         </div>
         <div className="relative z-10 flex flex-col items-center text-center px-6 lg:px-20 pt-20 lg:pt-28" style={{ paddingBottom: 0 }}>
 
@@ -318,10 +318,13 @@ export default function AsuraEventPage() {
 
         {/* Train illustration — transparent PNG, no blue background */}
         <div className="relative z-10 w-[130%] -ml-[15%] lg:w-full lg:ml-0 px-0 lg:px-8 mt-4 lg:-mt-[100px]" style={{ marginBottom: "-2px", pointerEvents: "none" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/section5/train.png"
+          <Image
+            src="/section5/train.avif"
             alt="World of Asuras — all agents on the Bugasura train"
+            width={2400}
+            height={793}
+            sizes="(max-width: 1023px) 130vw, 1280px"
+            quality={88}
             style={{ width: "100%", height: "auto", display: "block" }}
           />
         </div>
@@ -358,8 +361,7 @@ export default function AsuraEventPage() {
 
           {/* Asura pods illustration */}
           <div className="pods-wrap" style={{ marginBottom: "48px" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/asura-pods.png" alt="Asuras in pods — the Bugasura Agent Marketplace" style={{ width: "100%", height: "auto", display: "block" }} />
+            <Image src="/asura-pods.avif" alt="Asuras in pods — the Bugasura Agent Marketplace" width={2400} height={748} sizes="(max-width: 1023px) 140vw, 1280px" quality={88} style={{ width: "100%", height: "auto", display: "block" }} />
           </div>
           <style>{`.pods-wrap img { transform: scale(1); } @media (max-width: 1023px) { .pods-wrap img { transform: scale(1.4); transform-origin: center center; } }`}</style>
 

@@ -25,7 +25,7 @@ export default function LeadersPage() {
         primaryHref="https://calendly.com/get-bugasura/45min"
         secondaryLabel="Start for free"
         secondaryHref="https://my.bugasura.io?go=sign_up"
-        illustration="/illustrations/engineering-leaders.png"
+        illustration="/illustrations/engineering-leaders.avif"
         illustrationPortrait={true}
         trustBadges={[
           { Icon: ShieldCheck, iconColor: "#29A5FF", label: "SOC 2 Type II certified",       desc: "Independently audited — security, availability, and privacy controls verified" },
