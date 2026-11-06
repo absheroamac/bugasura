@@ -54,6 +54,15 @@ const footerNav: { heading: string; links: FooterLink[] }[] = [
     ],
   },
   {
+    heading: "Compare",
+    links: [
+      { label: "Bugasura vs TestRail",       href: "/testrail-alternative" },
+      { label: "Bugasura vs Xray",           href: "/xray-alternative" },
+      { label: "Bugasura vs Zephyr",         href: "/zephyr-alternative" },
+      { label: "Bugasura vs Jira",           href: "/best-free-jira-alternative" },
+    ],
+  },
+  {
     heading: "Pricing",
     links: [
       { label: "Free Plan",       href: "/pricing" },
