@@ -62,8 +62,15 @@ export default function HubTemplate() {
               <Button href="#compare" variant="outline-light" className="justify-center sm:justify-start">See in Action</Button>
             </div>
           </div>
-          <div className="hidden lg:flex flex-shrink-0 items-center justify-center" style={{ width: "460px" }}>
-            <Image src="/bugasura-product.avif" alt="Bugasura mascot lounging on a rug" width={1455} height={1081} className="w-full h-auto" priority />
+          <div className="hidden lg:flex flex-shrink-0 items-center justify-center" style={{ width: "560px" }}>
+            <Image
+              src="/Comparison/hub.png"
+              alt="Bugasura mascot puzzling over a stack of test management tool tiles: PractiTest, qTest, Qase, Jira, Zephyr, Xray and TestRail"
+              width={560}
+              height={448}
+              className="object-contain object-bottom w-full h-auto"
+              priority
+            />
           </div>
         </div>
       </section>
