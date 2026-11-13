@@ -19,7 +19,7 @@ const toolHref: Record<string, string> = {
   qTest: "/qtest-alternative",
   PractiTest: "/practitest-alternative",
 };
-const cardBg = ["#FDD9C8", "#B2D9EC", "#FFDAA8", "#DCDCDC"];
+const cardBg = ["#B2D9EC", "#FFDAA8", "#DCDCDC", "#FDD9C8", "#B2D9EC", "#FFDAA8"];
 const font = "'Clash Grotesk', sans-serif";
 
 export default function HubTemplate() {
@@ -62,7 +62,7 @@ export default function HubTemplate() {
               <Button href="#compare" variant="outline-light" className="justify-center sm:justify-start">See in Action</Button>
             </div>
           </div>
-          <div className="hidden lg:flex flex-shrink-0 items-center justify-center" style={{ width: "560px" }}>
+          <div className="hidden lg:flex flex-shrink-0 items-center justify-center" style={{ width: "clamp(340px, 38vw, 560px)" }}>
             <Image
               src="/Comparison/hub.png"
               alt="Bugasura mascot puzzling over a stack of test management tool tiles: PractiTest, qTest, Qase, Jira, Zephyr, Xray and TestRail"
@@ -82,15 +82,41 @@ export default function HubTemplate() {
         <Heading level="section" as="h2" color="#1E1E1E" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.02, letterSpacing: "-0.025em", marginBottom: "40px" }}>
           The short answer
         </Heading>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4" style={{ listStyle: "none", padding: 0 }}>
-          {hub.verdicts.map((v, i) => (
+        {/* Bugasura featured */}
+        <div
+          className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 lg:gap-12"
+          style={{ background: "#1E1E1E", borderRadius: 24, padding: "clamp(28px, 4vw, 44px)" }}
+        >
+          <div style={{ maxWidth: 760 }}>
+            <p style={{ fontFamily: font, fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: 12 }}>
+              Our answer
+            </p>
+            <Heading level="subsection" as="h3" color="#ffffff" style={{ fontSize: "clamp(28px, 3.4vw, 44px)", lineHeight: 1.05, marginBottom: 14 }}>
+              {hub.verdicts[0].tool}
+            </Heading>
+            <BodyText color="rgba(255,255,255,0.92)" style={{ fontSize: "clamp(16px, 1.4vw, 19px)", lineHeight: 1.65 }}>
+              {hub.verdicts[0].text.charAt(0).toUpperCase() + hub.verdicts[0].text.slice(1)}
+            </BodyText>
+          </div>
+          <div className="flex-shrink-0">
+            <Button href={SIGNUP} variant="white">Start Free</Button>
+          </div>
+        </div>
+
+        {/* The other six */}
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4" style={{ listStyle: "none", padding: 0 }}>
+          {hub.verdicts.slice(1).map((v, i) => (
             <li
               key={v.tool}
-              className={i === 0 ? "md:col-span-2" : ""}
-              style={{ background: i === 0 ? "#FDD9C8" : cardBg[i % cardBg.length], borderRadius: 24, padding: "28px 32px" }}
+              style={{ background: cardBg[i % cardBg.length], borderRadius: 24, padding: "28px", display: "flex", flexDirection: "column" }}
             >
-              <p style={{ fontFamily: font, fontWeight: 700, fontSize: i === 0 ? 24 : 20, color: "#1E1E1E", marginBottom: 8, letterSpacing: "-0.01em" }}>{v.tool}</p>
-              <BodyText color="rgba(30,30,30,0.78)" style={{ fontSize: "15px", lineHeight: 1.7 }}>{v.text.charAt(0).toUpperCase() + v.text.slice(1)}</BodyText>
+              <Heading level="subsection" as="h3" color="#1E1E1E" style={{ fontSize: "clamp(22px, 2vw, 26px)", lineHeight: 1.1, marginBottom: 12 }}>{v.tool}</Heading>
+              <BodyText color="rgba(30,30,30,0.78)" style={{ fontSize: "15px", lineHeight: 1.65, marginBottom: 20, flex: 1 }}>
+                {v.text.charAt(0).toUpperCase() + v.text.slice(1)}
+              </BodyText>
+              <Link href={toolHref[v.tool]} className="hub-link inline-flex items-center gap-2 self-start" style={{ fontFamily: font, fontWeight: 600, fontSize: 14, color: "#1E1E1E", textDecoration: "underline", textUnderlineOffset: 4 }}>
+                Full comparison <ArrowRight size={16} aria-hidden />
+              </Link>
             </li>
           ))}
         </ul>

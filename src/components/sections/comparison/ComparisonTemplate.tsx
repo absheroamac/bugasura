@@ -49,8 +49,8 @@ export default function ComparisonTemplate({ data }: { data: ComparisonData }) {
         <div className="flex flex-col lg:flex-row lg:items-center gap-0 px-8 lg:px-20 pt-20 lg:pt-28 pb-12 lg:pb-20">
           <div className="flex-1 flex flex-col items-start">
             <Heading level="hero" as="h1" color="#ffffff" style={{ fontSize: "clamp(40px, 5vw, 76px)", lineHeight: 1.0, letterSpacing: "-0.025em", marginBottom: "24px" }}>
-              {data.hero.line1}<br />
-              {data.hero.line2}<br />
+              {data.hero.line1}<br className="hidden xl:block" />{" "}
+              {data.hero.line2}<br className="hidden xl:block" />{" "}
               <em style={{ fontStyle: "normal", color: "rgba(255,255,255,0.75)" }}>{data.hero.line3}</em>
             </Heading>
             <BodyText color="rgba(255,255,255,0.85)" style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "560px", marginBottom: "36px" }}>
@@ -64,7 +64,7 @@ export default function ComparisonTemplate({ data }: { data: ComparisonData }) {
 
           {/* Right: illustration (falls back to a versus card until hero art is supplied) */}
           {data.heroImage ? (
-            <div className="hidden lg:flex flex-shrink-0 items-center justify-center" style={{ width: "576px" }}>
+            <div className="hidden lg:flex flex-shrink-0 items-center justify-center" style={{ width: "clamp(360px, 40vw, 576px)" }}>
               <Image src={data.heroImage} alt={`Bugasura vs ${c} illustration`} width={576} height={422} className="object-contain object-bottom w-full" priority />
             </div>
           ) : (
