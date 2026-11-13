@@ -159,7 +159,7 @@ export default function Navbar() {
           <div className="absolute inset-0 flex items-center justify-between px-12">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0" onClick={() => setActiveDropdown(null)}>
-              <Image src="/logo.png" alt="Bugasura" width={130} height={34} className="h-[34px] w-auto" priority />
+              <Image src="/bugasura-logo.png" alt="Bugasura" width={145} height={34} className="h-[30px] w-auto" priority />
             </Link>
 
             {/* Centre nav */}

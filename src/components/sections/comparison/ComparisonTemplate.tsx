@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Layers, Bug, Camera, Gauge, Users, Plus } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -159,7 +160,9 @@ export default function ComparisonTemplate({ data }: { data: ComparisonData }) {
           <Heading level="section" as="h2" color="#1E1E1E" style={{ fontSize: "clamp(32px, 4.6vw, 60px)", lineHeight: 1.02, letterSpacing: "-0.025em" }}>
             {data.whyHeading[0]}<br />{data.whyHeading[1]}
           </Heading>
-          <BodyText color="rgba(0,0,0,0.65)" style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "400px" }}>{data.whyIntro}</BodyText>
+          {data.whyIntro && (
+            <BodyText color="rgba(0,0,0,0.65)" style={{ fontSize: "16px", lineHeight: 1.75, maxWidth: "400px" }}>{data.whyIntro}</BodyText>
+          )}
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -234,6 +237,12 @@ export default function ComparisonTemplate({ data }: { data: ComparisonData }) {
         <div className="flex justify-center mt-12">
           <Button href={SIGNUP} variant="primary">Don&apos;t book a demo. Just try it FREE.</Button>
         </div>
+        <p className="text-center mt-6" style={{ fontSize: 14, color: "rgba(30,30,30,0.65)" }}>
+          Comparing more tools?{" "}
+          <Link href="/best-test-management-tools" style={{ color: "#1E1E1E", fontWeight: 600, textDecoration: "underline", textUnderlineOffset: 3 }}>
+            See all seven test management tools compared
+          </Link>
+        </p>
       </section>
 
       {/* FAQ */}

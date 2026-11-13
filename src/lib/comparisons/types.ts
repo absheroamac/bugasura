@@ -10,7 +10,7 @@ export type ComparisonData = {
   heroImage?: string;
   hero: { line1: string; line2: string; line3: string; body: string };
   whyHeading: [string, string];
-  whyIntro: string;
+  whyIntro?: string;
   reasons: { title: string; body: string }[];
   painHeading: string;
   painIntro?: string;
