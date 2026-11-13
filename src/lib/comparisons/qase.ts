@@ -5,6 +5,7 @@ export const qase: ComparisonData = {
   competitor: "Qase",
   metaTitle: "Qase Alternative: Bugasura vs Qase Compared (2026)",
   metaDescription: "Qase Free stops at 4 users, 2 projects and no integrations. Bugasura's free plan has no seat limit and 25+ integrations. Full comparison.",
+  heroImage: "/Comparison/qase.png",
   hero: {
     line1: "The Free Plan",
     line2: "Qase Could Not",

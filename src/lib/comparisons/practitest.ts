@@ -5,6 +5,7 @@ export const practitest: ComparisonData = {
   competitor: "PractiTest",
   metaTitle: "PractiTest Alternative: Bugasura vs PractiTest",
   metaDescription: "PractiTest is $47 per user per month, cloud only, AI still in beta. Bugasura is free for unlimited users with on-premise available.",
+  heroImage: "/Comparison/practiTest.png",
   hero: {
     line1: "Everything PractiTest",
     line2: "Does, Without",
