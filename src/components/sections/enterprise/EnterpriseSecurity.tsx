@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Heading, BodyText, Button } from "@/components/ui";
-import { Globe, KeyRound, Cpu, ShieldAlert, BadgeCheck } from "lucide-react";
+import { Globe, KeyRound, Cpu, ShieldAlert, BadgeCheck, Lock } from "lucide-react";
 
 const CARD_BG = "#FFDAA8";
 const RADIUS = "24px";
@@ -142,31 +142,71 @@ export default function EnterpriseSecurity() {
 
       </div>
 
-      {/* SOC 2 — full width below grid */}
-      <div
-        className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
-        style={{
-          marginTop: GAP,
-          background: "#DCDCDC",
-          borderRadius: RADIUS,
-          padding: "28px 32px",
-        }}
-      >
-        <div style={{ ...iconBox, marginBottom: 0, flexShrink: 0 }}>
-          <BadgeCheck size={28} strokeWidth={1.6} color="#1A1A1A" />
-        </div>
-        <div style={{ flex: 1 }}>
-          <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "8px" }}>
+      {/* Certifications — SOC 2 card + ISO card with certificate preview */}
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-4" style={{ marginTop: GAP }}>
+
+        {/* SOC 2 */}
+        <div className="flex flex-col" style={{ background: "#DCDCDC", borderRadius: RADIUS, padding: "28px 32px" }}>
+          <div style={iconBox}>
+            <BadgeCheck size={28} strokeWidth={1.6} color="#1A1A1A" />
+          </div>
+          <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
             SOC 2 Type II certification
           </Heading>
-          <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65 }}>
+          <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65, marginBottom: "24px" }}>
             Full audit report available under NDA. Covers security, availability, processing integrity, confidentiality, and privacy trust service criteria.
           </BodyText>
+          <div className="mt-auto">
+            <Button href="#" variant="dark" size="md" className="justify-center">
+              Download overview
+            </Button>
+          </div>
         </div>
-        <div className="sm:flex-shrink-0">
-          <Button href="#" variant="dark" size="md" className="justify-center">
-            Download overview
-          </Button>
+
+        {/* ISO/IEC 27001 — text left, certificate preview right */}
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8" style={{ background: "#B2D9EC", borderRadius: RADIUS, padding: "28px 32px" }}>
+          <div className="flex flex-col" style={{ flex: "1 1 0" }}>
+            <div style={iconBox}>
+              <Lock size={28} strokeWidth={1.6} color="#1A1A1A" />
+            </div>
+            <Heading level="subsection" as="h3" color="var(--dark)" style={{ fontSize: "clamp(20px, 2.5vw, 28px)", lineHeight: 1.2, marginBottom: "10px" }}>
+              ISO/IEC 27001:2022 certified
+            </Heading>
+            <BodyText color="rgba(30,30,30,0.8)" style={{ fontSize: "14px", lineHeight: 1.65, marginBottom: "24px" }}>
+              Our Information Security Management System covers the development, maintenance, operation and support of Bugasura. Certified by GCAI, valid until 03.11.2029.
+            </BodyText>
+            <div className="mt-auto">
+              <Button
+                href="/enterprise/iso-27001-certificate.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="dark"
+                size="md"
+                className="justify-center"
+              >
+                View certificate
+              </Button>
+            </div>
+          </div>
+
+          {/* Preview — top of the certificate, fills the card height */}
+          <a
+            href="/enterprise/iso-27001-certificate.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open the ISO/IEC 27001 certificate (PDF)"
+            className="relative block md:w-[42%] md:flex-shrink-0 h-[280px] md:h-auto overflow-hidden"
+            style={{ borderRadius: "16px", background: "#ffffff", boxShadow: "0 8px 24px rgba(30,30,30,0.12)" }}
+          >
+            <Image
+              src="/enterprise/iso-27001-certificate.webp"
+              alt="ISO/IEC 27001:2022 Certificate of Registration issued to Moolya Software Testing Private Limited"
+              fill
+              sizes="(min-width: 1024px) 25vw, 90vw"
+              style={{ objectFit: "cover", objectPosition: "top" }}
+              loading="lazy"
+            />
+          </a>
         </div>
       </div>
     </section>

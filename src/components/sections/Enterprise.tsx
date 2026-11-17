@@ -7,6 +7,10 @@ const badges = [
     label: "SOC 2 Type II\ncertified",
   },
   {
+    icon: "/enterprise/iso27001.svg",
+    label: "ISO/IEC 27001\ncertified",
+  },
+  {
     icon: "/enterprise/data-hosted.svg",
     label: "Data hosted in India\n& Singapore",
   },
@@ -37,11 +41,11 @@ export default function Enterprise() {
         }}
       >
         {/* Badges row */}
-        <div className="grid grid-cols-2 lg:flex lg:flex-nowrap items-start justify-center lg:justify-center w-full gap-8 lg:gap-28 mb-10 lg:mb-12">
-          {badges.map((badge) => (
+        <div className="grid grid-cols-2 lg:flex lg:flex-nowrap items-start justify-center lg:justify-center w-full gap-8 lg:gap-14 xl:gap-20 mb-10 lg:mb-12">
+          {badges.map((badge, i) => (
             <div
               key={badge.label}
-              className="flex flex-col items-center gap-3"
+              className={`flex flex-col items-center gap-3${i === badges.length - 1 ? " col-span-2 lg:col-span-1" : ""}`}
             >
               <Image
                 src={badge.icon}

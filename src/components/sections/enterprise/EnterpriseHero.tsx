@@ -1,9 +1,10 @@
 import Image from "next/image";
-import { ShieldCheck, Globe, BadgeCheck, Server } from "lucide-react";
+import { ShieldCheck, Lock, Globe, BadgeCheck, Server } from "lucide-react";
 import { Button, Heading, BodyText } from "@/components/ui";
 
-const badges = [
+const badges: { Icon: React.ElementType; label: string; desc: string }[] = [
   { Icon: ShieldCheck, label: "SOC 2 Type II certified",           desc: "Independently audited — security, availability, and privacy controls verified" },
+  { Icon: Lock,        label: "ISO/IEC 27001 certified",           desc: "Information security management system independently certified" },
   { Icon: Globe,       label: "Data hosted in India & Singapore",  desc: "Dedicated infrastructure with regional data residency guarantees" },
   { Icon: BadgeCheck,  label: "SSO & SAML supported",             desc: "Enterprise identity management with your existing IdP" },
   { Icon: Server,      label: "On-prem available",                 desc: "Deploy on your own infrastructure — full data sovereignty" },
@@ -80,10 +81,10 @@ export default function EnterpriseHero() {
 
       </div>
 
-      {/* ── Bottom: 4 compliance cards ── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
-        {badges.map(({ Icon, label, desc }) => (
-          <div key={label} className="flex flex-col" style={{ background: "#FFF6E2", borderRadius: "20px", padding: "20px" }}>
+      {/* ── Bottom: 5 compliance cards ── */}
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 px-8 lg:px-20 pb-8 lg:pb-10">
+        {badges.map(({ Icon, label, desc }, i) => (
+          <div key={label} className={`flex flex-col${i === badges.length - 1 ? " col-span-2 lg:col-span-1" : ""}`} style={{ background: "#FFF6E2", borderRadius: "20px", padding: "20px" }}>
             <div style={{ width: "44px", height: "44px", borderRadius: "12px", background: "rgba(0,119,194,0.1)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px" }}>
               <Icon size={22} strokeWidth={1.6} color="#0077C2" />
             </div>

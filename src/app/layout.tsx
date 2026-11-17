@@ -8,6 +8,10 @@ const caveat = Caveat({ subsets: ["latin"], variable: "--font-caveat", weight: [
 
 export const metadata: Metadata = {
   title: "Bugasura — Agentic QA for the AI Era",
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "any" }, { url: "/icon.png", type: "image/png" }],
+    apple: "/apple-touch-icon.png",
+  },
   description: "The operating system for building quality. Bug tracker, test management, AI agents — free forever, unlimited users.",
 };
 
